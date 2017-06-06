@@ -1,8 +1,5 @@
 package com.fabhotels.desktopsite.utils;
 
-import java.net.InetAddress;
-import java.net.URL;
-
 public class UrlProvider extends Config {
 
 	public static String getHomePageUrl() {
