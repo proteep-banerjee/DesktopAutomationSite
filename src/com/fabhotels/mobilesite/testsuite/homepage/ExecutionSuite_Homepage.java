@@ -13,6 +13,7 @@ import com.fabhotels.mobilesite.pageobjects.HomePage;
 import com.fabhotels.mobilesite.pageobjects.OurLocationsPage;
 import com.fabhotels.mobilesite.pageobjects.SearchPage;
 import com.fabhotels.mobilesite.utils.Config;
+import com.fabhotels.mobilesite.utils.Constants;
 import com.fabhotels.mobilesite.utils.UrlProvider;
 
 public class ExecutionSuite_Homepage extends Config {
@@ -24,11 +25,11 @@ public class ExecutionSuite_Homepage extends Config {
 	HomePage hp;
 	SearchPage sp;
 	OurLocationsPage loc;
-	Xls_Reader xls = new Xls_Reader(emailValidationsSheet);
-	Xls_Reader xls1 = new Xls_Reader(cityNamesImagesSheet);
-	Xls_Reader xls2 = new Xls_Reader(discountNamesImagesSheet);
-	Xls_Reader xls3 = new Xls_Reader(footerLinksSheet);
-	Xls_Reader xls4 = new Xls_Reader(hamburgerMenuLinksSheet);
+	Xls_Reader xls = new Xls_Reader(Constants.EMAILVALIDATIONSHEETS);
+	Xls_Reader xls1 = new Xls_Reader(Constants.CITYNAMESIMAGESSHEET);
+	Xls_Reader xls2 = new Xls_Reader(Constants.DISCOUNTNAMESIMAGESSHEETS);
+	Xls_Reader xls3 = new Xls_Reader(Constants.FOOTERLINKSSHEETS);
+	Xls_Reader xls4 = new Xls_Reader(Constants.HAMBURGERMENULINKSSHEET);
 
 	@BeforeTest
 	void startBrowser() {

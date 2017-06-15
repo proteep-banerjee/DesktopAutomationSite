@@ -46,5 +46,21 @@ public class UrlProvider extends Config {
 		else
 			return "https://www.fabhotels.com/hotels-in-gurgaon/fabhotel-daffodil-sector-45.html?checkIn=17+Jan+2017&checkOut=18+Jan+2017";
 	}
+	
+	
+	public static String getDamanPageUrl(){
+		if (TestorLive.toLowerCase().contains("dev"))
+			return "http://" + TestorLive + "/fabhotels.com";
+		
+		if (TestorLive.equalsIgnoreCase("staging"))
+			return "https://staging.fabhotels.com/hotels-in-daman/fabhotel-instructor-wow.html";
+		
+		if (TestorLive.equalsIgnoreCase("preprod"))
+			return "https://preprod.fabhotels.com/hotels-in-daman/fabhotel-hotel-sankalp.html";
+		
+		else
+			return "https://www.fabhotels.com/hotels-in-daman/fabhotel-instructor-wow.html";
+	}
+	
 
 }

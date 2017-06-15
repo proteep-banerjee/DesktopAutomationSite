@@ -1,5 +1,7 @@
 package com.fabhotels.mobilesite.pageobjects;
 
+import java.time.LocalDate;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -33,7 +35,6 @@ public class DetailsPage {
 	public static final By email_Subscribe_Txt = By.xpath("//div[contains(@class,'home__subscribe-bx-txt')]/input");
 	public static final By keepMeUpdated_Btn = By.xpath("//button[text()='Keep me updated!']");
 
-	
 	public static By noOfRooms_Minus_WE = By
 			.xpath("//div[@class='pricing__rooms-number']//div[@class='minus-button icon-minus']");
 	public static By noOfRooms_Plus_WE = By
@@ -42,16 +43,22 @@ public class DetailsPage {
 			.xpath("//div[@class='pricing__rooms-list']//div[@class='minus-button icon-minus']");
 	public static By noOfGuests_Plus_WE = By
 			.xpath("//div[@class='pricing__rooms-list']//div[@class='plus-button icon-plus']");
-	
-	
+
 	public static By totalPrice_Lbl = By.xpath("//div[@class='hotel__total-price-txt']");
 	public static By bookNow_Lbl = By.xpath("//button[text()='Book now']");
+
+	public static String selectdate_Btn = "//button[contains(@class,'hotel__book-btn')]"; // "//button[contains(text(),'Select
+																							// Dates')]";
+	public static String checkInDateFromCalendar1_Btn = "(//div[@id='calendar']//tr[@class='calendar__row']//div[contains(text(),'";
+	public static String checkInDateFromCalendar2_Btn = "')])[1]";
+	public static String checkOutDateFromCalendar1_Btn = "(//div[@id='calendar']//tr[@class='calendar__row']//div[contains(text(),'";
+	public static String checkOutDateFromCalendar2_Btn = "')])[1]";
 
 	public DetailsPage(WebDriver driver, GenericFunctions generic) {
 		this.driver = driver;
 		this.generic = generic;
 	}
-	
+
 	public void click_NoOfRooms_Minus_WE() {
 		generic.click(noOfRooms_Minus_WE);
 	}
@@ -67,8 +74,8 @@ public class DetailsPage {
 	public void click_NoOfGuests_Plus_WE() {
 		generic.click(noOfGuests_Plus_WE);
 	}
-	
-	public void click_Change_Lnk(){
+
+	public void click_Change_Lnk() {
 		generic.click(change_Lnk);
 	}
 
@@ -76,12 +83,28 @@ public class DetailsPage {
 		generic.click(bookNow_Btn);
 	}
 
-	public void click_LoadMore_Amenities_WE(){
+	public void click_LoadMore_Amenities_WE() {
 		generic.click(loadMore_Amenities_WE);
 	}
-	
+
 	public String getText_TotalPrice_Lbl() {
 		return generic.getText(totalPrice_Lbl).replaceAll("^[0-9]", "");
 	}
 
+	public void Positive_CheckInCheckOutDateWE() {
+		// LocalDate todayDate = LocalDate.now();
+		// String nextDate = todayDate.plusDays(1).toString();
+		LocalDate todayDate1 = LocalDate.now();
+		String todayDate = todayDate1.plusDays(1).toString();
+		String nextDate = todayDate1.plusDays(2).toString();
+		// System.out.println(todayDate+" , "+nextDate);
+		generic.click(selectdate_Btn);
+		String spiltTodayDate[] = todayDate.toString().replaceFirst("0", "").split("-");
+		generic.click(checkInDateFromCalendar1_Btn + spiltTodayDate[2] + checkInDateFromCalendar2_Btn);
+		String spiltNextDate[] = nextDate.toString().replaceFirst("0", "").split("-");
+		generic.click(checkOutDateFromCalendar1_Btn + spiltNextDate[2] + checkOutDateFromCalendar2_Btn);
+		// generic.click(selectRooms_Btn);
+		// generic.click(selectRoomsHref_Btn);
+		generic.click(bookNow_Btn);
+	}
 }

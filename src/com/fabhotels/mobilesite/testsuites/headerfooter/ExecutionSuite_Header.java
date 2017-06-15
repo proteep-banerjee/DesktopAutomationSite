@@ -1,4 +1,4 @@
-package com.fabhotels.mobilesite.testsuites;
+package com.fabhotels.mobilesite.testsuites.headerfooter;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
