@@ -5,6 +5,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import com.fabhotels.automationframework.genericfunctions.GenericFunctions;
 import com.fabhotels.mobilesite.pageobjects.Header;
 import com.fabhotels.mobilesite.utils.Config;
 import com.fabhotels.mobilesite.utils.UrlProvider;
@@ -13,8 +14,8 @@ public class ExecutionSuite_Header extends Config{
 	
 	@BeforeTest
 	public void beforeTest(){
-		driver = generic.startDriver(Driver_Type);
-		//generic = new GenericFunctions(driver);
+		generic = new GenericFunctions(driver);
+		driver = generic.startDriver(Driver_Type, Device_Type);
 		generic.maximize();
 	}
 	
