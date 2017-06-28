@@ -14,7 +14,7 @@ import com.fabhotels.desktopsite.utils.Config;
 import com.fabhotels.desktopsite.utils.Constants;
 
 public class ExecutionSuite_CachedBenchmarking extends Config {
-	String Sheetname;
+/*	String Sheetname;
 	Xls_Reader datatable;
 
 	@BeforeTest
@@ -95,4 +95,6 @@ public class ExecutionSuite_CachedBenchmarking extends Config {
 	public void afterTest() {
 		driver.quit();
 	}
+	
+	*/
 }

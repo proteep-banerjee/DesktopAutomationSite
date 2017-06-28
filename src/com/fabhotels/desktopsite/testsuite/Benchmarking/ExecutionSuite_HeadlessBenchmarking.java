@@ -1,22 +1,9 @@
 package com.fabhotels.desktopsite.testsuite.Benchmarking;
 
-import java.util.concurrent.TimeUnit;
-
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
-
-import com.fabhotels.automationframework.xlsreader.Xls_Reader;
-import com.fabhotels.desktopsite.pageobjects.DetailPage;
-import com.fabhotels.desktopsite.pageobjects.HomePage;
-import com.fabhotels.desktopsite.pageobjects.ListingPage;
 import com.fabhotels.desktopsite.utils.Config;
-import com.fabhotels.desktopsite.utils.Constants;
 
 public class ExecutionSuite_HeadlessBenchmarking extends Config {
-	String Sheetname;
+/*	String Sheetname;
 	Xls_Reader datatable;
 
 	@BeforeMethod
@@ -95,6 +82,7 @@ public class ExecutionSuite_HeadlessBenchmarking extends Config {
 		System.out.print("  Quit");
 		driver.quit();
 	}
+	*/
 }
 
 
