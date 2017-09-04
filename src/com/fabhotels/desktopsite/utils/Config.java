@@ -9,7 +9,7 @@ public class Config extends BaseDriver{
 	
 	public static String Environment = "test2"; //live
 	public static String Execution_Type = "System";
-	public static String Driver_Type = "FF46"; //Chrome  FF30
+	public static String Driver_Type = "FF30"; //Chrome  FF30
 	public CustomAssert customAssert = new CustomAssert();
 
 }

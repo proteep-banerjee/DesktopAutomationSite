@@ -22,7 +22,8 @@ public class UrlProvider extends Config {
 		if (Environment.toLowerCase().contains("dev"))
 			return "http://" + Environment + ".fabhotels.com/hotels-in-new-delhi/";
 		
-		if (Environment.toLowerCase().contains("test2"))
+
+		if (Environment.toLowerCase().contains("test"))
 			return "http://" + Environment + ".fabhotels.com/hotels-in-new-delhi/";
 
 		if (Environment.toLowerCase().contains("preprod"))

@@ -9,8 +9,9 @@ public class ListingPage {
 
 	WebDriver driver;
 	GenericFunctions generic;
-	
+
 	public static final By location_Txt = By.id("autocomplete-location");
+
 	public static final By checkIn_Date_WE = By.id("checkIn");
 	public static final By checkOut_Date_WE = By.id("checkOut");
 	public static final By add_Room_Btn = By.id("addRoom");
@@ -41,25 +42,64 @@ public class ListingPage {
 		this.generic=generic;}
 	
 	
-	public String GetText_resultsCountText_Lbl() {
+
+	public static final By noOfRooms_DD = By.xpath("//div[@class='custom-value-content clearfix']");
+	public static final By list_noOfRooms_DD = By.xpath("(//div[@class='custom-value-dropdown']//a)[3]");
+	public static final By search_Btn = By.id("listingPageBtn");
+	
+	public static final By cityName_Lbl = By.xpath("//div[@class='hotel-info']/strong");
+	public static final By bookingDetails_Lbl = By.xpath("//div[@class='hotel-info']/span");
+	public static final By filters_WE = By.xpath("//ul[@class='filterList clearfix']//label");
+	
+	public static final By hotelName_WE = By.xpath("//div[@class='hotel-list-desc-above']/h3/a");
+	public static final By location_WE = By.xpath("//div[@class='location']");
+	public static final By rating_WE = By.xpath("//span[@class='review-star-icon']");
+	public static final By reviewsCount_WE = By.xpath("//div[@class='review-star']/a");
+	public static final By peopleLookingNow_WE = By.xpath("//div[@class='booking-now']");
+	public static final By price_WE = By.xpath("//span[@class='new-price']");
+	public static final By rackPrice_WE = By.xpath("//span[@class='old-price']/del");
+	public static final By bookNow_WE = By.xpath("//a[text()=' Book Now']");
+
+	public static final By hotelName_FirstTuple_Lbl = By.xpath("(//div[@class='hotel-list-desc-above']/h3/a)[1]");
+	public static final By location_FirstTuple_Lbl = By.xpath("(//div[@class='location'])[1]");
+	public static final By rating_FirstTuple_Lbl = By.xpath("(//span[@class='review-star-icon'])[1]");
+	public static final By reviewsCount_FirstTuple_WE = By.xpath("(//div[@class='review-star']/a)[1]");
+	public static final By peopleLookingNow_FirstTuple_Lbl = By.xpath("(//div[@class='booking-now'])[1]");
+	public static final By price_FirstTuple_Lbl = By.xpath("(//span[@class='new-price'])[1]");
+	public static final By rackPrice_FirstTuple_Lbl = By.xpath("(//span[@class='old-price']/del)[1]");
+	public static final By bookNow_FirstTuple_Lbl = By.xpath("(//a[text()=' Book Now'])[1]");
+
+	public static final By reviewsModalDialogue_WE = By.xpath("//div[@class='modal-content review-modal']");
+	public static final By cross_reviewsModal_Btn = By.xpath("//button[@class='close modal_review_cls']");
+	public static final By featureBox_WE = By.xpath("//div[@class='catalogue_property_feature_box clearfix']");
+	public static final By closeToAirport_Lbl = By.xpath("//span[@class='link-airport']");
+
+	public String getText_resultsCountText_Lbl() {
 		return generic.getText(resultsCountText_Lbl);
 	}
 
-	public String GetText_NoofHotelFound() {
+	public String getText_NoofHotelFound() {
 		return generic.getText(resultsCountText_Lbl).split("\\s+")[0];
 	}
-	
-     
-	public void click_singleProperty_WE () {
+
+	public void click_SingleProperty_WE() {
 		generic.click(singleProperty_WE);
 	}
 	
-	
-	public String getText_noPropertyFound_Lbl () {
-		return generic.getText(noPropertyFound_Lbl);
+	public void click_Filters_WE(){
+		generic.click(filters_WE);
 	}
 	
+	public void click_ReviewsModalDialogue_WE(){
+		generic.click(reviewsModalDialogue_WE);
+	}
 	
+	public void click_ReviewsCount_FirstTuple_WE(){
+		generic.click(reviewsCount_FirstTuple_WE);
+	}
 	
-	
+	public void click_singleProperty_WE(){
+		generic.click(hotelName_FirstTuple_Lbl);
+	}
+
 }
