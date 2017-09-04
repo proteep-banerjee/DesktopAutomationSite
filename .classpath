@@ -5,5 +5,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/automationframework"/>
 	<classpathentry kind="lib" path="/private/etc/Common_Resources/jars/selenium-server-standalone-2.53.0.jar"/>
 	<classpathentry kind="lib" path="/private/etc/Common_Resources/jars/testng-6.8.jar"/>
+	<classpathentry kind="lib" path="/private/etc/Common_Resources/jars/joda-time-2.9.9.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

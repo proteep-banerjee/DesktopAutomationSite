@@ -1,4 +1,4 @@
-package com.fabhotels.desktopsite.utils;
+package com.fabhotels.desktopsite.testsuite.others;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 import com.fabhotels.automationframework.genericfunctions.GenericFunctions;
 import com.fabhotels.automationframework.xlsreader.Xls_Reader;
 
-public class GoIbibo {
+public class ExecutionSuite_GoIbibo {
 
 	@Test
 	public void test() {
