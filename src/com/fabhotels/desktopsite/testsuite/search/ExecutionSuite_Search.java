@@ -82,7 +82,7 @@ public class ExecutionSuite_Search extends Config {
 				GenericFunctions.formatDateDisplayFullMonth(checkInDate), "Compare Check In Date");
 		customAssert.assertEquals(searchBar.GetText_CheckOutDate_WE(),
 				GenericFunctions.formatDateDisplayFullMonth(checkOutDate), "Compare Check Out Date");
-		customAssert.assertEquals(searchBar.GetText_NoofRooms_Lbl(), "1", "Compare No of Rooms");
+		customAssert.assertEquals(searchBar.GetText_NoofRooms_Lbl(), "1 Room", "Compare No of Rooms");
 
 		if (expectResults.equalsIgnoreCase("yes")) {
 			customAssert.assertTrue(listingPage.GetText_resultsCountText_Lbl().contains(locality),
@@ -91,8 +91,7 @@ public class ExecutionSuite_Search extends Config {
 					"Total Hotels found in results are less than 1!!");
 
 		} else {
-			customAssert.assertTrue(generic.isVisible(ListingPage.noResultsFoundMessage_Lbl),
-					"Improper Message on Zero Results Page!!");
+			customAssert.assertEquals(ListingPage.noResultsFoundMessage_Lbl.toString(),ListingPage.noPropertyFound_Msg,"Improper Message on Zero Results Page!!");
 		}
 
 		customAssert.assertAll();

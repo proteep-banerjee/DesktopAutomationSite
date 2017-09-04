@@ -7,9 +7,9 @@ import com.fabhotels.automationframework.platforms.BaseDriver;
 public class Config extends BaseDriver{
 	public GenericFunctions generic = new GenericFunctions(driver);
 	
-	public static String Environment = "dev-sahil"; //live
+	public static String Environment = "test2"; //live
 	public static String Execution_Type = "System";
-	public static String Driver_Type = "Chrome"; //Chrome  FF30
+	public static String Driver_Type = "FF46"; //Chrome  FF30
 	public CustomAssert customAssert = new CustomAssert();
 
 }

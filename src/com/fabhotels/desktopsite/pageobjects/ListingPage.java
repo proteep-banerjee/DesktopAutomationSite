@@ -18,10 +18,10 @@ public class ListingPage {
 	public static final By find_Fabhotels_Btn = By.id("homePageSearchBtn");
 	public static final By allProperties_WE = By.xpath("//div[@class='content-scroller']");
 	public static final By singleProperty_WE = By.xpath("(//div[@class='catalogue_property_price_book']/a)[1]");
-	public static final By listResults_WE = By.xpath("//div[@class='catalogue_property_list_bx_sngl']");
+	public static final By listResults_WE = By.xpath("//div[@class='hotel-list-container']");
 	public static final By noPropertyFound_Lbl = By.xpath("//div[contains(@class, 'catalogue_property_list_bx_sngl')]/p");
 	public static final By resultsCountText_Lbl = By.xpath("//h1[@class='propertyCount']");
-	public static final By noResultsFoundMessage_Lbl = By.xpath("//p[contains(text(),'No FabHotel found')]");
+	public static final By noResultsFoundMessage_Lbl = By.xpath("//div[@class='no-data-found clearfix']/h2/text()");
 	public static final By SingleFilterList_WE = By.xpath("(//ul[@class='filterList']/li)[1]");
 	public static final By allFilterlist_WE = By.xpath("//ul[@class='filterList']/li");
 	public static final By single_RoomMssg_WE = By.xpath("//span[contains(text(), 'room remaining!')]");
@@ -32,6 +32,9 @@ public class ListingPage {
 	public static final By review_close_Btn = By.xpath("//button[@class='close modal_review_cls']/span");
 	public static final By moreReview_Btn = By.xpath("//a[contains(text(), 'Load more reviews')]");
 	public static final By rackRate_WE = By.xpath("//div[@class='catalogue_property_price_show']/div");
+	
+	
+	public static final String noPropertyFound_Msg = "We couldn’t find hotels matching your search criteria";
 	
 	public ListingPage (WebDriver driver, GenericFunctions generic){
 		this.driver=driver;

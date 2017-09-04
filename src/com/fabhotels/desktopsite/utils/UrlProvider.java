@@ -6,8 +6,11 @@ public class UrlProvider extends Config {
 
 		if (Environment.toLowerCase().contains("dev"))
 			return "http://" + Environment + ".fabhotels.com";
-
-		if (Environment.toLowerCase().contains("preprod"))
+		
+		else if (Environment.toLowerCase().contains("test2"))
+			return "http://" + Environment + ".fabhotels.com";
+		
+		else if (Environment.toLowerCase().contains("preprod"))
 			return "https://preprod.fabhotels.com";
 
 		else
@@ -17,6 +20,9 @@ public class UrlProvider extends Config {
 	public static String getListingPageUrl() {
 
 		if (Environment.toLowerCase().contains("dev"))
+			return "http://" + Environment + ".fabhotels.com/hotels-in-new-delhi/";
+		
+		if (Environment.toLowerCase().contains("test2"))
 			return "http://" + Environment + ".fabhotels.com/hotels-in-new-delhi/";
 
 		if (Environment.toLowerCase().contains("preprod"))

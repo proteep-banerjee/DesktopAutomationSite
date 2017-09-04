@@ -1,5 +1,6 @@
 package com.fabhotels.desktopsite.testsuite.homepage;
 
+
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
@@ -39,7 +40,6 @@ public class ExecutionSuite_HomePage extends Config {
 	public void TC_ValidateVisiblity_PhotoMatch() {
 		generic.loadURL(UrlProvider.getHomePageUrl());
 		Assert.assertTrue(generic.isVisible(HomePage.photo_Match_WE), "Photo Match Widget is Not Visible !!");
-
 	}
 
 	@Test
