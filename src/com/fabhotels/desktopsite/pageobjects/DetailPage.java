@@ -24,8 +24,7 @@ public class DetailPage {
 
 	public static final By checkIn_Date_WE = By.id("checkIn");
 	public static final By checkOut_Date_WE = By.id("checkOut");
-	public static final By currentMonth_WE = By.xpath("(//div[@class='datepicker-days']//th[@class='switch'])[1]");
-	public static final By nextMonth_WE = By.xpath("(//div[@class='datepicker-days']//th[@class='switch'])[2]");
+	public static final By month_WE = By.xpath("//th[@class='datepicker-switch']");
 	public static final By nextMonthClick_WE = By.xpath("(//div[@class='datepicker-days']//th[@class='next'])[1]");
 	public static final String checkInCalenderDates_WE = "//div[contains(@class, 'datepicker-checkin')]//td";
 	public static final String checkOutCalenderDates_WE = "//div[contains(@class, 'datepicker-checkout')]//td";
@@ -61,7 +60,7 @@ public class DetailPage {
 	public static final String multipleRoom_occupancyIncrease_Btn = "(//div[contains(@class, 'property_plus_minus_container')]/div[contains(@class, 'property_button_plus')])";
 	public static final String multipleRoomType_guestCount_WE = "(//div[contains(@class, 'property_plus_minus_container')]/input[contains(@class, 'property_counter_input')])";
 
-	
+	public static final String Date_WE = "//table[@class='table-condensed']//td";
 
 	public static final String checkInDate1_WE = "(//div[contains(@class, 'datepicker-checkin')]//td[text()='";
 	public static final String checkInDate2_WE = "'])[1]"; //[@class='day']";
@@ -115,23 +114,23 @@ public class DetailPage {
 			return;
 		generic.click(checkIn_Date_WE);
 		String str[] = checkindate.split("\\s+");
-		while (!generic.getText(currentMonth_WE).equalsIgnoreCase(str[1] + " " + str[2]))
+		while (!generic.getText(month_WE).equalsIgnoreCase(str[1] + " " + str[2]))
 			generic.click(nextMonthClick_WE);
 		if(str[0].startsWith("0"))
 		{
 			str[0] = str[0].substring(1, str[0].length());
 		}
-		generic.click("(" + checkInCalenderDates_WE + "[text()='" + str[0] + "']" + ")[1]" );
+		generic.click(Date_WE + "[text()='" + str[0] + "']");
 		if (checkoutdate.length() < 1)
 			return;
 		String strr [] = checkoutdate.split("\\s+");
-		while (!generic.getText(nextMonth_WE).equals(strr[1] + " " + strr[2]))
+		while (!generic.getText(month_WE).equals(strr[1] + " " + strr[2]))
 			generic.click(nextMonthClick_WE);
 		if(strr[0].startsWith("0"))
 		{
 			strr[0] = strr[0].substring(1, strr[0].length());
 		}
-		generic.click("(" + checkOutCalenderDates_WE + "[text()='" + strr[0] + "']" + ")[1]" );
+		generic.click(Date_WE + "[text()='" + str[0] + "']" );
 	}
 
 

@@ -69,6 +69,7 @@ public class ExecutionSuite_Search extends Config {
 	@Test(dataProvider = "DataProvider_Search")
 	public void TC_Validate_Search_HomePage(int rowno, String locality, String checkInDate, String checkOutDate,
 			String expectResults) {
+		ListingPage listingPage =new ListingPage(driver, generic);
 		SearchBar searchBar = new SearchBar(driver, generic);
 		searchBar.Fill_Locality_Txt(locality);
 		System.out.println(checkInDate+" -----------,------- "+checkOutDate);
@@ -84,10 +85,10 @@ public class ExecutionSuite_Search extends Config {
 		customAssert.assertEquals(searchBar.GetText_NoofRooms_Lbl(), "1 Room", "Compare No of Rooms");
 
 		if (expectResults.equalsIgnoreCase("yes")) {
-		/*	customAssert.assertTrue(listingPage.GetText_resultsCountText_Lbl().contains(locality),
+			customAssert.assertTrue(listingPage.getText_resultsCountText_Lbl().contains(locality),
 					"Improper Results Screen Shown!!");
-			customAssert.assertTrue(Integer.parseInt(listingPage.GetText_NoofHotelFound()) >= 1,
-					"Total Hotels found in results are less than 1!!"); */
+			customAssert.assertTrue(Integer.parseInt(listingPage.getText_NoofHotelFound()) >= 1,
+					"Total Hotels found in results are less than 1!!"); 
 
 		} else {
 			customAssert.assertEquals(ListingPage.noResultsFoundMessage_Lbl.toString(),ListingPage.noPropertyFound_Msg,"Improper Message on Zero Results Page!!");
