@@ -15,16 +15,15 @@ public class SearchBar {
 	public static final By checkInDateDiv_WE = By.id("daterangepicker_start");
 	public static final By checkOutDate_WE = By.id("checkOut");
 	public static final By findFabHotels_Btn = By.id("homePageSearchBtn");
-	public static final By calendar_WE = By
-			.xpath("//div[contains(@class,'daterangepicker dropdown-menu ltr show-calendar')]");
+	public static final By calendar_WE = By.xpath("//div[contains(@class,'daterangepicker dropdown-menu ltr show-calendar')]");
 	public static final By calendar_Month_WE = By.xpath("(//th[@class='month'])[1]");
 	public static final String calendar_Dates_WE = "//div[@class='calendar left']//td";
 	public static final By calendar_NextArrow_WE = By.xpath("//th[@class='next available']");
-	public static final By noofRooms_Lbl = By.id("rooms");
+	public static final By noofRooms_Lbl = By.xpath("//div[@class='custom-value-content clearfix']/span");
 	public static final By addRoom_Btn = By.id("addroom");
 	public static final By removeRoom_Btn = By.id("rooms");
 	public static final By errorMessage_WE = By.id("cityErrorMsg");
-
+	
 	public SearchBar(WebDriver driver, GenericFunctions generic) {
 		this.driver = driver;
 		this.generic = generic;
@@ -87,7 +86,7 @@ public class SearchBar {
 	}
 
 	public String GetText_NoofRooms_Lbl() {
-		return generic.getValue(noofRooms_Lbl);
+		return generic.getText(noofRooms_Lbl);
 	}
 
 	public String GetText_Locality_Txt() {

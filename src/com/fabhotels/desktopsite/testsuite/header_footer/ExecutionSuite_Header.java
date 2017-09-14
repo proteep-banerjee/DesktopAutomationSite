@@ -81,7 +81,7 @@ public class ExecutionSuite_Header extends Config {
 		String currenturl = driver.getCurrentUrl();
 		Assert.assertTrue(currenturl.contains("hotels-in-" + linkName.replaceAll(" ", "-").toLowerCase()),
 				"Wrong url is forming in clicking link!! " + currenturl);
-		Assert.assertTrue(generic.isVisible(ListingPage.listResults_WE), "No Results comming in clicking Link!!");
+		Assert.assertTrue(generic.isVisible(ListingPage.allProperties_WE), "No Results comming in clicking Link!!");
 	}
 
 	@AfterTest
