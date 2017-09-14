@@ -10,6 +10,8 @@ public class UrlProvider extends Config {
 		if (Environment.toLowerCase().contains("preprod"))
 			return "https://preprod.fabhotels.com";
 
+		if (Environment.toLowerCase().contains("test"))
+			return "http://" + Environment + ".fabhotels.com";
 		else
 			return "https://fabhotels.com";
 	}
