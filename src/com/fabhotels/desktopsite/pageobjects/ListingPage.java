@@ -159,9 +159,9 @@ public class ListingPage {
 			System.out.println("Current city :" + name_of_city);
 			int totalHotelNum = driver.findElements(hotelList_WE).size();
 			for (int i = 0; i < totalHotelNum / 2; i++) {
-				int randomNum = ThreadLocalRandom.current().nextInt(1, totalHotelNum / 2 + 1);
-				generic.scrollToElement(By.xpath("(//div[@class='review-star'])[" + randomNum + "]//a"), false);
-				generic.click(By.xpath("(//div[@class='review-star'])[" + randomNum + "]//a"));
+				int randomNum = ThreadLocalRandom.current().nextInt(1,totalHotelNum);
+				generic.scrollToElement(By.xpath("(//div[@class='hotel-list-desc-above']//div[@class='review-star'])[" + randomNum + "]//a"), false);
+				generic.click(By.xpath("(//div[@class='hotel-list-desc-above']//div[@class='review-star'])[" + randomNum + "]//a"));
 				s_assert.assertTrue(generic.isVisible(ListingPage.reviewsModalDialogue_WE),
 						"Review box not visible on " + name_of_city + " list page !!");
 				generic.click(review_close_Btn);
