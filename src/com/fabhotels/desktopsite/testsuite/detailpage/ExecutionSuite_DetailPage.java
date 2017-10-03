@@ -7,11 +7,11 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+
 import com.fabhotels.automationframework.genericfunctions.GenericFunctions;
 import com.fabhotels.automationframework.xlsreader.Xls_Reader;
 import com.fabhotels.desktopsite.pageobjects.Calendar;
@@ -29,18 +29,15 @@ public class ExecutionSuite_DetailPage extends Config {
 	SoftAssert softAssert;
 	Calendar cal;
 
-	@BeforeTest
-	public void beforeTest() {
-		generic = new GenericFunctions(driver);
-		driver = generic.startDriver(Driver_Type);
-		generic.loadURL(UrlProvider.getDetailsPageUrl());
-		dp = new DetailPage(driver, generic);
-		cal = new Calendar(driver, generic);
-		softAssert = new SoftAssert();
-	}
 
 	@BeforeMethod
 	public void beforeMethod() {
+		generic = new GenericFunctions(driver);
+		driver = generic.startDriver(Driver_Type);
+		dp = new DetailPage(driver, generic);
+		cal = new Calendar(driver, generic);
+		softAssert = new SoftAssert();
+		generic.loadURL(UrlProvider.getDetailsPageUrl());
 		generic.dissMissPopUPTimer(ListingPage.popCloseButton_Btn);
 	}
 
@@ -295,7 +292,7 @@ public class ExecutionSuite_DetailPage extends Config {
 
 
 
-	@AfterTest
+	@AfterMethod
 	public void afterTest() {
 		driver.quit();
 	}
