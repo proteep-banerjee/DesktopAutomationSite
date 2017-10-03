@@ -172,12 +172,12 @@ public class ExecutionSuite_DetailPage extends Config {
 		Long e = (Long) executor.executeScript("return window.pageYOffset;");
 		dp.click_hotelPoliciesHeader_Lnk();generic.goToSleep(1000);
 		Long f = (Long) executor.executeScript("return window.pageYOffset;");
-		softAssert.assertEquals(a, (long)529);
-		softAssert.assertEquals(b, (long)967);
-		softAssert.assertEquals(c, (long)1196);
-		softAssert.assertEquals(d, (long)1725);
-		softAssert.assertEquals(e, (long)2119);
-		softAssert.assertEquals(f, (long)3590);
+		softAssert.assertEquals(a, 529L);
+		softAssert.assertEquals(b, 967L);
+		softAssert.assertEquals(c, 1196L);
+		softAssert.assertEquals(d, 1725L);
+		softAssert.assertEquals(e, 2119L);
+		softAssert.assertEquals(f, 3590L);
 		softAssert.assertAll();
 	}
 
