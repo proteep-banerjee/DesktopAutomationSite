@@ -74,8 +74,8 @@ public class ExecutionSuite_DetailPage extends Config {
 		dp.click_reviews_Lnk();
 		generic.goToSleep(1000);
 		Long afterScroll = (Long) executor.executeScript("return window.pageYOffset;");
-		softAssert.assertEquals(beforeScroll,(int) 0);
-		softAssert.assertEquals(afterScroll, (int)2070);
+		softAssert.assertEquals(beforeScroll,(long) 0);
+		softAssert.assertEquals(afterScroll, (long)2070);
 		softAssert.assertAll();
 	}	
 
@@ -131,8 +131,8 @@ public class ExecutionSuite_DetailPage extends Config {
 		dp.click_selectRooms_Btn();
 		generic.goToSleep(1000);
 		Long afterScroll = (Long) executor.executeScript("return window.pageYOffset;");
-		softAssert.assertEquals(beforeScroll,(int) 0);
-		softAssert.assertEquals(afterScroll, (int)1147);
+		softAssert.assertEquals(beforeScroll,(long) 0);
+		softAssert.assertEquals(afterScroll, (long)1147);
 		softAssert.assertTrue(dp.isVisible_calanderMiddle_WE());
 		softAssert.assertAll();
 	}
@@ -145,8 +145,8 @@ public class ExecutionSuite_DetailPage extends Config {
 		dp.click_selectRooms_Btn();
 		generic.goToSleep(1000);
 		Long afterScroll = (Long) executor.executeScript("return window.pageYOffset;");
-		softAssert.assertEquals(beforeScroll,(int) 0);
-		softAssert.assertEquals(afterScroll, (int)1279);
+		softAssert.assertEquals(beforeScroll,(long) 0);
+		softAssert.assertEquals(afterScroll, (long)1279);
 		softAssert.assertTrue(dp.isVisible_numberOfRoomsSelectionAll_Btn());
 		softAssert.assertAll();
 	}
@@ -172,12 +172,12 @@ public class ExecutionSuite_DetailPage extends Config {
 		Long e = (Long) executor.executeScript("return window.pageYOffset;");
 		dp.click_hotelPoliciesHeader_Lnk();generic.goToSleep(1000);
 		Long f = (Long) executor.executeScript("return window.pageYOffset;");
-		softAssert.assertEquals(a, (int)529);
-		softAssert.assertEquals(b, (int)967);
-		softAssert.assertEquals(c, (int)1196);
-		softAssert.assertEquals(d, (int)1725);
-		softAssert.assertEquals(e, (int)2119);
-		softAssert.assertEquals(f, (int)3590);
+		softAssert.assertEquals(a, (long)529);
+		softAssert.assertEquals(b, (long)967);
+		softAssert.assertEquals(c, (long)1196);
+		softAssert.assertEquals(d, (long)1725);
+		softAssert.assertEquals(e, (long)2119);
+		softAssert.assertEquals(f, (long)3590);
 		softAssert.assertAll();
 	}
 
