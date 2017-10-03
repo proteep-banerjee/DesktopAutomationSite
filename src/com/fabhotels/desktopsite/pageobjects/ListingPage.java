@@ -23,7 +23,7 @@ public class ListingPage {
 	public static final By add_Room_Btn = By.id("addRoom");
 	public static final By remove_room_Btn = By.id("removeRoom");
 	public static final By find_Fabhotels_Btn = By.id("homePageSearchBtn");
-	public static final By allProperties_WE = By.xpath("//div[@class='catalogue_property_list_bx_sngl']");
+	public static final By allProperties_WE = By.xpath("//div[@class='hotel-list-container']/div");
 	public static final By singleProperty_WE = By.xpath("(//div[@class='catalogue_property_price_book']/a)[1]");
 	public static final By listResults_WE = By.xpath("//div[@class='hotel-list-container']");
 	public static final By hotelList_WE = By.xpath("//div[@class='hotel-list clearfix ']");

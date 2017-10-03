@@ -22,49 +22,57 @@ public class Calendar {
 
 	public static final By checkIn_Date_WE = By.id("checkIn");
 	public static final By checkOut_Date_WE = By.id("checkOut");
-	public static final By month_WE = By.xpath("//th[@class='datepicker-switch']");
-	public static final By nextMonthClick_WE = By.xpath("(//div[@class='datepicker-days']//th[@class='next'])[1]");
-
+	public static final By month_WE = By.xpath("//th[@class='datepicker-switch'][1]");
+	public static final By year_WE = By.xpath("(//th[@class='datepicker-switch'])[2]");
+	public static final By nextYearClick_WE = By.xpath("(//th[@class='next'])[2]");
 	public static final String Date_WE = "//table[@class='table-condensed']//td";
-
+	public static final String selectMonth_Lnk = "//span[contains(@class,'month') and text()='";
+	public static final String selectDate_Lnk = "//td[@class='day' and text()='";
+	
+	
 	public Calendar(WebDriver driver, GenericFunctions generic) {
 		this.driver = driver;
 		this.generic = generic;
 	}
-
+	
+	
+	
 	// Here the date format should be "dd MMMM uuuu"
-	public void Select_CheckIn_CheckOut_Date_WE(String checkindate, String checkoutdate) throws ParseException {
+	public void Select_CheckIn_CheckOut_Date_Calendar_WE(String checkindate, String checkoutdate) throws ParseException {
 		if (checkindate.length() < 1)
 			return;
-		generic.click(checkIn_Date_WE);
-		String str[] = checkindate.split("\\s+");
-		SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM uuuu");
-				
-		Assert.assertTrue("check-in date cant be smaller than todays date.",
-				sdf.parse(getTodaysDate("dd MMMM uuuu")).before(sdf.parse(checkindate)));
-		
-		Assert.assertFalse("check-in and check out date should be different.",
-				sdf.parse(checkindate).equals(sdf.parse(checkoutdate)));
-		
-		Assert.assertTrue("check-in date should be smaller than check-out date ",
-				sdf.parse(checkindate).before(sdf.parse(checkoutdate)));
-		while (!generic.getText(month_WE).equalsIgnoreCase(str[1] + " " + str[2]))
-			generic.click(nextMonthClick_WE);
-		if (str[0].startsWith("0")) {
-			str[0] = str[0].substring(1, str[0].length());
-		}
-		generic.click(Date_WE + "[text()='" + str[0] + "']");
 		if (checkoutdate.length() < 1)
 			return;
-		String strr[] = checkoutdate.split("\\s+");
-		while (!generic.getText(month_WE).equals(strr[1] + " " + strr[2]))
-			generic.click(nextMonthClick_WE);
-		if (strr[0].startsWith("0")) {
-			strr[0] = strr[0].substring(1, strr[0].length());
+		String str[] = checkindate.split("\\s+");
+		String inDate =str[0];
+		inDate = inDate.charAt(0)=='0'?inDate.substring(1):inDate;
+		String inMonth =str[1];
+		String inMonthFormatted = inMonth.substring(0, 3);
+		String inYear =str[2];
+		String str1[] = checkoutdate.split("\\s+");
+		String outDate =str1[0];
+		outDate = outDate.charAt(0)=='0'?outDate.substring(1):outDate;
+		String outMonth =str1[1];
+		String outMonthFormatted = outMonth.substring(0, 3);
+		String outYear =str1[2];
+		generic.click(checkIn_Date_WE);
+		generic.click(month_WE);
+		while(!generic.getText(year_WE).equals(inYear)){
+			generic.click(nextYearClick_WE);
 		}
-		generic.click(Date_WE + "[text()='" + str[0] + "']");
+		generic.click(selectMonth_Lnk+inMonthFormatted+"']");
+		generic.click(selectDate_Lnk+inDate+"']");
+		
+		generic.click(month_WE);
+		while(!generic.getText(year_WE).equals(outYear)){
+			generic.click(nextYearClick_WE);
+		}
+		generic.click(selectMonth_Lnk+outMonthFormatted+"']");
+		generic.click(selectDate_Lnk+outDate+"']");
+		
 	}
-
+	
+	
 	// for short month pass format as "dd-mm-yyyy" for full month pass "dd MMMM
 	// uuuu"
 	public String dateWithDifferentFormat(String format) {

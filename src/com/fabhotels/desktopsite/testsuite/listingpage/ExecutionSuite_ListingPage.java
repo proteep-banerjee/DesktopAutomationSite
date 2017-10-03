@@ -98,7 +98,7 @@ public class ExecutionSuite_ListingPage extends Config {
 		generic.dissMissPopUPTimer(ListingPage.popCloseButton_Btn);
 		ListingPage listingPage = new ListingPage(driver, generic);
 		Calendar cal = new Calendar(driver, generic);
-		cal.Select_CheckIn_CheckOut_Date_WE(cal.dateWithDifferentFormat("dd MMMM uuuu",1),cal.dateWithDifferentFormat("dd MMMM uuuu", 3));
+		cal.Select_CheckIn_CheckOut_Date_Calendar_WE(cal.dateWithDifferentFormat("dd MMMM uuuu",1),cal.dateWithDifferentFormat("dd MMMM uuuu", 3));
 		listingPage.selectRooms();
 		List<WebElement> list = generic.findElements(ListingPage.filters_WE);
 		for (WebElement temp : list) {

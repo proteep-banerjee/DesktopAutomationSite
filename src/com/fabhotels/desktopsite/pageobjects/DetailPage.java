@@ -20,11 +20,12 @@ public class DetailPage {
 		this.driver = driver;
 		this.generic = generic;		
 	}
-
+	//Old 
 
 	public static final By checkIn_Date_WE = By.id("checkIn");
 	public static final By checkOut_Date_WE = By.id("checkOut");
-	public static final By month_WE = By.xpath("//th[@class='datepicker-switch']");
+	public static final By currentMonth_WE = By.xpath("(//div[@class='datepicker-days']//th[@class='switch'])[1]");
+	public static final By nextMonth_WE = By.xpath("(//div[@class='datepicker-days']//th[@class='switch'])[2]");
 	public static final By nextMonthClick_WE = By.xpath("(//div[@class='datepicker-days']//th[@class='next'])[1]");
 	public static final String checkInCalenderDates_WE = "//div[contains(@class, 'datepicker-checkin')]//td";
 	public static final String checkOutCalenderDates_WE = "//div[contains(@class, 'datepicker-checkout')]//td";
@@ -41,7 +42,7 @@ public class DetailPage {
 	public static final String dropDown_Btn = "(//div[contains(text(),'Room /')]/..//span)[1]";
 	public static final By availabilityErrMsg_Lbl = By.xpath("//p[contains(text(),'rooms left')]");
 	public static final By bookNow_Btn = By.id("propertyReviewBooking");
-	//	public static final String bookNow_Btn = "//button[@id='propertyReviewBooking']";
+//	public static final String bookNow_Btn = "//button[@id='propertyReviewBooking']";
 	public static final By totalAmounnt_Lbl = By.id("total_amount");
 	public static final By SingleRoom_getRoomCountAndNightCount_Lbl = By.xpath("//span[@class='property_room_nights']");
 	public static final By multipleRoom_getRoomAndNightCount_Lbl = By.xpath("//div[contains(@class, 'property_booking_total_summary')]");
@@ -60,22 +61,198 @@ public class DetailPage {
 	public static final String multipleRoom_occupancyIncrease_Btn = "(//div[contains(@class, 'property_plus_minus_container')]/div[contains(@class, 'property_button_plus')])";
 	public static final String multipleRoomType_guestCount_WE = "(//div[contains(@class, 'property_plus_minus_container')]/input[contains(@class, 'property_counter_input')])";
 
+	
+
+	public static final String checkInDate1_WE = "(//div[contains(@class, 'datepicker-checkin')]//td[text()='";
+	public static final String checkInDate2_WE = "'])[1]"; //[@class='day']";
+
+	public static final String checkOutDate1_WE = "(//div[contains(@class, 'datepicker-checkout')]//td[text()='";
+	public static final String checkOutDate2_WE = "'])[1]";  //[@class='day']";
+	
+	//public static final String selectRooms_Btn = "//div[@class='property_booking_form_detail multi_room_type_detail']//a[text()='Select Rooms']";
+	public static final By selectRoomsHref_Btn = By.xpath("//a[@href='#availability']");
+
+	public String GetText_CheckInDate_WE() {
+		return generic.getValue(checkIn_Date_WE);
+	}
+
+
+	public String GetText_CheckOutDate_WE() {
+		return generic.getValue(checkOut_Date_WE);
+	}
+
+
+	public String getText_totalAmounnt_Lbl () {
+		return generic.getText(totalAmounnt_Lbl);
+	}
+
+	public String getText_SingleRoom_getRoomCountAndNightCount_Lbl () {
+		return generic.getText(SingleRoom_getRoomCountAndNightCount_Lbl);
+	}
+
+	public String getText_multipleRoom_getRoomAndNightCount_Lbl () {
+		return generic.getText(multipleRoom_getRoomAndNightCount_Lbl);
+	}
+
+	public String getText_SingleRoom_getRoomCountAndGuestCount_Lbl () {
+		return generic.getText(SingleRoom_getRoomCountAndGuestCount_Lbl);
+	}
+
+	public int getSize_multipleRoomPropertyRoomType_WE () {
+		return 5;//generic.getSize(multipleRoomPropertyRoomType_WE);
+	}
+
+	public String getText_multipleRoom_SoldOutMssgForIndividualRoomType_Lbl () {
+		return generic.getText(multipleRoom_SoldOutMssgForIndividualRoomType_Lbl);
+	}
+
+	public void click_addRoomForIndividualRoomType_Lbl () {
+		generic.click(addRoomForIndividualRoomType_Lbl);
+	}
+
+	public void Select_CheckIn_CheckOut_Date_WE(String checkindate, String checkoutdate){
+		if (checkindate.length() < 1)
+			return;
+		generic.click(checkIn_Date_WE);
+		String str[] = checkindate.split("\\s+");
+		while (!generic.getText(currentMonth_WE).equalsIgnoreCase(str[1] + " " + str[2]))
+			generic.click(nextMonthClick_WE);
+		if(str[0].startsWith("0"))
+		{
+			str[0] = str[0].substring(1, str[0].length());
+		}
+		generic.click("(" + checkInCalenderDates_WE + "[text()='" + str[0] + "']" + ")[1]" );
+		if (checkoutdate.length() < 1)
+			return;
+		String strr [] = checkoutdate.split("\\s+");
+		while (!generic.getText(nextMonth_WE).equals(strr[1] + " " + strr[2]))
+			generic.click(nextMonthClick_WE);
+		if(strr[0].startsWith("0"))
+		{
+			strr[0] = strr[0].substring(1, strr[0].length());
+		}
+		generic.click("(" + checkOutCalenderDates_WE + "[text()='" + strr[0] + "']" + ")[1]" );
+	}
+
+
+	public String getValue_singlePropertyRoomCount_WE () {
+		return generic.getText(singlePropertyRoomCount_WE);
+	}
+
+	public String getText_availability_error_msg_Lbl (){
+		return generic.getText(availability_error_msg_Lbl);
+	}
+
+	public void click_bookNow_Btn () {
+		generic.click(bookNow_Btn);
+	}
+
+
+	public String getText_bookNow_Btn () {
+		return generic.getText(bookNow_Btn);
+	}
+
+
+	public void visible_dropDown_Btn() {
+		generic.isVisible(dropDown_Btn);
+	}
+
+
+	public int webElementsCount_soldOutCout_Lbl (){
+		return generic.findElements(soldOutCout_Lbl).size();
+	}
+
+	public int getSize_oneRoomLeftMssg_Lbl () {
+		return 5;//generic.getSize(oneRoomLeftMssg_Lbl);
+	}
+
+	public String getText_multipleRoomType_totalPriceForAllRooms_WE () {
+		return generic.getText(multipleRoomType_totalPriceForAllRooms_WE);
+	}
+
+	public void click_singleRoom_propertyRoomDetails_Btn () {
+		generic.click(singleRoom_propertyRoomDetails_Btn);
+	}
+
+	public void click_singleRoom_occupanyIncrease_Btn () {
+		generic.click(singleRoom_occupanyIncrease_Btn);
+	}
+
+
+	public void click_singleRoom_propertyAddRoomsDone_Btn () {
+		generic.click(singleRoom_propertyAddRoomsDone_Btn);
+	}
+
+	public String getText_singleRoom_propertyRoomDetails_Lbl () {
+		return generic.getText(singleRoom_propertyRoomDetails_Lbl);
+	}
+
+	public void singleRoomTypePricecomparison (double detailFinalAmount, String paymentPageTotalAmount, 
+			double paymentPageFinalAmount, 	double detailPageTotalPrice, double taxAmount) throws InterruptedException {
+		PaymentPage paymentPage = new PaymentPage(driver, generic);
+		Thread.sleep(3000L);
+		paymentPageTotalAmount = paymentPage.getText_taxPercent_Lbl();
+		Matcher m = Pattern.compile("(?!=\\d\\.\\d\\.)([\\d.]+)").matcher(paymentPageTotalAmount);
+		while (m.find())
+		{
+			detailFinalAmount = Double.parseDouble(m.group(1));
+		}
+		detailFinalAmount = (detailFinalAmount/100) * detailPageTotalPrice;
+		detailFinalAmount = Math.ceil(detailFinalAmount);
+		taxAmount = Double.parseDouble(paymentPage.getText_taxAmount_Lbl());
+		Assert.assertEquals(taxAmount, detailFinalAmount, "Tax amount is not matched !! Prices are not correct !!");
+		detailFinalAmount = detailFinalAmount + detailPageTotalPrice;
+		paymentPageFinalAmount = Double.parseDouble(paymentPage.getText_finalAmount_Lbl());
+		Assert.assertEquals(detailFinalAmount, paymentPageFinalAmount,"Final amount is not accurate !!");
+	}
+	
+
+
+	public void Positive_CheckInCheckOutDateWE(){
+	//	LocalDate todayDate = LocalDate.now();
+		//	String nextDate = todayDate.plusDays(1).toString();
+		LocalDate todayDate1 = LocalDate.now();
+		String todayDate = todayDate1.plusDays(2).toString();
+		String nextDate = todayDate1.plusDays(3).toString();
+		//System.out.println(todayDate+" , "+nextDate);
+		generic.click(checkIn_Date_WE);
+		String spiltTodayDate[]=todayDate.toString().split("-");
+	//	System.out.println(spiltTodayDate[0]+","+spiltTodayDate[1]+","+spiltTodayDate[2]);
+	//	System.out.println(checkInDate1_WE+spiltTodayDate[2].replaceFirst("0", "")+checkInDate2_WE);
+		generic.click(checkInDate1_WE+spiltTodayDate[2].replaceFirst("0", "")+checkInDate2_WE);
+		String spiltNextDate[]=nextDate.toString().split("-");
+		generic.click(checkOutDate1_WE+spiltNextDate[2].replaceFirst("0", "")+checkOutDate2_WE);
+		
+		//generic.click(selectRooms_Btn);
+		//generic.click(selectRoomsHref_Btn);
+		generic.click(bookNow_Btn);
+	}
+
+
+
+	//
+	
 	//New details page xpaths
 	public static final By breadCrumbsAll_Lnk = By.xpath("//div[@class='breadcrumb breadcrumb-top']/ul/li");
-	public static final By breadCrumbsClickable_Lnk = By.xpath("//div[@class='breadcrumb breadcrumb-top']/ul/li/a");
+	public static final By breadCrumbsClickable1_Lnk = By.xpath("(//div[@class='breadcrumb breadcrumb-top']/ul/li/a)[1]");
+	public static final By breadCrumbsClickable2_Lnk = By.xpath("(//div[@class='breadcrumb breadcrumb-top']/ul/li/a)[2]");
 	public static final By starRating_WE = By.xpath("//div[@class='hotel-content clearfix']/div[@class='hotel-review']/div[@class='review-star']/span");
 	public static final By hotelName_Lbl = By.xpath("//h1");
 	public static final By hotelsAdress_Lbl = By.xpath("//div[@class='hotel-title']/p");
 	public static final By reviews_Lnk = By.xpath("//div[@class='hotel-content clearfix']/div[@class='hotel-review']/div[@class='review-star']/a");
 	public static final By lastBooked_Lbl = By.xpath("//div[@class='last-booked']");
-	public static final By peopleLooking_Lbl = By.xpath("//p[@class='people-looking']");
+	public static final By peopleLooking_Lbl = By.xpath("//div[@class='booking-review-ripple']/p");
 	public static final By mainImage_WE = By.id("property_main_banner");
 	public static final By smallImages_WE = By.xpath("//ul/li/a/img");
-	public static final By moreImages_WE = By.id("//span[@class='image_count']/span");
+	public static final By moreImages_WE = By.xpath("//span[@class='image_count']/span");
+	public static final By hotelNameGallery_Lbl = By.xpath("//div[@class='banner-gallery common_gallery']//h2"); 
+	public static final By closeGallery_Lnk = By.xpath("//a[@class='close-gallery']");
 	public static final By rackRate_Lbl = By.xpath("//div[@class='select-room-price']//del");
 	public static final By price_Lbl = By.xpath("//div[@class='select-room-price']//strong");
 	public static final By onwards_Lbl = By.xpath("//div[@class='select-room-price']//span");
 	public static final By selectRooms_Btn = By.id("propertySselectRoom");
+	public static final By calanderMiddle_WE = By.xpath("//div[@class='datepicker-days']/table[@class='table-condensed']");
+	public static final By numberOfRoomsSelectionAll_Btn = By.xpath("((//div[@class='room-types-selection'])[1]/div/ul/li)");
 	public static final By navigationHeader_WE = By.xpath("//ul[@class='clearfix internal_navigation']/li");
 	public static final By whyFabhotels_WE = By.xpath("//div[@class='hotel-overview-left']/h4");
 	public static final By bestRevChain_WE = By.xpath("//li[@class='hotel-review-chain']");
@@ -87,70 +264,195 @@ public class DetailPage {
 	public static final By topReview_WE= By.xpath("(//div[@class='hotel-overview-left']/div/div/h4)[2]");
 	public static final By topReviewValue_WE = By.id("lessReview_11");
 	public static final By imageOnMap_WE = By.xpath("//div[@class='property_map_img_inner']");
-	public static final By propertyNameOnMap_WE = By.xpath("//div[@class='property_map_dtl']/strong");
-	public static final By landmarkOnMap_WE = By.xpath("//div[@class='property_map_dtl']/span[@class='landmark']");
-	public static final By getDirectionOnMap_Lnk = By.xpath("//div[@class='property_map_dtl']/span[@class='get-direction']");
+	public static final By propertyNameOnMap_WE = By.xpath("(//div[@class='property_map_dtl']/strong)[2]");
+	public static final By landmarkOnMap_WE = By.xpath("(//div[@class='property_map_dtl']/span[@class='landmark'])[2]");
+	public static final By getDirectionOnMap_Lnk = By.xpath("(//span[@class='get-direction']/a)[2]");
 	public static final By valueMoney_WE = By.xpath("//li[@class='hotel-review-money-hotel']");
-	public static final By allAmenities_WE = By.xpath("//li[@class='hotel-review-money-hotel']");
+	public static final By allAmenities_WE = By.xpath("//div[@id='amenities']/div/ul");
 	public static final By amenities_Lbl = By.xpath("//h2[contains(text(),'Amenities')]");
 	public static final By checkAvailability_Lbl = By.xpath("//div[@class='checkin-section property_detail_room_types_book_form']/h2");
 	public static final By whyThisHotel_Lbl = By.xpath("//div[@id='about']/h2");
-
 	public static final By overviewHeader_Lnk = By.xpath("(//ul[@class='clearfix internal_navigation']//li/a)[1]");
 	public static final By amenitiesHeader_Lnk = By.xpath("(//ul[@class='clearfix internal_navigation']//li/a)[2]");
 	public static final By roomTypesHeader_Lnk = By.xpath("(//ul[@class='clearfix internal_navigation']//li/a)[3]");
 	public static final By whyThisHotelheader_Lnk = By.xpath("(//ul[@class='clearfix internal_navigation']//li/a)[4]");
 	public static final By rNrHeader_Lnk = By.xpath("(//ul[@class='clearfix internal_navigation']//li/a)[5]");
 	public static final By hotelPoliciesHeader_Lnk = By.xpath("(//ul[@class='clearfix internal_navigation']//li/a)[6]");
-
 	public static final By readMoreDescription_Lnk = By.xpath("//div[@class='why-this-hotel-more']/a");
 	public static final By descriptionExpanded_WE = By.xpath("//div[@class='why-this-hotel-inner']");
 	public static final By ratingNReviewsHead_Lbl = By.xpath("//div[@id='reviews']/h2");
 	public static final By ratingInRatingBlock_Lbl = By.xpath("(//div[@class='rating-reviews-left']/strong)[1]");
 	public static final By reviewsInRatingBlock_Lbl = By.xpath("(//div[@class='rating-reviews-left']/strong)[2]");
-
 	public static final By reviewsInRatingBlockBracket_Lbl = By.xpath("//div[@class='rating-reviews-left']/span");
 	public static final By ratingNumbers_Lbl = By.xpath("//div[@class='rating-reviews-point']");
 	public static final By starsInRatingBlock_WE = By.xpath("(//div[@class='rating-reviews-left']/strong)[2]");
 	public static final By ratedInBlock_Lbl = By.xpath("(//div[@class='rating-reviews-user-content']/p)[1]");
 	public static final By viewMoreReviews_Lnk = By.id("moreReviewLink");
 	public static final By hotelPolicies_Lbl = By.xpath("//div[@id='policies']/h2");
-
 	public static final By cancellationBlock_WE = By.xpath("//div[@class='hotel-policies-left']");
 	public static final By checkInCheckOut_WE = By.xpath("//div[@class='hotel-policies-right']");
 	public static final By exploreMoreHotels_Lbl = By.xpath("//div[@id='policies']/h2");
-
 	public static final By readMore_Lnk = By.xpath("(//a[@class='see-more'])[1]");
+	public static final By exploreNearbyTop_WE = By.xpath("((//div[@class='nearby_properties_container'])[1])");
 	public static final By imagesNearbyBottom_WE = By.xpath("((//div[@class='nearby_properties_container'])[2]//img)");
 	public static final By hotelsNameNearbyBottom_Lnk = By.xpath("//div[@id='policies']/h2");
 	public static final By nearByDistance = By.xpath("((//div[@class='nearby_properties_container'])[2]//div[@class='location'])[1]");
 	public static final By stars_WE = By.xpath("((//div[@class='nearby_properties_container'])[2]//span[@class='review-star-icon'])[1]");
 	public static final By reviewsNearBy_Lnk = By.xpath("((//div[@class='nearby_properties_container'])[2]//div[@class='review-star']/a)[1]");
 	public static final By bookingNowNearBy_Lbl = By.xpath("((//div[@class='nearby_properties_container'])[2]//div[@class='booking-now'])[1]");
-
 	public static final By priceNearby_Lbl = By.xpath("((//div[@class='nearby_properties_container'])[2]//div[@class='price']/span)[1]");
 	public static final By bookNowNearBy_Btn = By.xpath("((//div[@class='nearby_properties_container'])[2]//a[@class='btn'])[1]");
 	public static final By chevronLeft_Lnk = By.xpath("(//a[@class='flex-prev'])[1]");
 	public static final By chevronRight_Lnk = By.xpath("(//a[@class='flex-prev'])[2]");
 
+	public static final String roomSelectionRoomTypeNumber_WE="(//div[@class='room-types-selection'])[";
+	public static final String disabledRoomSelectionNumberOfRooms_WE="//a[@class='outOfStock' and contains(text(),'";
+	public static final String roomSelectionNumberOfRooms_WE="//a[contains(text(),'";
+
+	public static final String peopleDropDowndiv_WE = "(//div[@id='roomtypeid-";
+	public static final String peopleDropDownMouseHover_DD = "//div[@class='custom-value-content clearfix'])[";
+	public static final String peopleDropDownSelect_DD = "//div[@class='room-listing-dropdown-left'])[";
+	public static final String dropDownValue_DD = "//label[text()=' ";
+
+	public static final String roomType_WE = "(//div[@class='room-types-section clearfix'])[";
+	public static final String soldOut_Lbl = "//div[text()='Sold Out']";
+	public static final String roomsLeft_Lbl = "//div[contains(text(),'left')]";
+	
+	public static final By bookNowFooter_Btn = By.xpath("//a[@id='propertyReviewBooking']");
+	public static final By roomsSelectedFooter_WE = By.xpath("//div[@id='bookingSummaryRoomTypeDetail']");
+	public static final By cityNameNightsFooter_Lbl = By.xpath("//div[@id='booking_summary_final']/span");
+	public static final By datesRoomsFooter_Lbl = By.xpath("//div[@id='booking_summary_final']/p[@class='datesDetail']");
+	public static final By exTaxesFooter_Lbl = By.xpath("//div[@id='booking_summary_final']/p[2]");
+	public static final By soldOutErrorMessage_Lbl = By.xpath("//div[@class='room-selection-alert error_msg_alert']");
+	public static final By soldOutOnRoomType_Lbl = By.xpath("//div[@class='room-types-section-container']/div[text()='Sold Out']");
+	public static final By soldOutOnMainImage_Lbl = By.xpath("//div[@id='soldOutMessage']");
+	public static final By checkAvailabilityOnTop_Btn = By.xpath("//a[@id='DetailPageBtn']");
+	public static final By checkAvailabilityInMiddle_Btn = By.xpath("//a[@id='DetailPageBtn']");
 	//
 
 	//New Details Page methods
 
+	public String getLabelText_soldOutErrorMessage_Lbl(){
+		return generic.getText(soldOutErrorMessage_Lbl);
+	}
+	
+	public String getLabelText_soldOutOnMainImage_Lbl(){
+		return generic.getText(soldOutOnMainImage_Lbl);
+	}
+	
+	public void selectPeopleDropDown(int roomType, int roomNumber, int people){
+		generic.scrollToElement(By.xpath(peopleDropDowndiv_WE+roomType+"']"+peopleDropDownMouseHover_DD+roomNumber+"]"), true);
+		generic.customPageScrollToBottomInSlowMotion(0, -150);
+		generic.performMouseHover(peopleDropDowndiv_WE+roomType+"']"+peopleDropDownMouseHover_DD+roomNumber+"]");
+		generic.clickJS(peopleDropDowndiv_WE+roomType+"']"+peopleDropDownSelect_DD+roomNumber+"]"+dropDownValue_DD+people+" Adults "+"']");
+	}
+
+	public Boolean isVisible_exploreNearbyTop_WE(){
+		return generic.isVisible(exploreNearbyTop_WE);
+	}
+	
+	public Boolean isDisabled_selectRoomsDisabled_Btn(){
+		String className=generic.getAttributeValue(selectRooms_Btn, "class");
+		System.out.println(className);
+		if (className.equals("btn property_detail_select_rooms_button  property_book_now_disabled")){
+			return true;
+		}
+		else return false;
+	}
+	
+	
+	public void click_bookNowFooter_Btn(){
+		generic.click(bookNowFooter_Btn);
+	}
+	
+	public void click_checkAvailabilityOnTop_Btn(){
+		generic.click(checkAvailabilityOnTop_Btn);
+	}
+	
+	public void click_checkAvailabilityInMiddle_Btn(){
+		generic.click(checkAvailabilityInMiddle_Btn);
+	}
+
+	public void click_roomsSelectedFooter_WE(){
+		generic.click(roomsSelectedFooter_WE);
+	}
+
+	public String getElementText_roomsSelectedFooter_WE(){
+		return generic.getText(roomsSelectedFooter_WE);
+
+	}
+
+	public void click_cityNameNightsFooter_Lbl(){
+		generic.click(cityNameNightsFooter_Lbl);
+	}
+
+	public String getLabelText_cityNameNightsFooter_Lbl(){
+		return generic.getText(cityNameNightsFooter_Lbl);
+	}
+
+	public void click_datesRoomsFooter_Lbl(){
+		generic.click(datesRoomsFooter_Lbl);
+	}
+
+	public String getLabelText_datesRoomsFooter_Lbl(){
+		return generic.getText(datesRoomsFooter_Lbl);
+	}
+
+	public void click_exTaxesFooter_Lbl(){
+		generic.click(exTaxesFooter_Lbl);
+	}
+
+	public String getLabelText_exTaxesFooter_Lbl(){
+		return generic.getText(exTaxesFooter_Lbl);
+	}
+
+	public boolean isSoldOut_roomType(int roomType){
+		return generic.isVisible(roomType_WE+roomType+"]"+soldOut_Lbl);
+	}
+	
+	public String getText_roomsLeft_roomType(int roomNumber){
+		 return generic.getText(roomType_WE+roomNumber+"]"+roomsLeft_Lbl);
+	}
+	public boolean isDisabled_roomNumber(int roomType, int roomNumber){
+		return generic.isVisible(roomSelectionRoomTypeNumber_WE+roomType+"]"+disabledRoomSelectionNumberOfRooms_WE+roomNumber+"')]");
+	}
+
+	public boolean isEnabled_roomNumber(int roomType, int roomNumber){
+		return generic.isVisible(roomSelectionRoomTypeNumber_WE+roomType+"]"+roomSelectionNumberOfRooms_WE+roomNumber+"')]");
+	}
+
+	public void click_roomNumber(int roomType, int roomNumber){
+		generic.clickJS(roomSelectionRoomTypeNumber_WE+roomType+"]"+roomSelectionNumberOfRooms_WE+roomNumber+"')]");
+	}
+
 	public void click_breadCrumbsAll_Lnk(){
 		generic.click(breadCrumbsAll_Lnk);
 	}
+	public boolean isVisible_starRating_WE(){
+		return generic.isVisible(starRating_WE);
+	}
+	public boolean isVisible_soldOutOnRoomType_Lbl(){
+		return generic.isVisible(soldOutOnRoomType_Lbl);
+	}
+	
 
 	public String getLinkText_breadCrumbsAll_Lnk(){
 		return generic.getText(breadCrumbsAll_Lnk);
 	}
 
-	public void click_breadCrumbsClickable_Lnk(){
-		generic.click(breadCrumbsClickable_Lnk);
+	public void click_breadCrumbsClickable1_Lnk(){
+		generic.click(breadCrumbsClickable1_Lnk);
 	}
 
-	public String getLinkText_breadCrumbsClickable_Lnk(){
-		return generic.getText(breadCrumbsClickable_Lnk);
+	public String getLinkText_breadCrumbsClickable2_Lnk(){
+		return generic.getText(breadCrumbsClickable2_Lnk);
+	}
+	public void click_breadCrumbsClickable2_Lnk(){
+		generic.click(breadCrumbsClickable2_Lnk);
+	}
+
+	public String getLinkText_breadCrumbsClickable1_Lnk(){
+		return generic.getText(breadCrumbsClickable1_Lnk);
 	}
 
 	public void click_starRating_WE(){
@@ -193,6 +495,24 @@ public class DetailPage {
 	public String getLabelText_lastBooked_Lbl(){
 		return generic.getText(lastBooked_Lbl);
 	}
+	public boolean isVisible_lastBooked_Lbl(){
+		return generic.isVisible(lastBooked_Lbl);
+	}
+	public boolean isVisible_peopleLooking_Lbl(){
+		return generic.isVisible(peopleLooking_Lbl);
+	}
+
+	public boolean isVisible_calanderMiddle_WE(){
+		return generic.isVisible(calanderMiddle_WE);
+	}
+
+	public boolean isVisible_rackRate_Lbl(){
+		return generic.isVisible(rackRate_Lbl);
+	}
+
+	public boolean isVisible_numberOfRoomsSelectionAll_Btn(){
+		return generic.isVisible(numberOfRoomsSelectionAll_Btn);
+	}
 
 	public void click_peopleLooking_Lbl(){
 		generic.click(peopleLooking_Lbl);
@@ -200,6 +520,12 @@ public class DetailPage {
 
 	public String getLabelText_peopleLooking_Lbl(){
 		return generic.getText(peopleLooking_Lbl);
+	}
+	public String getLabelText_hotelNameGallery_Lbl(){
+		return generic.getText(hotelNameGallery_Lbl);
+	}
+	public boolean isVisible_hotelNameGallery_Lbl(){
+		return generic.isVisible(hotelNameGallery_Lbl);
 	}
 
 	public void click_mainImage_WE(){
@@ -304,6 +630,10 @@ public class DetailPage {
 
 	public void click_ratingsLogo_WE(){
 		generic.click(ratingsLogo_WE);
+	}
+
+	public boolean isVisible_ratingsLogo_WE(){
+		return generic.isVisible(ratingsLogo_WE);
 	}
 
 	public String getElementText_ratingsLogo_WE(){
@@ -583,6 +913,9 @@ public class DetailPage {
 	public void click_exploreMoreHotels_Lbl(){
 		generic.click(exploreMoreHotels_Lbl);
 	}
+	public void click_closeGallery_Lnk(){
+		generic.click(closeGallery_Lnk);
+	}
 
 	public String getLabelText_exploreMoreHotels_Lbl(){
 		return generic.getText(exploreMoreHotels_Lbl);
@@ -665,177 +998,6 @@ public class DetailPage {
 	public String getLinkText_chevronRight_Lnk(){
 		return generic.getText(chevronRight_Lnk);
 	}
-
-	//
-
-
-	public static final String Date_WE = "//table[@class='table-condensed']//td";
-
-	public static final String checkInDate1_WE = "(//div[contains(@class, 'datepicker-checkin')]//td[text()='";
-	public static final String checkInDate2_WE = "'])[1]"; //[@class='day']";
-
-	public static final String checkOutDate1_WE = "(//div[contains(@class, 'datepicker-checkout')]//td[text()='";
-	public static final String checkOutDate2_WE = "'])[1]";  //[@class='day']";
-
-	//public static final String selectRooms_Btn = "//div[@class='property_booking_form_detail multi_room_type_detail']//a[text()='Select Rooms']";
-	public static final By selectRoomsHref_Btn = By.xpath("//a[@href='#availability']");
-
-	public String GetText_CheckInDate_WE() {
-		return generic.getValue(checkIn_Date_WE);
-	}
-
-
-	public String GetText_CheckOutDate_WE() {
-		return generic.getValue(checkOut_Date_WE);
-	}
-
-
-	public String getText_totalAmounnt_Lbl () {
-		return generic.getText(totalAmounnt_Lbl);
-	}
-
-	public String getText_SingleRoom_getRoomCountAndNightCount_Lbl () {
-		return generic.getText(SingleRoom_getRoomCountAndNightCount_Lbl);
-	}
-
-	public String getText_multipleRoom_getRoomAndNightCount_Lbl () {
-		return generic.getText(multipleRoom_getRoomAndNightCount_Lbl);
-	}
-
-	public String getText_SingleRoom_getRoomCountAndGuestCount_Lbl () {
-		return generic.getText(SingleRoom_getRoomCountAndGuestCount_Lbl);
-	}
-
-	public int getSize_multipleRoomPropertyRoomType_WE () {
-		return 5;//generic.getSize(multipleRoomPropertyRoomType_WE);
-	}
-
-	public String getText_multipleRoom_SoldOutMssgForIndividualRoomType_Lbl () {
-		return generic.getText(multipleRoom_SoldOutMssgForIndividualRoomType_Lbl);
-	}
-
-	public void click_addRoomForIndividualRoomType_Lbl () {
-		generic.click(addRoomForIndividualRoomType_Lbl);
-	}
-
-	public void Select_CheckIn_CheckOut_Date_WE(String checkindate, String checkoutdate){
-		if (checkindate.length() < 1)
-			return;
-		generic.click(checkIn_Date_WE);
-		String str[] = checkindate.split("\\s+");
-		while (!generic.getText(month_WE).equalsIgnoreCase(str[1] + " " + str[2]))
-			generic.click(nextMonthClick_WE);
-		if(str[0].startsWith("0"))
-		{
-			str[0] = str[0].substring(1, str[0].length());
-		}
-		generic.click(Date_WE + "[text()='" + str[0] + "']");
-		if (checkoutdate.length() < 1)
-			return;
-		String strr [] = checkoutdate.split("\\s+");
-		while (!generic.getText(month_WE).equals(strr[1] + " " + strr[2]))
-			generic.click(nextMonthClick_WE);
-		if(strr[0].startsWith("0"))
-		{
-			strr[0] = strr[0].substring(1, strr[0].length());
-		}
-		generic.click(Date_WE + "[text()='" + str[0] + "']" );
-	}
-
-
-	public String getValue_singlePropertyRoomCount_WE () {
-		return generic.getText(singlePropertyRoomCount_WE);
-	}
-
-	public String getText_availability_error_msg_Lbl (){
-		return generic.getText(availability_error_msg_Lbl);
-	}
-
-	public void click_bookNow_Btn () {
-		generic.click(bookNow_Btn);
-	}
-
-
-	public String getText_bookNow_Btn () {
-		return generic.getText(bookNow_Btn);
-	}
-
-
-	public void visible_dropDown_Btn() {
-		generic.isVisible(dropDown_Btn);
-	}
-
-
-	public int webElementsCount_soldOutCout_Lbl (){
-		return generic.findElements(soldOutCout_Lbl).size();
-	}
-
-	public int getSize_oneRoomLeftMssg_Lbl () {
-		return 5;//generic.getSize(oneRoomLeftMssg_Lbl);
-	}
-
-	public String getText_multipleRoomType_totalPriceForAllRooms_WE () {
-		return generic.getText(multipleRoomType_totalPriceForAllRooms_WE);
-	}
-
-	public void click_singleRoom_propertyRoomDetails_Btn () {
-		generic.click(singleRoom_propertyRoomDetails_Btn);
-	}
-
-	public void click_singleRoom_occupanyIncrease_Btn () {
-		generic.click(singleRoom_occupanyIncrease_Btn);
-	}
-
-
-	public void click_singleRoom_propertyAddRoomsDone_Btn () {
-		generic.click(singleRoom_propertyAddRoomsDone_Btn);
-	}
-
-	public String getText_singleRoom_propertyRoomDetails_Lbl () {
-		return generic.getText(singleRoom_propertyRoomDetails_Lbl);
-	}
-
-	public void singleRoomTypePricecomparison (double detailFinalAmount, String paymentPageTotalAmount, 
-			double paymentPageFinalAmount, 	double detailPageTotalPrice, double taxAmount) throws InterruptedException {
-		PaymentPage paymentPage = new PaymentPage(driver, generic);
-		Thread.sleep(3000L);
-		paymentPageTotalAmount = paymentPage.getText_taxPercent_Lbl();
-		Matcher m = Pattern.compile("(?!=\\d\\.\\d\\.)([\\d.]+)").matcher(paymentPageTotalAmount);
-		while (m.find())
-		{
-			detailFinalAmount = Double.parseDouble(m.group(1));
-		}
-		detailFinalAmount = (detailFinalAmount/100) * detailPageTotalPrice;
-		detailFinalAmount = Math.ceil(detailFinalAmount);
-		taxAmount = Double.parseDouble(paymentPage.getText_taxAmount_Lbl());
-		Assert.assertEquals(taxAmount, detailFinalAmount, "Tax amount is not matched !! Prices are not correct !!");
-		detailFinalAmount = detailFinalAmount + detailPageTotalPrice;
-		paymentPageFinalAmount = Double.parseDouble(paymentPage.getText_finalAmount_Lbl());
-		Assert.assertEquals(detailFinalAmount, paymentPageFinalAmount,"Final amount is not accurate !!");
-	}
-
-
-
-	public void Positive_CheckInCheckOutDateWE(){
-		//	LocalDate todayDate = LocalDate.now();
-		//	String nextDate = todayDate.plusDays(1).toString();
-		LocalDate todayDate1 = LocalDate.now();
-		String todayDate = todayDate1.plusDays(2).toString();
-		String nextDate = todayDate1.plusDays(3).toString();
-		//System.out.println(todayDate+" , "+nextDate);
-		generic.click(checkIn_Date_WE);
-		String spiltTodayDate[]=todayDate.toString().split("-");
-		//	System.out.println(spiltTodayDate[0]+","+spiltTodayDate[1]+","+spiltTodayDate[2]);
-		//	System.out.println(checkInDate1_WE+spiltTodayDate[2].replaceFirst("0", "")+checkInDate2_WE);
-		generic.click(checkInDate1_WE+spiltTodayDate[2].replaceFirst("0", "")+checkInDate2_WE);
-		String spiltNextDate[]=nextDate.toString().split("-");
-		generic.click(checkOutDate1_WE+spiltNextDate[2].replaceFirst("0", "")+checkOutDate2_WE);
-
-		//generic.click(selectRooms_Btn);
-		//generic.click(selectRoomsHref_Btn);
-		generic.click(bookNow_Btn);
-	}
-
 
 
 }
