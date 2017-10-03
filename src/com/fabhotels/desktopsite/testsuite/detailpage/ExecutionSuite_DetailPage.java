@@ -74,8 +74,8 @@ public class ExecutionSuite_DetailPage extends Config {
 		dp.click_reviews_Lnk();
 		generic.goToSleep(1000);
 		Long afterScroll = (Long) executor.executeScript("return window.pageYOffset;");
-		softAssert.assertEquals(beforeScroll,(long) 0);
-		softAssert.assertEquals(afterScroll, (long)2070);
+		softAssert.assertTrue(beforeScroll==0);
+		softAssert.assertTrue(afterScroll==2070);
 		softAssert.assertAll();
 	}	
 
@@ -131,8 +131,8 @@ public class ExecutionSuite_DetailPage extends Config {
 		dp.click_selectRooms_Btn();
 		generic.goToSleep(1000);
 		Long afterScroll = (Long) executor.executeScript("return window.pageYOffset;");
-		softAssert.assertEquals(beforeScroll,(long) 0);
-		softAssert.assertEquals(afterScroll, (long)1147);
+		softAssert.assertTrue(beforeScroll==0);
+		softAssert.assertTrue(afterScroll==1147);
 		softAssert.assertTrue(dp.isVisible_calanderMiddle_WE());
 		softAssert.assertAll();
 	}
@@ -145,8 +145,8 @@ public class ExecutionSuite_DetailPage extends Config {
 		dp.click_selectRooms_Btn();
 		generic.goToSleep(1000);
 		Long afterScroll = (Long) executor.executeScript("return window.pageYOffset;");
-		softAssert.assertEquals(beforeScroll,(long) 0);
-		softAssert.assertEquals(afterScroll, (long)1279);
+		softAssert.assertTrue(beforeScroll==0);
+		softAssert.assertTrue(afterScroll==1279);
 		softAssert.assertTrue(dp.isVisible_numberOfRoomsSelectionAll_Btn());
 		softAssert.assertAll();
 	}
@@ -172,12 +172,12 @@ public class ExecutionSuite_DetailPage extends Config {
 		Long e = (Long) executor.executeScript("return window.pageYOffset;");
 		dp.click_hotelPoliciesHeader_Lnk();generic.goToSleep(1000);
 		Long f = (Long) executor.executeScript("return window.pageYOffset;");
-		softAssert.assertTrue(a==529L);
-		softAssert.assertTrue(b==967L);
-		softAssert.assertTrue(c==1196L);
-		softAssert.assertTrue(d==1725L);
-		softAssert.assertTrue(e==2119L);
-		softAssert.assertTrue(f==3590L);
+		softAssert.assertTrue(a==529);
+		softAssert.assertTrue(b==967);
+		softAssert.assertTrue(c==1196);
+		softAssert.assertTrue(d==1725);
+		softAssert.assertTrue(e==2119);
+		softAssert.assertTrue(f==3590);
 		softAssert.assertAll();
 	}
 
