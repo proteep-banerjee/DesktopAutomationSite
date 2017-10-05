@@ -28,7 +28,7 @@ public class ExecutionSuite_RetryPositivePayment extends Config {
 
 	@Test
 	public void TC_positiveCase_PaymentRetry_CreditCard() {
-		generic.loadURL(UrlProvider.getDamanPageUrl());
+		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());
 
 		DetailPage DetailPage=new DetailPage(driver,generic);
 		SearchResultPage SearchResultPage=new SearchResultPage(driver,generic);
@@ -51,7 +51,7 @@ public class ExecutionSuite_RetryPositivePayment extends Config {
 
 	@Test
 	public void TC_positiveCase_PaymentRetry_DebitCard() {
-		generic.loadURL(UrlProvider.getDamanPageUrl());
+		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());
 		DetailPage DetailPage=new DetailPage(driver,generic);
 
 		SearchResultPage SearchResultPage=new SearchResultPage(driver,generic);
@@ -74,7 +74,7 @@ public class ExecutionSuite_RetryPositivePayment extends Config {
 
 	@Test
 	public void TC_positiveCase_PaymentRetry_Netbanking() {
-		generic.loadURL(UrlProvider.getDamanPageUrl());
+		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());
 		DetailPage DetailPage=new DetailPage(driver,generic);
 
 		SearchResultPage SearchResultPage=new SearchResultPage(driver,generic);
@@ -98,7 +98,7 @@ public class ExecutionSuite_RetryPositivePayment extends Config {
 
 	@Test
 	public void TC_positiveCase_PaymentRetry_Wallets() {
-		generic.loadURL(UrlProvider.getDamanPageUrl());
+		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());
 		DetailPage DetailPage=new DetailPage(driver,generic);
 
 		SearchResultPage SearchResultPage=new SearchResultPage(driver,generic);
@@ -122,7 +122,7 @@ public class ExecutionSuite_RetryPositivePayment extends Config {
 
 	@Test
 	public void TC_positiveCase_Payment_PayAtHotels() {
-		generic.loadURL(UrlProvider.getDamanPageUrl());
+		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());
 		DetailPage DetailPage=new DetailPage(driver,generic);
 
 		SearchResultPage SearchResultPage=new SearchResultPage(driver,generic);

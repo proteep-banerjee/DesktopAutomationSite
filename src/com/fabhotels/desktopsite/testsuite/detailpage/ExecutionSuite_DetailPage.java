@@ -2,6 +2,7 @@ package com.fabhotels.desktopsite.testsuite.detailpage;
 
 import java.text.ParseException;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -28,21 +29,23 @@ public class ExecutionSuite_DetailPage extends Config {
 	WebDriver driver;
 	SoftAssert softAssert;
 	Calendar cal;
+	ListingPage lp;
 
 
-	@BeforeMethod
+	@BeforeMethod(firstTimeOnly=true)
 	public void beforeMethod() {
 		generic = new GenericFunctions(driver);
 		driver = generic.startDriver(Driver_Type);
 		dp = new DetailPage(driver, generic);
 		cal = new Calendar(driver, generic);
+		lp = new ListingPage(driver, generic);
 		softAssert = new SoftAssert();
-		generic.loadURL(UrlProvider.getDetailsPageUrl());
 		generic.dissMissPopUPTimer(ListingPage.popCloseButton_Btn);
 	}
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_001_verifyBreadCrumsFunctionality(){
+		generic.loadURL(UrlProvider.getDetailsPageUrl());
 		dp.click_breadCrumbsClickable1_Lnk();
 		String url1=generic.getCurrentUrl();
 		driver.navigate().back();
@@ -55,6 +58,7 @@ public class ExecutionSuite_DetailPage extends Config {
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_002_verifyHotelNameAndAddress(){
+		generic.loadURL(UrlProvider.getDetailsPageUrl());
 		String name=dp.getLabelText_hotelName_Lbl();
 		String address= dp.getLabelText_hotelsAdress_Lbl();
 		softAssert.assertEquals(name, "FabHotel Check'In By Oran CP");
@@ -65,19 +69,21 @@ public class ExecutionSuite_DetailPage extends Config {
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_003_verifyRatingNReviewsOnTop(){
+		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());
 		softAssert.assertTrue(dp.isVisible_starRating_WE(), "Star rating on top is not present");
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
-		Long beforeScroll = (Long) executor.executeScript("return window.pageYOffset;");
+		long beforeScroll = (long) executor.executeScript("return window.pageYOffset;");
 		dp.click_reviews_Lnk();
 		generic.goToSleep(1000);
-		Long afterScroll = (Long) executor.executeScript("return window.pageYOffset;");
-		softAssert.assertTrue(beforeScroll==0);
-		softAssert.assertTrue(afterScroll==2070);
+		long afterScroll = (long) executor.executeScript("return window.pageYOffset;");
+		softAssert.assertEquals(beforeScroll, 0);
+		softAssert.assertEquals(afterScroll,2566);
 		softAssert.assertAll();
 	}	
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_004_verifyPeopleLookingAt_LastBooked(){
+		generic.loadURL(UrlProvider.getDetailsPageUrl());
 		softAssert.assertTrue(dp.isVisible_peopleLooking_Lbl(), "People Looking at is not present");
 		softAssert.assertTrue(dp.isVisible_lastBooked_Lbl(), "Last booked is not present");
 		softAssert.assertAll();
@@ -85,6 +91,7 @@ public class ExecutionSuite_DetailPage extends Config {
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_005_verifyGalleryOpeningNClosing(){
+		generic.loadURL(UrlProvider.getDetailsPageUrl());
 		dp.click_mainImage_WE();
 		softAssert.assertEquals("FabHotel Check'In By Oran CP", dp.getLabelText_hotelNameGallery_Lbl());
 		dp.click_closeGallery_Lnk();
@@ -98,11 +105,13 @@ public class ExecutionSuite_DetailPage extends Config {
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_006_verifyAllImagesText(){
+		generic.loadURL(UrlProvider.getDetailsPageUrl());
 		Assert.assertEquals("+ 20"+"\n"+ "more photos", dp.getElementText_moreImages_WE());
 	}
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_007_verifyRackRateSellPrice(){
+		generic.loadURL(UrlProvider.getDetailsPageUrl());
 		int rackRateInt=0;
 		int sellPriceInt=0;
 		if(dp.isVisible_rackRate_Lbl()){
@@ -123,33 +132,36 @@ public class ExecutionSuite_DetailPage extends Config {
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_008_verifySelectRoomsFunctionality_Dateless(){
+		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
-		Long beforeScroll = (Long) executor.executeScript("return window.pageYOffset;");
+		long beforeScroll = (long) executor.executeScript("return window.pageYOffset;");
 		dp.click_selectRooms_Btn();
 		generic.goToSleep(1000);
-		Long afterScroll = (Long) executor.executeScript("return window.pageYOffset;");
-		softAssert.assertTrue(beforeScroll==0);
-		softAssert.assertTrue(afterScroll==1147);
+		long afterScroll = (long) executor.executeScript("return window.pageYOffset;");
+		softAssert.assertEquals(beforeScroll,0);
+		softAssert.assertEquals(afterScroll,1224);
 		softAssert.assertTrue(dp.isVisible_calanderMiddle_WE());
 		softAssert.assertAll();
 	}
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_009_verifySelectRoomsFunctionality_withDate() throws ParseException{
+		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());
 		cal.Select_CheckIn_CheckOut_Date_Calendar_WE(GenericFunctions.getDateAfterDays("1"), GenericFunctions.getDateAfterDays("3"));
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
-		Long beforeScroll = (Long) executor.executeScript("return window.pageYOffset;");
+		long beforeScroll = (long) executor.executeScript("return window.pageYOffset;");
 		dp.click_selectRooms_Btn();
 		generic.goToSleep(1000);
-		Long afterScroll = (Long) executor.executeScript("return window.pageYOffset;");
-		softAssert.assertTrue(beforeScroll==0);
-		softAssert.assertTrue(afterScroll==1279);
+		long afterScroll = (long) executor.executeScript("return window.pageYOffset;");
+		softAssert.assertEquals(beforeScroll,0);
+		softAssert.assertEquals(afterScroll,1356);
 		softAssert.assertTrue(dp.isVisible_numberOfRoomsSelectionAll_Btn());
 		softAssert.assertAll();
 	}
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_010_verifyHeaderLinksText(){
+		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());
 		softAssert.assertEquals("Overview", dp.getLinkText_overviewHeader_Lnk());
 		softAssert.assertEquals("Amenities", dp.getLinkText_amenitiesHeader_Lnk());
 		softAssert.assertEquals("Room Types", dp.getLinkText_roomTypesHeader_Lnk());
@@ -158,29 +170,30 @@ public class ExecutionSuite_DetailPage extends Config {
 		softAssert.assertEquals("Hotel Policies", dp.getLinkText_hotelPoliciesHeader_Lnk());
 		dp.click_overviewHeader_Lnk();generic.goToSleep(1000);
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
-		Long a = (Long) executor.executeScript("return window.pageYOffset;");
+		long a = (long) executor.executeScript("return window.pageYOffset;");
 		dp.click_amenitiesHeader_Lnk();generic.goToSleep(1000);
-		Long b = (Long) executor.executeScript("return window.pageYOffset;");
+		long b = (long) executor.executeScript("return window.pageYOffset;");
 		dp.click_roomTypesHeader_Lnk();generic.goToSleep(1000);
-		Long c = (Long) executor.executeScript("return window.pageYOffset;");
+		long c = (long) executor.executeScript("return window.pageYOffset;");
 		dp.click_whyThisHotelheader_Lnk();generic.goToSleep(1000);
-		Long d = (Long) executor.executeScript("return window.pageYOffset;");
+		long d = (long) executor.executeScript("return window.pageYOffset;");
 		dp.click_rNrHeader_Lnk();generic.goToSleep(1000);
-		Long e = (Long) executor.executeScript("return window.pageYOffset;");
+		long e = (long) executor.executeScript("return window.pageYOffset;");
 		dp.click_hotelPoliciesHeader_Lnk();generic.goToSleep(1000);
-		Long f = (Long) executor.executeScript("return window.pageYOffset;");
-		softAssert.assertTrue(a==529);
-		softAssert.assertTrue(b==967);
-		softAssert.assertTrue(c==1196);
-		softAssert.assertTrue(d==1725);
-		softAssert.assertTrue(e==2119);
-		softAssert.assertTrue(f==3590);
+		long f = (long) executor.executeScript("return window.pageYOffset;");
+		softAssert.assertEquals(a,509);
+		softAssert.assertEquals(b,898);
+		softAssert.assertEquals(c,1273);
+		softAssert.assertEquals(d,2351);
+		softAssert.assertEquals(e,2615);
+		softAssert.assertEquals(f,2887);
 		softAssert.assertAll();
 	}
 
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_011_verifyWhyFabhotelsSection(){
+		generic.loadURL(UrlProvider.getDetailsPageUrl());
 		softAssert.assertEquals("Best reviewed chain", dp.getElementText_bestRevChain_WE());
 		softAssert.assertEquals("Most centrally located", dp.getElementText_centrallyLocated_WE());
 		softAssert.assertEquals("Most Value for Money hotels", dp.getElementText_valueMoney_WE());
@@ -189,14 +202,15 @@ public class ExecutionSuite_DetailPage extends Config {
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_012_verifyRatingReview_MapSection(){
+		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());
 		softAssert.assertEquals(dp.getElementText_ratings_WE(), "Ratings");
-		softAssert.assertEquals(dp.getElementText_numericRating_WE(), "3.4");
+		softAssert.assertEquals(dp.getElementText_numericRating_WE(), "5");
 		softAssert.assertEquals(dp.getElementText_topReview_WE(), "Top Review");
-		softAssert.assertEquals(dp.getElementText_topReviewValue_WE(), "we had a very nice time at the hotel. hotel ambience was good.");
-		softAssert.assertEquals(dp.getElementText_ratedVeryGood_WE(), "Rated very good across 431 Reviews");
+		softAssert.assertEquals(dp.getElementText_topReviewValue_WE(), "A nice and a clean hotel.....I have earlier also recommended");
+		softAssert.assertEquals(dp.getElementText_ratedVeryGood_WE(), "Rated very good across 1 Reviews");
 		softAssert.assertTrue(dp.isVisible_ratingsLogo_WE());
-		softAssert.assertEquals(dp.getElementText_propertyNameOnMap_WE(),"FabHotel Check'In By Oran CP");
-		softAssert.assertEquals(dp.getElementText_landmarkOnMap_WE(),"Landmark: Opposite Worl");
+		softAssert.assertEquals(dp.getElementText_propertyNameOnMap_WE(),"FabHotel Instructor wow");
+		softAssert.assertEquals(dp.getElementText_landmarkOnMap_WE(),"Landmark: Daman");
 		dp.click_getDirectionOnMap_Lnk();
 		generic.switchtoNewWindow();
 		softAssert.assertTrue(generic.getCurrentUrl().contains("https://www.google.com/maps/dir//"), "Not getting redirected to Maps");
@@ -205,12 +219,13 @@ public class ExecutionSuite_DetailPage extends Config {
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_013_verifyAllAmenities(){
+		generic.loadURL(UrlProvider.getDetailsPageUrl());
 		Assert.assertEquals(dp.getElementText_allAmenities_WE(),"Breakfast"+"\n"+"24X7 Security"+"\n"+"Free Wifi"+"\n"+"Lift"+"\n"+"In Room Dining"+"\n"+"Air Conditioner","Amenities are not matching the  expected ones.");
 	}
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_014_verifyRoomSelectionMultipleRoomTypes() throws ParseException{
-		generic.loadURL(UrlProvider.getHomePageUrl()+"hotels-in-gotham/fabhotel-instructor-wow.html");
+		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());
 		cal.Select_CheckIn_CheckOut_Date_Calendar_WE(GenericFunctions.getDateAfterDays("10"), GenericFunctions.getDateAfterDays("20"));
 		dp.click_selectRooms_Btn();
 		softAssert.assertTrue(dp.isDisabled_roomNumber(1, 0), "Initial 0 is enabled");
@@ -288,12 +303,147 @@ public class ExecutionSuite_DetailPage extends Config {
 		softAssert.assertAll();
 	}
 
+	@Test
+	public void TC_ExecutionSuite_DetailPage_017_verifyCheckAvailability_MiddleOne() throws ParseException{
+		driver.get(UrlProvider.getHomePageUrl()+"hotels-in-gotham/fabhotel-some-rooms-sold-out.html");
+		cal.Select_CheckIn_CheckOut_Date_SecondCalendaronDEtailsPage_WE(GenericFunctions.getDateAfterDays("0"), GenericFunctions.getDateAfterDays("2"));
+		dp.click_checkAvailabilityInMiddle_Btn();
+		softAssert.assertTrue(dp.isSoldOut_roomType(2), "Sold Out Lablel is not displayed.");
+		softAssert.assertTrue(dp.isDisabled_roomNumber(2, 0), "Room 2 is Enabled");
+		softAssert.assertTrue(dp.isDisabled_roomNumber(2, 5), "Room 2 is Enabled");
+		softAssert.assertTrue(dp.isSoldOut_roomType(4), "Sold Out Lablel is not displayed.");
+		softAssert.assertTrue(dp.isDisabled_roomNumber(4, 0), "Room 2 is Enabled");
+		softAssert.assertTrue(dp.isDisabled_roomNumber(4, 5), "Room 2 is Enabled");
+		softAssert.assertEquals(dp.getText_roomsLeft_roomType(1), "3 ROOMS LEFT");
+		softAssert.assertEquals(dp.getText_roomsLeft_roomType(3), "1 ROOM LEFT");
+		softAssert.assertTrue(dp.isDisabled_roomNumber(1, 0), "Room 2 is Enabled");
+		softAssert.assertTrue(dp.isDisabled_roomNumber(1, 4), "Room 2 is Enabled");
+		softAssert.assertTrue(dp.isEnabled_roomNumber(1, 3), "Room 2 is Enabled");
+		softAssert.assertTrue(dp.isDisabled_roomNumber(3, 0), "Room 2 is Enabled");
+		softAssert.assertTrue(dp.isDisabled_roomNumber(3, 2), "Room 2 is Enabled");
+		softAssert.assertTrue(dp.isEnabled_roomNumber(3, 1), "Room 2 is Enabled");
+		softAssert.assertAll();
+	}
+	
+	@Test
+	public void TC_ExecutionSuite_DetailPage_018_verifyStaticTexts_RoomSelection(){
+		driver.get(UrlProvider.getGothamPropertyPageUrl());
+		softAssert.assertEquals(dp.getLinkText_roomTypesHeader_Lnk(),"Room Types");
+		softAssert.assertEquals(dp.getLabelText_roomTypesMaxNumbers_Lbl(),"(Maximum 5 rooms allowed per booking)");
+		int i =5;
+		while (i==0){
+		softAssert.assertEquals(dp.getText_roomTypesMaxGuests_Lbl(i),"max 3 guests/room");
+		softAssert.assertEquals(dp.getText_roomType_selectDates_Lbl(i)," * Select dates to check prices and availability ");
+		i--;
+		}
+		softAssert.assertAll();
+	}
+	
+	
+	@Test
+	public void TC_ExecutionSuite_DetailPage_019_verifyHotelDescription(){
+		driver.get(UrlProvider.getDetailsPageUrl());
+		softAssert.assertEquals(dp.getLinkText_whyThisHotelheader_Lnk(),"Why this Hotel");
+		softAssert.assertEquals(dp.getLinkText_readMore_Lnk(), "Read More");
+		dp.click_readMore_Lnk();
+		softAssert.assertEquals(dp.getLinkText_readLess_Lnk(), "Read Less");
+		dp.click_readLess_Lnk();
+		softAssert.assertEquals(dp.getLinkText_readMore_Lnk(), "Read More");
+		softAssert.assertTrue(dp.getElementText_descriptionExpanded_WE().length()>150);
+		softAssert.assertAll();
+	}
+	
+	@Test
+	public void TC_ExecutionSuite_DetailPage_020_verifyRatingsAndReviews(){
+		driver.get(UrlProvider.getDetailsPageUrl());
+		String topReview=dp.getLinkText_reviews_Lnk();
+		String midReview=dp.getElementText_ratedVeryGood_WE();
+		String bottomReview=dp.getLabelText_ratedInBlock_Lbl();
+		softAssert.assertTrue(midReview.contains(topReview), "Match Reviews Failed");
+		softAssert.assertEquals(midReview, bottomReview);
+		String topRating=dp.getElementText_numericRating_WE();
+		String bottomRating=dp.getLabelText_ratingNumbers_Lbl();
+		softAssert.assertEquals(topRating, bottomRating);
+		String view10more = dp.getLinkText_viewMoreReviews_Lnk();
+		String writtenReviews = dp.getLabelText_reviewsInRatingBlockBracket_Lbl();
+		writtenReviews = writtenReviews.replace("(", "");
+		writtenReviews = writtenReviews.replace(")", "");
+		writtenReviews = writtenReviews.toLowerCase();
+		softAssert.assertTrue(view10more.contains(writtenReviews),"Number of written reviews did not match.");
+		dp.click_viewMoreReviews_Lnk();
+		softAssert.assertEquals(dp.writtenReviewsCount(), 21);
+		softAssert.assertAll();
+	}
 
+	
+	@Test
+	public void TC_ExecutionSuite_DetailPage_021_verifyExploreMore(){
+		driver.get(UrlProvider.getHomePageUrl()+"hotels-in-goa/fabhotel-the-kings-court-calangute.html");
+		generic.scrollToElement(By.xpath(DetailPage.cheveronNextNearby_Btn), false);
+		int i=1;
+		while(!driver.findElement(By.xpath(DetailPage.exploreMorePropertiesCard_WE+"[last()]")).isDisplayed()){
+			for(int j=1;j<i+2;j++){
+			softAssert.assertTrue(dp.getLabelText_hotelNameNearby_Lbl(i).length()>5, "Failed Property Name");
+			softAssert.assertTrue(dp.getLabelText_locationNearby_Lbl(i).length()>5, "Failed Location");
+			softAssert.assertTrue(dp.getLabelText_reviewsAndRatingNearby_Lbl(i).length()>5, "Failed review and ratings");
+			softAssert.assertTrue(dp.getLinkText_reviewsOnlyNearby_Lnk(i).length()>5, "Failed review only");
+			softAssert.assertTrue(dp.getLabelText_peopleBookingNowNearby_Lbl(i).length()>5, "Failed people Looking at it");
+			softAssert.assertTrue(dp.getLabelText_sellPriceNearBy_Lbl(i).length()>5, "Failed sell price");
+			//softAssert.assertTrue(dp.getLabelText_rackPriceNearBy_Lbl(i).length()>5);
+			softAssert.assertTrue(dp.isVisible_bookNowNearBy_Btn(i), "Failed review and ratings");
+			}i=i+2;
+			dp.click_cheveronNextNearby_Btn();
+		}
+		softAssert.assertEquals(dp.getLabelText_exploreMoreSectionHeadline_Lbl(), "Explore more hotels near FabHotel The King's Court Calangute");
+		softAssert.assertAll();
+	}
+	
+	@Test
+	public void TC_ExecutionSuite_DetailPage_022_VerifyHotelPolicies(){
+		driver.get(UrlProvider.getDetailsPageUrl());
+		softAssert.assertEquals(dp.getLabelText_hotelPolicies_Lbl(),"Hotel Policies");
+		softAssert.assertTrue(dp.isVisible_hotelPolicies_WE(), "Hotel Policies section is missing");
+		softAssert.assertAll();
+	}
+	
+	@Test
+	public void TC_ExecutionSuite_DetailPage_023_VerifyNameInSearchBar(){
+		driver.get(UrlProvider.getDetailsPageUrl());
+		Assert.assertEquals(dp.getText_searchBox_WE(),"FabHotel Check'In By Oran CP");
+	}
+	
+	@Test
+	public void TC_ExecutionSuite_DetailPage_024_verifySeachFromDetails() throws ParseException{
+		driver.get(UrlProvider.getDetailsPageUrl());
+		cal.Select_CheckIn_CheckOut_Date_Calendar_WE(GenericFunctions.getDateAfterDays("0"), GenericFunctions.getDateAfterDays("2"));
+		dp.click_checkAvailabilityOnTop_Btn();
+		dp.clear_searchBox_WE();
+		dp.fill_searchBox_WE("Banglore");
+		dp.click_firstValueFromLocationSuggestor_Lbl();
+		dp.click_checkAvailabilityOnTop_Btn();
+		softAssert.assertTrue(lp.getText_resultsCountText_Lbl().contains("Budget Hotels in Bangalore"),"Not redirecting to list page");
+		softAssert.assertEquals(lp.getText_checkIn_Date_WE(), GenericFunctions.getDateAfterDays3format("0"));
+		softAssert.assertEquals(lp.getText_checkOut_Date_WE(), GenericFunctions.getDateAfterDays3format("2"));
+		softAssert.assertAll();
+	}
+	
+	@Test
+	public void TC_ExecutionSuite_DetailPage_025_verifyREdirectionFRomExploreMore(){
+		generic.loadURL(UrlProvider.getDetailsPageUrl());
+		String propName = dp.getLabelText_hotelNameNearby_Lbl(1);
+		String sellPrice = dp.getLabelText_sellPriceNearBy_Lbl(1);
+		dp.click_bookNowNearBy_Btn(1);
+		generic.goToSleep(2000);
+		driver.navigate().refresh();
+		softAssert.assertEquals(dp.getLabelText_hotelName_Lbl(), propName);
+		softAssert.assertEquals(dp.getLabelText_price_Lbl(), sellPrice);
+		softAssert.assertAll();
+	}
+	
 
-
-
-	@AfterMethod
-	public void afterTest() {
+	@AfterMethod(lastTimeOnly=true)
+	public void afterTest(){
+		Thread.currentThread().isInterrupted();
 		driver.quit();
 	}
 }

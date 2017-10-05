@@ -26,7 +26,7 @@ public class ExecutionSuite_CreditCardPayment extends Config {
 	
 	@Test
 	public void TC_positiveCase_Payment_CreditCard() {
-		generic.loadURL(UrlProvider.getDamanPageUrl());
+		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());
 		DetailPage DetailPage=new DetailPage(driver,generic);
 
 		SearchResultPage SearchResultPage=new SearchResultPage(driver,generic);

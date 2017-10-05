@@ -44,7 +44,7 @@ public class ExecutionSuite_GuestDetails extends Config {
 	public void TC_positiveCase_Checkout_GuestDetails(int rowNo, String Case_Type) {
 		System.out.println("Case_Type :"+Case_Type);
 		Sheetname = "GuestDetailPage";
-		generic.loadURL(UrlProvider.getDamanPageUrl());
+		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());
 
 		DetailPage DetailPage=new DetailPage(driver,generic);
 		SearchResultPage SearchResultPage=new SearchResultPage(driver,generic);

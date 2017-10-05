@@ -67,19 +67,20 @@ public class UrlProvider extends Config {
 			return "http://www.fabhotels.com/hotels-in-" + locality + "/";
 	}
 
-	public static String getDamanPageUrl() {
+	public static String getGothamPropertyPageUrl() {
 
 		if (Environment.toLowerCase().contains("dev"))
-			return "http://" + Environment + ".fabhotels.com/hotels-in-gurgaon";
+			return "http://" + Environment + ".fabhotels.com/hotels-in-gotham/fabhotel-instructor-wow.html/";
+		
+
+		if (Environment.toLowerCase().contains("test2"))
+			return "http://" + Environment + ".fabhotels.com/hotels-in-gotham/fabhotel-instructor-wow.html/";
 
 		if (Environment.toLowerCase().contains("preprod"))
-			return "https://preprod.fabhotels.com/hotels-in-daman/fabhotel-hotel-sankalp.html";
-
-		if (Environment.toLowerCase().contains("staging"))
-			return "https://staging.fabhotels.com/hotels-in-gurgaon/";
+			return "https://preprod.fabhotels.com/hotels-in-gotham/fabhotel-instructor-wow.html/";
 
 		else
-			return "http://www.fabhotels.com/hotels-in-daman";
+			return "http://www.fabhotels.com/hotels-in-gotham/fabhotel-instructor-wow.html/";
 	}
 
 	public static String getcheckoutReviewUrl() {

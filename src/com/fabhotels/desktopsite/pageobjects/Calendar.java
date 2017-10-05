@@ -8,7 +8,6 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.util.Date;
 
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -21,7 +20,9 @@ public class Calendar {
 	public static String date;
 
 	public static final By checkIn_Date_WE = By.id("checkIn");
+	public static final By checkIn_DateCalander2_WE = By.id("checkIn1");
 	public static final By checkOut_Date_WE = By.id("checkOut");
+	public static final By checkOut_DateCalander2_WE = By.id("checkOut1");
 	public static final By month_WE = By.xpath("//th[@class='datepicker-switch'][1]");
 	public static final By year_WE = By.xpath("(//th[@class='datepicker-switch'])[2]");
 	public static final By nextYearClick_WE = By.xpath("(//th[@class='next'])[2]");
@@ -71,6 +72,43 @@ public class Calendar {
 		generic.click(selectDate_Lnk+outDate+"']");
 		
 	}
+	
+	// Here the date format should be "dd MMMM uuuu"
+		public void Select_CheckIn_CheckOut_Date_SecondCalendaronDEtailsPage_WE(String checkindate, String checkoutdate) throws ParseException {
+			if (checkindate.length() < 1)
+				return;
+			if (checkoutdate.length() < 1)
+				return;
+			String str[] = checkindate.split("\\s+");
+			String inDate =str[0];
+			inDate = inDate.charAt(0)=='0'?inDate.substring(1):inDate;
+			String inMonth =str[1];
+			String inMonthFormatted = inMonth.substring(0, 3);
+			String inYear =str[2];
+			String str1[] = checkoutdate.split("\\s+");
+			String outDate =str1[0];
+			outDate = outDate.charAt(0)=='0'?outDate.substring(1):outDate;
+			String outMonth =str1[1];
+			String outMonthFormatted = outMonth.substring(0, 3);
+			String outYear =str1[2];
+			generic.scrollToElement(checkIn_DateCalander2_WE,true);
+			generic.customPageScrollToBottomInSlowMotion(0, -150);
+			generic.click(checkIn_DateCalander2_WE);
+			generic.click(month_WE);
+			while(!generic.getText(year_WE).equals(inYear)){
+				generic.click(nextYearClick_WE);
+			}
+			generic.click(selectMonth_Lnk+inMonthFormatted+"']");
+			generic.click(selectDate_Lnk+inDate+"']");
+			
+			generic.click(month_WE);
+			while(!generic.getText(year_WE).equals(outYear)){
+				generic.click(nextYearClick_WE);
+			}
+			generic.click(selectMonth_Lnk+outMonthFormatted+"']");
+			generic.click(selectDate_Lnk+outDate+"']");
+			
+		}
 	
 	
 	// for short month pass format as "dd-mm-yyyy" for full month pass "dd MMMM
