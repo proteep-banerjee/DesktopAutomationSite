@@ -45,7 +45,7 @@ public class ExecutionSuite_DetailPage extends Config {
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_001_verifyBreadCrumsFunctionality(){
-		generic.loadURL(UrlProvider.getDetailsPageUrl());
+		driver.get(UrlProvider.getDetailsPageUrl());
 		dp.click_breadCrumbsClickable1_Lnk();
 		String url1=generic.getCurrentUrl();
 		driver.navigate().back();
@@ -58,7 +58,7 @@ public class ExecutionSuite_DetailPage extends Config {
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_002_verifyHotelNameAndAddress(){
-		generic.loadURL(UrlProvider.getDetailsPageUrl());
+		driver.get(UrlProvider.getDetailsPageUrl());
 		String name=dp.getLabelText_hotelName_Lbl();
 		String address= dp.getLabelText_hotelsAdress_Lbl();
 		softAssert.assertEquals(name, "FabHotel Check'In By Oran CP");
@@ -69,7 +69,7 @@ public class ExecutionSuite_DetailPage extends Config {
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_003_verifyRatingNReviewsOnTop(){
-		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());
+		driver.get(UrlProvider.getGothamPropertyPageUrl());
 		softAssert.assertTrue(dp.isVisible_starRating_WE(), "Star rating on top is not present");
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		long beforeScroll = (long) executor.executeScript("return window.pageYOffset;");
@@ -77,13 +77,13 @@ public class ExecutionSuite_DetailPage extends Config {
 		generic.goToSleep(1000);
 		long afterScroll = (long) executor.executeScript("return window.pageYOffset;");
 		softAssert.assertEquals(beforeScroll, 0);
-		softAssert.assertEquals(afterScroll,2566);
+		softAssert.assertTrue(afterScroll>2500 && afterScroll<2600);
 		softAssert.assertAll();
 	}	
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_004_verifyPeopleLookingAt_LastBooked(){
-		generic.loadURL(UrlProvider.getDetailsPageUrl());
+		driver.get(UrlProvider.getDetailsPageUrl());
 		softAssert.assertTrue(dp.isVisible_peopleLooking_Lbl(), "People Looking at is not present");
 		softAssert.assertTrue(dp.isVisible_lastBooked_Lbl(), "Last booked is not present");
 		softAssert.assertAll();
@@ -91,7 +91,7 @@ public class ExecutionSuite_DetailPage extends Config {
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_005_verifyGalleryOpeningNClosing(){
-		generic.loadURL(UrlProvider.getDetailsPageUrl());
+		driver.get(UrlProvider.getDetailsPageUrl());
 		dp.click_mainImage_WE();
 		softAssert.assertEquals("FabHotel Check'In By Oran CP", dp.getLabelText_hotelNameGallery_Lbl());
 		dp.click_closeGallery_Lnk();
@@ -105,13 +105,13 @@ public class ExecutionSuite_DetailPage extends Config {
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_006_verifyAllImagesText(){
-		generic.loadURL(UrlProvider.getDetailsPageUrl());
+		driver.get(UrlProvider.getDetailsPageUrl());
 		Assert.assertEquals("+ 20"+"\n"+ "more photos", dp.getElementText_moreImages_WE());
 	}
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_007_verifyRackRateSellPrice(){
-		generic.loadURL(UrlProvider.getDetailsPageUrl());
+		driver.get(UrlProvider.getDetailsPageUrl());
 		int rackRateInt=0;
 		int sellPriceInt=0;
 		if(dp.isVisible_rackRate_Lbl()){
@@ -132,21 +132,21 @@ public class ExecutionSuite_DetailPage extends Config {
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_008_verifySelectRoomsFunctionality_Dateless(){
-		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());
+		driver.get(UrlProvider.getGothamPropertyPageUrl());
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		long beforeScroll = (long) executor.executeScript("return window.pageYOffset;");
 		dp.click_selectRooms_Btn();
 		generic.goToSleep(1000);
 		long afterScroll = (long) executor.executeScript("return window.pageYOffset;");
 		softAssert.assertEquals(beforeScroll,0);
-		softAssert.assertEquals(afterScroll,1224);
+		softAssert.assertTrue(afterScroll>1100 && afterScroll<1300);
 		softAssert.assertTrue(dp.isVisible_calanderMiddle_WE());
 		softAssert.assertAll();
 	}
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_009_verifySelectRoomsFunctionality_withDate() throws ParseException{
-		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());
+		driver.get(UrlProvider.getGothamPropertyPageUrl());
 		cal.Select_CheckIn_CheckOut_Date_Calendar_WE(GenericFunctions.getDateAfterDays("1"), GenericFunctions.getDateAfterDays("3"));
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		long beforeScroll = (long) executor.executeScript("return window.pageYOffset;");
@@ -154,14 +154,14 @@ public class ExecutionSuite_DetailPage extends Config {
 		generic.goToSleep(1000);
 		long afterScroll = (long) executor.executeScript("return window.pageYOffset;");
 		softAssert.assertEquals(beforeScroll,0);
-		softAssert.assertEquals(afterScroll,1356);
+		softAssert.assertTrue(afterScroll>1300 && afterScroll<1400);
 		softAssert.assertTrue(dp.isVisible_numberOfRoomsSelectionAll_Btn());
 		softAssert.assertAll();
 	}
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_010_verifyHeaderLinksText(){
-		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());
+		driver.get(UrlProvider.getGothamPropertyPageUrl());
 		softAssert.assertEquals("Overview", dp.getLinkText_overviewHeader_Lnk());
 		softAssert.assertEquals("Amenities", dp.getLinkText_amenitiesHeader_Lnk());
 		softAssert.assertEquals("Room Types", dp.getLinkText_roomTypesHeader_Lnk());
@@ -181,19 +181,19 @@ public class ExecutionSuite_DetailPage extends Config {
 		long e = (long) executor.executeScript("return window.pageYOffset;");
 		dp.click_hotelPoliciesHeader_Lnk();generic.goToSleep(1000);
 		long f = (long) executor.executeScript("return window.pageYOffset;");
-		softAssert.assertEquals(a,509);
-		softAssert.assertEquals(b,898);
-		softAssert.assertEquals(c,1273);
-		softAssert.assertEquals(d,2351);
-		softAssert.assertEquals(e,2615);
-		softAssert.assertEquals(f,2887);
+		softAssert.assertTrue(a>450 && a<550);
+		softAssert.assertTrue(b>800 && b<900);
+		softAssert.assertTrue(c>1200 && c<1300);
+		softAssert.assertTrue(d>2200 && d<2400);
+		softAssert.assertTrue(e>2500 && e<2700);
+		softAssert.assertTrue(f>2800 && f<2900);
 		softAssert.assertAll();
 	}
 
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_011_verifyWhyFabhotelsSection(){
-		generic.loadURL(UrlProvider.getDetailsPageUrl());
+		driver.get(UrlProvider.getDetailsPageUrl());
 		softAssert.assertEquals("Best reviewed chain", dp.getElementText_bestRevChain_WE());
 		softAssert.assertEquals("Most centrally located", dp.getElementText_centrallyLocated_WE());
 		softAssert.assertEquals("Most Value for Money hotels", dp.getElementText_valueMoney_WE());
@@ -202,7 +202,7 @@ public class ExecutionSuite_DetailPage extends Config {
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_012_verifyRatingReview_MapSection(){
-		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());
+		driver.get(UrlProvider.getGothamPropertyPageUrl());
 		softAssert.assertEquals(dp.getElementText_ratings_WE(), "Ratings");
 		softAssert.assertEquals(dp.getElementText_numericRating_WE(), "5");
 		softAssert.assertEquals(dp.getElementText_topReview_WE(), "Top Review");
@@ -219,13 +219,13 @@ public class ExecutionSuite_DetailPage extends Config {
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_013_verifyAllAmenities(){
-		generic.loadURL(UrlProvider.getDetailsPageUrl());
+		driver.get(UrlProvider.getDetailsPageUrl());
 		Assert.assertEquals(dp.getElementText_allAmenities_WE(),"Breakfast"+"\n"+"24X7 Security"+"\n"+"Free Wifi"+"\n"+"Lift"+"\n"+"In Room Dining"+"\n"+"Air Conditioner","Amenities are not matching the  expected ones.");
 	}
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_014_verifyRoomSelectionMultipleRoomTypes() throws ParseException{
-		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());
+		driver.get(UrlProvider.getGothamPropertyPageUrl());
 		cal.Select_CheckIn_CheckOut_Date_Calendar_WE(GenericFunctions.getDateAfterDays("10"), GenericFunctions.getDateAfterDays("20"));
 		dp.click_selectRooms_Btn();
 		softAssert.assertTrue(dp.isDisabled_roomNumber(1, 0), "Initial 0 is enabled");
@@ -371,6 +371,7 @@ public class ExecutionSuite_DetailPage extends Config {
 		writtenReviews = writtenReviews.toLowerCase();
 		softAssert.assertTrue(view10more.contains(writtenReviews),"Number of written reviews did not match.");
 		dp.click_viewMoreReviews_Lnk();
+		generic.goToSleep(2000);
 		softAssert.assertEquals(dp.writtenReviewsCount(), 21);
 		softAssert.assertAll();
 	}
@@ -429,7 +430,7 @@ public class ExecutionSuite_DetailPage extends Config {
 	
 	@Test
 	public void TC_ExecutionSuite_DetailPage_025_verifyREdirectionFRomExploreMore(){
-		generic.loadURL(UrlProvider.getDetailsPageUrl());
+		driver.get(UrlProvider.getDetailsPageUrl());
 		String propName = dp.getLabelText_hotelNameNearby_Lbl(1);
 		String sellPrice = dp.getLabelText_sellPriceNearBy_Lbl(1);
 		dp.click_bookNowNearBy_Btn(1);
