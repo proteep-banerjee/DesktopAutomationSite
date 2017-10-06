@@ -125,14 +125,14 @@ public class ExecutionSuite_DetailPage extends Config {
 		int sellPriceInt = 0;
 		if (dp.isVisible_rackRate_Lbl()) {
 			String rackRate = dp.getLabelText_rackRate_Lbl().replace(",", "");
-			rackRate = rackRate.replace("₹ ", "");
+			rackRate = rackRate.replaceAll("\\D+", "");
 			rackRateInt = Integer.parseInt(rackRate);
 			String sellPrice = dp.getLabelText_price_Lbl().replace(",", "");
-			sellPrice = sellPrice.replace("₹ ", "");
+			sellPrice = sellPrice.replaceAll("\\D+", "");
 			sellPriceInt = Integer.parseInt(sellPrice);
 		} else {
 			String sellPrice = dp.getLabelText_price_Lbl().replace(",", "");
-			sellPrice = sellPrice.replace("₹ ", "");
+			sellPrice = sellPrice.replaceAll("\\D+", "");
 			sellPriceInt = Integer.parseInt(sellPrice);
 			rackRateInt = sellPriceInt + 1;
 		}

@@ -512,10 +512,10 @@ public class ListingPage {
 	}
 
 	public String getText_checkIn_Date_WE() {
-		return generic.getText(checkIn_Date_WE);
+		return generic.getValue(checkIn_Date_WE);
 	}
 
 	public String getText_checkOut_Date_WE() {
-		return generic.getText(checkOut_Date_WE);
+		return generic.getValue(checkOut_Date_WE);
 	}
 }
