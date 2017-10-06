@@ -7,7 +7,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import com.fabhotels.desktopsite.pageobjects.Calendar;
@@ -19,11 +21,16 @@ public class ExecutionSuite_ListingPage extends Config {
 
 	ListingPage listingPage;
 
+	@BeforeTest
+	public void beforeTest() {
+		driver = generic.startDriver(Driver_Type);
+		listingPage = new ListingPage(driver, generic);
+		generic.dissMissPopUPTimer(ListingPage.popCloseButton_Btn);
+
+	}
+
 	@BeforeMethod
 	public void beforeMethod() {
-		driver = generic.startDriver(Driver_Type);
-		new ListingPage(driver, generic);
-		generic.dissMissPopUPTimer(ListingPage.popCloseButton_Btn);
 		driver.manage().deleteAllCookies();
 	}
 
@@ -139,6 +146,11 @@ public class ExecutionSuite_ListingPage extends Config {
 
 	@AfterMethod
 	public void afterMethod() {
+
+	}
+
+	@AfterTest
+	public void aftertest() {
 		driver.quit();
 	}
 }
