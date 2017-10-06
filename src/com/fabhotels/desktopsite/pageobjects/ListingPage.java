@@ -114,7 +114,7 @@ public class ListingPage {
 	public static String nearByHotelImg_img = "//ul[@id='more_properties_content']//img";
 	public static final By cityErrorMsg_WE = By.xpath("//div[@id='cityErrorMsg']");
 	public static String cityErrorMsg_txt = "Please tell us where you are headed!";
-	public static String noHotelFoundMsg_txt = "//h2[contains(text(),' We couldn’t find hotels matching ')]";
+	public static final String noHotelFoundMsg_txt = "//h2[contains(text(),' We couldn’t find hotels matching ')]";
 
 	public static String locality_name = "Sarojini Nagar";
 
@@ -324,31 +324,29 @@ public class ListingPage {
 
 	}
 
-	public void searchingCriteria(By searchBox, String searchText, String roomNo) {
-		SoftAssert s_assert = new SoftAssert();
-		generic.fill(searchBox, searchText);
-		// WithDates
-		if (!roomNo.equals("0")) {
-			Calendar cal = new Calendar(driver, generic);
+	public void performSearch(String searchText, String checkIn, String checkOut, String noofRooms) {
+		generic.fill(searchBox_WE, searchText);
+		Calendar cal = new Calendar(driver, generic);
+
+		if (checkIn.length() > 0 && checkOut.length() > 0) {
 			try {
-				cal.Select_CheckIn_CheckOut_Date_Calendar_WE(cal.dateWithDifferentFormat("dd MMMM uuuu", 1),
-						cal.dateWithDifferentFormat("dd MMMM uuuu", 3));
+				cal.Select_CheckIn_CheckOut_Date_Calendar_WE(checkIn, checkOut);
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
-			generic.performMouseHover(noOfRooms_DD);
-			generic.click(roomsNumber_WE + roomNo + "')]");
-			generic.click(findFabHotel_Btn);
-			generic.goToSleep(4000);
-			generic.isVisible(searchResultContainer_WE);
-			s_assert.assertTrue(generic.getText(resultsCountText_Lbl).contains(searchText),
-					"Searched result not Appropriate on ListPage");
-			// DateLess
-		} else {
-			generic.click(findFabHotel_Btn);
-			generic.goToSleep(4000);
-
 		}
+
+		if (noofRooms.length() > 0) {
+			generic.performMouseHover(noOfRooms_DD);
+			generic.click(roomsNumber_WE + noofRooms + "')]");
+		}
+
+		generic.click(findFabHotel_Btn);
+		generic.goToSleep(1000);
+		Assert.assertTrue(generic.isVisible(searchResultContainer_WE),
+				"Search results not visible on performing Search !!");
+		Assert.assertTrue(generic.getText(resultsCountText_Lbl).contains(searchText),
+				"Search results not Appropriate on ListPage !!");
 	}
 
 	// Func to get url parameters.
@@ -406,10 +404,9 @@ public class ListingPage {
 
 	public void No_Hotelsfound() {
 		SoftAssert s_assert = new SoftAssert();
-		s_assert.assertTrue(generic.isVisible(noHotelFoundMsg_txt), "Error warning is functionalty is broken");
+		s_assert.assertTrue(generic.isVisible(noHotelFoundMsg_txt), "Error warning functionalty is broken");
 		s_assert.assertTrue(generic.isVisible(goToHomePage_Btn), "Go to Home Page is not comming");
 		generic.click(goToHomePage_Btn);
-		generic.goToSleep(4000);
 		s_assert.assertTrue(generic.isVisible(homePage_mainTitle_lbl), "Go to Home Page is Not Working.");
 		s_assert.assertAll();
 	}

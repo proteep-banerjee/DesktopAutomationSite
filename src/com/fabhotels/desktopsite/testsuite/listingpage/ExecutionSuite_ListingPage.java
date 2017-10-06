@@ -96,38 +96,38 @@ public class ExecutionSuite_ListingPage extends Config {
 
 	@Test
 	public void TC_NearByHotels_listPage() {
-		listingPage.searchingCriteria(ListingPage.searchBox_WE, ListingPage.locality_name, "4");
+		listingPage.performSearch(ListingPage.locality_name, "", "", "4");
 		listingPage.verifyNearByPropertyOnListPage();
 	}
 
 	@Test
 	public void TC_SearchBox_listPage() {
-		listingPage.searchingCriteria(ListingPage.searchBox_WE, "", "1");
+		listingPage.performSearch("", "", "", "1");
 		listingPage.assertSearchError();
 	}
 
 	@Test
 	public void TC_checkURL_listPage() {
-		listingPage.searchingCriteria(ListingPage.searchBox_WE, ListingPage.locality_name, "4");
+		listingPage.performSearch(ListingPage.locality_name, "", "", "4");
 		listingPage.checkURL();
 	}
 
 	@Test
 	public void TC_No_Hotelsfound_listPage() {
 		generic.loadURL(UrlProvider.getHomePageUrl());
-		listingPage.searchingCriteria(ListingPage.searchBox_WE, "*", "0");
+		listingPage.performSearch("*", "", "", "");
 		listingPage.No_Hotelsfound();
 	}
 
 	@Test
 	public void TC_DetailsPageLanding_Dates_listPage() {
-		listingPage.searchingCriteria(ListingPage.searchBox_WE, ListingPage.locality_name, "4");
+		listingPage.performSearch(ListingPage.locality_name, "", "", "4");
 		listingPage.detailsPageLanding_VerifyWithDateAndRooms();
 	}
 
 	@Test
 	public void TC_DetailsPageLanding_DateLess_listPage() {
-		listingPage.searchingCriteria(ListingPage.searchBox_WE, "New Delhi", "0");
+		listingPage.performSearch("New Delhi", "", "", "0");
 		listingPage.detailsPageLanding_VerifyWithDateLess();
 	}
 
