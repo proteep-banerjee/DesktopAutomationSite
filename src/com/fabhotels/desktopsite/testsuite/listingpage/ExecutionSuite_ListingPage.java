@@ -12,6 +12,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import com.fabhotels.automationframework.genericfunctions.GenericFunctions;
 import com.fabhotels.desktopsite.pageobjects.Calendar;
 import com.fabhotels.desktopsite.pageobjects.ListingPage;
 import com.fabhotels.desktopsite.utils.Config;
@@ -23,27 +24,26 @@ public class ExecutionSuite_ListingPage extends Config {
 
 	@BeforeTest
 	public void beforeTest() {
+		generic = new GenericFunctions(driver);
 		driver = generic.startDriver(Driver_Type);
 		listingPage = new ListingPage(driver, generic);
-		generic.dissMissPopUPTimer(ListingPage.popCloseButton_Btn);
-
 	}
 
 	@BeforeMethod
 	public void beforeMethod() {
 		driver.manage().deleteAllCookies();
+		generic.loadURL(UrlProvider.getListingPageUrl());
+		generic.dissMissPopUPTimer(ListingPage.popCloseButton_Btn);
 	}
 
 	@Test
 	public void TC_ValidateVisibility_FeatureBox_ListPage() {
-		generic.loadURL(UrlProvider.getListingPageUrl());
 		Assert.assertTrue(generic.isVisible(ListingPage.featureBox_WE), "Feature box not visible on list page !!");
 
 	}
 
 	@Test
 	public void TC_ValidateFunctionality_Filters() {
-		generic.loadURL(UrlProvider.getListingPageUrl());
 		List<WebElement> filters = generic.findElements(ListingPage.filters_WE);
 		String firstFilter = filters.get(0).findElement(By.tagName("span")).getText();
 		listingPage.click_Filters_WE();
@@ -54,43 +54,36 @@ public class ExecutionSuite_ListingPage extends Config {
 
 	@Test
 	public void TC_CheckTotal_HotelCount_List() {
-		generic.loadURL(UrlProvider.getListingPageUrl());
 		listingPage.check_Hotels_count();
 	}
 
 	@Test
 	public void TC_CheckRackPrice_List() {
-		generic.loadURL(UrlProvider.getListingPageUrl());
 		listingPage.compare_Rack_Price();
 	}
 
 	@Test
 	public void TC_Three_hotels_links() {
-		generic.loadURL(UrlProvider.getListingPageUrl());
 		listingPage.check_All_Hotel_links();
 	}
 
 	@Test
 	public void TC_Review_listPage() {
-		generic.loadURL(UrlProvider.getListingPageUrl());
 		listingPage.check_review();
 	}
 
 	@Test
 	public void TC_CityDropdown_listPage() {
-		generic.loadURL(UrlProvider.getListingPageUrl());
 		listingPage.all_Cities_names();
 	}
 
 	@Test
 	public void TC_ImageandLandmark_listPage() {
-		generic.loadURL(UrlProvider.getListingPageUrl());
 		listingPage.check_ImageAndLandmark();
 	}
 
 	@Test
 	public void TC_HotelInfoContainer_listPage() throws ParseException {
-		generic.loadURL(UrlProvider.getListingPageUrl());
 		Calendar cal = new Calendar(driver, generic);
 		cal.Select_CheckIn_CheckOut_Date_Calendar_WE(cal.dateWithDifferentFormat("dd MMMM uuuu", 1),
 				cal.dateWithDifferentFormat("dd MMMM uuuu", 3));
@@ -104,21 +97,18 @@ public class ExecutionSuite_ListingPage extends Config {
 
 	@Test
 	public void TC_NearByHotels_listPage() {
-		generic.loadURL(UrlProvider.getListingPageUrl());
 		listingPage.searchingCriteria(ListingPage.searchBox_WE, ListingPage.locality_name, "4");
 		listingPage.verifyNearByPropertyOnListPage();
 	}
 
 	@Test
 	public void TC_SearchBox_listPage() {
-		generic.loadURL(UrlProvider.getListingPageUrl());
 		listingPage.searchingCriteria(ListingPage.searchBox_WE, "", "1");
 		listingPage.assertSearchError();
 	}
 
 	@Test
 	public void TC_checkURL_listPage() {
-		generic.loadURL(UrlProvider.getListingPageUrl());
 		listingPage.searchingCriteria(ListingPage.searchBox_WE, ListingPage.locality_name, "4");
 		listingPage.checkURL();
 	}
@@ -132,14 +122,12 @@ public class ExecutionSuite_ListingPage extends Config {
 
 	@Test
 	public void TC_DetailsPageLanding_Dates_listPage() {
-		generic.loadURL(UrlProvider.getListingPageUrl());
 		listingPage.searchingCriteria(ListingPage.searchBox_WE, ListingPage.locality_name, "4");
 		listingPage.detailsPageLanding_VerifyWithDateAndRooms();
 	}
 
 	@Test
 	public void TC_DetailsPageLanding_DateLess_listPage() {
-		generic.loadURL(UrlProvider.getListingPageUrl());
 		listingPage.searchingCriteria(ListingPage.searchBox_WE, "New Delhi", "0");
 		listingPage.detailsPageLanding_VerifyWithDateLess();
 	}
