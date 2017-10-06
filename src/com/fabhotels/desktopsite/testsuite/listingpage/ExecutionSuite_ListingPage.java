@@ -33,13 +33,12 @@ public class ExecutionSuite_ListingPage extends Config {
 	public void beforeMethod() {
 		driver.manage().deleteAllCookies();
 		generic.loadURL(UrlProvider.getListingPageUrl());
-		generic.dissMissPopUPTimer(ListingPage.popCloseButton_Btn);
+		generic.handlePopUPTimer(ListingPage.popCloseButton_Btn);
 	}
 
 	@Test
 	public void TC_ValidateVisibility_FeatureBox_ListPage() {
 		Assert.assertTrue(generic.isVisible(ListingPage.featureBox_WE), "Feature box not visible on list page !!");
-
 	}
 
 	@Test

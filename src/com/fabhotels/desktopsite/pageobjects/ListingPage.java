@@ -23,7 +23,6 @@ public class ListingPage {
 	int hotelsCountUnderListPage = 1;
 	int cityCount = 1;
 	int randomCity_count = 1;
-	SoftAssert s_assert = new SoftAssert();
 
 	public static final By location_Txt = By.id("autocomplete-location");
 
@@ -55,12 +54,6 @@ public class ListingPage {
 	public static final By homePageSearchBox_WE = By.xpath("//input[@name='locationsearch']");
 
 	public static final String noPropertyFound_Msg = "We couldn’t find hotels matching your search criteria";
-
-	public ListingPage(WebDriver driver, GenericFunctions generic) {
-		this.driver = driver;
-		this.generic = generic;
-	}
-
 	public static final By noOfRooms_DD = By.xpath("//div[@class='custom-value-content clearfix']");
 
 	public static final By cityName_Lbl = By.xpath("//div[@class='hotel-info']/input");
@@ -129,11 +122,17 @@ public class ListingPage {
 	public static final By hotelName_Lbl = By.xpath("//h1");
 	public static final By price_Lbl = By.xpath("//div[@class='select-room-price']//strong");
 
+	public ListingPage(WebDriver driver, GenericFunctions generic) {
+		this.driver = driver;
+		this.generic = generic;
+	}
+
 	public String getText_resultsCountText_Lbl() {
 		return generic.getText(resultsCountText_Lbl);
 	}
 
 	public void check_Hotels_count() {
+		SoftAssert s_assert = new SoftAssert();
 		for (int j = 1; j < 6; j++) {
 			System.out.println("Current city :" + iterate_all_Cities(randomCity_count));
 			int hotel_num = Integer.parseInt(getText_NoofHotelFound());
@@ -144,6 +143,7 @@ public class ListingPage {
 	}
 
 	public void compare_Rack_Price() {
+		SoftAssert s_assert = new SoftAssert();
 		for (int j = 1; j < 6; j++) {
 			System.out.println("Current city :" + iterate_all_Cities(randomCity_count));
 			String price, rack, hotelName = "";
@@ -171,6 +171,7 @@ public class ListingPage {
 	}
 
 	public void check_All_Hotel_links() {
+		SoftAssert s_assert = new SoftAssert();
 		for (int j = 1; j < 6; j++) {
 			System.out.println("Current city :" + iterate_all_Cities(randomCity_count));
 			generic.setImplicitWaitInSeconds(2);
@@ -187,6 +188,7 @@ public class ListingPage {
 	}
 
 	public void check_review() {
+		SoftAssert s_assert = new SoftAssert();
 		for (int j = 1; j < 5; j++) {
 			String cityName = iterate_all_Cities(randomCity_count);
 			System.out.println("Current city :" + cityName);
@@ -215,6 +217,7 @@ public class ListingPage {
 	}
 
 	public void all_Cities_names() {
+		SoftAssert s_assert = new SoftAssert();
 		for (int j = 1; j < 6; j++) {
 			String cityName = iterate_all_Cities(randomCity_count);
 			System.out.println("Current city :" + cityName);
@@ -231,6 +234,7 @@ public class ListingPage {
 	}
 
 	public void check_ImageAndLandmark() {
+		SoftAssert s_assert = new SoftAssert();
 		for (int j = 1; j < 6; j++) {
 			String cityName = iterate_all_Cities(randomCity_count);
 			System.out.println("Current city :" + cityName);
@@ -260,6 +264,7 @@ public class ListingPage {
 
 	// TO check NearBy property.
 	public void verifyNearByPropertyOnListPage() {
+		SoftAssert s_assert = new SoftAssert();
 		int i = 1;
 		generic.goToSleep(1000);
 		generic.scrollToElement(nearByProperty_nav, false);
@@ -320,6 +325,7 @@ public class ListingPage {
 	}
 
 	public void searchingCriteria(By searchBox, String searchText, String roomNo) {
+		SoftAssert s_assert = new SoftAssert();
 		generic.fill(searchBox, searchText);
 		// WithDates
 		if (!roomNo.equals("0")) {
@@ -378,6 +384,7 @@ public class ListingPage {
 	}
 
 	public void checkURL() {
+		SoftAssert s_assert = new SoftAssert();
 		Map<String, String> parameters = getQueryURL();
 		s_assert.assertTrue(parameters.get("locationsearch").contains(locality_name),
 				"Location parameter is not correct.in the url");
@@ -391,12 +398,14 @@ public class ListingPage {
 	}
 
 	public void assertSearchError() {
+		SoftAssert s_assert = new SoftAssert();
 		s_assert.assertEquals(generic.getText(cityErrorMsg_WE), cityErrorMsg_txt,
 				"List Box errror warning is not comming.");
 		s_assert.assertAll();
 	}
 
 	public void No_Hotelsfound() {
+		SoftAssert s_assert = new SoftAssert();
 		s_assert.assertTrue(generic.isVisible(noHotelFoundMsg_txt), "Error warning is functionalty is broken");
 		s_assert.assertTrue(generic.isVisible(goToHomePage_Btn), "Go to Home Page is not comming");
 		generic.click(goToHomePage_Btn);
@@ -406,6 +415,7 @@ public class ListingPage {
 	}
 
 	public void nearByHotelslistPage() {
+		SoftAssert s_assert = new SoftAssert();
 		s_assert.assertTrue(generic.findElement(nearByHotel_Lbl).getText().contentEquals(nearBy_txt + locality_name),
 				"Near By Hotel is broken on List Page");
 		s_assert.assertAll();
@@ -416,7 +426,7 @@ public class ListingPage {
 	}
 
 	public void detailsPageLanding_VerifyWithDateAndRooms() {
-		// List Page
+		SoftAssert s_assert = new SoftAssert();
 		String date_ListPage = generic.getAttributeValue(checkIn_Date_WE, "value");
 		String price_ListPage = generic
 				.getText("(//div[@class='price'])" + "[" + 1 + "]" + "//span[@class='new-price']")
@@ -453,7 +463,7 @@ public class ListingPage {
 	}
 
 	public void detailsPageLanding_VerifyWithDateLess() {
-		// List Page
+		SoftAssert s_assert = new SoftAssert();
 		String price_ListPage = generic
 				.getText("(//div[@class='price'])" + "[" + 1 + "]" + "//span[@class='new-price']")
 				.replaceAll("[^0-9.]", "");

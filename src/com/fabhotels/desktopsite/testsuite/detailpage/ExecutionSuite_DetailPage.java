@@ -48,7 +48,7 @@ public class ExecutionSuite_DetailPage extends Config {
 	@Test
 	public void TC_ExecutionSuite_DetailPage_001_verifyBreadCrumsFunctionality() {
 		generic.loadURL(UrlProvider.getDetailsPageUrl());
-		generic.dissMissPopUPTimer(ListingPage.popCloseButton_Btn);
+		generic.handlePopUPTimer(ListingPage.popCloseButton_Btn);
 		dp.click_breadCrumbsClickable1_Lnk();
 		String url1 = generic.getCurrentUrl();
 		driver.navigate().back();
@@ -62,7 +62,7 @@ public class ExecutionSuite_DetailPage extends Config {
 	@Test
 	public void TC_ExecutionSuite_DetailPage_002_verifyHotelNameAndAddress() {
 		generic.loadURL(UrlProvider.getDetailsPageUrl());
-		generic.dissMissPopUPTimer(ListingPage.popCloseButton_Btn);
+		generic.handlePopUPTimer(ListingPage.popCloseButton_Btn);
 		String name = dp.getLabelText_hotelName_Lbl();
 		String address = dp.getLabelText_hotelsAdress_Lbl();
 		softAssert.assertEquals(name, "FabHotel Check'In By Oran CP");
@@ -74,7 +74,7 @@ public class ExecutionSuite_DetailPage extends Config {
 	@Test
 	public void TC_ExecutionSuite_DetailPage_003_verifyRatingNReviewsOnTop() {
 		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());
-		generic.dissMissPopUPTimer(ListingPage.popCloseButton_Btn);
+		generic.handlePopUPTimer(ListingPage.popCloseButton_Btn);
 		softAssert.assertTrue(dp.isVisible_starRating_WE(), "Star rating on top is not present");
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		long beforeScroll = (long) executor.executeScript("return window.pageYOffset;");
@@ -89,7 +89,7 @@ public class ExecutionSuite_DetailPage extends Config {
 	@Test
 	public void TC_ExecutionSuite_DetailPage_004_verifyPeopleLookingAt_LastBooked() {
 		generic.loadURL(UrlProvider.getDetailsPageUrl());
-		generic.dissMissPopUPTimer(ListingPage.popCloseButton_Btn);
+		generic.handlePopUPTimer(ListingPage.popCloseButton_Btn);
 		softAssert.assertTrue(dp.isVisible_peopleLooking_Lbl(), "People Looking at is not present");
 		softAssert.assertTrue(dp.isVisible_lastBooked_Lbl(), "Last booked is not present");
 		softAssert.assertAll();
@@ -98,7 +98,7 @@ public class ExecutionSuite_DetailPage extends Config {
 	@Test
 	public void TC_ExecutionSuite_DetailPage_005_verifyGalleryOpeningNClosing() {
 		generic.loadURL(UrlProvider.getDetailsPageUrl());
-		generic.dissMissPopUPTimer(ListingPage.popCloseButton_Btn);
+		generic.handlePopUPTimer(ListingPage.popCloseButton_Btn);
 		dp.click_mainImage_WE();
 		softAssert.assertEquals("FabHotel Check'In By Oran CP", dp.getLabelText_hotelNameGallery_Lbl());
 		dp.click_closeGallery_Lnk();
@@ -113,14 +113,14 @@ public class ExecutionSuite_DetailPage extends Config {
 	@Test
 	public void TC_ExecutionSuite_DetailPage_006_verifyAllImagesText() {
 		generic.loadURL(UrlProvider.getDetailsPageUrl());
-		generic.dissMissPopUPTimer(ListingPage.popCloseButton_Btn);
+		generic.handlePopUPTimer(ListingPage.popCloseButton_Btn);
 		Assert.assertEquals("+ 20" + "\n" + "more photos", dp.getElementText_moreImages_WE());
 	}
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_007_verifyRackRateSellPrice() {
 		generic.loadURL(UrlProvider.getDetailsPageUrl());
-		generic.dissMissPopUPTimer(ListingPage.popCloseButton_Btn);
+		generic.handlePopUPTimer(ListingPage.popCloseButton_Btn);
 		int rackRateInt = 0;
 		int sellPriceInt = 0;
 		if (dp.isVisible_rackRate_Lbl()) {
@@ -142,7 +142,7 @@ public class ExecutionSuite_DetailPage extends Config {
 	@Test
 	public void TC_ExecutionSuite_DetailPage_008_verifySelectRoomsFunctionality_Dateless() {
 		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());
-		generic.dissMissPopUPTimer(ListingPage.popCloseButton_Btn);
+		generic.handlePopUPTimer(ListingPage.popCloseButton_Btn);
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		long beforeScroll = (long) executor.executeScript("return window.pageYOffset;");
 		dp.click_selectRooms_Btn();
@@ -157,7 +157,7 @@ public class ExecutionSuite_DetailPage extends Config {
 	@Test
 	public void TC_ExecutionSuite_DetailPage_009_verifySelectRoomsFunctionality_withDate() throws ParseException {
 		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());
-		generic.dissMissPopUPTimer(ListingPage.popCloseButton_Btn);
+		generic.handlePopUPTimer(ListingPage.popCloseButton_Btn);
 		cal.Select_CheckIn_CheckOut_Date_Calendar_WE(GenericFunctions.getDateAfterDays("1"),
 				GenericFunctions.getDateAfterDays("3"));
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
@@ -174,7 +174,7 @@ public class ExecutionSuite_DetailPage extends Config {
 	@Test
 	public void TC_ExecutionSuite_DetailPage_010_verifyHeaderLinksText() {
 		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());
-		generic.dissMissPopUPTimer(ListingPage.popCloseButton_Btn);
+		generic.handlePopUPTimer(ListingPage.popCloseButton_Btn);
 		softAssert.assertEquals("Overview", dp.getLinkText_overviewHeader_Lnk());
 		softAssert.assertEquals("Amenities", dp.getLinkText_amenitiesHeader_Lnk());
 		softAssert.assertEquals("Room Types", dp.getLinkText_roomTypesHeader_Lnk());
@@ -212,7 +212,7 @@ public class ExecutionSuite_DetailPage extends Config {
 	@Test
 	public void TC_ExecutionSuite_DetailPage_011_verifyWhyFabhotelsSection() {
 		generic.loadURL(UrlProvider.getDetailsPageUrl());
-		generic.dissMissPopUPTimer(ListingPage.popCloseButton_Btn);
+		generic.handlePopUPTimer(ListingPage.popCloseButton_Btn);
 		softAssert.assertEquals("Best reviewed chain", dp.getElementText_bestRevChain_WE());
 		softAssert.assertEquals("Most centrally located", dp.getElementText_centrallyLocated_WE());
 		softAssert.assertEquals("Most Value for Money hotels", dp.getElementText_valueMoney_WE());
@@ -222,7 +222,7 @@ public class ExecutionSuite_DetailPage extends Config {
 	@Test
 	public void TC_ExecutionSuite_DetailPage_012_verifyRatingReview_MapSection() {
 		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());
-		generic.dissMissPopUPTimer(ListingPage.popCloseButton_Btn);
+		generic.handlePopUPTimer(ListingPage.popCloseButton_Btn);
 		softAssert.assertEquals(dp.getElementText_ratings_WE(), "Ratings");
 		softAssert.assertEquals(dp.getElementText_numericRating_WE(), "5");
 		softAssert.assertEquals(dp.getElementText_topReview_WE(), "Top Review");
@@ -242,7 +242,7 @@ public class ExecutionSuite_DetailPage extends Config {
 	@Test
 	public void TC_ExecutionSuite_DetailPage_013_verifyAllAmenities() {
 		generic.loadURL(UrlProvider.getDetailsPageUrl());
-		generic.dissMissPopUPTimer(ListingPage.popCloseButton_Btn);
+		generic.handlePopUPTimer(ListingPage.popCloseButton_Btn);
 		Assert.assertEquals(
 				dp.getElementText_allAmenities_WE(), "Breakfast" + "\n" + "24X7 Security" + "\n" + "Free Wifi" + "\n"
 						+ "Lift" + "\n" + "In Room Dining" + "\n" + "Air Conditioner",
@@ -252,7 +252,7 @@ public class ExecutionSuite_DetailPage extends Config {
 	@Test
 	public void TC_ExecutionSuite_DetailPage_014_verifyRoomSelectionMultipleRoomTypes() throws ParseException {
 		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());
-		generic.dissMissPopUPTimer(ListingPage.popCloseButton_Btn);
+		generic.handlePopUPTimer(ListingPage.popCloseButton_Btn);
 		cal.Select_CheckIn_CheckOut_Date_Calendar_WE(GenericFunctions.getDateAfterDays("10"),
 				GenericFunctions.getDateAfterDays("20"));
 		dp.click_selectRooms_Btn();
@@ -305,7 +305,7 @@ public class ExecutionSuite_DetailPage extends Config {
 	@Test
 	public void TC_ExecutionSuite_DetailPage_015_verifySomeRoomTypeSoldOut() throws ParseException {
 		generic.loadURL(UrlProvider.getHomePageUrl() + "hotels-in-gotham/fabhotel-some-rooms-sold-out.html");
-		generic.dissMissPopUPTimer(ListingPage.popCloseButton_Btn);
+		generic.handlePopUPTimer(ListingPage.popCloseButton_Btn);
 		cal.Select_CheckIn_CheckOut_Date_Calendar_WE(GenericFunctions.getDateAfterDays("0"),
 				GenericFunctions.getDateAfterDays("2"));
 		dp.click_checkAvailabilityOnTop_Btn();
@@ -329,7 +329,7 @@ public class ExecutionSuite_DetailPage extends Config {
 	@Test
 	public void TC_ExecutionSuite_DetailPage_016_verifyPropertySoldOut() throws ParseException {
 		generic.loadURL(UrlProvider.getHomePageUrl() + "hotels-in-gotham/fabhotel-sold-out.html");
-		generic.dissMissPopUPTimer(ListingPage.popCloseButton_Btn);
+		generic.handlePopUPTimer(ListingPage.popCloseButton_Btn);
 		cal.Select_CheckIn_CheckOut_Date_Calendar_WE(GenericFunctions.getDateAfterDays("0"),
 				GenericFunctions.getDateAfterDays("2"));
 		dp.click_checkAvailabilityOnTop_Btn();
@@ -344,7 +344,7 @@ public class ExecutionSuite_DetailPage extends Config {
 	@Test
 	public void TC_ExecutionSuite_DetailPage_017_verifyCheckAvailability_MiddleOne() throws ParseException {
 		generic.loadURL(UrlProvider.getHomePageUrl() + "hotels-in-gotham/fabhotel-some-rooms-sold-out.html");
-		generic.dissMissPopUPTimer(ListingPage.popCloseButton_Btn);
+		generic.handlePopUPTimer(ListingPage.popCloseButton_Btn);
 		cal.Select_CheckIn_CheckOut_Date_SecondCalendaronDEtailsPage_WE(GenericFunctions.getDateAfterDays("0"),
 				GenericFunctions.getDateAfterDays("2"));
 		dp.click_checkAvailabilityInMiddle_Btn();
@@ -368,7 +368,7 @@ public class ExecutionSuite_DetailPage extends Config {
 	@Test
 	public void TC_ExecutionSuite_DetailPage_018_verifyStaticTexts_RoomSelection() {
 		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());
-		generic.dissMissPopUPTimer(ListingPage.popCloseButton_Btn);
+		generic.handlePopUPTimer(ListingPage.popCloseButton_Btn);
 		softAssert.assertEquals(dp.getLinkText_roomTypesHeader_Lnk(), "Room Types");
 		softAssert.assertEquals(dp.getLabelText_roomTypesMaxNumbers_Lbl(), "(Maximum 5 rooms allowed per booking)");
 		int i = 5;
@@ -384,7 +384,7 @@ public class ExecutionSuite_DetailPage extends Config {
 	@Test
 	public void TC_ExecutionSuite_DetailPage_019_verifyHotelDescription() {
 		generic.loadURL(UrlProvider.getDetailsPageUrl());
-		generic.dissMissPopUPTimer(ListingPage.popCloseButton_Btn);
+		generic.handlePopUPTimer(ListingPage.popCloseButton_Btn);
 		softAssert.assertEquals(dp.getLinkText_whyThisHotelheader_Lnk(), "Why this Hotel");
 		softAssert.assertEquals(dp.getLinkText_readMore_Lnk(), "Read More");
 		dp.click_readMore_Lnk();
@@ -398,7 +398,7 @@ public class ExecutionSuite_DetailPage extends Config {
 	@Test
 	public void TC_ExecutionSuite_DetailPage_020_verifyRatingsAndReviews() {
 		generic.loadURL(UrlProvider.getDetailsPageUrl());
-		generic.dissMissPopUPTimer(ListingPage.popCloseButton_Btn);
+		generic.handlePopUPTimer(ListingPage.popCloseButton_Btn);
 		String topReview = dp.getLinkText_reviews_Lnk();
 		String midReview = dp.getElementText_ratedVeryGood_WE();
 		String bottomReview = dp.getLabelText_ratedInBlock_Lbl();
@@ -422,7 +422,7 @@ public class ExecutionSuite_DetailPage extends Config {
 	@Test
 	public void TC_ExecutionSuite_DetailPage_021_verifyExploreMore() {
 		generic.loadURL(UrlProvider.getHomePageUrl() + "hotels-in-goa/fabhotel-the-kings-court-calangute.html");
-		generic.dissMissPopUPTimer(ListingPage.popCloseButton_Btn);
+		generic.handlePopUPTimer(ListingPage.popCloseButton_Btn);
 		generic.scrollToElement(By.xpath(DetailPage.cheveronNextNearby_Btn), false);
 		int i = 1;
 		while (!driver.findElement(By.xpath(DetailPage.exploreMorePropertiesCard_WE + "[last()]")).isDisplayed()) {
@@ -449,7 +449,7 @@ public class ExecutionSuite_DetailPage extends Config {
 	@Test
 	public void TC_ExecutionSuite_DetailPage_022_VerifyHotelPolicies() {
 		generic.loadURL(UrlProvider.getDetailsPageUrl());
-		generic.dissMissPopUPTimer(ListingPage.popCloseButton_Btn);
+		generic.handlePopUPTimer(ListingPage.popCloseButton_Btn);
 		softAssert.assertEquals(dp.getLabelText_hotelPolicies_Lbl(), "Hotel Policies");
 		softAssert.assertTrue(dp.isVisible_hotelPolicies_WE(), "Hotel Policies section is missing");
 		softAssert.assertAll();
@@ -458,14 +458,14 @@ public class ExecutionSuite_DetailPage extends Config {
 	@Test
 	public void TC_ExecutionSuite_DetailPage_023_VerifyNameInSearchBar() {
 		generic.loadURL(UrlProvider.getDetailsPageUrl());
-		generic.dissMissPopUPTimer(ListingPage.popCloseButton_Btn);
+		generic.handlePopUPTimer(ListingPage.popCloseButton_Btn);
 		Assert.assertEquals(dp.getText_searchBox_WE(), "FabHotel Check'In By Oran CP");
 	}
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_024_verifySeachFromDetails() throws ParseException {
 		generic.loadURL(UrlProvider.getDetailsPageUrl());
-		generic.dissMissPopUPTimer(ListingPage.popCloseButton_Btn);
+		generic.handlePopUPTimer(ListingPage.popCloseButton_Btn);
 		cal.Select_CheckIn_CheckOut_Date_Calendar_WE(GenericFunctions.getDateAfterDays("0"),
 				GenericFunctions.getDateAfterDays("2"));
 		dp.click_checkAvailabilityOnTop_Btn();
@@ -483,7 +483,7 @@ public class ExecutionSuite_DetailPage extends Config {
 	@Test
 	public void TC_ExecutionSuite_DetailPage_025_verifyREdirectionFRomExploreMore() {
 		generic.loadURL(UrlProvider.getDetailsPageUrl());
-		generic.dissMissPopUPTimer(ListingPage.popCloseButton_Btn);
+		generic.handlePopUPTimer(ListingPage.popCloseButton_Btn);
 		String propName = dp.getLabelText_hotelNameNearby_Lbl(1);
 		String sellPrice = dp.getLabelText_sellPriceNearBy_Lbl(1);
 		dp.click_bookNowNearBy_Btn(1);
