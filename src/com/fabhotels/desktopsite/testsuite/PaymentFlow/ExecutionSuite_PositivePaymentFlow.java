@@ -123,12 +123,12 @@ public class ExecutionSuite_PositivePaymentFlow extends Config {
 
 		DetailPage.Positive_CheckInCheckOutDateWE();
 
-		CheckoutReview CheckoutReview=new CheckoutReview(driver, generic);
-		CheckoutReview.positiveCheckoutReview();
-		CheckoutReview.positiveGuestDetails();
-		CheckoutReview.positivePayAtHotels();
+		CheckoutReview checkoutReview=new CheckoutReview(driver, generic);
+		checkoutReview.positiveCheckoutReview();
+		checkoutReview.positiveGuestDetails();
+		checkoutReview.positivePayAtHotels();
 
-		String ActualErrors=CheckoutReview.captureError();
+		String ActualErrors=checkoutReview.captureError();
 
 		Assert.assertTrue((generic.isVisible(CheckoutReview.bookNow_Btn)),
 				"Book Now button is not present.");

@@ -10,6 +10,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+
 import com.fabhotels.automationframework.xlsreader.Xls_Reader;
 import com.fabhotels.desktopsite.pageobjects.Calendar;
 import com.fabhotels.desktopsite.pageobjects.ListingPage;
@@ -95,7 +96,7 @@ public class ExecutionSuite_ListingPage extends Config {
 	@Test
 	public void TC_HotelInfoContainer_listPage() throws ParseException {
 		generic.loadURL(UrlProvider.getListingPageUrl());
-		generic.dissMissPopUPTimer(ListingPage.popCloseButton_Btn);
+		generic.handlePopUPTimer(ListingPage.popCloseButton_Btn);
 		ListingPage listingPage = new ListingPage(driver, generic);
 		Calendar cal = new Calendar(driver, generic);
 		cal.Select_CheckIn_CheckOut_Date_Calendar_WE(cal.dateWithDifferentFormat("dd MMMM uuuu",1),cal.dateWithDifferentFormat("dd MMMM uuuu", 3));
