@@ -1,7 +1,6 @@
 package com.fabhotels.desktopsite.testsuite.detailpage;
 
 import java.text.ParseException;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -12,13 +11,13 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-
 import com.fabhotels.automationframework.genericfunctions.GenericFunctions;
 import com.fabhotels.automationframework.xlsreader.Xls_Reader;
 import com.fabhotels.desktopsite.pageobjects.Calendar;
 import com.fabhotels.desktopsite.pageobjects.DetailPage;
 import com.fabhotels.desktopsite.pageobjects.ListingPage;
 import com.fabhotels.desktopsite.utils.Config;
+import com.fabhotels.desktopsite.utils.Constants;
 import com.fabhotels.desktopsite.utils.UrlProvider;
 
 public class ExecutionSuite_DetailPage extends Config {
@@ -30,7 +29,7 @@ public class ExecutionSuite_DetailPage extends Config {
 	SoftAssert softAssert;
 	Calendar cal;
 	ListingPage lp;
-
+	Xls_Reader xls = new Xls_Reader(Constants.FILEPATH_TESTDATASHEET_NEWDETAILSPAGEDATA);
 
 	@BeforeMethod(firstTimeOnly=true)
 	public void beforeMethod() {
@@ -40,7 +39,7 @@ public class ExecutionSuite_DetailPage extends Config {
 		cal = new Calendar(driver, generic);
 		lp = new ListingPage(driver, generic);
 		softAssert = new SoftAssert();
-		generic.dissMissPopUPTimer(ListingPage.popCloseButton_Btn);
+		generic.dissMissPopUPTimer(ListingPage.popCloseButton_Btn); 
 	}
 
 	@Test
@@ -61,12 +60,11 @@ public class ExecutionSuite_DetailPage extends Config {
 		driver.get(UrlProvider.getDetailsPageUrl());
 		String name=dp.getLabelText_hotelName_Lbl();
 		String address= dp.getLabelText_hotelsAdress_Lbl();
-		softAssert.assertEquals(name, "FabHotel Check'In By Oran CP");
-		softAssert.assertEquals(address, "104, Babar Road, Barakhamba Avenue, Opp World Trade Center, Connaught Place, New Delhi, India");
+		softAssert.assertEquals(name, xls.getCellData("Sheet1", "HotelName", 2));
+		softAssert.assertEquals(address, xls.getCellData("Sheet1", "HotelAddress", 2));
 		softAssert.assertAll();
 	}
-
-
+	
 	@Test
 	public void TC_ExecutionSuite_DetailPage_003_verifyRatingNReviewsOnTop(){
 		driver.get(UrlProvider.getGothamPropertyPageUrl());
@@ -93,7 +91,7 @@ public class ExecutionSuite_DetailPage extends Config {
 	public void TC_ExecutionSuite_DetailPage_005_verifyGalleryOpeningNClosing(){
 		driver.get(UrlProvider.getDetailsPageUrl());
 		dp.click_mainImage_WE();
-		softAssert.assertEquals("FabHotel Check'In By Oran CP", dp.getLabelText_hotelNameGallery_Lbl());
+		softAssert.assertEquals(xls.getCellData("Sheet1", "HotelName", 2), dp.getLabelText_hotelNameGallery_Lbl());
 		dp.click_closeGallery_Lnk();
 		softAssert.assertTrue(!dp.isVisible_hotelNameGallery_Lbl(), "Gallery doesn't close");
 		dp.click_mainImage_WE();
@@ -106,7 +104,7 @@ public class ExecutionSuite_DetailPage extends Config {
 	@Test
 	public void TC_ExecutionSuite_DetailPage_006_verifyAllImagesText(){
 		driver.get(UrlProvider.getDetailsPageUrl());
-		Assert.assertEquals("+ 20"+"\n"+ "more photos", dp.getElementText_moreImages_WE());
+		Assert.assertEquals("+ "+xls.getCellData("Sheet1", "NumberOfPics", 2)+"\n"+ "more photos", dp.getElementText_moreImages_WE());
 	}
 
 	@Test
@@ -189,8 +187,7 @@ public class ExecutionSuite_DetailPage extends Config {
 		softAssert.assertTrue(f>2800 && f<2900);
 		softAssert.assertAll();
 	}
-
-
+	
 	@Test
 	public void TC_ExecutionSuite_DetailPage_011_verifyWhyFabhotelsSection(){
 		driver.get(UrlProvider.getDetailsPageUrl());
@@ -209,7 +206,7 @@ public class ExecutionSuite_DetailPage extends Config {
 		softAssert.assertEquals(dp.getElementText_topReviewValue_WE(), "A nice and a clean hotel.....I have earlier also recommended");
 		softAssert.assertEquals(dp.getElementText_ratedVeryGood_WE(), "Rated very good across 1 Reviews");
 		softAssert.assertTrue(dp.isVisible_ratingsLogo_WE());
-		softAssert.assertEquals(dp.getElementText_propertyNameOnMap_WE(),"FabHotel Instructor wow");
+		softAssert.assertEquals(dp.getElementText_propertyNameOnMap_WE(),xls.getCellData("Sheet1", "HotelName", 3));
 		softAssert.assertEquals(dp.getElementText_landmarkOnMap_WE(),"Landmark: Daman");
 		dp.click_getDirectionOnMap_Lnk();
 		generic.switchtoNewWindow();
@@ -268,7 +265,6 @@ public class ExecutionSuite_DetailPage extends Config {
 		softAssert.assertAll();
 	}
 	
-
 	@Test
 	public void TC_ExecutionSuite_DetailPage_015_verifySomeRoomTypeSoldOut() throws ParseException{
 		driver.get(UrlProvider.getHomePageUrl()+"hotels-in-gotham/fabhotel-some-rooms-sold-out.html");
@@ -339,7 +335,6 @@ public class ExecutionSuite_DetailPage extends Config {
 		softAssert.assertAll();
 	}
 	
-	
 	@Test
 	public void TC_ExecutionSuite_DetailPage_019_verifyHotelDescription(){
 		driver.get(UrlProvider.getDetailsPageUrl());
@@ -376,7 +371,6 @@ public class ExecutionSuite_DetailPage extends Config {
 		softAssert.assertAll();
 	}
 
-	
 	@Test
 	public void TC_ExecutionSuite_DetailPage_021_verifyExploreMore(){
 		driver.get(UrlProvider.getHomePageUrl()+"hotels-in-goa/fabhotel-the-kings-court-calangute.html");
@@ -410,7 +404,7 @@ public class ExecutionSuite_DetailPage extends Config {
 	@Test
 	public void TC_ExecutionSuite_DetailPage_023_VerifyNameInSearchBar(){
 		driver.get(UrlProvider.getDetailsPageUrl());
-		Assert.assertEquals(dp.getText_searchBox_WE(),"FabHotel Check'In By Oran CP");
+		Assert.assertEquals(dp.getText_searchBox_WE(),xls.getCellData("Sheet1", "HotelName", 2));
 	}
 	
 	@Test
@@ -427,7 +421,7 @@ public class ExecutionSuite_DetailPage extends Config {
 		softAssert.assertEquals(lp.getText_checkOut_Date_WE(), GenericFunctions.getDateAfterDays3format("2"));
 		softAssert.assertAll();
 	}
-	
+		
 	@Test
 	public void TC_ExecutionSuite_DetailPage_025_verifyREdirectionFRomExploreMore(){
 		driver.get(UrlProvider.getDetailsPageUrl());
@@ -439,9 +433,8 @@ public class ExecutionSuite_DetailPage extends Config {
 		softAssert.assertEquals(dp.getLabelText_hotelName_Lbl(), propName);
 		softAssert.assertEquals(dp.getLabelText_price_Lbl(), sellPrice);
 		softAssert.assertAll();
-	}
+	}	
 	
-
 	@AfterMethod(lastTimeOnly=true)
 	public void afterTest(){
 		Thread.currentThread().isInterrupted();

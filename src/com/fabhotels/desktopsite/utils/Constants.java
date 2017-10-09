@@ -10,6 +10,7 @@ public interface Constants {
 	String FILEPATH_TESTDATASHEET_PAYATHOTEL = "./TestData/PayAtHotel.xls";
 	String FILEPATH_TESTDATASHEET_BENCHMARKING = "./TestData/Benchmarking.xls";
 	String FILEPATH_TESTDATASHEET_PAYMENT = "./TestData/Payment.xls";
+	String FILEPATH_TESTDATASHEET_NEWDETAILSPAGEDATA = "./TestData/detailsPageTestData.xls";
 //	String FILEPATH_TESTDATASHEET_GUESTDETAILS = "./TestData/guestDetails.xls";
 	
 }
