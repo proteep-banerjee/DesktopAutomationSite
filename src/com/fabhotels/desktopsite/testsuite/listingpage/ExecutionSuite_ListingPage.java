@@ -97,6 +97,10 @@ public class ExecutionSuite_ListingPage extends Config {
 	@Test
 	public void TC_NearByHotels_listPage() {
 		listingPage.performSearch(ListingPage.locality_name, "", "", "4");
+		Assert.assertTrue(generic.isVisible(ListingPage.searchResultContainer_WE),
+				"Search results not visible on performing Search !!");
+		Assert.assertTrue(generic.getText(ListingPage.resultsCountText_Lbl).contains(ListingPage.locality_name),
+				"Search results not Appropriate on ListPage !!");
 		listingPage.verifyNearByPropertyOnListPage();
 	}
 
@@ -109,6 +113,11 @@ public class ExecutionSuite_ListingPage extends Config {
 	@Test
 	public void TC_checkURL_listPage() {
 		listingPage.performSearch(ListingPage.locality_name, "", "", "4");
+		Assert.assertTrue(generic.isVisible(ListingPage.searchResultContainer_WE),
+				"Search results not visible on performing Search !!");
+		Assert.assertTrue(generic.getText(ListingPage.resultsCountText_Lbl).contains(ListingPage.locality_name),
+				"Search results not Appropriate on ListPage !!");
+		listingPage.detailsPageLanding_VerifyWithDateAndRooms();
 		listingPage.checkURL();
 	}
 
@@ -122,12 +131,18 @@ public class ExecutionSuite_ListingPage extends Config {
 	@Test
 	public void TC_DetailsPageLanding_Dates_listPage() {
 		listingPage.performSearch(ListingPage.locality_name, "", "", "4");
+		Assert.assertTrue(generic.isVisible(ListingPage.searchResultContainer_WE),
+				"Search results not visible on performing Search !!");
+		Assert.assertTrue(generic.getText(ListingPage.resultsCountText_Lbl).contains(ListingPage.locality_name),
+				"Search results not Appropriate on ListPage !!");
 		listingPage.detailsPageLanding_VerifyWithDateAndRooms();
 	}
 
 	@Test
 	public void TC_DetailsPageLanding_DateLess_listPage() {
-		listingPage.performSearch("New Delhi", "", "", "0");
+		listingPage.performSearch("Bangalore", "", "", "");
+		Assert.assertTrue(generic.isVisible(ListingPage.searchResultContainer_WE),
+				"Search results not visible on performing Search !!");
 		listingPage.detailsPageLanding_VerifyWithDateLess();
 	}
 

@@ -210,9 +210,9 @@ public class ListingPage {
 		String name_of_city = generic.getText(By.xpath("(//ul[@class='clearfix']/li/a)[" + i + "]"));
 		cityCount = generic.getSize(city_dropDown);
 		generic.click(By.xpath("(//ul[@class='clearfix']/li/a)[" + i + "]"));
+		generic.goToSleep(2000);
 		randomCity_count = generic.getRandomNumberBetween(1, cityCount);
 		hotelsCountUnderListPage = generic.getSize(hotelList_WE);
-		generic.goToSleep(2000);
 		return name_of_city;
 	}
 
@@ -343,10 +343,6 @@ public class ListingPage {
 
 		generic.click(findFabHotel_Btn);
 		generic.goToSleep(1000);
-		Assert.assertTrue(generic.isVisible(searchResultContainer_WE),
-				"Search results not visible on performing Search !!");
-		Assert.assertTrue(generic.getText(resultsCountText_Lbl).contains(searchText),
-				"Search results not Appropriate on ListPage !!");
 	}
 
 	// Func to get url parameters.
@@ -525,4 +521,7 @@ public class ListingPage {
 	public String getText_checkOut_Date_WE() {
 		return generic.getValue(checkOut_Date_WE);
 	}
+
 }
+
+

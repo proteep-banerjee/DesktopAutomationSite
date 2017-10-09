@@ -69,7 +69,7 @@ public class ExecutionSuite_DetailPage extends Config {
 		softAssert.assertEquals(address, xls.getCellData("Sheet1", "HotelAddress", 2));
 		softAssert.assertAll();
 	}
-	
+
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_003_verifyRatingNReviewsOnTop() {
@@ -232,6 +232,7 @@ public class ExecutionSuite_DetailPage extends Config {
 		softAssert.assertTrue(dp.isVisible_ratingsLogo_WE());
 		softAssert.assertEquals(dp.getElementText_propertyNameOnMap_WE(),xls.getCellData("Sheet1", "HotelName", 3));
 		softAssert.assertEquals(dp.getElementText_landmarkOnMap_WE(),"Landmark: Daman");
+
 		dp.click_getDirectionOnMap_Lnk();
 		generic.switchtoNewWindow();
 		softAssert.assertTrue(generic.getCurrentUrl().contains("https://www.google.com/maps/dir//"),
@@ -380,7 +381,7 @@ public class ExecutionSuite_DetailPage extends Config {
 		}
 		softAssert.assertAll();
 	}
-	
+
 	@Test
 	public void TC_ExecutionSuite_DetailPage_019_verifyHotelDescription() {
 		generic.loadURL(UrlProvider.getDetailsPageUrl());
@@ -461,6 +462,7 @@ public class ExecutionSuite_DetailPage extends Config {
 		generic.handlePopUPTimer(ListingPage.popCloseButton_Btn);
 		Assert.assertEquals(dp.getText_searchBox_WE(),xls.getCellData("Sheet1", "HotelName", 2));
 
+
 	}
 
 	@Test
@@ -481,7 +483,6 @@ public class ExecutionSuite_DetailPage extends Config {
 		softAssert.assertAll();
 	}
 	
-	
 	@Test
 	public void TC_ExecutionSuite_DetailPage_025_verifyREdirectionFRomExploreMore() {
 		generic.loadURL(UrlProvider.getDetailsPageUrl());
@@ -494,11 +495,6 @@ public class ExecutionSuite_DetailPage extends Config {
 		softAssert.assertEquals(dp.getLabelText_hotelName_Lbl(), propName);
 		softAssert.assertEquals(dp.getLabelText_price_Lbl(), sellPrice);
 		softAssert.assertAll();
-
-	}
-
-	@AfterMethod(lastTimeOnly = true)
-	public void afterMethod() {
 
 	}
 
