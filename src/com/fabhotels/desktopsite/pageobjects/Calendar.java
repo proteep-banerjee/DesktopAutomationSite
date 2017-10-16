@@ -69,6 +69,7 @@ public class Calendar {
 			generic.click(nextYearClick_WE);
 		}
 		generic.click(selectMonth_Lnk+outMonthFormatted+"']");
+		generic.performMouseHover(month_WE);
 		generic.click(selectDate_Lnk+outDate+"']");
 		
 	}
