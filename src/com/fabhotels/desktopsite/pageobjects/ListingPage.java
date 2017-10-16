@@ -118,9 +118,33 @@ public class ListingPage {
 
 	public static String locality_name = "Sarojini Nagar";
 
+	//Sold out 
+	public static final By soldOut_Lbl=By.xpath("//div[@class='sold-out-caption']");
+	public static final By lastHotelName_WE = By.xpath("(//div[@class='hotel-list-desc-above']/h3/a)[last()]");
+	public static final By lastHotelPrice_WE=By.xpath("(//div[@class='price']//span[@class='new-price'])[last()]");
+	public static String soldOut_Btn = "//a[@class='btn']";
+	public static String soldOut_Msg="This hotel is SOLD OUT for selected dates. Change dates or explore nearby Hotels.";
+	public static String soldOutByRooms_Msg="Selected number of rooms are not available. Adjust dates or number of rooms.";
+	public static final String someRoomsLeft_Lbl="FabHotel Some Rooms Sold Out";
+	
+	public static final By lastSoldOut_btn = By.xpath("(" + soldOut_Btn + ")" + "[last()]");
+	public static final By soldOutAlertBox_Lbl=By.xpath("//div[contains(@class,'error_msg_alert')]//p");
+	public static final By roomSoldOutAlertBox_Lbl=By.xpath("(//div[contains(@class,'error_msg_alert')]//p)[2]");
+	public static final By roomLeftLbl = By.xpath("//a[contains(text(),'FabHotel Some Rooms Sold Out')]//ancestor::div/div/a/following-sibling::div");
+	public static final By roomLeftBookNow_btn=By.xpath("//a[contains(text(),'FabHotel Some Rooms Sold Out')]//following::div/a[contains(text(),'Book Now')]");
+	public static final By someRoomLeft_WE = By.xpath("//a[contains(text(),'"+someRoomsLeft_Lbl+"')]");
+	public static final String roomSelectionRoomTypeNumber_WE = "(//div[@class='room-types-selection'])[";
+	public static final String disabledRoomSelectionNumberOfRooms_WE = "//a[@class='outOfStock' and contains(text(),'";
+	public static final String soldOutText_Lbl = "//div[text()='Sold Out']";
+	public static final String roomType_WE = "(//div[@class='room-types-section clearfix'])[";
+	public static final String roomsLeft_Lbl = "//div[contains(text(),'left')]";
+	public static final String roomSelectionNumberOfRooms_WE = "//a[contains(text(),'";
+	
 	// Details Page
 	public static final By hotelName_Lbl = By.xpath("//h1");
 	public static final By price_Lbl = By.xpath("//div[@class='select-room-price']//strong");
+	public static final By exploreNearbyTop_WE = By.xpath("((//div[@class='nearby_properties_container'])[1])");
+	public static final By disabledRooms_Btn=By.xpath("//a[@class='outOfStock']");
 
 	public ListingPage(WebDriver driver, GenericFunctions generic) {
 		this.driver = driver;
@@ -326,8 +350,8 @@ public class ListingPage {
 
 	public void performSearch(String searchText, String checkIn, String checkOut, String noofRooms) {
 		generic.fill(searchBox_WE, searchText);
+		//generic.setImplicitWaitInSeconds(400);
 		Calendar cal = new Calendar(driver, generic);
-
 		if (checkIn.length() > 0 && checkOut.length() > 0) {
 			try {
 				cal.Select_CheckIn_CheckOut_Date_Calendar_WE(checkIn, checkOut);
@@ -343,6 +367,7 @@ public class ListingPage {
 
 		generic.click(findFabHotel_Btn);
 		generic.goToSleep(1000);
+		generic.waitForCompletePageLoad(driver);
 	}
 
 	// Func to get url parameters.
@@ -376,15 +401,29 @@ public class ListingPage {
 		return query_pairs;
 
 	}
+	
+	public Map<String, String> getUrlparam()
+	{
+		return getQueryURL();
+	}
 
-	public void checkURL() {
+	public void checkURL(String rooms) {
 		SoftAssert s_assert = new SoftAssert();
 		Map<String, String> parameters = getQueryURL();
 		s_assert.assertTrue(parameters.get("locationsearch").contains(locality_name),
 				"Location parameter is not correct.in the url");
 		s_assert.assertTrue(parameters.get("locality_text").contains(locality_name),
 				"Location parameter is not correct in the url.");
-		s_assert.assertEquals("4", parameters.get("occupancy"),
+		
+		GenericFunctions.getDateAfterDays3format("0");
+		
+		GenericFunctions.getDateAfterDays("5");
+		
+		
+		s_assert.assertTrue(parameters.get("locality_text").contains(locality_name),
+				"Location parameter is not correct in the url.");
+		
+		s_assert.assertEquals(rooms, parameters.get("occupancy"),
 				"Occupancy is not Matching with default value. i.e 1 OR is broken");
 		s_assert.assertTrue(parameters.get("nearcity").contains("New Delhi"),
 				"Near city parameter is not correct.in the url");
@@ -403,6 +442,7 @@ public class ListingPage {
 		s_assert.assertTrue(generic.isVisible(noHotelFoundMsg_txt), "Error warning functionalty is broken");
 		s_assert.assertTrue(generic.isVisible(goToHomePage_Btn), "Go to Home Page is not comming");
 		generic.click(goToHomePage_Btn);
+		generic.waitForCompletePageLoad(driver);
 		s_assert.assertTrue(generic.isVisible(homePage_mainTitle_lbl), "Go to Home Page is Not Working.");
 		s_assert.assertAll();
 	}
@@ -478,7 +518,7 @@ public class ListingPage {
 		s_assert.assertEquals(hotelName_DetailsPage, hotelName_ListPage,
 				"Hotels Names are not matching on details and list page");
 		s_assert.assertEquals(price_DetailsPage, price_ListPage,
-				"Hotels Prices are not matching on details and list page");
+				"Hotels Prices are not matching on details and list page for Hotel: "+hotelName_ListPage);
 		Map<String, String> parametersDetails = getQueryURL();
 		String cityName_DetailsPage = parametersListPage.get("locationsearch");
 		// Asserting URL
@@ -493,9 +533,27 @@ public class ListingPage {
 
 	}
 
+	public boolean isDisabled_roomNumber(int roomType, int roomNumber) {
+		return generic.isVisible(roomSelectionRoomTypeNumber_WE + roomType + "]" + disabledRoomSelectionNumberOfRooms_WE
+				+ roomNumber + "')]");
+	}
+	
+	public boolean isSoldOut_roomType(int roomType) {
+		return generic.isVisible(roomType_WE + roomType + "]" + soldOutText_Lbl);
+	}
+	
+	public String getText_roomsLeft_roomType(int roomNumber) {
+		return generic.getText(roomType_WE + roomNumber + "]" + roomsLeft_Lbl);
+	}
+	
 	public void click_SingleProperty_WE() {
 		generic.click(singleProperty_WE);
 
+	}
+	
+	public boolean isEnabled_roomNumber(int roomType, int roomNumber) {
+		return generic.isVisible(
+				roomSelectionRoomTypeNumber_WE + roomType + "]" + roomSelectionNumberOfRooms_WE + roomNumber + "')]");
 	}
 
 	public void click_Filters_WE() {
