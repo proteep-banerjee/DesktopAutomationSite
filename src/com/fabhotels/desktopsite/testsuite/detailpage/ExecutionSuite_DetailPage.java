@@ -43,7 +43,7 @@ public class ExecutionSuite_DetailPage extends Config {
 		softAssert = new SoftAssert();
 	}
 
-	@BeforeMethod(firstTimeOnly = true)
+	@BeforeMethod()
 	public void beforeMethod() {
 		driver.manage().deleteAllCookies();
 	}
@@ -352,8 +352,8 @@ public class ExecutionSuite_DetailPage extends Config {
 	public void TC_ExecutionSuite_DetailPage_017_verifyCheckAvailability_MiddleOne() throws ParseException {
 		generic.loadURL(UrlProvider.getHomePageUrl() + "hotels-in-gotham/fabhotel-some-rooms-sold-out.html");
 		generic.handlePopUPTimer(ListingPage.popCloseButton_Btn);
-		cal.Select_CheckIn_CheckOut_Date_SecondCalendaronDEtailsPage_WE(GenericFunctions.getDateAfterDays("0"),
-				GenericFunctions.getDateAfterDays("2"));
+		cal.Select_CheckIn_CheckOut_Date_SecondCalendaronDEtailsPage_WE(GenericFunctions.getDateAfterDays("2"),
+				GenericFunctions.getDateAfterDays("5"));
 		dp.click_checkAvailabilityInMiddle_Btn();
 		softAssert.assertTrue(dp.isSoldOut_roomType(2), "Sold Out Lablel is not displayed.");
 		softAssert.assertTrue(dp.isDisabled_roomNumber(2, 0), "Room 2 is Enabled");
