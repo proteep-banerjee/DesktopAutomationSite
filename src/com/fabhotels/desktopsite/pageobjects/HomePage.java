@@ -13,11 +13,16 @@ public class HomePage {
 	WebDriver driver;
 	GenericFunctions generic;
 
-
+	public static final By mainTitle_Lbl = By.xpath("//div[@class='main_title']");
+	public static final By secondaryTitle_Lbl = By.xpath("//h2");
 	public static final By location_Txt = By.id("autocomplete-location");
 	public static final By checkIn_Date_WE = By.id("checkIn");
 	public static final By checkOut_Date_WE = By.id("checkOut");
 	public static final By find_Fabhotels_Btn = By.id("homePageSearchBtn");
+	public static final By popularCities_Lbl = By.xpath("//div[@class='popular-cities']/h4");
+	public static final By popularCitiesNames_Lbl = By.xpath("(//div[@class='popular-cities']//a)");
+	
+	
 	public static final By lowest_Online_Prices_WE = By.xpath("//div[@class='middle_bx_lowest_price']/img[@class='lazy']");
 	public static final By photo_Match_WE = By.xpath("//div[@Class='middle_bx_photo_match_white_bx']");
 	public static final By propertyPromotion_widget_WE = By.xpath("//div[@class='middle_bx_photo_match_pic_shadow']");

@@ -9,23 +9,28 @@ public class Header {
 	WebDriver driver;
 	GenericFunctions generic;
 	
-	public static final By fabLogo_WE = By.xpath("//div[@class='logo']/a");
-	public static final By allCities_DD = By.xpath("(//div[@class='header_right']/div)[1]");
-	public static final String allCities_Links_WE = "(//div[@class='header_right']/div)[1]//a";
-	public static final By customerReviews_Btn = By.xpath("//div[@class='header_review_bx']");
-	public static final By callUs_Btn = By.xpath("//ul[@class='call_us']/a");
+	public static final By fabLogo_Lnk= By.xpath("//div[@class='main-logo']");
+	public static final By beOurFranchisee_Lnk = By.xpath("//div[@class='be-franchisee']");
+	public static final By callUs_Lbl = By.xpath("//div[@class='tel clearfix']");
+	public static final By allCities_WE = By.xpath("//div[@class='other-cities']"); 
 	
 	public Header(WebDriver driver,GenericFunctions generic) {
 		this.driver = driver;
 		this.generic = generic;
 	}
 	
-	public void click_fabLogo_WE(){
-		generic.click(fabLogo_WE);
+	public void click_fabLogo_Lnk(){
+		generic.click(fabLogo_Lnk);
 	}
 	
-	public void click_CustomerReviews_Btn(){
-		generic.click(customerReviews_Btn);
+	public void click_beOurFranchisee_Lnk(){
+		generic.click(beOurFranchisee_Lnk);
 	}
 	
+	public String getText_callUs_Lbl(){
+		return generic.getText(callUs_Lbl);
+	}
+	public String getText_allCities_WE(){
+		return generic.getText(allCities_WE);
+	}
 }
