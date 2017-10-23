@@ -28,7 +28,9 @@ public class Calendar {
 	public static final By nextYearClick_WE = By.xpath("(//th[@class='next'])[2]");
 	public static final String Date_WE = "//table[@class='table-condensed']//td";
 	public static final String selectMonth_Lnk = "//span[contains(@class,'month') and text()='";
-	public static final String selectDate_Lnk = "//td[@class='day' and text()='";
+	public static final String selectDate_Lnk = "//td[(@class='day') and text()='";
+	public static final By searchBox_WE = By.xpath("//input[@name='locationsearch']");
+	public static final By checkAvailabilityInMiddle_Btn = By.xpath("//a[@id='DetailPageBtn']");
 	
 	
 	public Calendar(WebDriver driver, GenericFunctions generic) {
@@ -63,12 +65,12 @@ public class Calendar {
 		}
 		generic.click(selectMonth_Lnk+inMonthFormatted+"']");
 		generic.click(selectDate_Lnk+inDate+"']");
-		
 		generic.click(month_WE);
 		while(!generic.getText(year_WE).equals(outYear)){
 			generic.click(nextYearClick_WE);
 		}
 		generic.click(selectMonth_Lnk+outMonthFormatted+"']");
+		generic.performMouseHover(searchBox_WE);
 		generic.click(selectDate_Lnk+outDate+"']");
 		
 	}
@@ -92,7 +94,7 @@ public class Calendar {
 			String outMonthFormatted = outMonth.substring(0, 3);
 			String outYear =str1[2];
 			generic.scrollToElement(checkIn_DateCalander2_WE,true);
-			generic.customPageScrollToBottomInSlowMotion(0, -150);
+			generic.customPageScrollToBottomInSlowMotion(0, -450);
 			generic.click(checkIn_DateCalander2_WE);
 			generic.click(month_WE);
 			while(!generic.getText(year_WE).equals(inYear)){
@@ -100,16 +102,39 @@ public class Calendar {
 			}
 			generic.click(selectMonth_Lnk+inMonthFormatted+"']");
 			generic.click(selectDate_Lnk+inDate+"']");
-			
 			generic.click(month_WE);
 			while(!generic.getText(year_WE).equals(outYear)){
 				generic.click(nextYearClick_WE);
 			}
+			generic.scrollToElement(checkIn_DateCalander2_WE,true);
+			generic.customPageScrollToBottomInSlowMotion(0, -450);
 			generic.click(selectMonth_Lnk+outMonthFormatted+"']");
+			generic.performMouseHover(checkAvailabilityInMiddle_Btn);
 			generic.click(selectDate_Lnk+outDate+"']");
 			
 		}
 	
+		
+		// Here the date format should be "dd MMMM uuuu"
+				public void Select_CheckInOnly_SecondCalendaronDEtailsPage_WE(String checkindate) throws ParseException {
+					if (checkindate.length() < 1)
+						return;
+					String str[] = checkindate.split("\\s+");
+					String inDate =str[0];
+					inDate = inDate.charAt(0)=='0'?inDate.substring(1):inDate;
+					String inMonth =str[1];
+					String inMonthFormatted = inMonth.substring(0, 3);
+					String inYear =str[2];
+					generic.scrollToElement(checkIn_DateCalander2_WE,true);
+					generic.customPageScrollToBottomInSlowMotion(0, -450);
+					generic.click(checkIn_DateCalander2_WE);
+					generic.click(month_WE);
+					while(!generic.getText(year_WE).equals(inYear)){
+						generic.click(nextYearClick_WE);
+					}
+					generic.click(selectMonth_Lnk+inMonthFormatted+"']");
+					generic.click(selectDate_Lnk+inDate+"']");
+				}
 	
 	// for short month pass format as "dd-mm-yyyy" for full month pass "dd MMMM
 	// uuuu"

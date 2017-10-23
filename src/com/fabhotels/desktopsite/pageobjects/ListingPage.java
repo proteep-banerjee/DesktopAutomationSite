@@ -501,6 +501,9 @@ public class ListingPage {
 	public void click_Filters_WE() {
 		generic.click(filters_WE);
 	}
+	public void click_Find_Fabhotels_Btn() {
+		generic.click(find_Fabhotels_Btn);
+	}
 
 	public void click_ReviewsModalDialogue_WE() {
 		generic.click(reviewsModalDialogue_WE);
