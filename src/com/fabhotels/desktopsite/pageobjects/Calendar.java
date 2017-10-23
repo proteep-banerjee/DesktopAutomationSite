@@ -110,7 +110,7 @@ public class Calendar {
 			generic.customPageScrollToBottomInSlowMotion(0, -450);
 			generic.click(selectMonth_Lnk+outMonthFormatted+"']");
 			generic.performMouseHover(checkAvailabilityInMiddle_Btn);
-			generic.click(selectDate_Lnk+outDate+"']");
+			generic.clickJS(selectDate_Lnk+outDate+"']");
 			
 		}
 	
