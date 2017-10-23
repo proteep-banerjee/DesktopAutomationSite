@@ -30,4 +30,7 @@ public class Header {
 	public String getText_callUs_Lbl(){
 		return generic.getText(callUs_Lbl);
 	}
+	public String getText_allCities_WE(){
+		return generic.getText(allCities_WE);
+	}
 }
