@@ -221,6 +221,8 @@ public class DetailPage {
 	}
 
 	public void clear_searchBox_WE() {
+		generic.scrollToElement(searchBox_WE, false);
+		generic.customPageScrollToBottomInSlowMotion(0, -250);
 		generic.clear(searchBox_WE);
 	}
 
@@ -436,6 +438,10 @@ public class DetailPage {
 
 	public String getText_roomsLeft_roomType(int roomNumber) {
 		return generic.getText(roomType_WE + roomNumber + "]" + roomsLeft_Lbl);
+	}
+	
+	public boolean isVisible_roomsLeft_roomType(int roomNumber) {
+		return generic.isVisible(roomType_WE + roomNumber + "]" + roomsLeft_Lbl);
 	}
 
 	public boolean isDisabled_roomNumber(int roomType, int roomNumber) {

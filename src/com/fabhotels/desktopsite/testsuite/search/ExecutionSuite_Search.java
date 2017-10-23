@@ -21,6 +21,7 @@ public class ExecutionSuite_Search extends Config {
 
 	@BeforeTest
 	public void beforeTest() {
+		generic = new GenericFunctions(driver);
 		driver = generic.startDriver(Driver_Type);
 		generic.maximize();
 	}
@@ -118,6 +119,6 @@ public class ExecutionSuite_Search extends Config {
 
 	@AfterTest
 	public void afterTest() {
-		//driver.quit();
+		driver.quit();
 	}
 }

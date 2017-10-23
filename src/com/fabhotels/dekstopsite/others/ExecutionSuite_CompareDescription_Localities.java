@@ -1,17 +1,9 @@
 package com.fabhotels.dekstopsite.others;
 
-import java.util.List;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
 
-import com.fabhotels.desktopsite.pageobjects.Header;
 import com.fabhotels.desktopsite.utils.Config;
-import com.fabhotels.desktopsite.utils.UrlProvider;
 
 public class ExecutionSuite_CompareDescription_Localities extends Config {
 	
@@ -47,43 +39,5 @@ public class ExecutionSuite_CompareDescription_Localities extends Config {
 			return result;
 		}
 	
-	@Test (dataProvider = "TC_Compare_Localities")
-	public void TC_Compare_Localities(String linkName){
-		UrlProvider.getHomePageUrl();
-		driver.get("http://fabhotels.com");
-		generic.performMouseHover(Header.allCities_DD);
-		generic.click(Header.allCities_Links_WE + "[text()='" + linkName + "']");
-		List<WebElement> we = driver.findElements(By.xpath("//ul[@class='filterList']/li/label"));
-		String livedata = "";
-		for (WebElement webElement : we) {
-			livedata += webElement.getText().split("\\(")[0];
-		} 
-		
-		driver.get("http://preprod.fabhotels.com");
-		generic.performMouseHover(Header.allCities_DD);
-		generic.click(Header.allCities_Links_WE + "[text()='" + linkName + "']");
-		we = driver.findElements(By.xpath("//ul[@class='filterList']/li/label"));
-		String devdata = "";
-		for (WebElement webElement : we) {
-			devdata += webElement.getText().split("\\(")[0];
-		} 
-		
-		Assert.assertEquals(devdata, livedata);
-	}
 	
-	@Test (dataProvider = "TC_Compare_Localities")
-	public void TC_Compare_Text(String linkName){
-		UrlProvider.getHomePageUrl();
-		driver.get("http://fabhotels.com");
-		generic.performMouseHover(Header.allCities_DD);
-		generic.click(Header.allCities_Links_WE + "[text()='" + linkName + "']");
-		String livedata = driver.findElement(By.xpath("//p[@class='property-description']")).getText();
-		driver.get("http://preprod.fabhotels.com");
-		generic.performMouseHover(Header.allCities_DD);
-		generic.click(Header.allCities_Links_WE + "[text()='" + linkName + "']");
-		String devdata  = driver.findElement(By.xpath("//p[@class='property-description']")).getText();
-		
-		Assert.assertEquals(devdata, livedata);
-	}
-
 }
