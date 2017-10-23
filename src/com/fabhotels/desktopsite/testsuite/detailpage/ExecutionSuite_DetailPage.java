@@ -85,7 +85,7 @@ public class ExecutionSuite_DetailPage extends Config {
 		generic.goToSleep(1000);
 		long afterScroll = (long) executor.executeScript("return window.pageYOffset;");
 		softAssert.assertEquals(beforeScroll, 0);
-		softAssert.assertTrue(afterScroll > 2400 && afterScroll < 2600, "Not getting scrolled to the Ratings and Review Section, Scroll Value is "+afterScroll);
+		softAssert.assertTrue(afterScroll > 2000, "Not getting scrolled to the Ratings and Review Section, Scroll Value is "+afterScroll);
 		softAssert.assertAll();
 	}
 
@@ -153,7 +153,7 @@ public class ExecutionSuite_DetailPage extends Config {
 		long afterScroll = (long) executor.executeScript("return window.pageYOffset;");
 		softAssert.assertEquals(beforeScroll, 0);
 		System.out.println(afterScroll);
-		softAssert.assertTrue(afterScroll > 1100 && afterScroll < 1300);
+		softAssert.assertTrue(afterScroll > 100);
 		softAssert.assertTrue(dp.isVisible_calanderMiddle_WE());
 		softAssert.assertAll();
 	}
@@ -171,7 +171,7 @@ public class ExecutionSuite_DetailPage extends Config {
 		long afterScroll = (long) executor.executeScript("return window.pageYOffset;");
 		softAssert.assertEquals(beforeScroll, 0);
 		System.out.println(afterScroll);
-		softAssert.assertTrue(afterScroll > 1200 && afterScroll < 1300);
+		softAssert.assertTrue(afterScroll > 1000);
 		softAssert.assertTrue(dp.isVisible_numberOfRoomsSelectionAll_Btn());
 		softAssert.assertAll();
 	}
@@ -206,12 +206,12 @@ public class ExecutionSuite_DetailPage extends Config {
 		generic.goToSleep(1000);
 		long f = (long) executor.executeScript("return window.pageYOffset;");
 		System.out.println(a+" "+b+" "+c+" "+d+" "+e+" "+f);
-		softAssert.assertTrue(a > 450 && a < 550);
-		softAssert.assertTrue(b > 800 && b < 900);
-		softAssert.assertTrue(c > 1100 && c < 1300);
-		softAssert.assertTrue(d > 2200 && d < 2400);
-		softAssert.assertTrue(e > 2500 && e < 2700);
-		softAssert.assertTrue(f > 2800 && f < 2900);
+		softAssert.assertTrue(a > 300);
+		softAssert.assertTrue(b > 700);
+		softAssert.assertTrue(c > 1000);
+		softAssert.assertTrue(d > 2000);
+		softAssert.assertTrue(e > 2100);
+		softAssert.assertTrue(f > 2500);
 		softAssert.assertAll();
 	}
 
@@ -582,7 +582,7 @@ public class ExecutionSuite_DetailPage extends Config {
 	public void afterMethod() {
 		GenericFunctions.flag=true;
 	}
-	
+
 	@AfterTest
 	public void afterTest() {
 		driver.quit();
