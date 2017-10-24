@@ -103,7 +103,7 @@ public class ExecutionSuite_DetailPage extends Config {
 		generic.loadURL(UrlProvider.getDetailsPageUrl());
 		generic.handlePopUPTimer(ListingPage.popCloseButton_Btn);
 		dp.click_mainImage_WE();
-		softAssert.assertEquals("FabHotel Check'In By Oran CP", dp.getLabelText_hotelNameGallery_Lbl());
+		softAssert.assertEquals(xls.getCellData("Sheet1", "HotelName", 2), dp.getLabelText_hotelNameGallery_Lbl());
 		dp.click_closeGallery_Lnk();
 		softAssert.assertTrue(!dp.isVisible_hotelNameGallery_Lbl(), "Gallery doesn't close");
 		dp.click_mainImage_WE();
