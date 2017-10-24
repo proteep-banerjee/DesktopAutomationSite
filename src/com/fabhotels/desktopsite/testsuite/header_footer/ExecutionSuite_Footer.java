@@ -23,7 +23,6 @@ import com.fabhotels.desktopsite.utils.UrlProvider;
 public class ExecutionSuite_Footer extends UrlProvider {
 
 	Xls_Reader datatable;
-	SoftAssert s_assert;
 	String Sheetname;
 	String Sheetnames;
 	Footer footer ;
@@ -32,7 +31,6 @@ public class ExecutionSuite_Footer extends UrlProvider {
 	public void beforeTest() {
 		generic = new GenericFunctions(driver);
 		driver = generic.startDriver(Driver_Type);
-		s_assert = new SoftAssert();
 		footer = new Footer(driver, generic);
 		generic.loadURL(getHomePageUrl());
 	}
@@ -52,13 +50,13 @@ public class ExecutionSuite_Footer extends UrlProvider {
 		for (int j = 2; j < rowcount_url + 1; j++) {
 			result[j - 2][0] = datatable.getCellData(Sheetnames, "Links_Url", j);
 		}
-
+		
 		return result;
 	}
 
 	@Test(dataProvider = "Validate_Links_Landings_Footer")
 	public void TC_Validate_FooterLinks_Landings(String Link_Url) {
-
+		SoftAssert s_assert = new SoftAssert();
 		Sheetname = "Footer";
 		datatable = new Xls_Reader(Constants.FILEPATH_TESTDATASHEET_FOOTER);
 		int rowcount = datatable.getRowCount(Sheetname);
@@ -124,7 +122,7 @@ public class ExecutionSuite_Footer extends UrlProvider {
 
 	@Test(dataProvider = "Validate_HomePage_Links_Landings")
 	public void TC_Validate_HomePage_City_And_Localities_Landings(int row, String LinkName, String Link_Type) {
-
+		SoftAssert s_assert = new SoftAssert();
 		System.out.println("Row --->> " + row + ", Linkname --->> " + LinkName + ", link type --->> " + Link_Type);
 		if (!driver.getTitle().equals(Footer.homePage_title))
 			generic.loadURL(getHomePageUrl());
@@ -167,7 +165,7 @@ public class ExecutionSuite_Footer extends UrlProvider {
 
 	@Test(dataProvider = "Validate_HomePage_Links_Landings")
 	public void TC_Validate_HomePage_More_cities_Landings_Footer(int row, String LinkName, String Link_Type) {
-
+		SoftAssert s_assert = new SoftAssert();
 		System.out.println("Row --->> " + row + ", Linkname --->> " + LinkName + ", link type --->> " + Link_Type);
 		if (!driver.getTitle().equals(Footer.homePage_title))
 			generic.loadURL(getHomePageUrl());
@@ -199,7 +197,7 @@ public class ExecutionSuite_Footer extends UrlProvider {
 
 	@Test
 	public void TC_Validate_LocalitiesAndLandmarks_SearchedPage_Footer() {
-
+		SoftAssert s_assert = new SoftAssert();
 		String localityName = "Sarojini Nagar";
 		generic.loadURL(getHomePageUrl());
 		ListingPage listingPage = new ListingPage(driver, generic);
@@ -222,7 +220,7 @@ public class ExecutionSuite_Footer extends UrlProvider {
 
 	@Test
 	public void TC_Validate_LocalitiesAndLandmarks_CityPage_Footer() {
-
+		SoftAssert s_assert = new SoftAssert();
 		generic.loadURL(getListingPageUrl());
 		generic.scrollToElement(By.xpath(footer.footerSection(4)), false);
 		s_assert.assertTrue(generic.isVisible(By.xpath(footer.popularLocalities_Lbl("Popular Localities"))),
