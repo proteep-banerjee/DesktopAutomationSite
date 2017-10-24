@@ -21,7 +21,7 @@
 		<pathelement location="${Common_Resources}/jars/commons-lang3-3.0.1.jar" />
 		<pathelement location="${Common_Resources}/jars/commons-validator-1.5.1.jar" />
 		<pathelement location="${Common_Resources}/jars/poi-3.8-beta5-20111217.jar" />
-		<pathelement location="${Common_Resources}/jars/selenium-server-standalone-2.53.0.jar" />
+		<pathelement location="${Common_Resources}/jars/selenium-server-standalone-3.6.0.jar" />
 		<pathelement location="${Common_Resources}/jars/testng-6.8.jar" />
 		<pathelement location="${Common_Resources}/jars/fabxslt.jar" />
 	</path>
