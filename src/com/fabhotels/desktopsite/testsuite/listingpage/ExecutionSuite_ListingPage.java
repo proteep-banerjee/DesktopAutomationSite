@@ -23,6 +23,7 @@ import com.fabhotels.desktopsite.utils.UrlProvider;
 public class ExecutionSuite_ListingPage extends Config {
 
 	ListingPage listingPage;
+	Calendar cal ;
 	SoftAssert s_assert;
 	String soldOut_HotelName="FabHotel BikaHua";
 	String soldOut_someRooms="FabHotel Some Rooms Sold Out";
@@ -32,6 +33,7 @@ public class ExecutionSuite_ListingPage extends Config {
 		generic = new GenericFunctions(driver);
 		driver = generic.startDriver(Driver_Type);
 		listingPage = new ListingPage(driver, generic);
+		cal=new Calendar(driver, generic);
 		s_assert = new SoftAssert();
 	}
 
@@ -90,9 +92,6 @@ public class ExecutionSuite_ListingPage extends Config {
 	@Test
 	public void TC_HotelInfoContainer_listPage() throws ParseException {
 		generic.loadURL(UrlProvider.getListingPageUrl());
-		generic.handlePopUPTimer(ListingPage.popCloseButton_Btn);
-		ListingPage listingPage = new ListingPage(driver, generic);
-		Calendar cal = new Calendar(driver, generic);
 		cal.Select_CheckIn_CheckOut_Date_Calendar_WE(GenericFunctions.getDateAfterDays("0"),GenericFunctions.getDateAfterDays("2"));
 		listingPage.selectRooms();
 		List<WebElement> list = generic.findElements(ListingPage.filters_WE);
