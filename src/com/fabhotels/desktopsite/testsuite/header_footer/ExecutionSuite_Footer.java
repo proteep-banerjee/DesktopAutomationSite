@@ -35,9 +35,8 @@ public class ExecutionSuite_Footer extends UrlProvider {
 		s_assert = new SoftAssert();
 		footer = new Footer(driver, generic);
 		generic.loadURL(getHomePageUrl());
-		generic.handlePopUPTimer(ListingPage.popCloseButton_Btn);
 	}
-
+	
 	@BeforeMethod
 	public void beforeMethod() {
 		GenericFunctions.flag = false;
