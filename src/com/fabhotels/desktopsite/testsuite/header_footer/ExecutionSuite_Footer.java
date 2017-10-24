@@ -25,7 +25,7 @@ public class ExecutionSuite_Footer extends UrlProvider {
 	Xls_Reader datatable;
 	String Sheetname;
 	String Sheetnames;
-	Footer footer ;
+	Footer footer;
 
 	@BeforeTest
 	public void beforeTest() {
@@ -34,7 +34,7 @@ public class ExecutionSuite_Footer extends UrlProvider {
 		footer = new Footer(driver, generic);
 		generic.loadURL(getHomePageUrl());
 	}
-	
+
 	@BeforeMethod
 	public void beforeMethod() {
 		GenericFunctions.flag = false;
@@ -50,7 +50,7 @@ public class ExecutionSuite_Footer extends UrlProvider {
 		for (int j = 2; j < rowcount_url + 1; j++) {
 			result[j - 2][0] = datatable.getCellData(Sheetnames, "Links_Url", j);
 		}
-		
+
 		return result;
 	}
 
@@ -84,12 +84,10 @@ public class ExecutionSuite_Footer extends UrlProvider {
 			} else if (Link_Type.equalsIgnoreCase("Link")) {
 				boolean check = true;
 				footer.clickCiti(LinkName);
-				for (String winHandle : driver.getWindowHandles()) {
-					driver.switchTo().window(winHandle);
-				}
+				generic.SwitchtoNewWindow();
 				check = generic.isVisible(datatable.getCellData(Sheetname, "LandingXpath", Integer.parseInt(row)));
 				s_assert.assertTrue(check, "Fail Link " + LinkName + "Improper Landing!!");
-				footer.switchToMainWindow();
+				generic.SwitchtoOriginalWindow();
 			}
 
 		}
@@ -132,18 +130,18 @@ public class ExecutionSuite_Footer extends UrlProvider {
 			boolean check = true;
 			footer.clickCiti(LinkName);
 			generic.goToSleep(2000);
-			footer.swithToNewWindow();
+			generic.SwitchtoNewWindow();
 			check = generic.isVisible(By.xpath(datatable.getCellData(Sheetname, "LandingXpath", row)));
 			s_assert.assertTrue(check, "Fail Link " + LinkName + "Improper Landing!!");
 			s_assert.assertTrue(generic.isVisible(Footer.hotels_listPage_WE),
 					"Hotles are not comming under :" + Link_Type);
-			footer.switchToMainWindow();
+			generic.switchtoOriginalWindow();
 			generic.goToSleep(2000);
 			for (WebElement localityName : footer.getLocaityName_Link(LinkName)) {
 				String getLocalityName = localityName.getText();
 				System.out.println("locality : " + getLocalityName);
 				localityName.click();
-				footer.swithToNewWindow();
+				generic.SwitchtoNewWindow();
 				if (generic.isVisible(Footer.locationResult_Lbl)) {
 					s_assert.assertEquals(footer.getSearchResultPlace(), getLocalityName,
 							"Hotel info is not matching with locality name");
@@ -153,12 +151,13 @@ public class ExecutionSuite_Footer extends UrlProvider {
 					s_assert.assertTrue(generic.isVisible(Footer.locationResult_Lbl),
 							"No hotles found under locality :" + getLocalityName);
 				}
-				footer.switchToMainWindow();
+				generic.switchtoOriginalWindow();
 
 			}
 
 		}
-		s_assert.assertEquals(footer.return_footer_RowCount(), 6, "Footer under Locality Home Page is not appropriate !!");
+		s_assert.assertEquals(footer.return_footer_RowCount(), 6,
+				"Footer under Locality Home Page is not appropriate !!");
 		s_assert.assertAll();
 
 	}
@@ -172,12 +171,12 @@ public class ExecutionSuite_Footer extends UrlProvider {
 		if (Link_Type.equalsIgnoreCase("OtherCityLink")) {
 			boolean check = true;
 			footer.clickCiti(LinkName);
-			footer.swithToNewWindow();
+			generic.SwitchtoNewWindow();
 			check = generic.isVisible(By.xpath(datatable.getCellData(Sheetname, "LandingXpath", row)));
 			s_assert.assertTrue(check, "Fail Link " + LinkName + "Improper Landing!!");
 			s_assert.assertTrue(generic.isVisible(Footer.hotels_listPage_WE),
 					"Hotles are not comming under :" + Link_Type);
-			footer.switchToMainWindow();
+			generic.SwitchtoOriginalWindow();
 
 		} else if (Link_Type.equalsIgnoreCase("Static")) {
 			String Xpath = Footer.footerDiv_WE + Footer.staticText_Lnk + LinkName + "')]";
@@ -185,13 +184,14 @@ public class ExecutionSuite_Footer extends UrlProvider {
 
 		} else if (Link_Type.equalsIgnoreCase("SEOLink")) {
 			footer.clickCiti(LinkName);
-			footer.swithToNewWindow();
+			generic.SwitchtoNewWindow();
 			s_assert.assertTrue(generic.isVisible(Footer.Search_hotels_near_you_Lnk),
 					"'Search hotels near you' link from home page is not landing on its page.!!");
-			footer.switchToMainWindow();
+			generic.switchtoOriginalWindow();
 
 		}
-		s_assert.assertEquals(footer.return_footer_RowCount(), 6, "Footer under Locality Home Page is not appropriate !!");
+		s_assert.assertEquals(footer.return_footer_RowCount(), 6,
+				"Footer under Locality Home Page is not appropriate !!");
 		s_assert.assertAll();
 	}
 
@@ -229,7 +229,8 @@ public class ExecutionSuite_Footer extends UrlProvider {
 				"Popular Landmarks is not present in footer under city Page : i.e " + getListingPageUrl());
 		s_assert.assertTrue(generic.isVisible(By.xpath(footer.popularLocalities_Lbl("Nearby Cities"))),
 				"Nearby Cities is not present in footer under city Page : i.e " + getListingPageUrl());
-		s_assert.assertTrue(generic.isVisible(By.xpath(footer.popularLocalities_Lbl("Popular Hotels in Nearby Cities"))),
+		s_assert.assertTrue(
+				generic.isVisible(By.xpath(footer.popularLocalities_Lbl("Popular Hotels in Nearby Cities"))),
 				"Popular Hotels in Nearby Cities is not present in footer under city Page : i.e "
 						+ getListingPageUrl());
 		s_assert.assertEquals(footer.return_footer_RowCount(), 6, "Footer under city Page is not appropriate !!");

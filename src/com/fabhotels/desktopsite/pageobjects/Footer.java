@@ -1,6 +1,5 @@
 package com.fabhotels.desktopsite.pageobjects;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -22,12 +21,8 @@ public class Footer {
 	public static final String footerDiv_WE = "//footer[@class='footer']";
 
 	public static final By fabhotels_AllElements_WE = By.xpath("//ul[@class='left_aligned_links']/li");
-
 	public static final By policies_AllElements_WE = By.xpath("//ul[@class='center_aligned_links']/li");
-
 	public static final By book_AllElements_WE = By.xpath("//ul[@class='right_aligned_links']/li");
-
-
 	public static final By bottomBannerClose_Btn = By.xpath("//i[@class='we_close']");
 	public static final By locationResult_Lbl = By.xpath("//h1[@class='propertyCount']");
 	public static final By footerData_Lbl = By.xpath("//div[@class='footer_row fab-data']");
@@ -54,20 +49,6 @@ public class Footer {
 	public static final String homePage_title = "Best Budget Hotels in India: FabHotels";
 	public static final String popular_localities_footer_Lbl = "//div[@class='popular-localities']//strong[text()='";
 	public static final String subscribe_placeholder_msg = "Your email address here. We never spam. Promise.";
-
-	public void switchToMainWindow() {
-		ArrayList<String> tabs_windows = new ArrayList<>(driver.getWindowHandles());
-		driver.switchTo().window(tabs_windows.get(1));
-		driver.close();
-		driver.switchTo().window(tabs_windows.get(0));
-	}
-
-	public void swithToNewWindow() {
-		// Switch to new window opened
-		for (String winHandle : driver.getWindowHandles()) {
-			driver.switchTo().window(winHandle);
-		}
-	}
 
 	public List<WebElement> getLocaityName_Link(String cityName) {
 		return generic.findElements(By.xpath(localCitieName1_Lnk + cityName + localCitieName2_Lnk));

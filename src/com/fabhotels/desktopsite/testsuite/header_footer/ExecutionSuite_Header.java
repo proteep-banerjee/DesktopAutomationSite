@@ -61,6 +61,8 @@ public class ExecutionSuite_Header extends Config {
 		generic.switchtoNewWindow();
 		softAssert.assertEquals(driver.getCurrentUrl(), UrlProvider.getHomePageUrl());
 		softAssert.assertAll();
+		driver.close();
+		generic.switchtoOriginalWindow();
 	}
 
 	@AfterTest

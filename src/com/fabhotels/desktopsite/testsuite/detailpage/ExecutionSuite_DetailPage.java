@@ -244,6 +244,8 @@ public class ExecutionSuite_DetailPage extends Config {
 		softAssert.assertTrue(generic.getCurrentUrl().contains("https://www.google.com/maps/dir//"),
 				"Not getting redirected to Maps");
 		softAssert.assertAll();
+		driver.close();
+		generic.switchtoOriginalWindow();
 	}
 
 	@Test
