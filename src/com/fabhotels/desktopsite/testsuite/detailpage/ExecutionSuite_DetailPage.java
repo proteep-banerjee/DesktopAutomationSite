@@ -32,7 +32,7 @@ public class ExecutionSuite_DetailPage extends Config {
 	Calendar cal;
 	ListingPage lp;
 	Xls_Reader xls = new Xls_Reader(Constants.FILEPATH_TESTDATASHEET_NEWDETAILSPAGEDATA);
-	
+
 	@BeforeTest
 	public void beforeTest() {
 		generic = new GenericFunctions(driver);
@@ -63,16 +63,15 @@ public class ExecutionSuite_DetailPage extends Config {
 	}
 
 	@Test
-	public void TC_ExecutionSuite_DetailPage_002_verifyHotelNameAndAddress(){
+	public void TC_ExecutionSuite_DetailPage_002_verifyHotelNameAndAddress() {
 		driver.get(UrlProvider.getDetailsPageUrl());
 		generic.handlePopUPTimer(ListingPage.popCloseButton_Btn);
-		String name=dp.getLabelText_hotelName_Lbl();
-		String address= dp.getLabelText_hotelsAdress_Lbl();
+		String name = dp.getLabelText_hotelName_Lbl();
+		String address = dp.getLabelText_hotelsAdress_Lbl();
 		softAssert.assertEquals(name, xls.getCellData("Sheet1", "HotelName", 2));
 		softAssert.assertEquals(address, xls.getCellData("Sheet1", "HotelAddress", 2));
 		softAssert.assertAll();
 	}
-
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_003_verifyRatingNReviewsOnTop() {
@@ -85,7 +84,8 @@ public class ExecutionSuite_DetailPage extends Config {
 		generic.goToSleep(1000);
 		long afterScroll = (long) executor.executeScript("return window.pageYOffset;");
 		softAssert.assertEquals(beforeScroll, 0);
-		softAssert.assertTrue(afterScroll > 2000, "Not getting scrolled to the Ratings and Review Section, Scroll Value is "+afterScroll);
+		softAssert.assertTrue(afterScroll > 2000,
+				"Not getting scrolled to the Ratings and Review Section, Scroll Value is " + afterScroll);
 		softAssert.assertAll();
 	}
 
@@ -114,10 +114,11 @@ public class ExecutionSuite_DetailPage extends Config {
 	}
 
 	@Test
-	public void TC_ExecutionSuite_DetailPage_006_verifyAllImagesText(){
+	public void TC_ExecutionSuite_DetailPage_006_verifyAllImagesText() {
 		driver.get(UrlProvider.getDetailsPageUrl());
 		generic.handlePopUPTimer(ListingPage.popCloseButton_Btn);
-		Assert.assertEquals("+ "+xls.getCellData("Sheet1", "NumberOfPics", 2)+"\n"+ "more photos", dp.getElementText_moreImages_WE());
+		Assert.assertEquals("+ " + xls.getCellData("Sheet1", "NumberOfPics", 2) + "\n" + "more photos",
+				dp.getElementText_moreImages_WE());
 	}
 
 	@Test
@@ -153,8 +154,8 @@ public class ExecutionSuite_DetailPage extends Config {
 		long afterScroll = (long) executor.executeScript("return window.pageYOffset;");
 		softAssert.assertEquals(beforeScroll, 0);
 		System.out.println(afterScroll);
-		softAssert.assertTrue(afterScroll > 100);
-		softAssert.assertTrue(dp.isVisible_calanderMiddle_WE());
+		softAssert.assertTrue(afterScroll > 100, "");
+		softAssert.assertTrue(dp.isVisible_calanderMiddle_WE(), "");
 		softAssert.assertAll();
 	}
 
@@ -171,8 +172,8 @@ public class ExecutionSuite_DetailPage extends Config {
 		long afterScroll = (long) executor.executeScript("return window.pageYOffset;");
 		softAssert.assertEquals(beforeScroll, 0);
 		System.out.println(afterScroll);
-		softAssert.assertTrue(afterScroll > 1000);
-		softAssert.assertTrue(dp.isVisible_numberOfRoomsSelectionAll_Btn());
+		softAssert.assertTrue(afterScroll > 1000, "");
+		softAssert.assertTrue(dp.isVisible_numberOfRoomsSelectionAll_Btn(), "");
 		softAssert.assertAll();
 	}
 
@@ -205,13 +206,13 @@ public class ExecutionSuite_DetailPage extends Config {
 		dp.click_hotelPoliciesHeader_Lnk();
 		generic.goToSleep(1000);
 		long f = (long) executor.executeScript("return window.pageYOffset;");
-		System.out.println(a+" "+b+" "+c+" "+d+" "+e+" "+f);
-		softAssert.assertTrue(a > 300);
-		softAssert.assertTrue(b > 700);
-		softAssert.assertTrue(c > 1000);
-		softAssert.assertTrue(d > 2000);
-		softAssert.assertTrue(e > 2100);
-		softAssert.assertTrue(f > 2500);
+		System.out.println(a + " " + b + " " + c + " " + d + " " + e + " " + f);
+		softAssert.assertTrue(a > 300, "");
+		softAssert.assertTrue(b > 700, "");
+		softAssert.assertTrue(c > 1000, "");
+		softAssert.assertTrue(d > 2000, "");
+		softAssert.assertTrue(e > 2100, "");
+		softAssert.assertTrue(f > 2500, "");
 		softAssert.assertAll();
 	}
 
@@ -235,9 +236,9 @@ public class ExecutionSuite_DetailPage extends Config {
 		softAssert.assertEquals(dp.getElementText_topReviewValue_WE(),
 				"A nice and a clean hotel.....I have earlier also recommended");
 		softAssert.assertEquals(dp.getElementText_ratedVeryGood_WE(), "Rated very good across 1 Reviews");
-		softAssert.assertTrue(dp.isVisible_ratingsLogo_WE());
-		softAssert.assertEquals(dp.getElementText_propertyNameOnMap_WE(),xls.getCellData("Sheet1", "HotelName", 3));
-		softAssert.assertEquals(dp.getElementText_landmarkOnMap_WE(),"Landmark: Daman");
+		softAssert.assertTrue(dp.isVisible_ratingsLogo_WE(), "");
+		softAssert.assertEquals(dp.getElementText_propertyNameOnMap_WE(), xls.getCellData("Sheet1", "HotelName", 3));
+		softAssert.assertEquals(dp.getElementText_landmarkOnMap_WE(), "Landmark: Daman");
 
 		dp.click_getDirectionOnMap_Lnk();
 		generic.switchtoNewWindow();
@@ -398,7 +399,7 @@ public class ExecutionSuite_DetailPage extends Config {
 		softAssert.assertEquals(dp.getLinkText_readLess_Lnk(), "Read Less");
 		dp.click_readLess_Lnk();
 		softAssert.assertEquals(dp.getLinkText_readMore_Lnk(), "Read More");
-		softAssert.assertTrue(dp.getElementText_descriptionExpanded_WE().length() > 150);
+		softAssert.assertTrue(dp.getElementText_descriptionExpanded_WE().length() > 150, "");
 		softAssert.assertAll();
 	}
 
@@ -463,11 +464,10 @@ public class ExecutionSuite_DetailPage extends Config {
 	}
 
 	@Test
-	public void TC_ExecutionSuite_DetailPage_023_VerifyNameInSearchBar(){
+	public void TC_ExecutionSuite_DetailPage_023_VerifyNameInSearchBar() {
 		driver.get(UrlProvider.getDetailsPageUrl());
 		generic.handlePopUPTimer(ListingPage.popCloseButton_Btn);
-		Assert.assertEquals(dp.getText_searchBox_WE(),xls.getCellData("Sheet1", "HotelName", 2));
-
+		Assert.assertEquals(dp.getText_searchBox_WE(), xls.getCellData("Sheet1", "HotelName", 2));
 
 	}
 
@@ -489,7 +489,7 @@ public class ExecutionSuite_DetailPage extends Config {
 		softAssert.assertEquals(lp.getText_checkOut_Date_WE(), GenericFunctions.getDateAfterDays3format("2"));
 		softAssert.assertAll();
 	}
-	
+
 	@Test
 	public void TC_ExecutionSuite_DetailPage_025_verifyREdirectionFRomExploreMore() {
 		generic.loadURL(UrlProvider.getDetailsPageUrl());
@@ -504,10 +504,10 @@ public class ExecutionSuite_DetailPage extends Config {
 		softAssert.assertAll();
 
 	}
-	
 
 	@Test
-	public void TC_ExecutionSuite_DetailPage_026_verifyPropertySoldOutAndDatesModifiedToBookHotel() throws ParseException {
+	public void TC_ExecutionSuite_DetailPage_026_verifyPropertySoldOutAndDatesModifiedToBookHotel()
+			throws ParseException {
 		generic.loadURL(UrlProvider.getHomePageUrl() + "hotels-in-gotham/fabhotel-bikahua.html");
 		generic.handlePopUPTimer(ListingPage.popCloseButton_Btn);
 		cal.Select_CheckIn_CheckOut_Date_Calendar_WE(GenericFunctions.getDateAfterDays("0"),
@@ -518,26 +518,27 @@ public class ExecutionSuite_DetailPage extends Config {
 		softAssert.assertTrue(dp.isVisible_exploreNearbyTop_WE(), "Explore more option is not coming on top");
 		softAssert.assertEquals(dp.getLabelText_soldOutOnMainImage_Lbl(), "SOLD OUT");
 		softAssert.assertTrue(dp.isDisabled_selectRoomsDisabled_Btn(), "Button is not disabled.");
-		cal.Select_CheckIn_CheckOut_Date_Calendar_WE("01 January 2018","04 January 2018");
+		cal.Select_CheckIn_CheckOut_Date_Calendar_WE("01 January 2018", "04 January 2018");
 		dp.click_checkAvailabilityOnTop_Btn();
 		dp.click_roomNumber(2, 2);
 		dp.click_bookNowFooter_Btn();
 		softAssert.assertAll();
 	}
-	
+
 	@Test
 	public void TC_ExecutionSuite_DetailPage_027_verifyBookingAcrossTheYear() throws ParseException {
 		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());
 		generic.handlePopUPTimer(ListingPage.popCloseButton_Btn);
-		cal.Select_CheckIn_CheckOut_Date_Calendar_WE("31 December 2017","02 January 2018");
-		dp.click_checkAvailabilityOnTop_Btn();	
+		cal.Select_CheckIn_CheckOut_Date_Calendar_WE("31 December 2017", "02 January 2018");
+		dp.click_checkAvailabilityOnTop_Btn();
 		softAssert.assertEquals(dp.GetText_CheckOutDate_WE(), "02 Jan 2018");
 		softAssert.assertAll();
-		}
-	
+	}
+
 	@Test
 	public void TC_ExecutionSuite_DetailPage_028_verifyNotRelevant10RoomsLeft() throws ParseException {
-		generic.loadURL(UrlProvider.getHomePageUrl() +"hotels-in-gotham/fabhotel-maple.html?locationsearch=Gotham&checkIn=30+Dec+2017&checkOut=31+Dec+2017&propertyDetailSearch=&occupancy%5B%5D=1&occupancy%5B%5D=1&occupancy%5B%5D=1&occupancy%5B%5D=1&occupancy%5B%5D=1&rooms=5&location_text=Gotham&locality_text=Gotham&location_list=&city=Gotham&nearcity=gotham&radius=8&ga_page_type=SearchPage");
+		generic.loadURL(UrlProvider.getHomePageUrl()
+				+ "hotels-in-gotham/fabhotel-maple.html?locationsearch=Gotham&checkIn=30+Dec+2017&checkOut=31+Dec+2017&propertyDetailSearch=&occupancy%5B%5D=1&occupancy%5B%5D=1&occupancy%5B%5D=1&occupancy%5B%5D=1&occupancy%5B%5D=1&rooms=5&location_text=Gotham&locality_text=Gotham&location_list=&city=Gotham&nearcity=gotham&radius=8&ga_page_type=SearchPage");
 		generic.handlePopUPTimer(ListingPage.popCloseButton_Btn);
 		dp.click_selectRooms_Btn();
 		generic.goToSleep(1000);
@@ -546,13 +547,13 @@ public class ExecutionSuite_DetailPage extends Config {
 		dp.click_roomNumber(1, 2);
 		generic.goToSleep(1000);
 		Assert.assertTrue(!dp.isVisible_roomsLeft_roomType(1), "Rooms left message should not come");
-		}
-	
+	}
+
 	@Test
 	public void TC_ExecutionSuite_DetailPage_029_verifyDAtesOfDifferentMonth() throws ParseException {
 		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());
 		generic.handlePopUPTimer(ListingPage.popCloseButton_Btn);
-		cal.Select_CheckIn_CheckOut_Date_Calendar_WE("30 November 2017","02 December 2017");
+		cal.Select_CheckIn_CheckOut_Date_Calendar_WE("30 November 2017", "02 December 2017");
 		dp.click_checkAvailabilityOnTop_Btn();
 		generic.goToSleep(1000);
 		dp.click_roomNumber(1, 1);
@@ -561,9 +562,9 @@ public class ExecutionSuite_DetailPage extends Config {
 		generic.goToSleep(1000);
 		dp.click_bookNowFooter_Btn();
 		generic.explicitlyWaitForElement(By.xpath(CheckoutReview.continue_Btn));
-		Assert.assertEquals(generic.getCurrentUrl(), UrlProvider.getHomePageUrl()+"checkout/review");
-		}
-	
+		Assert.assertEquals(generic.getCurrentUrl(), UrlProvider.getHomePageUrl() + "checkout/review");
+	}
+
 	@Test
 	public void TC_ExecutionSuite_DetailPage_030_verifyPageScrolled_SoldOut_MiddleCalander() throws ParseException {
 		generic.loadURL(UrlProvider.getHomePageUrl() + "hotels-in-gotham/fabhotel-bikahua.html");
@@ -577,10 +578,10 @@ public class ExecutionSuite_DetailPage extends Config {
 		softAssert.assertTrue(dp.isDisabled_selectRoomsDisabled_Btn(), "Button is not disabled.");
 		softAssert.assertAll();
 	}
-	
+
 	@AfterMethod
 	public void afterMethod() {
-		GenericFunctions.flag=true;
+		GenericFunctions.flag = true;
 	}
 
 	@AfterTest
