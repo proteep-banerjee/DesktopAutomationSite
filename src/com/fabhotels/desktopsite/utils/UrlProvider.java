@@ -16,6 +16,9 @@ public class UrlProvider extends Config {
 		else if (Environment.toLowerCase().contains("pp2"))
 			return "https://pp2.fabhotels.com/";
 
+		else if (Environment.toLowerCase().contains("pp2"))
+			return "https://pp2.fabhotels.com/";
+
 		if (Environment.toLowerCase().contains("test"))
 			return "https://" + Environment + ".fabhotels.com/";
 		else
@@ -27,7 +30,10 @@ public class UrlProvider extends Config {
 		if (Environment.toLowerCase().contains("dev"))
 			return "https://" + Environment + ".fabhotels.com/hotels-in-new-delhi/";
 		
+		else if (Environment.toLowerCase().contains("pp2"))
+			return "https://pp2.fabhotels.com/hotels-in-new-delhi/";
 
+		
 		if (Environment.toLowerCase().contains("test2"))
 			return "https://" + Environment + ".fabhotels.com/hotels-in-new-delhi/";
 
@@ -46,6 +52,9 @@ public class UrlProvider extends Config {
 		if (Environment.toLowerCase().contains("dev"))
 			return "http://" + Environment + ".fabhotels.com/hotels-in-new-delhi/fabhotel-cabana-gk1.html/";
 		
+		if (Environment.toLowerCase().contains("pp2"))
+			return "http://" + Environment + ".fabhotels.com/hotels-in-new-delhi/fabhotel-checkin-by-oran-cp.html/";
+
 
 		if (Environment.toLowerCase().contains("test2"))
 			return "http://" + Environment + ".fabhotels.com/hotels-in-new-delhi/fabhotel-cabana-gk1.html/";
@@ -64,6 +73,9 @@ public class UrlProvider extends Config {
 
 		locality = locality.replaceAll(" ", "-").toLowerCase();
 		if (Environment.toLowerCase().contains("dev"))
+			return "http://" + Environment + ".fabhotels.com/hotels-in-" + locality + "/";
+		
+		if (Environment.toLowerCase().contains("pp2"))
 			return "http://" + Environment + ".fabhotels.com/hotels-in-" + locality + "/";
 
 		if (Environment.toLowerCase().contains("preprod"))
@@ -84,6 +96,8 @@ public class UrlProvider extends Config {
 		if (Environment.toLowerCase().contains("dev"))
 			return "http://" + Environment + ".fabhotels.com/hotels-in-gotham/fabhotel-instructor-wow.html/";
 		
+		if (Environment.toLowerCase().contains("pp2"))
+			return "http://" + Environment + ".fabhotels.com/hotels-in-gotham/fabhotel-instructor-wow.html/";
 
 		if (Environment.toLowerCase().contains("test2"))
 			return "http://" + Environment + ".fabhotels.com/hotels-in-gotham/fabhotel-instructor-wow.html/";
@@ -99,6 +113,24 @@ public class UrlProvider extends Config {
 			return "http://www.fabhotels.com/hotels-in-gotham/fabhotel-instructor-wow.html/";
 	}
 
+	public static String getGothamListPageUrl() {
+
+		if (Environment.toLowerCase().contains("dev"))
+			return "http://" + Environment + ".fabhotels.com/hotels-in-gotham/";
+		
+		if (Environment.toLowerCase().contains("pp2"))
+			return "http://" + Environment + ".fabhotels.com/hotels-in-gotham/";
+
+		if (Environment.toLowerCase().contains("test2"))
+			return "http://" + Environment + ".fabhotels.com/hotels-in-gotham/";
+
+		if (Environment.toLowerCase().contains("preprod"))
+			return "https://preprod.fabhotels.com/hotels-in-gotham/";
+
+		else
+			return "http://www.fabhotels.com/hotels-in-gotham/";
+	}
+	
 	public static String getcheckoutReviewUrl() {
 
 		if (Environment.toLowerCase().contains("dev"))
@@ -106,6 +138,9 @@ public class UrlProvider extends Config {
 
 		if (Environment.toLowerCase().contains("preprod"))
 			return "https://preprod.fabhotels.com/checkout/review";
+		
+		if (Environment.toLowerCase().contains("pp2"))
+			return "https://"+Environment+".fabhotels.com/checkout/review";
 
 		if (Environment.toLowerCase().contains("pp2"))
 			return "https://pp2.fabhotels.com/checkout/review";
