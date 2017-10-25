@@ -580,7 +580,7 @@ public class ExecutionSuite_DetailPage extends Config {
 
 	@AfterMethod
 	public void afterMethod() {
-		GenericFunctions.flag = true;
+		generic.closePopUpTimer();
 	}
 
 	@AfterTest

@@ -226,7 +226,7 @@ public class ExecutionSuite_ListingPage extends Config {
 	
 	@AfterMethod
 	public void afterMethod() {
-		GenericFunctions.flag = true;
+		generic.closePopUpTimer();
 	}
 
 	@AfterTest

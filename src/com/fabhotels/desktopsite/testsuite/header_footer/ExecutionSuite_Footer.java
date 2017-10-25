@@ -271,8 +271,8 @@ public class ExecutionSuite_Footer extends UrlProvider {
 	}
 
 	@AfterMethod
-	public void After() {
-		GenericFunctions.flag = true;
+	public void afterMethod() {
+		generic.closePopUpTimer();
 	}
 
 	@AfterTest

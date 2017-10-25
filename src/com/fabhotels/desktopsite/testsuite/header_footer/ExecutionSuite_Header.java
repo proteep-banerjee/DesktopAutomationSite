@@ -58,11 +58,8 @@ public class ExecutionSuite_Header extends Config {
 		driver.close();
 		generic.SwitchtoOriginalWindow();
 		header.click_fabLogo_Lnk();
-		generic.switchtoNewWindow();
 		softAssert.assertEquals(driver.getCurrentUrl(), UrlProvider.getHomePageUrl());
 		softAssert.assertAll();
-		driver.close();
-		generic.switchtoOriginalWindow();
 	}
 
 	@AfterTest
