@@ -41,7 +41,6 @@ public class ExecutionSuite_ListingPage extends Config {
 	public void beforeMethod() {
 		driver.manage().deleteAllCookies();
 		generic.loadURL(UrlProvider.getListingPageUrl());
-		GenericFunctions.flag = false;
 		generic.handlePopUPTimer(ListingPage.popCloseButton_Btn);
 	}
 
@@ -71,6 +70,7 @@ public class ExecutionSuite_ListingPage extends Config {
 
 	@Test
 	public void TC_Three_hotels_links() {
+		generic.refreshPage();
 		listingPage.check_All_Hotel_links();
 	}
 

@@ -438,6 +438,7 @@ public class ListingPage {
 	}
 
 	public void No_Hotelsfound() {
+		generic.refreshPage();
 		SoftAssert s_assert = new SoftAssert();
 		s_assert.assertTrue(generic.isVisible(noHotelFoundMsg_txt), "Error warning functionalty is broken");
 		s_assert.assertTrue(generic.isVisible(goToHomePage_Btn), "Go to Home Page is not comming");

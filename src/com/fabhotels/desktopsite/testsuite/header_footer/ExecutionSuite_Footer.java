@@ -37,7 +37,6 @@ public class ExecutionSuite_Footer extends UrlProvider {
 
 	@BeforeMethod
 	public void beforeMethod() {
-		GenericFunctions.flag = false;
 		generic.handlePopUPTimer(ListingPage.popCloseButton_Btn);
 	}
 
