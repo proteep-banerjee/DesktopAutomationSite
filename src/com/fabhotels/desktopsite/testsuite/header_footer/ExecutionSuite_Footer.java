@@ -3,6 +3,7 @@ package com.fabhotels.desktopsite.testsuite.header_footer;
 import java.lang.reflect.Method;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -37,7 +38,7 @@ public class ExecutionSuite_Footer extends UrlProvider {
 
 	@BeforeMethod
 	public void beforeMethod() {
-		generic.handlePopUPTimer(ListingPage.popCloseButton_Btn);
+		generic.handlePopUPTimer();
 	}
 
 	@DataProvider(name = "Validate_Links_Landings_Footer")
@@ -250,7 +251,19 @@ public class ExecutionSuite_Footer extends UrlProvider {
 		result[3][1] = "Blank email";
 		return result;
 	}
-
+	
+	@Test
+	public void check()
+	{
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
+		//executor.executeScript("hideModalPopup()");
+		executor.executeScript("setVoucherCloseCookie()");
+		
+		generic.loadURL(UrlProvider.getHomePageUrl());
+		generic.goToSleep(30000);
+		
+	}
+	
 	@Test(dataProvider = "Subscription")
 	public void TC_Validate_subscriberEmail(String Email, String Expected) {
 		generic.loadURL(UrlProvider.getHomePageUrl());
@@ -271,7 +284,7 @@ public class ExecutionSuite_Footer extends UrlProvider {
 
 	@AfterMethod
 	public void afterMethod() {
-		generic.closePopUpTimer();
+		//generic.closePopUpTimer();
 	}
 
 	@AfterTest

@@ -41,7 +41,7 @@ public class ExecutionSuite_ListingPage extends Config {
 	public void beforeMethod() {
 		driver.manage().deleteAllCookies();
 		generic.loadURL(UrlProvider.getListingPageUrl());
-		generic.handlePopUPTimer(ListingPage.popCloseButton_Btn);
+		generic.handlePopUPTimer();
 	}
 
 	@Test
@@ -226,7 +226,6 @@ public class ExecutionSuite_ListingPage extends Config {
 	
 	@AfterMethod
 	public void afterMethod() {
-		generic.closePopUpTimer();
 	}
 
 	@AfterTest
