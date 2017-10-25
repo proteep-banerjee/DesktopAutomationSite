@@ -45,8 +45,8 @@ public class ExecutionSuite_DetailPage extends Config {
 
 	@BeforeMethod()
 	public void beforeMethod() {
-		generic.handlePopUPTimer();
 		driver.manage().deleteAllCookies();
+
 	}
 
 	@Test
@@ -64,7 +64,7 @@ public class ExecutionSuite_DetailPage extends Config {
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_002_verifyHotelNameAndAddress() {
-		driver.get(UrlProvider.getDetailsPageUrl());
+		generic.loadURL(UrlProvider.getDetailsPageUrl());
 		String name = dp.getLabelText_hotelName_Lbl();
 		String address = dp.getLabelText_hotelsAdress_Lbl();
 		softAssert.assertEquals(name, xls.getCellData("Sheet1", "HotelName", 2));
@@ -111,7 +111,7 @@ public class ExecutionSuite_DetailPage extends Config {
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_006_verifyAllImagesText() {
-		driver.get(UrlProvider.getDetailsPageUrl());
+		generic.loadURL(UrlProvider.getDetailsPageUrl());
 		Assert.assertEquals("+ " + xls.getCellData("Sheet1", "NumberOfPics", 2) + "\n" + "more photos",
 				dp.getElementText_moreImages_WE());
 	}
@@ -445,7 +445,7 @@ public class ExecutionSuite_DetailPage extends Config {
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_023_VerifyNameInSearchBar() {
-		driver.get(UrlProvider.getDetailsPageUrl());
+		generic.loadURL(UrlProvider.getDetailsPageUrl());
 		Assert.assertEquals(dp.getText_searchBox_WE(), xls.getCellData("Sheet1", "HotelName", 2));
 	}
 

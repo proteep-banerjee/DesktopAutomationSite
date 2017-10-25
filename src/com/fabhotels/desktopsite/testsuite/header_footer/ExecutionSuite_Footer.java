@@ -37,7 +37,6 @@ public class ExecutionSuite_Footer extends UrlProvider {
 
 	@BeforeMethod
 	public void beforeMethod() {
-		generic.handlePopUPTimer();
 	}
 
 	@DataProvider(name = "Validate_Links_Landings_Footer")

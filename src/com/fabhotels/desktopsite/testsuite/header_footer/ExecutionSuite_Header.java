@@ -47,7 +47,7 @@ public class ExecutionSuite_Header extends Config {
 
 	@Test(dataProvider = "headerPages")
 	public void TC_ExecutionSuite_Header_001_verifyHeaderPresenceAndFunctionality(String pageName, String url, String count){
-		driver.get(UrlProvider.getHomePageUrl()+url);
+		generic.loadURL(UrlProvider.getHomePageUrl()+url);
 		if(count.equals("4")){
 			softAssert.assertEquals("All Cities", header.getText_allCities_WE());
 		}

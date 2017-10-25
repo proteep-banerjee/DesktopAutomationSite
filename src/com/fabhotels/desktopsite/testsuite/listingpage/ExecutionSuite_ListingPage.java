@@ -40,8 +40,8 @@ public class ExecutionSuite_ListingPage extends Config {
 	@BeforeMethod
 	public void beforeMethod() {
 		driver.manage().deleteAllCookies();
+		generic.loadURL(UrlProvider.getHomePageUrl());
 		generic.loadURL(UrlProvider.getListingPageUrl());
-		generic.handlePopUPTimer();
 	}
 
 	@Test
