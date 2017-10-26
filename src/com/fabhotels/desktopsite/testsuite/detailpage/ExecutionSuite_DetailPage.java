@@ -28,7 +28,6 @@ public class ExecutionSuite_DetailPage extends Config {
 	String Sheetname;
 	Xls_Reader datatable;
 	DetailPage dp;
-	SoftAssert softAssert;
 	Calendar cal;
 	ListingPage lp;
 	Xls_Reader xls = new Xls_Reader(Constants.FILEPATH_TESTDATASHEET_NEWDETAILSPAGEDATA);
@@ -40,7 +39,6 @@ public class ExecutionSuite_DetailPage extends Config {
 		dp = new DetailPage(driver, generic);
 		cal = new Calendar(driver, generic);
 		lp = new ListingPage(driver, generic);
-		softAssert = new SoftAssert();
 	}
 
 	@BeforeMethod()
@@ -51,6 +49,7 @@ public class ExecutionSuite_DetailPage extends Config {
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_001_verifyBreadCrumsFunctionality() {
+		SoftAssert softAssert = new SoftAssert();
 		generic.loadURL(UrlProvider.getDetailsPageUrl());
 		dp.click_breadCrumbsClickable1_Lnk();
 		String url1 = generic.getCurrentUrl();
@@ -64,6 +63,7 @@ public class ExecutionSuite_DetailPage extends Config {
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_002_verifyHotelNameAndAddress() {
+		SoftAssert softAssert = new SoftAssert();
 		generic.loadURL(UrlProvider.getDetailsPageUrl());
 		String name = dp.getLabelText_hotelName_Lbl();
 		String address = dp.getLabelText_hotelsAdress_Lbl();
@@ -74,6 +74,7 @@ public class ExecutionSuite_DetailPage extends Config {
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_003_verifyRatingNReviewsOnTop() {
+		SoftAssert softAssert = new SoftAssert();
 		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());
 		softAssert.assertTrue(dp.isVisible_starRating_WE(), "Star rating on top is not present");
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
@@ -89,6 +90,7 @@ public class ExecutionSuite_DetailPage extends Config {
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_004_verifyPeopleLookingAt_LastBooked() {
+		SoftAssert softAssert = new SoftAssert();
 		generic.loadURL(UrlProvider.getDetailsPageUrl());
 		softAssert.assertTrue(dp.isVisible_peopleLooking_Lbl(), "People Looking at is not present");
 		softAssert.assertTrue(dp.isVisible_lastBooked_Lbl(), "Last booked is not present");
@@ -97,6 +99,7 @@ public class ExecutionSuite_DetailPage extends Config {
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_005_verifyGalleryOpeningNClosing() {
+		SoftAssert softAssert = new SoftAssert();
 		generic.loadURL(UrlProvider.getDetailsPageUrl());
 		dp.click_mainImage_WE();
 		softAssert.assertEquals(xls.getCellData("Sheet1", "HotelName", 2), dp.getLabelText_hotelNameGallery_Lbl());
@@ -139,6 +142,7 @@ public class ExecutionSuite_DetailPage extends Config {
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_008_verifySelectRoomsFunctionality_Dateless() {
+		SoftAssert softAssert = new SoftAssert();
 		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		long beforeScroll = (long) executor.executeScript("return window.pageYOffset;");
@@ -154,6 +158,7 @@ public class ExecutionSuite_DetailPage extends Config {
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_009_verifySelectRoomsFunctionality_withDate() throws ParseException {
+		SoftAssert softAssert = new SoftAssert();
 		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());
 		cal.Select_CheckIn_CheckOut_Date_Calendar_WE(GenericFunctions.getDateAfterDays("1"),
 				GenericFunctions.getDateAfterDays("3"));
@@ -171,6 +176,7 @@ public class ExecutionSuite_DetailPage extends Config {
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_010_verifyHeaderLinksText() {
+		SoftAssert softAssert = new SoftAssert();
 		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());
 		softAssert.assertEquals("Overview", dp.getLinkText_overviewHeader_Lnk());
 		softAssert.assertEquals("Amenities", dp.getLinkText_amenitiesHeader_Lnk());
@@ -209,6 +215,7 @@ public class ExecutionSuite_DetailPage extends Config {
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_011_verifyWhyFabhotelsSection() {
+		SoftAssert softAssert = new SoftAssert();
 		generic.loadURL(UrlProvider.getDetailsPageUrl());
 		softAssert.assertEquals("Best reviewed chain", dp.getElementText_bestRevChain_WE());
 		softAssert.assertEquals("Most centrally located", dp.getElementText_centrallyLocated_WE());
@@ -218,6 +225,7 @@ public class ExecutionSuite_DetailPage extends Config {
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_012_verifyRatingReview_MapSection() {
+		SoftAssert softAssert = new SoftAssert();
 		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());
 		softAssert.assertEquals(dp.getElementText_ratings_WE(), "Ratings");
 		softAssert.assertEquals(dp.getElementText_numericRating_WE(), "5");
@@ -248,6 +256,7 @@ public class ExecutionSuite_DetailPage extends Config {
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_014_verifyRoomSelectionMultipleRoomTypes() throws ParseException {
+		SoftAssert softAssert = new SoftAssert();
 		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());
 		cal.Select_CheckIn_CheckOut_Date_Calendar_WE(GenericFunctions.getDateAfterDays("10"),
 				GenericFunctions.getDateAfterDays("20"));
@@ -300,6 +309,7 @@ public class ExecutionSuite_DetailPage extends Config {
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_015_verifySomeRoomTypeSoldOut() throws ParseException {
+		SoftAssert softAssert = new SoftAssert();
 		generic.loadURL(UrlProvider.getHomePageUrl() + "hotels-in-gotham/fabhotel-some-rooms-sold-out.html");
 		cal.Select_CheckIn_CheckOut_Date_Calendar_WE(GenericFunctions.getDateAfterDays("0"),
 				GenericFunctions.getDateAfterDays("2"));
@@ -323,6 +333,7 @@ public class ExecutionSuite_DetailPage extends Config {
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_016_verifyPropertySoldOut() throws ParseException {
+		SoftAssert softAssert = new SoftAssert();
 		generic.loadURL(UrlProvider.getHomePageUrl() + "hotels-in-gotham/fabhotel-bikahua.html");
 		cal.Select_CheckIn_CheckOut_Date_Calendar_WE(GenericFunctions.getDateAfterDays("0"),
 				GenericFunctions.getDateAfterDays("2"));
@@ -337,6 +348,7 @@ public class ExecutionSuite_DetailPage extends Config {
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_017_verifyCheckAvailability_MiddleOne() throws ParseException {
+		SoftAssert softAssert = new SoftAssert();
 		generic.loadURL(UrlProvider.getHomePageUrl() + "hotels-in-gotham/fabhotel-some-rooms-sold-out.html");
 		cal.Select_CheckIn_CheckOut_Date_SecondCalendaronDEtailsPage_WE(GenericFunctions.getDateAfterDays("2"),
 				GenericFunctions.getDateAfterDays("5"));
@@ -360,6 +372,7 @@ public class ExecutionSuite_DetailPage extends Config {
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_018_verifyStaticTexts_RoomSelection() {
+		SoftAssert softAssert = new SoftAssert();
 		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());
 		softAssert.assertEquals(dp.getLinkText_roomTypesHeader_Lnk(), "Room Types");
 		softAssert.assertEquals(dp.getLabelText_roomTypesMaxNumbers_Lbl(), "(Maximum 5 rooms allowed per booking)");
@@ -375,6 +388,7 @@ public class ExecutionSuite_DetailPage extends Config {
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_019_verifyHotelDescription() {
+		SoftAssert softAssert = new SoftAssert();
 		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());
 		softAssert.assertEquals(dp.getLinkText_whyThisHotelheader_Lnk(), "Why this Hotel");
 		softAssert.assertEquals(dp.getLinkText_readMore_Lnk(), "Read More");
@@ -388,6 +402,7 @@ public class ExecutionSuite_DetailPage extends Config {
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_020_verifyRatingsAndReviews() {
+		SoftAssert softAssert = new SoftAssert();
 		generic.loadURL(UrlProvider.getDetailsPageUrl());
 		String topReview = dp.getLinkText_reviews_Lnk();
 		String midReview = dp.getElementText_ratedVeryGood_WE();
@@ -411,6 +426,7 @@ public class ExecutionSuite_DetailPage extends Config {
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_021_verifyExploreMore() {
+		SoftAssert softAssert = new SoftAssert();
 		generic.loadURL(UrlProvider.getHomePageUrl() + "hotels-in-goa/fabhotel-the-kings-court-calangute.html");
 		generic.scrollToElement(By.xpath(DetailPage.cheveronNextNearby_Btn), false);
 		int i = 1;
@@ -437,6 +453,7 @@ public class ExecutionSuite_DetailPage extends Config {
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_022_VerifyHotelPolicies() {
+		SoftAssert softAssert = new SoftAssert();
 		generic.loadURL(UrlProvider.getDetailsPageUrl());
 		softAssert.assertEquals(dp.getLabelText_hotelPolicies_Lbl(), "Hotel Policies");
 		softAssert.assertTrue(dp.isVisible_hotelPolicies_WE(), "Hotel Policies section is missing");
@@ -451,6 +468,7 @@ public class ExecutionSuite_DetailPage extends Config {
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_024_verifySeachFromDetails() throws ParseException {
+		SoftAssert softAssert = new SoftAssert();
 		generic.loadURL(UrlProvider.getDetailsPageUrl());
 		cal.Select_CheckIn_CheckOut_Date_Calendar_WE(GenericFunctions.getDateAfterDays("0"),
 				GenericFunctions.getDateAfterDays("2"));
@@ -469,6 +487,7 @@ public class ExecutionSuite_DetailPage extends Config {
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_025_verifyREdirectionFRomExploreMore() {
+		SoftAssert softAssert = new SoftAssert();
 		generic.loadURL(UrlProvider.getDetailsPageUrl());
 		String propName = dp.getLabelText_hotelNameNearby_Lbl(1);
 		String sellPrice = dp.getLabelText_sellPriceNearBy_Lbl(1);
@@ -483,6 +502,7 @@ public class ExecutionSuite_DetailPage extends Config {
 	@Test
 	public void TC_ExecutionSuite_DetailPage_026_verifyPropertySoldOutAndDatesModifiedToBookHotel()
 			throws ParseException {
+		SoftAssert softAssert = new SoftAssert();
 		generic.loadURL(UrlProvider.getHomePageUrl() + "hotels-in-gotham/fabhotel-bikahua.html");
 		cal.Select_CheckIn_CheckOut_Date_Calendar_WE(GenericFunctions.getDateAfterDays("0"),
 				GenericFunctions.getDateAfterDays("2"));
@@ -501,8 +521,9 @@ public class ExecutionSuite_DetailPage extends Config {
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_027_verifyBookingAcrossTheYear() throws ParseException {
+		SoftAssert softAssert = new SoftAssert();
 		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());
-		
+
 		cal.Select_CheckIn_CheckOut_Date_Calendar_WE("31 December 2017", "02 January 2018");
 		dp.click_checkAvailabilityOnTop_Btn();
 		softAssert.assertEquals(dp.GetText_CheckOutDate_WE(), "02 Jan 2018");
@@ -539,6 +560,7 @@ public class ExecutionSuite_DetailPage extends Config {
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_030_verifyPageScrolled_SoldOut_MiddleCalander() throws ParseException {
+		SoftAssert softAssert = new SoftAssert();
 		generic.loadURL(UrlProvider.getHomePageUrl() + "hotels-in-gotham/fabhotel-bikahua.html");
 		cal.Select_CheckInOnly_SecondCalendaronDEtailsPage_WE(GenericFunctions.getDateAfterDays("0"));
 		dp.click_checkAvailabilityInMiddle_Btn();
