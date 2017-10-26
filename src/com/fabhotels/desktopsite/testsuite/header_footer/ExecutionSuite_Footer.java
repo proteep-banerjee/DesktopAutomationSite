@@ -1,7 +1,6 @@
 package com.fabhotels.desktopsite.testsuite.header_footer;
 
 import java.lang.reflect.Method;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -56,7 +55,7 @@ public class ExecutionSuite_Footer extends UrlProvider {
 	}
 
 	@Test(dataProvider = "Validate_Links_Landings_Footer")
-	public void TC_Validate_FooterLinks_Landings(int rowNo, String LinkName, String Link_Type) {
+	public void TC_Footer_001_Validate_FooterLinks_Landings(int rowNo, String LinkName, String Link_Type) {
 		SoftAssert s_assert = new SoftAssert();
 		System.out.println("Row --->> " + rowNo + ", Linkname --->> " + LinkName + ", Link_Type --->> " + Link_Type);
 		generic.loadURL(getHomePageUrl());
@@ -77,7 +76,7 @@ public class ExecutionSuite_Footer extends UrlProvider {
 	}
 
 	@Test
-	public void TC_Validate_HomePage_footer() {
+	public void TC_Footer_002_Validate_Structure_StaticText() {
 		SoftAssert s_assert = new SoftAssert();
 		generic.loadURL(getHomePageUrl());
 		s_assert.assertTrue(generic.getText(Footer.footerData_Lbl).length() > 50,
@@ -89,14 +88,11 @@ public class ExecutionSuite_Footer extends UrlProvider {
 	}
 
 	@Test
-	public void TC_Validate_HomePage_copyRight_footer() {
-		SoftAssert s_assert = new SoftAssert();
+	public void TC_Footer_003_Validate_CopyRightText() {
 		generic.loadURL(getHomePageUrl());
 		String presentYear = new SimpleDateFormat("yyyy").format(new Date());
-		String expectedTxt = "© " + presentYear + " Casa2 Stays Pvt. Ltd. All rights reserved.";
-		s_assert.assertTrue(footer.get_copy_rightText().equalsIgnoreCase(expectedTxt),
-				"At bottom of HomePage copyRight is not appropriat!!.");
-		s_assert.assertAll();
+		String text = footer.get_copy_rightText();
+		Assert.assertTrue(text.contains(presentYear), "The Year Shown in Footer is Wrong !! \n\n" + text);
 	}
 
 	@DataProvider(name = "Validate_HomePage_Links_Landings")
@@ -118,7 +114,7 @@ public class ExecutionSuite_Footer extends UrlProvider {
 	}
 
 	@Test(dataProvider = "Validate_HomePage_Links_Landings")
-	public void TC_Validate_HomePage_City_And_Localities_Landings(int row, String LinkName, String Link_Type) {
+	public void TC_Footer_004_Validate_City_And_Localities_Landings(int row, String LinkName, String Link_Type) {
 		SoftAssert s_assert = new SoftAssert();
 		System.out.println("Row --->> " + row + ", Linkname --->> " + LinkName + ", link type --->> " + Link_Type);
 		if (!driver.getTitle().equals(Footer.homePage_title))
@@ -161,7 +157,7 @@ public class ExecutionSuite_Footer extends UrlProvider {
 	}
 
 	@Test(dataProvider = "Validate_HomePage_Links_Landings")
-	public void TC_Validate_HomePage_More_cities_Landings_Footer(int row, String LinkName, String Link_Type) {
+	public void TC_Footer_005_Validate_MoreCities_Landings(int row, String LinkName, String Link_Type) {
 		SoftAssert s_assert = new SoftAssert();
 		System.out.println("Row --->> " + row + ", Linkname --->> " + LinkName + ", link type --->> " + Link_Type);
 		if (!driver.getTitle().equals(Footer.homePage_title))
@@ -194,7 +190,7 @@ public class ExecutionSuite_Footer extends UrlProvider {
 	}
 
 	@Test
-	public void TC_Validate_LocalitiesAndLandmarks_Footer_LocalityPage() {
+	public void TC_Footer_006_Validate_Localities_Landmarks_LocalityPage() {
 		SoftAssert s_assert = new SoftAssert();
 		String localityName = "Sarojini Nagar";
 		generic.loadURL(getHomePageUrl());
@@ -216,7 +212,7 @@ public class ExecutionSuite_Footer extends UrlProvider {
 	}
 
 	@Test
-	public void TC_Validate_LocalitiesAndLandmarks_Footer_CityPage() {
+	public void TC_Footer_007_Validate_Localities_Landmarks_CityPage() {
 		SoftAssert s_assert = new SoftAssert();
 		generic.loadURL(getListingPageUrl());
 		s_assert.assertTrue(generic.isVisible(By.xpath(footer.popularLocalities_Lbl("Popular Localities"))),
@@ -249,7 +245,7 @@ public class ExecutionSuite_Footer extends UrlProvider {
 	}
 
 	@Test(dataProvider = "Subscription")
-	public void TC_Validate_subscriberEmail(String Email, String Expected) {
+	public void TC_Footer_008_FieldLevelValidations_SubscriberEmail(String Email, String Expected) {
 		generic.loadURL(UrlProvider.getHomePageUrl());
 		footer.fill_subscriber_Email_Txt(Email);
 		footer.click_subscribe_Btn();
