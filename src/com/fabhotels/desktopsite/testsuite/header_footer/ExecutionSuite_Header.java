@@ -16,8 +16,8 @@ import com.fabhotels.desktopsite.utils.UrlProvider;
 
 public class ExecutionSuite_Header extends Config {
 
-	SoftAssert softAssert;
 	Header header;
+	SoftAssert softAssert;
 	Xls_Reader xls= new Xls_Reader(Constants.FILEPATH_TESTDATASHEET_HEADER);
 
 	@BeforeTest
@@ -25,11 +25,11 @@ public class ExecutionSuite_Header extends Config {
 		generic = new GenericFunctions(driver);
 		driver = generic.startDriver(Driver_Type);
 		header = new Header(driver, generic);
-		softAssert = new SoftAssert();
 	}
 
 	@BeforeMethod
 	public void beforeMethod() {
+		softAssert = new SoftAssert();
 		driver.manage().deleteAllCookies();
 	}
 
@@ -47,7 +47,7 @@ public class ExecutionSuite_Header extends Config {
 
 	@Test(dataProvider = "headerPages")
 	public void TC_ExecutionSuite_Header_001_verifyHeaderPresenceAndFunctionality(String pageName, String url, String count){
-		driver.get(UrlProvider.getHomePageUrl()+url);
+		generic.loadURL(UrlProvider.getHomePageUrl()+url);
 		if(count.equals("4")){
 			softAssert.assertEquals("All Cities", header.getText_allCities_WE());
 		}
@@ -56,7 +56,7 @@ public class ExecutionSuite_Header extends Config {
 		generic.switchtoNewWindow();
 		softAssert.assertEquals(driver.getCurrentUrl(), UrlProvider.getHomePageUrl()+"franchise-enquiry");
 		driver.close();
-		generic.SwitchtoOriginalWindow();
+		generic.switchtoOriginalWindow();
 		header.click_fabLogo_Lnk();
 		softAssert.assertEquals(driver.getCurrentUrl(), UrlProvider.getHomePageUrl());
 		softAssert.assertAll();
