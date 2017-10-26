@@ -6,7 +6,6 @@ import java.util.Map;
 
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
@@ -220,10 +219,7 @@ public class ExecutionSuite_ListingPage extends Config {
 		s_assert.assertTrue(listingPage.isEnabled_roomNumber(3, 1), "Room 2 is Enabled");
 		s_assert.assertAll();	
 	}
-	
-	@AfterMethod
-	public void afterMethod() {
-	}
+
 
 	@AfterTest
 	public void aftertest() {
