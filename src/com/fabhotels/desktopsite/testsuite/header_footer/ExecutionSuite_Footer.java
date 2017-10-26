@@ -5,7 +5,6 @@ import java.lang.reflect.Method;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
@@ -76,7 +75,6 @@ public class ExecutionSuite_Footer extends UrlProvider {
 			if (Link_Type.equalsIgnoreCase("Static")) {
 
 				String Xpath = Footer.footerDiv_WE + Footer.staticText_Lnk + LinkName + "')]";
-				generic.scrollToElement(By.xpath(Xpath), true);
 				s_assert.assertTrue(generic.isVisible(Xpath), "Fail Static Text " + LinkName + " Not Visible!!");
 
 			} else if (Link_Type.equalsIgnoreCase("Link")) {
@@ -124,7 +122,6 @@ public class ExecutionSuite_Footer extends UrlProvider {
 			generic.loadURL(getHomePageUrl());
 
 		if (Link_Type.equalsIgnoreCase("CityLink")) {
-			generic.scrollToElement(By.xpath(footer.footerSection(3)), false);
 			boolean check = true;
 			footer.clickCiti(LinkName);
 			generic.goToSleep(2000);
@@ -200,7 +197,6 @@ public class ExecutionSuite_Footer extends UrlProvider {
 		generic.loadURL(getHomePageUrl());
 		ListingPage listingPage = new ListingPage(driver, generic);
 		listingPage.performSearch(localityName, "", "", "");
-		generic.scrollToElement(By.xpath(footer.footerSection(4)), false);
 		s_assert.assertTrue(generic.isVisible(By.xpath(footer.popularLocalities_Lbl("Nearby Localities"))),
 				"Nearby Localities is not present in footer while searching for a locality : i.e " + localityName);
 		s_assert.assertTrue(generic.isVisible(By.xpath(footer.popularLocalities_Lbl("Nearby Landmarks"))),
@@ -220,7 +216,6 @@ public class ExecutionSuite_Footer extends UrlProvider {
 	public void TC_Validate_LocalitiesAndLandmarks_CityPage_Footer() {
 		SoftAssert s_assert = new SoftAssert();
 		generic.loadURL(getListingPageUrl());
-		generic.scrollToElement(By.xpath(footer.footerSection(4)), false);
 		s_assert.assertTrue(generic.isVisible(By.xpath(footer.popularLocalities_Lbl("Popular Localities"))),
 				"Popular Localities is not present in footer under city Page : i.e " + getListingPageUrl());
 		s_assert.assertTrue(generic.isVisible(By.xpath(footer.popularLocalities_Lbl("Popular Landmarks"))),
@@ -266,10 +261,6 @@ public class ExecutionSuite_Footer extends UrlProvider {
 			Assert.assertEquals(generic.getText(Footer.Subscribe_WrongEmailMssg_WE),
 					"Oops! We think this is not a valid email ID", "Invalid email handling is not working.");
 		}
-	}
-
-	@AfterMethod
-	public void afterMethod() {
 	}
 
 	@AfterTest

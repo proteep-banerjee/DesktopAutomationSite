@@ -158,7 +158,6 @@ public class ExecutionSuite_ListingPage extends Config {
 		listingPage.performSearch("New Delhi", GenericFunctions.getDateAfterDays("0"),
 				GenericFunctions.getDateAfterDays("5"), "1");
 		generic.loadURL(UrlProvider.getGothamListPageUrl());
-		generic.scrollToElement(ListingPage.lastSoldOut_btn, false);
 		s_assert.assertEquals(generic.getText(ListingPage.soldOut_Lbl), "SOLD OUT");
 		s_assert.assertEquals(generic.getText(ListingPage.lastHotelName_WE), soldOut_HotelName);
 		s_assert.assertEquals(generic.getText(ListingPage.lastSoldOut_btn), "SOLD OUT");
@@ -170,7 +169,6 @@ public class ExecutionSuite_ListingPage extends Config {
 		listingPage.performSearch("New Delhi", GenericFunctions.getDateAfterDays("0"),
 				GenericFunctions.getDateAfterDays("1"), "2");
 		generic.loadURL(UrlProvider.getGothamListPageUrl());
-		generic.scrollToElement(ListingPage.lastSoldOut_btn, false);
 		String price_ListPage = generic
 				.getText(ListingPage.lastHotelPrice_WE)
 				.replaceAll("[^0-9.]", "");
@@ -203,7 +201,6 @@ public class ExecutionSuite_ListingPage extends Config {
 		listingPage.performSearch("New Delhi", GenericFunctions.getDateAfterDays("0"),
 				GenericFunctions.getDateAfterDays("5"), "5");
 		generic.loadURL(UrlProvider.getGothamListPageUrl());
-		generic.scrollToElement(ListingPage.someRoomLeft_WE, false);
 		s_assert.assertEquals(generic.getText(ListingPage.roomLeftLbl),"3 ROOMS LEFT","proper room left warning is not comming on List page.");
 		generic.findElement(ListingPage.roomLeftBookNow_btn).click();
 		s_assert.assertEquals(generic.getText(ListingPage.roomSoldOutAlertBox_Lbl),ListingPage.soldOutByRooms_Msg,"Rooms are not available error message is not comming on details page.");
