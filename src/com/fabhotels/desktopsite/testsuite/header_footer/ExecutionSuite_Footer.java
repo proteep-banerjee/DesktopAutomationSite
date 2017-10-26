@@ -1,7 +1,6 @@
 package com.fabhotels.desktopsite.testsuite.header_footer;
 
 import java.lang.reflect.Method;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 

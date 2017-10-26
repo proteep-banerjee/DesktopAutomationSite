@@ -14,7 +14,6 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import com.fabhotels.automationframework.genericfunctions.GenericFunctions;
-//ankit9289@bitbucket.org/fabhotelsvaibhav/automationdesktopsite.git
 import com.fabhotels.desktopsite.pageobjects.Calendar;
 import com.fabhotels.desktopsite.pageobjects.ListingPage;
 import com.fabhotels.desktopsite.utils.Config;
@@ -40,7 +39,6 @@ public class ExecutionSuite_ListingPage extends Config {
 	@BeforeMethod
 	public void beforeMethod() {
 		driver.manage().deleteAllCookies();
-		generic.loadURL(UrlProvider.getHomePageUrl());
 		generic.loadURL(UrlProvider.getListingPageUrl());
 	}
 
@@ -202,7 +200,7 @@ public class ExecutionSuite_ListingPage extends Config {
 				GenericFunctions.getDateAfterDays("5"), "5");
 		generic.loadURL(UrlProvider.getGothamListPageUrl());
 		s_assert.assertEquals(generic.getText(ListingPage.roomLeftLbl),"3 ROOMS LEFT","proper room left warning is not comming on List page.");
-		generic.findElement(ListingPage.roomLeftBookNow_btn).click();
+		generic.click(ListingPage.roomLeftBookNow_btn);
 		s_assert.assertEquals(generic.getText(ListingPage.roomSoldOutAlertBox_Lbl),ListingPage.soldOutByRooms_Msg,"Rooms are not available error message is not comming on details page.");
 		generic.waitForCompletePageLoad(driver);
 		s_assert.assertTrue(listingPage.isDisabled_roomNumber(2, 0), "Room 2 is Enabled");
