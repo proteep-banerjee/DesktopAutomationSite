@@ -7,7 +7,6 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
@@ -44,7 +43,6 @@ public class ExecutionSuite_DetailPage extends Config {
 	@BeforeMethod()
 	public void beforeMethod() {
 		driver.manage().deleteAllCookies();
-
 	}
 
 	@Test
@@ -431,17 +429,16 @@ public class ExecutionSuite_DetailPage extends Config {
 		generic.scrollToElement(By.xpath(DetailPage.cheveronNextNearby_Btn), false);
 		int i = 1;
 		while (!driver.findElement(By.xpath(DetailPage.exploreMorePropertiesCard_WE + "[last()]")).isDisplayed()) {
-			for (int j = 1; j < i + 2; j++) {
-				softAssert.assertTrue(dp.getLabelText_hotelNameNearby_Lbl(i).length() > 5, "Failed Property Name");
-				softAssert.assertTrue(dp.getLabelText_locationNearby_Lbl(i).length() > 5, "Failed Location");
-				softAssert.assertTrue(dp.getLabelText_reviewsAndRatingNearby_Lbl(i).length() > 5,
+			for (int j = i; j < i + 2; j++) {
+				softAssert.assertTrue(dp.getLabelText_hotelNameNearby_Lbl(j).length() > 5, "Failed Property Name");
+				softAssert.assertTrue(dp.getLabelText_locationNearby_Lbl(j).length() > 5, "Failed Location");
+				softAssert.assertTrue(dp.getLabelText_reviewsAndRatingNearby_Lbl(j).length() > 5,
 						"Failed review and ratings");
-				softAssert.assertTrue(dp.getLinkText_reviewsOnlyNearby_Lnk(i).length() > 5, "Failed review only");
-				softAssert.assertTrue(dp.getLabelText_peopleBookingNowNearby_Lbl(i).length() > 5,
+				softAssert.assertTrue(dp.getLinkText_reviewsOnlyNearby_Lnk(j).length() > 5, "Failed review only");
+				softAssert.assertTrue(dp.getLabelText_peopleBookingNowNearby_Lbl(j).length() > 5,
 						"Failed people Looking at it");
-				softAssert.assertTrue(dp.getLabelText_sellPriceNearBy_Lbl(i).length() > 5, "Failed sell price");
-				// softAssert.assertTrue(dp.getLabelText_rackPriceNearBy_Lbl(i).length()>5);
-				softAssert.assertTrue(dp.isVisible_bookNowNearBy_Btn(i), "Failed review and ratings");
+				softAssert.assertTrue(dp.getLabelText_sellPriceNearBy_Lbl(j).length() > 5, "Failed sell price");
+				softAssert.assertTrue(dp.isVisible_bookNowNearBy_Btn(j), "Failed review and ratings");
 			}
 			i = i + 2;
 			dp.click_cheveronNextNearby_Btn();
@@ -523,7 +520,6 @@ public class ExecutionSuite_DetailPage extends Config {
 	public void TC_ExecutionSuite_DetailPage_027_verifyBookingAcrossTheYear() throws ParseException {
 		SoftAssert softAssert = new SoftAssert();
 		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());
-
 		cal.Select_CheckIn_CheckOut_Date_Calendar_WE("31 December 2017", "02 January 2018");
 		dp.click_checkAvailabilityOnTop_Btn();
 		softAssert.assertEquals(dp.GetText_CheckOutDate_WE(), "02 Jan 2018");
@@ -570,10 +566,6 @@ public class ExecutionSuite_DetailPage extends Config {
 		softAssert.assertEquals(dp.getLabelText_soldOutOnMainImage_Lbl(), "SOLD OUT");
 		softAssert.assertTrue(dp.isDisabled_selectRoomsDisabled_Btn(), "Button is not disabled.");
 		softAssert.assertAll();
-	}
-
-	@AfterMethod
-	public void afterMethod() {
 	}
 
 	@AfterTest

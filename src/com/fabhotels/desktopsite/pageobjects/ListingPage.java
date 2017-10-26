@@ -104,7 +104,7 @@ public class ListingPage {
 	public static final By footer_stayUpdated = By.xpath("//div[@class='footer_row']//div[@class='stay_update']");
 	public static final By findFabHotel_Btn = By
 			.xpath("//*[contains(text(), ' Find FabHotels ') or contains(@value ,'Find FabHotels')]");
-	public static final By homePage_mainTitle_lbl = By.xpath("//div[contains(text(),'India’s Best')]");
+	public static final By homePage_mainTitle_lbl = By.xpath("//div[contains(text(),'Innnndia’s Best')]");
 	public static String roomsNumber_WE = "//div[@class='custom-value-dropdown']//li/a[contains(text(),'";// Append
 	public static String bookingNow_Lbl = "(//div[@class='booking-now'])";
 	public static String nearBy_txt = "Explore more hotels near ";
@@ -438,12 +438,12 @@ public class ListingPage {
 	}
 
 	public void No_Hotelsfound() {
-		generic.refreshPage();
 		SoftAssert s_assert = new SoftAssert();
+		generic.goToSleep(2000);
 		s_assert.assertTrue(generic.isVisible(noHotelFoundMsg_txt), "Error warning functionalty is broken");
 		s_assert.assertTrue(generic.isVisible(goToHomePage_Btn), "Go to Home Page is not comming");
 		generic.click(goToHomePage_Btn);
-		generic.waitForCompletePageLoad(driver);
+		generic.goToSleep(2000);
 		s_assert.assertTrue(generic.isVisible(homePage_mainTitle_lbl), "Go to Home Page is Not Working.");
 		s_assert.assertAll();
 	}

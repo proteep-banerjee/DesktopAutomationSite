@@ -1,17 +1,18 @@
 package com.fabhotels.desktopsite.pageobjects;
 
-import java.time.LocalDate;
-import java.util.List;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 import com.fabhotels.automationframework.genericfunctions.GenericFunctions;
 
 public class HomePage {
 	WebDriver driver;
 	GenericFunctions generic;
+	
+	public HomePage(WebDriver driver,GenericFunctions generic) {
+		this.driver = driver;
+		this.generic = generic;
+	}
 
 	public static final By mainTitle_Lbl = By.xpath("//div[@class='main_title']");
 	public static final By secondaryTitle_Lbl = By.xpath("//h2");
@@ -20,239 +21,660 @@ public class HomePage {
 	public static final By checkOut_Date_WE = By.id("checkOut");
 	public static final By find_Fabhotels_Btn = By.id("homePageSearchBtn");
 	public static final By popularCities_Lbl = By.xpath("//div[@class='popular-cities']/h4");
-	public static final By popularCitiesNames_Lbl = By.xpath("(//div[@class='popular-cities']//a)");
+	public static final String popularCitiesNames_Btn = "//div[@class='popular-cities']//a[text()='";
+	public static final By mostPopularHotesHeadline_Lbl = By.xpath("//strong[text()='Most popular FabHotels']");
+	public static final By inHighestDemandHeadline_Lbl = By.xpath("//h4[text()='In highest demand']");
+	public static final String hotelsInDemandImages_WE = "(//div[@class='hotels_fig_wrap']/img)";
+	public static final String hotelsInDemandRatings_WE = "(//div[@class='reviewer_rating float_left'])";
+	public static final String hotelsInDemandPrices_WE = "(//span[@class='popular_fabhotels_price'])";
+	public static final String hotelsInDemandName_WE = "(//div[@class='review_bottom_content']/h3)";
+	public static final String hotelsInDemandLocality_WE = "(//div[@class='popular_fabhotels_address']/span)";
+	public static final By hotelsInDemandCheveron_Btn = By.xpath("(//li/a[@class='flex-next'])[1]");
+	public static final String hotelsInDemandCard_Lnk = "(//div[@class='hotels_fig_wrap'])";
+	public static final String reviewCards_Lnk = "(//div[@class='review_top_content'])";
+	public static final By fabulousDealsHeadline_Lbl = By.xpath("//strong[text()='Fabulous deals']");
+	public static final By stayMoreSaveMoreHeadline_Lbl = By.xpath("//h4[text()='Stay more, Save more']");
+	public static final By plusVerifiedReviewsHeadline_Lbl = By.xpath("//strong[text()='50,000+ verified reviews']");
+	public static final By hearFromOurGuestsHeadline_Lbl = By.xpath("//h4[text()='Hear from our guests']");
+	public static final By OurHospitalityTeamHeadline_Lbl = By.xpath("//strong[text()='Our hospitality team']");
+	public static final By fabPeopleFabSyatHeadline_Lbl = By.xpath("//h4[text()='Fab people for a fab stay experience']");
+	public static final By workWithUsHeadline_Lbl = By.xpath("//strong[text()='Work with us']");
+	public static final By weAreHiringHeadline_Lbl = By.xpath("//h4[text()='We are hiring awesome folks']");
+	public static final By spokenAboutHeadline_Lbl = By.xpath("//strong[text()='We are being spoken about']");
+	public static final By readMediaCoverageHeadline_Lbl = By.xpath("//h4[text()='Read our media coverage']");
+	public static final By fifteenPercentOffCard_Lnk = By.xpath("//a[@href='/deals/fab-grab-flat-15-percent-off']");
+	public static final By rFourHundredOffCard_Lnk = By.xpath("//a[@href='/deals/fab-grab-rs-400-off']");	
+	public static final By reviewsCheveron_Btn = By.xpath("(//li/a[@class='flex-next'])[2]");
+	public static final String reviewerNameReviewCard_Lbl = "(//div[@class='reviewer_name'])";
+	public static final String reviewerRatingReviewCard_Lbl = "(//div[@class='reviewer_rating'])";
+	public static final String reviewerTextReviewCard_Lbl = "(//div[@class='reviewer_text'])";
+	public static final String reviewerHotelNameReviewCard_Lnk = "((//div[@class='review_bottom_content'])/a/h3)";
+	public static final String reviewerStayDateNameReviewCard_Lbl = "(//div[@class='reviewer_stay_date'])";
+	public static final By readAllReviews_Lnk = By.xpath("//a[text()=' Read all reviews ']");
+	public static final By hospitalityTeamText_Lbl = By.xpath("(//div[@class='team_text'])[1]");
+	public static final By workWithUsTeamText_Lbl = By.xpath("(//div[@class='team_text'])[2]");
+	public static final By hospitalityTeamImage_WE = By.xpath("//img[@class='team_graphics']");
+	public static final By workWithUsImage_WE = By.xpath("//div[@class='team_graphics backend-team']");
+	public static final By seeAllOffers_Lnk = By.xpath("//a[text()=' See all offers ']");
+	public static final By seeAllOpenings_Lnk = By.xpath("//a[text()='See all openings']");
+	public static final By seeMoreMentions_Lnk = By.xpath("//a[text()='See more mentions']");
+	public static final By economicTimesLogo_WE = By.xpath("//div[@class='flex_container spoken_about_fabhotels_title et']");
+	public static final By forbesLogo_WE = By.xpath("//div[@class='flex_container spoken_about_fabhotels_title forbes']");
+	public static final By seriesBfunding_Lbl = By.xpath("(//div[@class='spoken_about_fabhotels_text']/p)[1]");
+	public static final By expandingRapidly_Lbl = By.xpath("(//div[@class='spoken_about_fabhotels_text']/p)[2]");
+	public static final By economicTimes_Lnk = By.xpath("(//small/a)[1]");
+	public static final By forbes_Lnk = By.xpath("(//small/a)[2]");
+	public static final By economicTimesDate_Lbl = By.xpath("(//div[@class='spoken_about_fabhotels_source']/span)[1]");
+	public static final By forbesDate_Lbl = By.xpath("(//div[@class='spoken_about_fabhotels_source']/span)[2]");
+
+
+	public void click_mainTitle_Lbl(){
+		generic.click(mainTitle_Lbl);
+	}
+
+	public boolean isVisible_mainTitle_Txt(){
+		return generic.isVisible(mainTitle_Lbl);
+	}
+
+	public String getLabelText_mainTitle_Lbl(){
+		return generic.getText(mainTitle_Lbl);
+	}
+
+	public void click_secondaryTitle_Lbl(){
+		generic.click(secondaryTitle_Lbl);
+	}
+	
+	public void click_seeAllOffers_Lnk(){
+		generic.click(seeAllOffers_Lnk);
+	}
+	public void click_reviewsCheveron_Btn(){
+		generic.click(reviewsCheveron_Btn);
+	}
+	public boolean isVisible_reviewsCheveron_Btn(){
+		return generic.isVisible(reviewsCheveron_Btn);
+	}
 	
 	
-	public static final By lowest_Online_Prices_WE = By.xpath("//div[@class='middle_bx_lowest_price']/img[@class='lazy']");
-	public static final By photo_Match_WE = By.xpath("//div[@Class='middle_bx_photo_match_white_bx']");
-	public static final By propertyPromotion_widget_WE = By.xpath("//div[@class='middle_bx_photo_match_pic_shadow']");
-	public static final By best_Reviewed_Chain_WE = By.xpath("//div[contains(@class, 'best_review_chain')]/img[contains(@class, 'lazy')]");
-	public static final By Best_Deals_WE = By.xpath("//div[@class='best_hotel_deals']");
-	public static final By stay_More_Earn_More_WE = By.xpath("//div[@class='stay_more_earn']");
-	public static final By best_Deals_WE = By.xpath("//div[@class='last_minute_offer_text']");
-	public static final By testimonial_bx_heading_WE = By.xpath("//div[@class='testimonial_bx_heading']");
-	public static final By homepage_Reviews_R_WE = By.xpath("//span[@class='homepage_reviews_slide_right']");
-	public static final By homepage_Reviews_L_WE = By.xpath("//span[@class='homepage_reviews_slide_left']");
-	public static final By subscriber_Email_Txt = By.id("subscriberEmail");
-	public static final By subscribe_Btn = By.xpath("//input[@type='submit']");
-	public static final By Subscribe_SuccessMssg_WE = By.xpath("//p[contains(text(), 'Thank you! We shall keep you updated')]");
-	public static final By Subscribe_AlreadySubscribedMssg_WE = By.xpath("//p[contains(text(), 'You are already subscribed')]");
-	public static final By Subscribe_WrongEmailMssg_WE = By.xpath("//p[contains(text(), 'Oops! We think this is not a valid email ID')]");
-	public static final By review_bx_heading_wrd_name_WE = By.xpath("//div[@class='review_bx_heading_wrd_name']");
-
-	public static final By voucher_Close_Btn = By.xpath("//div[@class='vouchure-modal-dialog']//button[@class='vouchure_close modal_review_cls']");
-	public static final By voucher_Name_Txt = By.xpath("//input[@placeholder='Your name']");
-	public static final By voucher_EmailID_Txt = By.xpath("//input[@placeholder='Your email ID']");
-	public static final By voucher_MobileNumber_Txt = By.xpath("//input[@placeholder='Your mobile no.']");
-	public static final By voucher_SendMeVouchers_Btn = By.xpath("//button[text()='Yes, Send me vouchers']");
-
-	public static final By getCheckInMonthText1_WE = By.xpath("(//th[@class='month'])[1]");
-	public static final By getCheckInMonthText2_WE = By.xpath("(//th[@class='month'])[2]");
-
-	public static final By getCheckInDateText_WE = By.xpath("//div[@id='daterangepicker_start']");
-	public static final By getCheckOutDateText_WE = By.xpath("//div[@id='daterangepicker_end']");
-
-	public static final String checkInDate1_Btn = "//div[@class='calendar left']///td[text()='";
-	public static final String checkInDate2_Btn = "']";
-
-	public static final String checkOutDate1_Btn = "//div[@class='calendar right']///td[text()='";
-	public static final String checkOutDate2_Btn = "']";
-
-
-	public static final String click_checkIn_Btn = "//div[@id='daterangepicker_start']";
-	public static final String click_checkOut_Btn = "//div[@id='daterangepicker_end']";
-
-	//input[@id='checkOut']
-	//div[@id='booking_calender']//td[text()='14']
-
-	public HomePage(WebDriver driver, GenericFunctions generic) {
-		this.driver = driver;
-		this.generic = generic;
+	public void click_readAllReviews_Lnk(){
+		generic.click(readAllReviews_Lnk);
 	}
 
-	public boolean VerifyScrollFunctionality_ReviewBar() {
-		List<WebElement> we = driver.findElements(review_bx_heading_wrd_name_WE);
-
-		//String first = we.get(0).getText();
-		String second = we.get(1).getText();
-
-		generic.click(homepage_Reviews_R_WE);
-
-		generic.goToSleep(2000);
-
-		List<WebElement> we1 = driver.findElements(review_bx_heading_wrd_name_WE);
-
-		String first1 = we1.get(0).getText();
-		// String second1 = we1.get(1).getText();
-
-		System.out.println(first1 + "   " + second);
-		// System.out.println(second + " " + second1);
-
-		if (first1.equals(second))
-			return true;
-		else
-			return false;
+	public boolean isVisible_secondaryTitle_Txt(){
+		return generic.isVisible(secondaryTitle_Lbl);
 	}
 
-	public void fill_location_Txt(String input) {
-		generic.fill(location_Txt, input);
+	public String getLabelText_secondaryTitle_Lbl(){
+		return generic.getText(secondaryTitle_Lbl);
 	}
 
-	public void clear_location_Txt() {
+	public void fill_location_Txt(String inputdata){
+		if(inputdata.trim().length()==0){
+			clear_location_Txt();return;}
+		generic.fill(location_Txt,inputdata);
+	}
+
+	public  void clear_location_Txt(){
 		generic.clear(location_Txt);
 	}
 
-	public String getText_location_Txt() {
-		return generic.getText(location_Txt);
+	public boolean isVisible_location_Txt(){
+		return generic.isVisible(location_Txt);
 	}
 
-	public void click_location_Txt() {
+	public  void click_location_Txt(){
 		generic.click(location_Txt);
 	}
 
-	public void click_checkIn_Date_WE() {
+	public String getText_location_Txt(){
+		return generic.getText(location_Txt);}
+
+	public void click_checkIn_Date_WE(){
 		generic.click(checkIn_Date_WE);
 	}
 
-	public String getText_checkIn_Date_WE() {
-		return generic.getText(checkIn_Date_WE);
+	public boolean isVisible_checkIn_Date_Txt(){
+		return generic.isVisible(checkIn_Date_WE);
 	}
 
-	public void click_checkOut_Date_WE() {
+	public String getElementText_checkIn_Date_WE(){
+		return generic.getValue(checkIn_Date_WE);
+
+	}
+
+	public void click_checkOut_Date_WE(){
 		generic.click(checkOut_Date_WE);
 	}
 
-	public String getText_checkOut_Date_WE() {
-		return generic.getText(checkOut_Date_WE);
+	public boolean isVisible_checkOut_Date_Txt(){
+		return generic.isVisible(checkOut_Date_WE);
 	}
 
-	public void click_find_Fabhotels_Btn() {
+	public String getElementText_checkOut_Date_WE(){
+		return generic.getValue(checkOut_Date_WE);
+
+	}
+
+	public void click_find_Fabhotels_Btn(){
 		generic.click(find_Fabhotels_Btn);
 	}
 
-	public String getText_find_Fabhotels_Btn() {
-		return generic.getText(find_Fabhotels_Btn);
+	public boolean isVisible_find_Fabhotels_Txt(){
+		return generic.isVisible(find_Fabhotels_Btn);
 	}
 
-	public String getText_lowest_Online_Prices_WE() {
-		return generic.getText(lowest_Online_Prices_WE);
+	public void click_popularCities_Lbl(){
+		generic.click(popularCities_Lbl);
 	}
 
-	public String getText_photo_Match_WE() {
-		return generic.getText(photo_Match_WE);
+	public boolean isVisible_popularCities_Txt(){
+		return generic.isVisible(popularCities_Lbl);
 	}
 
-	public void click_PropertyPromotion_widget() {
-		generic.click(propertyPromotion_widget_WE);
+	public String getLabelText_popularCities_Lbl(){
+		return generic.getText(popularCities_Lbl);
 	}
 
-	public void click_best_Reviewed_Chain_WE() {
-		generic.click(best_Reviewed_Chain_WE);
+	public void click_popularCitiesNames_Btn(String cityName){
+		generic.click(popularCitiesNames_Btn+cityName+"']");
 	}
 
-	public void click_Best_Deals_WE() {
-		generic.clear(Best_Deals_WE);
+	public boolean isVisible_popularCitiesNames_Txt(String cityName){
+		return generic.isVisible(popularCitiesNames_Btn+cityName+"']");
 	}
 
-	public String getText_testimonial_bx_heading_WE () {
-		return generic.getText(testimonial_bx_heading_WE);
+	public String getLabelText_popularCitiesNames_Lbl(String cityName){
+		return generic.getText(popularCitiesNames_Btn+cityName+"']");
 	}
 
-	public void click_homepage_Reviews_R_WE () {
-		generic.click(homepage_Reviews_R_WE);
+	public void click_mostPopularHotesHeadline_Lbl(){
+		generic.click(mostPopularHotesHeadline_Lbl);
 	}
 
-	public void click_homepage_Reviews_L_WE () {
-		generic.click(homepage_Reviews_L_WE);
+	public boolean isVisible_mostPopularHotesHeadline_Txt(){
+		return generic.isVisible(mostPopularHotesHeadline_Lbl);
 	}
 
-	public void fill_subscriber_Email_Txt (String input) {
-		generic.fill(subscriber_Email_Txt, input);
+	public String getLabelText_mostPopularHotesHeadline_Lbl(){
+		return generic.getText(mostPopularHotesHeadline_Lbl);
 	}
 
-	public void clear_subscriber_Email_Txt() {
-		generic.clear(subscriber_Email_Txt);
+	public void click_inHighestDemandHeadline_Lbl(){
+		generic.click(inHighestDemandHeadline_Lbl);
 	}
 
-	public String getText_subscriber_Email_Txt() {
-		return generic.getText(subscriber_Email_Txt);
+	public boolean isVisible_inHighestDemandHeadline_Txt(){
+		return generic.isVisible(inHighestDemandHeadline_Lbl);
 	}
 
-	public void click_subscriber_Email_Txt() {
-		generic.click(subscriber_Email_Txt);
+	public String getLabelText_inHighestDemandHeadline_Lbl(){
+		return generic.getText(inHighestDemandHeadline_Lbl);
 	}
 
-	public void click_subscribe_Btn() {
-		generic.click(subscribe_Btn);
+	public void click_hotelsInDemandImages_WE(){
+		generic.click(hotelsInDemandImages_WE);
 	}
 
-	public void click_voucher_Close_Btn() {
-		generic.click(voucher_Close_Btn);
+	public boolean isVisible_hotelsInDemandImages_WE(int i){
+		return generic.isVisible(hotelsInDemandImages_WE+"["+i+"]");
 	}
 
+	public String getElementText_hotelsInDemandImages_WE(){
+		return generic.getText(hotelsInDemandImages_WE);
 
-	public void click_checkInDate_WE(){
-		generic.clear(checkIn_Date_WE);
 	}
 
-	public void click_checkOutDate_WE(){
-		generic.clear(checkOut_Date_WE);
+	public void click_hotelsInDemandRatings_WE(){
+		generic.click(hotelsInDemandRatings_WE);
 	}
 
-	public void getCheckInMonthText1_WE(){
-		driver.findElement(getCheckInMonthText1_WE).getText();
+	public boolean isVisible_hotelsInDemandRatings_Txt(){
+		return generic.isVisible(hotelsInDemandRatings_WE);
 	}
 
-	public void getCheckInMonthText2_WE(){
-		driver.findElement(getCheckInMonthText2_WE).getText();
+	public String getElementText_hotelsInDemandRatings_WE(int i){
+		return generic.getText(hotelsInDemandRatings_WE+"["+i+"]");
+
 	}
 
-	public void click_checkInDate_Btn(){
-		generic.clear(checkIn_Date_WE);
+	public void click_hotelsInDemandPrices_WE(){
+		generic.click(hotelsInDemandPrices_WE);
 	}
 
-	public void click_checkOutDate_Btn(){
-		generic.clear(checkOut_Date_WE);
+	public boolean isVisible_hotelsInDemandPrices_Txt(){
+		return generic.isVisible(hotelsInDemandPrices_WE);
 	}
 
-	public void getCheckInDateText_WE(){
-		driver.findElement(getCheckInDateText_WE).getText();
+	public String getElementText_hotelsInDemandPrices_WE(int i){
+		return generic.getText(hotelsInDemandPrices_WE+"["+i+"]");
+
 	}
 
-	public void getCheckOutDateText_WE(){
-		driver.findElement(getCheckOutDateText_WE).getText();
+	public void click_hotelsInDemandName_WE(){
+		generic.click(hotelsInDemandName_WE);
 	}
 
-	public void Click_Btn(String xpath){
-		try{
-			driver.findElement(By.xpath(xpath)).click();
-		}catch(Exception e){
-
-		}
+	public boolean isVisible_hotelsInDemandName_Txt(){
+		return generic.isVisible(hotelsInDemandName_WE);
 	}
 
-	public void Click_Btn(String xpath1,String xpath2 , String inputData){
-		String xpath=xpath1+inputData+xpath2;
-		try{
-			System.out.println(xpath);
-			driver.findElement(By.xpath(xpath)).click();
-		}catch(Exception e){
+	public String getElementText_hotelsInDemandName_WE(int i){
+		return generic.getText(hotelsInDemandName_WE+"["+i+"]");
 
-		}
 	}
 
-	public void positiveCase_Search_HomePage(){
+	public void click_hotelsInDemandLocality_WE(){
+		generic.click(hotelsInDemandLocality_WE);
+	}
 
-		if(generic.isVisible(voucher_Close_Btn)){
-			click_voucher_Close_Btn();
-		}
-		LocalDate todayDate = LocalDate.now();
-		String nextDate = todayDate.plusDays(1).toString();
-		System.out.println(todayDate+" , "+nextDate);
-		click_checkInDate_WE();
-		String spiltDate[]=todayDate.toString().split("-");
-		Click_Btn(checkInDate1_Btn,checkInDate2_Btn,spiltDate[2]);
+	public boolean isVisible_hotelsInDemandLocality_Txt(){
+		return generic.isVisible(hotelsInDemandLocality_WE);
+	}
+
+	public String getElementText_hotelsInDemandLocality_WE(int i){
+		return generic.getText(hotelsInDemandLocality_WE+"["+i+"]");
+
+	}
+
+	public void click_hotelsInDemandCheveron_Btn(){
+		generic.click(hotelsInDemandCheveron_Btn);
+	}
+
+	public boolean isVisible_hotelsInDemandCheveron_Txt(){
+		return generic.isVisible(hotelsInDemandCheveron_Btn);
+	}
+
+	public void click_hotelsInDemandCard_Lnk(){
+		generic.click(hotelsInDemandCard_Lnk);
+	}
+
+	public boolean isVisible_hotelsInDemandCard_Txt(){
+		return generic.isVisible(hotelsInDemandCard_Lnk);
+	}
+
+	public String getLinkText_hotelsInDemandCard_Lnk(){
+		return generic.getText(hotelsInDemandCard_Lnk);
+	}
+
+	public void click_fabulousDealsHeadline_Lbl(){
+		generic.click(fabulousDealsHeadline_Lbl);
+	}
+
+	public boolean isVisible_fabulousDealsHeadline_Txt(){
+		return generic.isVisible(fabulousDealsHeadline_Lbl);
+	}
+
+	public String getLabelText_fabulousDealsHeadline_Lbl(){
+		return generic.getText(fabulousDealsHeadline_Lbl);
+	}
+
+	public void click_stayMoreSaveMoreHeadline_Lbl(){
+		generic.click(stayMoreSaveMoreHeadline_Lbl);
+	}
+
+	public boolean isVisible_stayMoreSaveMoreHeadline_Txt(){
+		return generic.isVisible(stayMoreSaveMoreHeadline_Lbl);
+	}
+
+	public String getLabelText_stayMoreSaveMoreHeadline_Lbl(){
+		return generic.getText(stayMoreSaveMoreHeadline_Lbl);
+	}
+
+	public void click_plusVerifiedReviewsHeadline_Lbl(){
+		generic.click(plusVerifiedReviewsHeadline_Lbl);
+	}
+
+	public boolean isVisible_plusVerifiedReviewsHeadline_Txt(){
+		return generic.isVisible(plusVerifiedReviewsHeadline_Lbl);
+	}
+
+	public String getLabelText_plusVerifiedReviewsHeadline_Lbl(){
+		return generic.getText(plusVerifiedReviewsHeadline_Lbl);
+	}
+
+	public void click_hearFromOurGuestsHeadline_Lbl(){
+		generic.click(hearFromOurGuestsHeadline_Lbl);
+	}
+
+	public boolean isVisible_hearFromOurGuestsHeadline_Txt(){
+		return generic.isVisible(hearFromOurGuestsHeadline_Lbl);
+	}
+
+	public String getLabelText_hearFromOurGuestsHeadline_Lbl(){
+		return generic.getText(hearFromOurGuestsHeadline_Lbl);
+	}
+
+	public void click_OurHospitalityTeamHeadline_Lbl(){
+		generic.click(OurHospitalityTeamHeadline_Lbl);
+	}
+
+	public boolean isVisible_OurHospitalityTeamHeadline_Txt(){
+		return generic.isVisible(OurHospitalityTeamHeadline_Lbl);
+	}
+
+	public String getLabelText_OurHospitalityTeamHeadline_Lbl(){
+		return generic.getText(OurHospitalityTeamHeadline_Lbl);
+	}
+
+	public void click_fabPeopleFabSyatHeadline_Lbl(){
+		generic.click(fabPeopleFabSyatHeadline_Lbl);
+	}
+
+	public boolean isVisible_fabPeopleFabSyatHeadline_Txt(){
+		return generic.isVisible(fabPeopleFabSyatHeadline_Lbl);
+	}
+
+	public String getLabelText_fabPeopleFabSyatHeadline_Lbl(){
+		return generic.getText(fabPeopleFabSyatHeadline_Lbl);
+	}
+
+	public void click_workWithUsHeadline_Lbl(){
+		generic.click(workWithUsHeadline_Lbl);
+	}
+
+	public boolean isVisible_workWithUsHeadline_Txt(){
+		return generic.isVisible(workWithUsHeadline_Lbl);
+	}
+
+	public String getLabelText_workWithUsHeadline_Lbl(){
+		return generic.getText(workWithUsHeadline_Lbl);
+	}
+
+	public void click_weAreHiringHeadline_Lbl(){
+		generic.click(weAreHiringHeadline_Lbl);
+	}
+
+	public boolean isVisible_weAreHiringHeadline_Txt(){
+		return generic.isVisible(weAreHiringHeadline_Lbl);
+	}
+
+	public String getLabelText_weAreHiringHeadline_Lbl(){
+		return generic.getText(weAreHiringHeadline_Lbl);
+	}
+
+	public void click_spokenAboutHeadline_Lbl(){
+		generic.click(spokenAboutHeadline_Lbl);
+	}
+
+	public boolean isVisible_spokenAboutHeadline_Txt(){
+		return generic.isVisible(spokenAboutHeadline_Lbl);
+	}
+
+	public String getLabelText_spokenAboutHeadline_Lbl(){
+		return generic.getText(spokenAboutHeadline_Lbl);
+	}
+
+	public void click_readMediaCoverageHeadline_Lbl(){
+		generic.click(readMediaCoverageHeadline_Lbl);
+	}
+
+	public boolean isVisible_readMediaCoverageHeadline_Txt(){
+		return generic.isVisible(readMediaCoverageHeadline_Lbl);
+	}
+
+	public String getLabelText_readMediaCoverageHeadline_Lbl(){
+		return generic.getText(readMediaCoverageHeadline_Lbl);
+	}
+
+	public void click_fifteenPercentOffCard_Lnk(){
+		generic.click(fifteenPercentOffCard_Lnk);
+	}
+
+	public boolean isVisible_fifteenPercentOffCard_Txt(){
+		return generic.isVisible(fifteenPercentOffCard_Lnk);
+	}
+
+	public String getLinkText_fifteenPercentOffCard_Lnk(){
+		return generic.getText(fifteenPercentOffCard_Lnk);
+	}
+
+	public void click_rFourHundredOffCard_Lnk(){
+		generic.click(rFourHundredOffCard_Lnk);
+	}
+
+	public boolean isVisible_rFourHundredOffCard_Txt(){
+		return generic.isVisible(rFourHundredOffCard_Lnk);
+	}
+
+	public String getLinkText_rFourHundredOffCard_Lnk(){
+		return generic.getText(rFourHundredOffCard_Lnk);
+	}
+
+	public void click_reviewerNameReviewCard_Lbl(){
+		generic.click(reviewerNameReviewCard_Lbl);
+	}
+
+	public boolean isVisible_reviewerNameReviewCard_Txt(){
+		return generic.isVisible(reviewerNameReviewCard_Lbl);
+	}
+
+	public String getLabelText_reviewerNameReviewCard_Lbl(int i){
+		return generic.getText(reviewerNameReviewCard_Lbl+"["+i+"]");
+	}
+
+	public void click_reviewerRatingReviewCard_Lbl(){
+		generic.click(reviewerRatingReviewCard_Lbl);
+	}
+
+	public boolean isVisible_reviewerRatingReviewCard_Txt(){
+		return generic.isVisible(reviewerRatingReviewCard_Lbl);
+	}
+
+	public String getLabelText_reviewerRatingReviewCard_Lbl(int i){
+		return generic.getText(reviewerRatingReviewCard_Lbl+"["+i+"]");
 	}
 	
-	
+	public boolean isVisible_reviewerRatingReviewCard_Lbl(int i){
+		return generic.isVisible(reviewerRatingReviewCard_Lbl+"["+i+"]");
+	}
+
+	public void click_reviewerTextReviewCard_Lbl(){
+		generic.click(reviewerTextReviewCard_Lbl);
+	}
+
+	public boolean isVisible_reviewerTextReviewCard_Txt(){
+		return generic.isVisible(reviewerTextReviewCard_Lbl);
+	}
+
+	public String getLabelText_reviewerTextReviewCard_Lbl(int i){
+		return generic.getText(reviewerTextReviewCard_Lbl+"["+i+"]");
+	}
+
+	public void click_reviewerHotelNameReviewCard_Lnk(int i){
+		generic.click(reviewerHotelNameReviewCard_Lnk+"["+i+"]");
+	}
+
+	public boolean isVisible_reviewerHotelNameReviewCard_Txt(){
+		return generic.isVisible(reviewerHotelNameReviewCard_Lnk);
+	}
+
+	public String getLinkText_reviewerHotelNameReviewCard_Lnk(int i){
+		return generic.getText(reviewerHotelNameReviewCard_Lnk+"["+i+"]");
+	}
+
+	public void click_reviewerStayDateNameReviewCard_Lbl(){
+		generic.click(reviewerStayDateNameReviewCard_Lbl);
+	}
+
+	public boolean isVisible_reviewerStayDateNameReviewCard_Txt(){
+		return generic.isVisible(reviewerStayDateNameReviewCard_Lbl);
+	}
+
+	public String getLabelText_reviewerStayDateNameReviewCard_Lbl(int i){
+		return generic.getText(reviewerStayDateNameReviewCard_Lbl+"["+i+"]");
+	}
+
+	public void click_hospitalityTeamText_Lbl(){
+		generic.click(hospitalityTeamText_Lbl);
+	}
+
+	public boolean isVisible_hospitalityTeamText_Txt(){
+		return generic.isVisible(hospitalityTeamText_Lbl);
+	}
+
+	public String getLabelText_hospitalityTeamText_Lbl(){
+		return generic.getText(hospitalityTeamText_Lbl);
+	}
+
+	public void click_workWithUsTeamText_Lbl(){
+		generic.click(workWithUsTeamText_Lbl);
+	}
+
+	public boolean isVisible_workWithUsTeamText_Txt(){
+		return generic.isVisible(workWithUsTeamText_Lbl);
+	}
+
+	public String getLabelText_workWithUsTeamText_Lbl(){
+		return generic.getText(workWithUsTeamText_Lbl);
+	}
+
+	public void click_hospitalityTeamImage_WE(){
+		generic.click(hospitalityTeamImage_WE);
+	}
+
+	public boolean isVisible_hospitalityTeamImage_Txt(){
+		return generic.isVisible(hospitalityTeamImage_WE);
+	}
+
+	public String getElementText_hospitalityTeamImage_WE(){
+		return generic.getText(hospitalityTeamImage_WE);
+
+	}
+
+	public void click_workWithUsImage_WE(){
+		generic.click(workWithUsImage_WE);
+	}
+
+	public boolean isVisible_workWithUsImage_WE(){
+		return generic.isVisible(workWithUsImage_WE);
+	}
+
+	public String getElementText_workWithUsImage_WE(){
+		return generic.getText(workWithUsImage_WE);
+
+	}
+
+	public void click_seeAllOpenings_Lnk(){
+		generic.click(seeAllOpenings_Lnk);
+	}
+
+	public boolean isVisible_seeAllOpenings_Txt(){
+		return generic.isVisible(seeAllOpenings_Lnk);
+	}
+
+	public String getLinkText_seeAllOpenings_Lnk(){
+		return generic.getText(seeAllOpenings_Lnk);
+	}
+
+	public void click_seeMoreMentions_Lnk(){
+		generic.click(seeMoreMentions_Lnk);
+	}
+
+	public boolean isVisible_seeMoreMentions_Txt(){
+		return generic.isVisible(seeMoreMentions_Lnk);
+	}
+
+	public String getLinkText_seeMoreMentions_Lnk(){
+		return generic.getText(seeMoreMentions_Lnk);
+	}
+
+	public void click_economicTimesLogo_WE(){
+		generic.click(economicTimesLogo_WE);
+	}
+
+	public boolean isVisible_economicTimesLogo_WE(){
+		return generic.isVisible(economicTimesLogo_WE);
+	}
+
+	public String getElementText_economicTimesLogo_WE(){
+		return generic.getText(economicTimesLogo_WE);
+
+	}
+
+	public void click_forbesLogo_WE(){
+		generic.click(forbesLogo_WE);
+	}
+
+	public boolean isVisible_forbesLogo_WE(){
+		return generic.isVisible(forbesLogo_WE);
+	}
+
+	public String getElementText_forbesLogo_WE(){
+		return generic.getText(forbesLogo_WE);
+
+	}
+
+	public void click_seriesBfunding_Lbl(){
+		generic.click(seriesBfunding_Lbl);
+	}
+
+	public boolean isVisible_seriesBfunding_Txt(){
+		return generic.isVisible(seriesBfunding_Lbl);
+	}
+
+	public String getLabelText_seriesBfunding_Lbl(){
+		return generic.getText(seriesBfunding_Lbl);
+	}
+
+	public void click_expandingRapidly_Lbl(){
+		generic.click(expandingRapidly_Lbl);
+	}
+
+	public boolean isVisible_expandingRapidly_Txt(){
+		return generic.isVisible(expandingRapidly_Lbl);
+	}
+
+	public String getLabelText_expandingRapidly_Lbl(){
+		return generic.getText(expandingRapidly_Lbl);
+	}
+
+	public void click_economicTimes_Lnk(){
+		generic.click(economicTimes_Lnk);
+	}
+
+	public boolean isVisible_economicTimes_Txt(){
+		return generic.isVisible(economicTimes_Lnk);
+	}
+
+	public String getLinkText_economicTimes_Lnk(){
+		return generic.getText(economicTimes_Lnk);
+	}
+
+	public void click_forbes_Lnk(){
+		generic.click(forbes_Lnk);
+	}
+
+	public boolean isVisible_forbes_Txt(){
+		return generic.isVisible(forbes_Lnk);
+	}
+
+	public String getLinkText_forbes_Lnk(){
+		return generic.getText(forbes_Lnk);
+	}
+
+	public void click_economicTimesDate_Lbl(){
+		generic.click(economicTimesDate_Lbl);
+	}
+
+	public boolean isVisible_economicTimesDate_Txt(){
+		return generic.isVisible(economicTimesDate_Lbl);
+	}
+
+	public String getLabelText_economicTimesDate_Lbl(){
+		return generic.getText(economicTimesDate_Lbl);
+	}
+
+	public void click_forbesDate_Lbl(){
+		generic.click(forbesDate_Lbl);
+	}
+
+	public boolean isVisible_forbesDate_Txt(){
+		return generic.isVisible(forbesDate_Lbl);
+	}
+
+	public String getLabelText_forbesDate_Lbl(){
+		return generic.getText(forbesDate_Lbl);
+	}
+
+
+
 }

@@ -8,7 +8,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -35,9 +34,6 @@ public class ExecutionSuite_Footer extends UrlProvider {
 		generic.loadURL(getHomePageUrl());
 	}
 
-	@BeforeMethod
-	public void beforeMethod() {
-	}
 
 	@DataProvider(name = "Validate_Links_Landings_Footer")
 	public Object[][] DataProvider_Footer() {
@@ -170,7 +166,7 @@ public class ExecutionSuite_Footer extends UrlProvider {
 			s_assert.assertTrue(check, "Fail Link " + LinkName + "Improper Landing!!");
 			s_assert.assertTrue(generic.isVisible(Footer.hotels_listPage_WE),
 					"Hotles are not comming under :" + Link_Type);
-			generic.SwitchtoOriginalWindow();
+			generic.switchtoOriginalWindow();
 
 		} else if (Link_Type.equalsIgnoreCase("Static")) {
 			String Xpath = Footer.footerDiv_WE + Footer.staticText_Lnk + LinkName + "')]";
