@@ -23,7 +23,6 @@ public class ExecutionSuite_Footer extends UrlProvider {
 
 	Xls_Reader datatable;
 	String Sheetname;
-	String Sheetnames;
 	Footer footer;
 
 	@BeforeTest
@@ -40,60 +39,48 @@ public class ExecutionSuite_Footer extends UrlProvider {
 
 	@DataProvider(name = "Validate_Links_Landings_Footer")
 	public Object[][] DataProvider_Footer() {
-		Sheetnames = "LandingURLs";
+		Sheetname = "Footer";
 		datatable = new Xls_Reader(Constants.FILEPATH_TESTDATASHEET_FOOTER);
-		int rowcount_url = datatable.getRowCount(Sheetnames);
-		Object result[][] = new Object[rowcount_url - 1][1];
-		for (int j = 2; j < rowcount_url + 1; j++) {
-			result[j - 2][0] = datatable.getCellData(Sheetnames, "Links_Url", j);
+		int rowcount = datatable.getRowCount(Sheetname);
+		Object result[][] = new Object[rowcount - 1][2];
+		for (int j = 2; j < rowcount + 1; j++) {
+			result[j - 2][0] = j;
+			result[j - 2][1] = datatable.getCellData(Sheetname, "Links_Url", j);
 		}
 
 		return result;
 	}
 
 	@Test(dataProvider = "Validate_Links_Landings_Footer")
-	public void TC_Validate_FooterLinks_Landings(String Link_Url) {
+	public void TC_Validate_FooterLinks_Landings(int rowNo, String LinkName) {
 		SoftAssert s_assert = new SoftAssert();
-		Sheetname = "Footer";
-		datatable = new Xls_Reader(Constants.FILEPATH_TESTDATASHEET_FOOTER);
-		int rowcount = datatable.getRowCount(Sheetname);
-		String[][] result = new String[rowcount - 1][3];
-		for (int i = 2; i < rowcount + 1; i++) {
-			result[i - 2][0] = String.valueOf(i);
-			result[i - 2][1] = datatable.getCellData(Sheetname, "Links", i);
-			result[i - 2][2] = datatable.getCellData(Sheetname, "Link_Type", i);
-		}
-		generic.loadURL(getHomePageUrl() + Link_Url);
-		for (int i = 2; i < rowcount + 1; i++) {
-			String row = result[i - 2][0];
-			String LinkName = result[i - 2][1];
-			String Link_Type = result[i - 2][2];
-
-			System.out.println("Row --->> " + row + ", Linkname --->> " + LinkName + ", link type --->> " + Link_Type
-					+ ", LinkPage --->> " + Link_Url);
-
-			if (Link_Type.equalsIgnoreCase("Static")) {
-
-				String Xpath = Footer.footerDiv_WE + Footer.staticText_Lnk + LinkName + "')]";
-				s_assert.assertTrue(generic.isVisible(Xpath), "Fail Static Text " + LinkName + " Not Visible!!");
-
-			} else if (Link_Type.equalsIgnoreCase("Link")) {
-				boolean check = true;
-				footer.clickCiti(LinkName);
-				generic.SwitchtoNewWindow();
-				check = generic.isVisible(datatable.getCellData(Sheetname, "LandingXpath", Integer.parseInt(row)));
-				s_assert.assertTrue(check, "Fail Link " + LinkName + "Improper Landing!!");
-				generic.SwitchtoOriginalWindow();
-			}
-
+		generic.loadURL(getHomePageUrl());
+		String Link_Type = datatable.getCellData(Sheetname, "Link_Type", rowNo);
+		if (Link_Type.equalsIgnoreCase("Static")) {
+			String Xpath = Footer.footerDiv_WE + Footer.staticText_Lnk + LinkName + "')]";
+			s_assert.assertTrue(generic.isVisible(Xpath), "Fail Static Text " + LinkName + " Not Visible!!");
+		} else {
+			footer.clickLink(LinkName);
+			generic.SwitchtoNewWindow();
+			s_assert.assertTrue(generic.isVisible(datatable.getCellData(Sheetname, "LandingXpath", rowNo)),
+					"Fail Link " + LinkName + "Improper Landing!!");
+			generic.closeNewWindow();
+			generic.SwitchtoOriginalWindow();
 		}
 		s_assert.assertTrue(generic.getText(Footer.footerData_Lbl).length() > 50,
-				"Footer text data is not comming for :" + Link_Url);
+				"Footer text data is not comming for :" + LinkName);
+		s_assert.assertAll();
+	}
+
+	public void TC_Validate_HomePage_footer() {
+		SoftAssert s_assert = new SoftAssert();
+		generic.loadURL(getHomePageUrl());
+		s_assert.assertTrue(generic.getText(Footer.footerData_Lbl).length() > 50,
+				"Footer text data is not comming for Home Page");
 		s_assert.assertEquals(generic.getAttributeValue(Footer.subscribe_placeholder_input, "placeholder"),
 				Footer.subscribe_placeholder_msg, "Placeholder ");
 		s_assert.assertTrue(generic.isVisible(Footer.subscribe_Btn), "subscribe Email button is not visible!!");
 		s_assert.assertAll();
-
 	}
 
 	@DataProvider(name = "Validate_HomePage_Links_Landings")
@@ -101,7 +88,7 @@ public class ExecutionSuite_Footer extends UrlProvider {
 		if (selectTC.getName().equalsIgnoreCase("TC_Validate_HomePage_City_And_Localities_Landings")) {
 			Sheetname = "City_And_Locality";
 		} else if (selectTC.getName().equalsIgnoreCase("TC_Validate_HomePage_More_cities_Landings_Footer")) {
-			Sheetname = "other_cities";
+			Sheetname = "Other_Cities";
 		}
 		datatable = new Xls_Reader(Constants.FILEPATH_TESTDATASHEET_FOOTER);
 		int rowcount = datatable.getRowCount(Sheetname);
@@ -123,28 +110,28 @@ public class ExecutionSuite_Footer extends UrlProvider {
 
 		if (Link_Type.equalsIgnoreCase("CityLink")) {
 			boolean check = true;
-			footer.clickCiti(LinkName);
-			generic.goToSleep(2000);
+			footer.clickLink(LinkName);
+			// generic.goToSleep(2000);
 			generic.SwitchtoNewWindow();
 			check = generic.isVisible(By.xpath(datatable.getCellData(Sheetname, "LandingXpath", row)));
 			s_assert.assertTrue(check, "Fail Link " + LinkName + "Improper Landing!!");
 			s_assert.assertTrue(generic.isVisible(Footer.hotels_listPage_WE),
 					"Hotles are not comming under :" + Link_Type);
+			generic.closeNewWindow();
 			generic.switchtoOriginalWindow();
-			generic.goToSleep(2000);
-			for (WebElement localityName : footer.getLocaityName_Link(LinkName)) {
-				String getLocalityName = localityName.getText();
-				System.out.println("locality : " + getLocalityName);
-				localityName.click();
+			for (WebElement locality : footer.getLocalityName_Link(LinkName)) {
+				String localityName = locality.getText();
+				System.out.println("Current locality : " + localityName);
+				locality.click();
 				generic.SwitchtoNewWindow();
 				if (generic.isVisible(Footer.locationResult_Lbl)) {
-					s_assert.assertEquals(footer.getSearchResultPlace(), getLocalityName,
+					s_assert.assertEquals(footer.getSearchResultPlace(), localityName,
 							"Hotel info is not matching with locality name");
 					s_assert.assertTrue(generic.isVisible(Footer.hotels_listPage_WE),
-							"Hotles are not comming under locality :" + getLocalityName);
+							"Hotles are not comming under locality :" + localityName);
 				} else {
 					s_assert.assertTrue(generic.isVisible(Footer.locationResult_Lbl),
-							"No hotles found under locality :" + getLocalityName);
+							"No hotles found under locality :" + localityName);
 				}
 				generic.switchtoOriginalWindow();
 
@@ -165,7 +152,7 @@ public class ExecutionSuite_Footer extends UrlProvider {
 			generic.loadURL(getHomePageUrl());
 		if (Link_Type.equalsIgnoreCase("OtherCityLink")) {
 			boolean check = true;
-			footer.clickCiti(LinkName);
+			footer.clickLink(LinkName);
 			generic.SwitchtoNewWindow();
 			check = generic.isVisible(By.xpath(datatable.getCellData(Sheetname, "LandingXpath", row)));
 			s_assert.assertTrue(check, "Fail Link " + LinkName + "Improper Landing!!");
@@ -178,7 +165,7 @@ public class ExecutionSuite_Footer extends UrlProvider {
 			s_assert.assertTrue(generic.isVisible(Xpath), "Fail Static Text " + LinkName + " Not Visible!!");
 
 		} else if (Link_Type.equalsIgnoreCase("SEOLink")) {
-			footer.clickCiti(LinkName);
+			footer.clickLink(LinkName);
 			generic.SwitchtoNewWindow();
 			s_assert.assertTrue(generic.isVisible(Footer.Search_hotels_near_you_Lnk),
 					"'Search hotels near you' link from home page is not landing on its page.!!");
@@ -191,7 +178,7 @@ public class ExecutionSuite_Footer extends UrlProvider {
 	}
 
 	@Test
-	public void TC_Validate_LocalitiesAndLandmarks_SearchedPage_Footer() {
+	public void TC_Validate_LocalitiesAndLandmarks_Footer_LocalityPage() {
 		SoftAssert s_assert = new SoftAssert();
 		String localityName = "Sarojini Nagar";
 		generic.loadURL(getHomePageUrl());
@@ -213,7 +200,7 @@ public class ExecutionSuite_Footer extends UrlProvider {
 	}
 
 	@Test
-	public void TC_Validate_LocalitiesAndLandmarks_CityPage_Footer() {
+	public void TC_Validate_LocalitiesAndLandmarks_Footer_CityPage() {
 		SoftAssert s_assert = new SoftAssert();
 		generic.loadURL(getListingPageUrl());
 		s_assert.assertTrue(generic.isVisible(By.xpath(footer.popularLocalities_Lbl("Popular Localities"))),
@@ -244,7 +231,7 @@ public class ExecutionSuite_Footer extends UrlProvider {
 		result[3][1] = "Blank email";
 		return result;
 	}
-		
+
 	@Test(dataProvider = "Subscription")
 	public void TC_Validate_subscriberEmail(String Email, String Expected) {
 		generic.loadURL(UrlProvider.getHomePageUrl());

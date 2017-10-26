@@ -25,6 +25,7 @@ public class ExecutionSuite_PaymentPage extends Config {
 
 	@BeforeTest
 	public void beforeTest() {
+		generic = new GenericFunctions(driver);
 		driver = generic.startDriver(Driver_Type);
 		generic.maximize();
 	}

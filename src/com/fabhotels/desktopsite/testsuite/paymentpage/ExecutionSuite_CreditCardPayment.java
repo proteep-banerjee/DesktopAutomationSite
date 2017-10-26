@@ -1,13 +1,12 @@
 package com.fabhotels.desktopsite.testsuite.paymentpage;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import com.fabhotels.automationframework.genericfunctions.GenericFunctions;
 import com.fabhotels.automationframework.xlsreader.Xls_Reader;
-import com.fabhotels.desktopsite.pageobjects.CheckoutReview;
-import com.fabhotels.desktopsite.pageobjects.DetailPage;
-import com.fabhotels.desktopsite.pageobjects.SearchResultPage;
 import com.fabhotels.desktopsite.utils.Config;
 import com.fabhotels.desktopsite.utils.UrlProvider;
 
@@ -17,13 +16,14 @@ public class ExecutionSuite_CreditCardPayment extends Config {
 
 	@BeforeMethod
 	public void beforeMethod() {
+		generic = new GenericFunctions(driver);
 		driver = generic.startDriver(Driver_Type);
 		generic.maximize();
 		driver.manage().deleteAllCookies();
 	}
 
 
-	
+/*	
 	@Test
 	public void TC_positiveCase_Payment_CreditCard() {
 		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());
@@ -42,6 +42,26 @@ public class ExecutionSuite_CreditCardPayment extends Config {
 		String currentURL=driver.getCurrentUrl();
 		customAssert.assertTrue((currentURL.contains("https://www.3dsecure.icicibank.com/")),
 				"Payment URL does not matches. ");
+	}*/
+	
+	
+	@Test
+	public void sdsd()
+	{
+
+		
+		for(int i=0;i<2;i++)
+		{
+			generic.loadURL(UrlProvider.getListingPageUrl());
+			JavascriptExecutor executor = (JavascriptExecutor) driver;
+			//executor.executeScript("setVoucherCounter();");
+			executor.executeScript("setVoucherCloseCookie();");
+			driver.navigate().refresh();
+			//generic.loadURL(UrlProvider.getHomePageUrl());
+			//generic.loadURL(UrlProvider.getGothamPropertyPageUrl());
+			generic.goToSleep(60000);
+		}
+		
 	}
 	
 	

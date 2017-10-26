@@ -39,7 +39,8 @@ public class Footer {
 	public static final By Subscribe_WrongEmailMssg_WE = By.xpath("//p[@class='error-message']");
 	public static final By hotels_listPage_WE=By.xpath("//div[contains(@class,'search-result-page')]");
 	public static final By Search_hotels_near_you_Lnk=By.xpath("//div[@class='container search-result-page other-search-result']");
-
+	public static final By copy_right=By.xpath("//span[@class='copy_right']");
+	
 	public static final String localityText_Lnk = "//a[contains(text(),'";
 	public static final String staticText_Lnk = "//*[contains(text(),'";
 	public static final String footerSection_WE = "(//div[contains(@class,'footer_row')])[";
@@ -49,8 +50,8 @@ public class Footer {
 	public static final String homePage_title = "Best Budget Hotels in India: FabHotels";
 	public static final String popular_localities_footer_Lbl = "//div[@class='popular-localities']//strong[text()='";
 	public static final String subscribe_placeholder_msg = "Your email address here. We never spam. Promise.";
-
-	public List<WebElement> getLocaityName_Link(String cityName) {
+	
+	public List<WebElement> getLocalityName_Link(String cityName) {
 		return generic.findElements(By.xpath(localCitieName1_Lnk + cityName + localCitieName2_Lnk));
 	}
 
@@ -58,8 +59,8 @@ public class Footer {
 		return generic.getText(locationResult_Lbl).split("in and around |in |near ")[1].trim();
 	}
 
-	public void clickCiti(String cityNme) {
-		generic.click(footerDiv_WE + localityText_Lnk + cityNme + "')]");
+	public void clickLink(String name) {
+		generic.click(footerDiv_WE + localityText_Lnk + name + "')]");
 		generic.goToSleep(1000);
 	}
 
@@ -69,6 +70,10 @@ public class Footer {
 
 	public String popularLocalities_Lbl(String localityLable) {
 		return popular_localities_footer_Lbl + localityLable + "']";
+	}
+
+	public String return_copy_rightText() {
+		return generic.getText(copy_right);
 	}
 
 	public int return_footer_RowCount() {
