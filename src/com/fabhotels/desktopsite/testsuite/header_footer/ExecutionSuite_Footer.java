@@ -1,6 +1,9 @@
 package com.fabhotels.desktopsite.testsuite.header_footer;
 
 import java.lang.reflect.Method;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -42,20 +45,21 @@ public class ExecutionSuite_Footer extends UrlProvider {
 		Sheetname = "Footer";
 		datatable = new Xls_Reader(Constants.FILEPATH_TESTDATASHEET_FOOTER);
 		int rowcount = datatable.getRowCount(Sheetname);
-		Object result[][] = new Object[rowcount - 1][2];
+		Object result[][] = new Object[rowcount - 1][3];
 		for (int j = 2; j < rowcount + 1; j++) {
 			result[j - 2][0] = j;
-			result[j - 2][1] = datatable.getCellData(Sheetname, "Links_Url", j);
+			result[j - 2][1] = datatable.getCellData(Sheetname, "Links", j);
+			result[j - 2][2] = datatable.getCellData(Sheetname, "Link_Type", j);
 		}
 
 		return result;
 	}
 
 	@Test(dataProvider = "Validate_Links_Landings_Footer")
-	public void TC_Validate_FooterLinks_Landings(int rowNo, String LinkName) {
+	public void TC_Validate_FooterLinks_Landings(int rowNo, String LinkName, String Link_Type) {
 		SoftAssert s_assert = new SoftAssert();
+		System.out.println("Row --->> " + rowNo + ", Linkname --->> " + LinkName + ", Link_Type --->> " + Link_Type);
 		generic.loadURL(getHomePageUrl());
-		String Link_Type = datatable.getCellData(Sheetname, "Link_Type", rowNo);
 		if (Link_Type.equalsIgnoreCase("Static")) {
 			String Xpath = Footer.footerDiv_WE + Footer.staticText_Lnk + LinkName + "')]";
 			s_assert.assertTrue(generic.isVisible(Xpath), "Fail Static Text " + LinkName + " Not Visible!!");
@@ -72,14 +76,26 @@ public class ExecutionSuite_Footer extends UrlProvider {
 		s_assert.assertAll();
 	}
 
+	@Test
 	public void TC_Validate_HomePage_footer() {
 		SoftAssert s_assert = new SoftAssert();
 		generic.loadURL(getHomePageUrl());
 		s_assert.assertTrue(generic.getText(Footer.footerData_Lbl).length() > 50,
 				"Footer text data is not comming for Home Page");
 		s_assert.assertEquals(generic.getAttributeValue(Footer.subscribe_placeholder_input, "placeholder"),
-				Footer.subscribe_placeholder_msg, "Placeholder ");
+				Footer.subscribe_placeholder_msg, "Placeholder for email subscribe input form is not apropriate");
 		s_assert.assertTrue(generic.isVisible(Footer.subscribe_Btn), "subscribe Email button is not visible!!");
+		s_assert.assertAll();
+	}
+
+	@Test
+	public void TC_Validate_HomePage_copyRight_footer() {
+		SoftAssert s_assert = new SoftAssert();
+		generic.loadURL(getHomePageUrl());
+		String presentYear = new SimpleDateFormat("yyyy").format(new Date());
+		String expectedTxt = "© " + presentYear + " Casa2 Stays Pvt. Ltd. All rights reserved.";
+		s_assert.assertTrue(footer.get_copy_rightText().equalsIgnoreCase(expectedTxt),
+				"At bottom of HomePage copyRight is not appropriat!!.");
 		s_assert.assertAll();
 	}
 

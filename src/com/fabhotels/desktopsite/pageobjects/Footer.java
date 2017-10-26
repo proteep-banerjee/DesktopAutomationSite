@@ -72,7 +72,7 @@ public class Footer {
 		return popular_localities_footer_Lbl + localityLable + "']";
 	}
 
-	public String return_copy_rightText() {
+	public String get_copy_rightText() {
 		return generic.getText(copy_right);
 	}
 
