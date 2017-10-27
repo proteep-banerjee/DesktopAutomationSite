@@ -59,7 +59,7 @@ public class ExecutionSuite_HomePage extends Config {
 		softAssert.assertEquals(hp.getLabelText_popularCities_Lbl(), "Popular Cities:");
 		softAssert.assertAll();
 	}
-	
+
 	@Test
 	public void TC_ExecutionSuite_HomePage_002_verifyDateLessSearches(){
 		hp.fill_location_Txt("Karol Bagh");
@@ -68,7 +68,7 @@ public class ExecutionSuite_HomePage extends Config {
 		hp.click_find_Fabhotels_Btn();
 		assert lp.getText_resultsCountText_Lbl().contains("Budget Hotels in and around Karol Bagh"):"Not redirecting to correct listing page";
 	}
-	
+
 	@Test
 	public void TC_ExecutionSuite_HomePage_003_verifyWithDateSearches() throws ParseException{
 		hp.fill_location_Txt("Koramangala");
@@ -83,7 +83,7 @@ public class ExecutionSuite_HomePage extends Config {
 		softAssert.assertEquals(lp.getText_checkOut_Date_WE(), chkOu);
 		softAssert.assertAll();
 	}
-	
+
 	@DataProvider(name = "polularCities")
 	public Object[][] bookingTest() {
 		int rowcount = xls.getRowCount("PopularCities");
@@ -94,7 +94,7 @@ public class ExecutionSuite_HomePage extends Config {
 		}
 		return result;
 	}
-	
+
 	@Test(dataProvider="polularCities")
 	public void TC_ExecutionSuite_HomePage_004_verifyPopularCitiesRedirection(String cityName, String url){
 		hp.click_popularCitiesNames_Btn(cityName);
@@ -106,7 +106,7 @@ public class ExecutionSuite_HomePage extends Config {
 		generic.switchtoOriginalWindow();
 		softAssert.assertAll();
 	}
-	
+
 	@Test
 	public void TC_ExecutionSuite_HomePage_005_verifyMostPopularFabhotels(){
 		generic.scrollToElement((HomePage.hotelsInDemandCheveron_Btn), false);
@@ -116,19 +116,27 @@ public class ExecutionSuite_HomePage extends Config {
 			for (int j = i; j < i + 2; j++) {
 				softAssert.assertTrue(hp.getElementText_hotelsInDemandRatings_WE(j).length() > 5, "Failed rating on hotels card");
 				softAssert.assertTrue(hp.getElementText_hotelsInDemandPrices_WE(j).length() > 5, "Failed Prices");
-				softAssert.assertEquals(hp.getElementText_hotelsInDemandName_WE(j),xls.getCellData("PopularHotels", "HotelName", j+1),
+				softAssert.assertEquals(hp.getElementText_hotelsInDemandName_Lnk(j),xls.getCellData("PopularHotels", "HotelName", j+1),
 						"Failed Hotel Name");
 				softAssert.assertEquals(hp.getElementText_hotelsInDemandLocality_WE(j),xls.getCellData("PopularHotels", "Address", j+1),
 						"Failed locality");
 				softAssert.assertTrue(hp.isVisible_hotelsInDemandImages_WE(j), "Failed imagess");
-				}
+				String hotelName = hp.getLinkText_reviewerHotelNameReviewCard_Lnk(j);
+				hp.click_hotelsInDemandName_Lnk(j);
+				generic.switchtoNewWindow();
+				softAssert.assertTrue(hotelName.equals(dp.getLabelText_hotelName_Lbl()),"Redirection Failed");
+				driver.close();
+				generic.switchtoOriginalWindow();
+			}
 			i = i + 2;
-			hp.click_hotelsInDemandCheveron_Btn();
+			if(hp.isVisible_hotelsInDemandCheveron_Btn()){
+				hp.click_hotelsInDemandCheveron_Btn();
+			}
 		}
 		softAssert.assertAll();
 	}
-	
-	
+
+
 	@Test
 	public void TC_ExecutionSuite_HomePage_006_verifyDealsonHomepage(){
 		softAssert.assertEquals(hp.getLabelText_fabulousDealsHeadline_Lbl(), "Fabulous deals");
@@ -150,7 +158,7 @@ public class ExecutionSuite_HomePage extends Config {
 		generic.switchtoOriginalWindow();
 		softAssert.assertAll();
 	}
-	
+
 	@Test
 	public void TC_ExecutionSuite_HomePage_007_verifyReviewsOnHomepage(){
 		softAssert.assertEquals(hp.getLabelText_plusVerifiedReviewsHeadline_Lbl(), "50,000+ verified reviews");
@@ -160,7 +168,7 @@ public class ExecutionSuite_HomePage extends Config {
 		softAssert.assertEquals(driver.getCurrentUrl(), UrlProvider.getHomePageUrl()+"customer-reviews");
 		driver.close();
 		generic.switchtoOriginalWindow();
-		
+
 		generic.scrollToElement((HomePage.reviewsCheveron_Btn), false);
 		generic.customPageScrollToBottomInSlowMotion(0, 200);
 		int i = 1;
@@ -177,10 +185,10 @@ public class ExecutionSuite_HomePage extends Config {
 				softAssert.assertTrue(hotelName.equals(dp.getLabelText_hotelName_Lbl()) || driver.getCurrentUrl().contains("hotels-in-hyderabad/"),"Redirection Failed");
 				driver.close();
 				generic.switchtoOriginalWindow();
-				}
+			}
 			i = i + 2;
 			if(hp.isVisible_reviewsCheveron_Btn()){
-			hp.click_reviewsCheveron_Btn();
+				hp.click_reviewsCheveron_Btn();
 			}
 		}
 		softAssert.assertAll();
@@ -194,7 +202,7 @@ public class ExecutionSuite_HomePage extends Config {
 		softAssert.assertTrue(hp.isVisible_hospitalityTeamImage_Txt(),"Hopitality Team Image is missing");
 		softAssert.assertAll();
 	}
-	
+
 	@Test
 	public void TC_ExecutionSuite_HomePage_009_verifyWorkWithUsOnHomePage(){
 		softAssert.assertEquals(hp.getLabelText_workWithUsHeadline_Lbl(), "Work with us");
@@ -208,7 +216,7 @@ public class ExecutionSuite_HomePage extends Config {
 		generic.switchtoOriginalWindow();
 		softAssert.assertAll();
 	}
-	
+
 	@Test
 	public void TC_ExecutionSuite_HomePage_010_verifyWeAreSpokenAboutOnHomePage(){
 		softAssert.assertEquals(hp.getLabelText_spokenAboutHeadline_Lbl(), "We are being spoken about");
@@ -238,8 +246,8 @@ public class ExecutionSuite_HomePage extends Config {
 		generic.switchtoOriginalWindow();
 		softAssert.assertAll();
 	}
-	
-	
+
+
 	@AfterTest
 	public void afterTest() {
 		driver.quit();
