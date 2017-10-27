@@ -1,7 +1,6 @@
 package com.fabhotels.desktopsite.testsuite.homepage;
 
 import java.text.ParseException;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.testng.annotations.AfterTest;
@@ -10,7 +9,6 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-
 import com.fabhotels.automationframework.genericfunctions.GenericFunctions;
 import com.fabhotels.automationframework.xlsreader.Xls_Reader;
 import com.fabhotels.desktopsite.pageobjects.Calendar;
@@ -54,7 +52,7 @@ public class ExecutionSuite_HomePage extends Config {
 	public void TC_ExecutionSuite_HomePage_001_verifyPageHeadline_subHealine_popularCities(){
 		SoftAssert softAssert = new SoftAssert();
 		generic.loadURL(UrlProvider.getHomePageUrl());
-		softAssert.assertEquals(hp.getLabelText_mainTitle_Lbl(), "India’s Best Budget Hotels");
+		softAssert.assertTrue(hp.getLabelText_mainTitle_Lbl().contains("Best Budget Hotels"), "Headine is incorrect");
 		softAssert.assertEquals(hp.getLabelText_secondaryTitle_Lbl(), "250+ Budget Hotels in India | 20+ Cities");
 		softAssert.assertEquals(hp.getLabelText_popularCities_Lbl(), "Popular Cities:");
 		softAssert.assertAll();
@@ -116,12 +114,8 @@ public class ExecutionSuite_HomePage extends Config {
 			for (int j = i; j < i + 2; j++) {
 				softAssert.assertTrue(hp.getElementText_hotelsInDemandRatings_WE(j).length() > 5, "Failed rating on hotels card");
 				softAssert.assertTrue(hp.getElementText_hotelsInDemandPrices_WE(j).length() > 5, "Failed Prices");
-				softAssert.assertEquals(hp.getElementText_hotelsInDemandName_Lnk(j),xls.getCellData("PopularHotels", "HotelName", j+1),
-						"Failed Hotel Name");
-				softAssert.assertEquals(hp.getElementText_hotelsInDemandLocality_WE(j),xls.getCellData("PopularHotels", "Address", j+1),
-						"Failed locality");
 				softAssert.assertTrue(hp.isVisible_hotelsInDemandImages_WE(j), "Failed imagess");
-				String hotelName = hp.getLinkText_reviewerHotelNameReviewCard_Lnk(j);
+				String hotelName = hp.getElementText_hotelsInDemandName_Lnk(j);
 				hp.click_hotelsInDemandName_Lnk(j);
 				generic.switchtoNewWindow();
 				softAssert.assertTrue(hotelName.equals(dp.getLabelText_hotelName_Lbl()),"Redirection Failed");
@@ -246,7 +240,7 @@ public class ExecutionSuite_HomePage extends Config {
 		generic.switchtoOriginalWindow();
 		softAssert.assertAll();
 	}
-
+	
 
 	@AfterTest
 	public void afterTest() {
