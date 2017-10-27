@@ -9,60 +9,92 @@ import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import com.fabhotels.automationframework.genericfunctions.GenericFunctions;
 import com.fabhotels.desktopsite.pageobjects.Calendar;
+import com.fabhotels.desktopsite.pageobjects.Header;
 import com.fabhotels.desktopsite.pageobjects.ListingPage;
 import com.fabhotels.desktopsite.utils.Config;
 import com.fabhotels.desktopsite.utils.UrlProvider;
 
 public class ExecutionSuite_ListingPage extends Config {
 
+	Header header;
 	ListingPage listingPage;
-	Calendar cal ;
+	Calendar cal;
 	SoftAssert s_assert;
-	String soldOut_HotelName="FabHotel BikaHua";
-	String soldOut_someRooms="FabHotel Some Rooms Sold Out";
+	String soldOut_HotelName = "FabHotel BikaHua";
+	String soldOut_someRooms = "FabHotel Some Rooms Sold Out";
+	int totalCities = 23;
 
 	@BeforeTest
 	public void beforeTest() {
 		generic = new GenericFunctions(driver);
 		driver = generic.startDriver(Driver_Type);
 		listingPage = new ListingPage(driver, generic);
-		cal=new Calendar(driver, generic);
+		cal = new Calendar(driver, generic);
+		header = new Header(driver, generic);
 		s_assert = new SoftAssert();
 	}
 
-	@BeforeMethod
+	@BeforeMethod(firstTimeOnly = true)
 	public void beforeMethod() {
 		driver.manage().deleteAllCookies();
 		generic.loadURL(UrlProvider.getListingPageUrl());
 	}
 
 	@Test
-	public void TC_ValidateVisibility_FeatureBox_ListPage() {
+	public void TC_ListPage_001_ValidateVisibility_FeatureBox() {
 		Assert.assertTrue(generic.isVisible(ListingPage.featureBox_WE), "Feature box not visible on list page !!");
 	}
 
 	@Test
-	public void TC_ValidateFunctionality_Filters() {
+	public void TC_ListPage_002_ValidateVisibility_Filters() {
 		List<WebElement> filters = generic.findElements(ListingPage.filters_WE);
-		String firstFilter = filters.get(0).getText();
-		listingPage.click_Filters_WE();
-		Assert.assertTrue(firstFilter.length()>1,
-				"Filters not working properly !!");
+		Assert.assertTrue(filters.size() > 1, "No of Filters less than equal to 1  !!");
+		listingPage.click_FirstFilter_WE();
+		Assert.assertTrue(generic.isVisible(ListingPage.searchResultContainer_WE),
+				"No Results After Clicking Filter !!");
 	}
 
-	@Test
-	public void TC_CheckTotal_HotelCount_List() {
-		listingPage.check_Hotels_count();
+	@DataProvider(name = "DataProvider_Cities")
+	public Object[][] DataProvider_Cities() {
+		generic.loadURL(UrlProvider.getListingPageUrl());
+
+		Object result[][] = new Object[3][2];
+		List<WebElement> we = header.getWebElements_AllCities_DD();
+
+		int ranNo = generic.getRandomNumberBetween(1, we.size());
+		result[0][0] = ranNo;
+		result[0][1] = we.get(ranNo).getText();
+
+		ranNo = generic.getRandomNumberBetween(1, we.size());
+		result[1][0] = ranNo;
+		result[1][1] = we.get(ranNo).getText();
+
+		ranNo = generic.getRandomNumberBetween(1, we.size());
+		result[2][0] = ranNo;
+		result[2][1] = we.get(ranNo).getText();
+
+		return result;
+
 	}
 
-	@Test
-	public void TC_CheckRackPrice_List() {
-		listingPage.compare_Rack_Price();
+	@Test(dataProvider = "DataProvider_Cities")
+	public void TC_ListPage_003_Validate_HotelResultsCount(int No, String cityName) {
+		header.click_CityHeader_WE(No);
+		int countDisplayed = Integer.parseInt(listingPage.getText_NoofHotelFound());
+		Assert.assertEquals(listingPage.getSize_hotelList_WE(), countDisplayed,
+				"Number of Hotels displayed is incorrect for City = " + cityName);
+	}
+
+	@Test(dataProvider = "DataProvider_Cities")
+	public void TC_CheckRackPrice_List(int randomNo, String cityName) {
+		Assert.assertTrue(generic.findElements(ListingPage.rackPrice_WE).size() > 0, "Rack prices not Visible !!");
+		listingPage.compare_Rack_Price(randomNo);
 	}
 
 	@Test
@@ -89,7 +121,8 @@ public class ExecutionSuite_ListingPage extends Config {
 	@Test
 	public void TC_HotelInfoContainer_listPage() throws ParseException {
 		generic.loadURL(UrlProvider.getListingPageUrl());
-		cal.Select_CheckIn_CheckOut_Date_Calendar_WE(GenericFunctions.getDateAfterDays("0"),GenericFunctions.getDateAfterDays("2"));
+		cal.Select_CheckIn_CheckOut_Date_Calendar_WE(GenericFunctions.getDateAfterDays("0"),
+				GenericFunctions.getDateAfterDays("2"));
 		listingPage.selectRooms();
 		List<WebElement> list = generic.findElements(ListingPage.filters_WE);
 		for (WebElement temp : list) {
@@ -100,7 +133,8 @@ public class ExecutionSuite_ListingPage extends Config {
 
 	@Test
 	public void TC_NearByHotels_listPage() {
-		listingPage.performSearch(ListingPage.locality_name,GenericFunctions.getDateAfterDays("0"),GenericFunctions.getDateAfterDays("2"), "4");
+		listingPage.performSearch(ListingPage.locality_name, GenericFunctions.getDateAfterDays("0"),
+				GenericFunctions.getDateAfterDays("2"), "4");
 		Assert.assertTrue(generic.isVisible(ListingPage.searchResultContainer_WE),
 				"Search results not visible on performing Search !!");
 		Assert.assertTrue(generic.getText(ListingPage.resultsCountText_Lbl).contains(ListingPage.locality_name),
@@ -110,13 +144,15 @@ public class ExecutionSuite_ListingPage extends Config {
 
 	@Test
 	public void TC_SearchBox_listPage() {
-		listingPage.performSearch("",GenericFunctions.getDateAfterDays("0"),GenericFunctions.getDateAfterDays("2"), "1");
+		listingPage.performSearch("", GenericFunctions.getDateAfterDays("0"), GenericFunctions.getDateAfterDays("2"),
+				"1");
 		listingPage.assertSearchError();
 	}
 
 	@Test
 	public void TC_checkURL_listPage() {
-		listingPage.performSearch(ListingPage.locality_name,GenericFunctions.getDateAfterDays("0"),GenericFunctions.getDateAfterDays("1"), "4");
+		listingPage.performSearch(ListingPage.locality_name, GenericFunctions.getDateAfterDays("0"),
+				GenericFunctions.getDateAfterDays("1"), "4");
 		Assert.assertTrue(generic.isVisible(ListingPage.searchResultContainer_WE),
 				"Search results not visible on performing Search !!");
 		Assert.assertTrue(generic.getText(ListingPage.resultsCountText_Lbl).contains(ListingPage.locality_name),
@@ -124,7 +160,7 @@ public class ExecutionSuite_ListingPage extends Config {
 		listingPage.detailsPageLanding_VerifyWithDateAndRooms();
 		listingPage.checkURL("4");
 	}
-		
+
 	@Test
 	public void TC_No_Hotelsfound_listPage() {
 		generic.loadURL(UrlProvider.getHomePageUrl());
@@ -149,7 +185,7 @@ public class ExecutionSuite_ListingPage extends Config {
 				"Search results not visible on performing Search !!");
 		listingPage.detailsPageLanding_VerifyWithDateLess();
 	}
-	
+
 	@Test
 	public void TC_ListPage_SoldOut_listPage() throws ParseException {
 		listingPage.performSearch("New Delhi", GenericFunctions.getDateAfterDays("0"),
@@ -160,47 +196,51 @@ public class ExecutionSuite_ListingPage extends Config {
 		s_assert.assertEquals(generic.getText(ListingPage.lastSoldOut_btn), "SOLD OUT");
 		s_assert.assertAll();
 	}
-	
+
 	@Test
 	public void TC_DetailsPageLanding_SoldOut_listPage() throws ParseException {
 		listingPage.performSearch("New Delhi", GenericFunctions.getDateAfterDays("0"),
 				GenericFunctions.getDateAfterDays("1"), "2");
 		generic.loadURL(UrlProvider.getGothamListPageUrl());
-		String price_ListPage = generic
-				.getText(ListingPage.lastHotelPrice_WE)
-				.replaceAll("[^0-9.]", "");
-		//Click on sold out button from list page.
+		String price_ListPage = generic.getText(ListingPage.lastHotelPrice_WE).replaceAll("[^0-9.]", "");
+		// Click on sold out button from list page.
 		generic.click(ListingPage.lastSoldOut_btn);
 		generic.waitForCompletePageLoad(driver);
 		String hotelName_DetailsPage = generic.getText(ListingPage.hotelName_Lbl);
 		String price_DetailsPage = generic.getText(ListingPage.price_Lbl).replaceAll("[^0-9.]", "");
 		// Asserting Detail Page UI
-		s_assert.assertEquals(generic.getText(ListingPage.soldOutAlertBox_Lbl),ListingPage.soldOut_Msg,"Sold out error message is not comming on details page.");
+		s_assert.assertEquals(generic.getText(ListingPage.soldOutAlertBox_Lbl), ListingPage.soldOut_Msg,
+				"Sold out error message is not comming on details page.");
 		s_assert.assertTrue(generic.isVisible(ListingPage.selectRooms_Btn),
 				"Select Rooms button is not present on landing From list Page to detail page.");
 		s_assert.assertEquals(hotelName_DetailsPage, soldOut_HotelName,
 				"Hotels Names are not matching on details and list page");
-		s_assert.assertEquals(price_DetailsPage, price_ListPage,"Hotels Prices are not matching on details and list page for Hotel: "+soldOut_HotelName);	
+		s_assert.assertEquals(price_DetailsPage, price_ListPage,
+				"Hotels Prices are not matching on details and list page for Hotel: " + soldOut_HotelName);
 		// Asserting url param
 		Map<String, String> parametersDetails = listingPage.getQueryURL();
 		String cityName_DetailsPage = parametersDetails.get("locationsearch");
-		s_assert.assertEquals(cityName_DetailsPage, "Gotham","city names are different on list page and detials page for sold out hotel.");
+		s_assert.assertEquals(cityName_DetailsPage, "Gotham",
+				"city names are different on list page and detials page for sold out hotel.");
 		s_assert.assertTrue(parametersDetails.get("rooms").contains("2"),
 				"provided rooms are not reflected in url of sold out hotel details page.");
-		s_assert.assertEquals(generic.getSize(ListingPage.disabledRooms_Btn),18,"All rooms are not disabled for sold out property.");
+		s_assert.assertEquals(generic.getSize(ListingPage.disabledRooms_Btn), 18,
+				"All rooms are not disabled for sold out property.");
 		// Navigating Back
 		generic.navigateToPreviousPage();
 		s_assert.assertAll();
 	}
-	
+
 	@Test
 	public void TC_DetailsPageLanding_SomeRoomLeft_listPage() throws ParseException {
 		listingPage.performSearch("New Delhi", GenericFunctions.getDateAfterDays("0"),
 				GenericFunctions.getDateAfterDays("5"), "5");
 		generic.loadURL(UrlProvider.getGothamListPageUrl());
-		s_assert.assertEquals(generic.getText(ListingPage.roomLeftLbl),"3 ROOMS LEFT","proper room left warning is not comming on List page.");
+		s_assert.assertEquals(generic.getText(ListingPage.roomLeftLbl), "3 ROOMS LEFT",
+				"proper room left warning is not comming on List page.");
 		generic.click(ListingPage.roomLeftBookNow_btn);
-		s_assert.assertEquals(generic.getText(ListingPage.roomSoldOutAlertBox_Lbl),ListingPage.soldOutByRooms_Msg,"Rooms are not available error message is not comming on details page.");
+		s_assert.assertEquals(generic.getText(ListingPage.roomSoldOutAlertBox_Lbl), ListingPage.soldOutByRooms_Msg,
+				"Rooms are not available error message is not comming on details page.");
 		generic.waitForCompletePageLoad(driver);
 		s_assert.assertTrue(listingPage.isDisabled_roomNumber(2, 0), "Room 2 is Enabled");
 		s_assert.assertTrue(listingPage.isDisabled_roomNumber(2, 5), "Room 2 is Enabled");
@@ -215,9 +255,8 @@ public class ExecutionSuite_ListingPage extends Config {
 		s_assert.assertTrue(listingPage.isDisabled_roomNumber(3, 0), "Room 2 is Enabled");
 		s_assert.assertTrue(listingPage.isDisabled_roomNumber(3, 2), "Room 2 is Enabled");
 		s_assert.assertTrue(listingPage.isEnabled_roomNumber(3, 1), "Room 2 is Enabled");
-		s_assert.assertAll();	
+		s_assert.assertAll();
 	}
-
 
 	@AfterTest
 	public void aftertest() {
