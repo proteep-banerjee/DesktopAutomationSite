@@ -6,6 +6,7 @@ import java.net.URL;
 import java.text.ParseException;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.openqa.selenium.By;
@@ -14,15 +15,16 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
+import com.fabhotels.automationframework.core.CustomAssert;
 import com.fabhotels.automationframework.genericfunctions.GenericFunctions;
 
 public class ListingPage {
 
 	WebDriver driver;
 	GenericFunctions generic;
-	int hotelsCountUnderListPage = 1;
-	int cityCount = 1;
-	int randomCity_count = 1;
+	public int hotelsCountUnderListPage = 1;
+	public int cityCount = 1;
+	public int randomCity_count = 1;
 
 	public static final By location_Txt = By.id("autocomplete-location");
 
@@ -31,7 +33,7 @@ public class ListingPage {
 	public static final By add_Room_Btn = By.id("addRoom");
 	public static final By remove_room_Btn = By.id("removeRoom");
 	public static final By find_Fabhotels_Btn = By.id("homePageSearchBtn");
-	public static final By allProperties_WE = By.xpath("//div[@class='catalogue_property_list_bx_sngl']");
+	public static final By allProperties_WE = By.xpath("//div[contains(@class,'hotel-list')]");
 	public static final By singleProperty_WE = By.xpath("(//div[@class='catalogue_property_price_book']/a)[1]");
 	public static final By listResults_WE = By.xpath("//div[@class='hotel-list-container']");
 	public static final By hotelList_WE = By.xpath("//div[@class='hotel-list clearfix ']");
@@ -118,33 +120,35 @@ public class ListingPage {
 
 	public static String locality_name = "Sarojini Nagar";
 
-	//Sold out 
-	public static final By soldOut_Lbl=By.xpath("//div[@class='sold-out-caption']");
+	// Sold out
+	public static final By soldOut_Lbl = By.xpath("//div[@class='sold-out-caption']");
 	public static final By lastHotelName_WE = By.xpath("(//div[@class='hotel-list-desc-above']/h3/a)[last()]");
-	public static final By lastHotelPrice_WE=By.xpath("(//div[@class='price']//span[@class='new-price'])[last()]");
+	public static final By lastHotelPrice_WE = By.xpath("(//div[@class='price']//span[@class='new-price'])[last()]");
 	public static String soldOut_Btn = "//a[@class='btn']";
-	public static String soldOut_Msg="This hotel is SOLD OUT for selected dates. Change dates or explore nearby Hotels.";
-	public static String soldOutByRooms_Msg="Selected number of rooms are not available. Adjust dates or number of rooms.";
-	public static final String someRoomsLeft_Lbl="FabHotel Some Rooms Sold Out";
-	
+	public static String soldOut_Msg = "This hotel is SOLD OUT for selected dates. Change dates or explore nearby Hotels.";
+	public static String soldOutByRooms_Msg = "Selected number of rooms are not available. Adjust dates or number of rooms.";
+	public static final String someRoomsLeft_Lbl = "FabHotel Some Rooms Sold Out";
+
 	public static final By lastSoldOut_btn = By.xpath("(" + soldOut_Btn + ")" + "[last()]");
-	public static final By soldOutAlertBox_Lbl=By.xpath("//div[contains(@class,'error_msg_alert')]//p");
-	public static final By roomSoldOutAlertBox_Lbl=By.xpath("(//div[contains(@class,'error_msg_alert')]//p)[2]");
-	public static final By roomLeftLbl = By.xpath("//a[contains(text(),'FabHotel Some Rooms Sold Out')]//ancestor::div/div/a/following-sibling::div");
-	public static final By roomLeftBookNow_btn=By.xpath("//a[contains(text(),'FabHotel Some Rooms Sold Out')]//following::div/a[contains(text(),'Book Now')]");
-	public static final By someRoomLeft_WE = By.xpath("//a[contains(text(),'"+someRoomsLeft_Lbl+"')]");
+	public static final By soldOutAlertBox_Lbl = By.xpath("//div[contains(@class,'error_msg_alert')]//p");
+	public static final By roomSoldOutAlertBox_Lbl = By.xpath("(//div[contains(@class,'error_msg_alert')]//p)[2]");
+	public static final By roomLeftLbl = By
+			.xpath("//a[contains(text(),'FabHotel Some Rooms Sold Out')]//ancestor::div/div/a/following-sibling::div");
+	public static final By roomLeftBookNow_btn = By.xpath(
+			"//a[contains(text(),'FabHotel Some Rooms Sold Out')]//following::div/a[contains(text(),'Book Now')]");
+	public static final By someRoomLeft_WE = By.xpath("//a[contains(text(),'" + someRoomsLeft_Lbl + "')]");
 	public static final String roomSelectionRoomTypeNumber_WE = "(//div[@class='room-types-selection'])[";
 	public static final String disabledRoomSelectionNumberOfRooms_WE = "//a[@class='outOfStock' and contains(text(),'";
 	public static final String soldOutText_Lbl = "//div[text()='Sold Out']";
 	public static final String roomType_WE = "(//div[@class='room-types-section clearfix'])[";
 	public static final String roomsLeft_Lbl = "//div[contains(text(),'left')]";
 	public static final String roomSelectionNumberOfRooms_WE = "//a[contains(text(),'";
-	
+
 	// Details Page
 	public static final By hotelName_Lbl = By.xpath("//h1");
 	public static final By price_Lbl = By.xpath("//div[@class='select-room-price']//strong");
 	public static final By exploreNearbyTop_WE = By.xpath("((//div[@class='nearby_properties_container'])[1])");
-	public static final By disabledRooms_Btn=By.xpath("//a[@class='outOfStock']");
+	public static final By disabledRooms_Btn = By.xpath("//a[@class='outOfStock']");
 
 	public ListingPage(WebDriver driver, GenericFunctions generic) {
 		this.driver = driver;
@@ -155,43 +159,31 @@ public class ListingPage {
 		return generic.getText(resultsCountText_Lbl);
 	}
 
-	public void check_Hotels_count() {
-		SoftAssert s_assert = new SoftAssert();
-		for (int j = 1; j < 6; j++) {
-			System.out.println("Current city :" + iterate_all_Cities(randomCity_count));
-			int hotel_num = Integer.parseInt(getText_NoofHotelFound());
-			System.out.println("Showing: " + hotel_num + " and listing: " + hotelsCountUnderListPage);
-			s_assert.assertEquals(hotelsCountUnderListPage, hotel_num, "number of Hotels displayed is incorrect.");
-		}
-		s_assert.assertAll();
+	public void click_FirstFilter_WE() {
+		generic.click(ListingPage.filters_WE);
 	}
 
-	public void compare_Rack_Price() {
-		SoftAssert s_assert = new SoftAssert();
-		for (int j = 1; j < 6; j++) {
-			System.out.println("Current city :" + iterate_all_Cities(randomCity_count));
-			String price, rack, hotelName = "";
-			for (int i = 1; i < 6; i++) {
-				int randomHotel_count = generic.getRandomNumberBetween(1, hotelsCountUnderListPage);
-				price = "(//div[@class='price'])" + "[" + randomHotel_count + "]" + "//span[@class='new-price']";
-				rack = "(//div[@class='price'])" + "[" + randomHotel_count + "]" + "//span[@class='old-price']/del";
-				hotelName = generic.getText("(//div[@class='hotel-list-desc-above']/h3/a)[" + randomHotel_count + "]");
-				By price_WE = By.xpath(price);
-				By rack_WE = By.xpath(rack);
-				if (generic.isVisible(rack_WE)) {
-					String rack_value = generic.getText(rack_WE).replaceAll("[^0-9.]", "");
-					String price_value = generic.getText(price_WE).replaceAll("[^0-9.]", "");
-					int rac_value = Integer.parseInt(rack_value);
-					int pri_value = Integer.parseInt(price_value);
-					System.out.println(
-							hotelName + " Rack price is :" + rack_value + " and Offered price is :" + price_value);
-					s_assert.assertTrue(rac_value > pri_value,
-							"Price is greator than Rack Price !! under city :" + randomHotel_count + " Rack price is :"
-									+ rac_value + " And offered price is :" + pri_value);
-				}
+	public int getSize_hotelList_WE() {
+		return generic.findElements(hotelList_WE).size();
+	}
+
+	public void compare_Rack_Price(int randomNo) {
+		CustomAssert customAssert = new CustomAssert();
+		String hotelName = generic.getText("(//div[@class='hotel-list-desc-above']/h3/a)[" + randomNo + "]");
+
+		List<WebElement> tuples = generic.findElements(allProperties_WE);
+		for (WebElement webElement : tuples) {
+			if (webElement.findElements(rackPrice_WE).size() > 0) {
+				String rackPrice = webElement.findElement(rackPrice_WE).getText().replaceAll("[^0-9.]", "");
+				String sellingPrice = webElement.findElement(price_WE).getText().replaceAll("[^0-9.]", "");
+				int rac_value = Integer.parseInt(rackPrice);
+				int pri_value = Integer.parseInt(sellingPrice);
+				System.out.println(hotelName + " Rack price is :" + rac_value + " and Offered price is :" + pri_value);
+				customAssert.assertTrue(rac_value > pri_value, "Price is greator than Rack Price !! under city :"
+						+ hotelName + " Rack price is :" + rac_value + " And offered price is :" + pri_value);
 			}
 		}
-		s_assert.assertAll();
+		customAssert.assertAll();
 	}
 
 	public void check_All_Hotel_links() {
@@ -350,7 +342,7 @@ public class ListingPage {
 
 	public void performSearch(String searchText, String checkIn, String checkOut, String noofRooms) {
 		generic.fill(searchBox_WE, searchText);
-		//generic.setImplicitWaitInSeconds(400);
+		// generic.setImplicitWaitInSeconds(400);
 		Calendar cal = new Calendar(driver, generic);
 		if (checkIn.length() > 0 && checkOut.length() > 0) {
 			try {
@@ -401,9 +393,8 @@ public class ListingPage {
 		return query_pairs;
 
 	}
-	
-	public Map<String, String> getUrlparam()
-	{
+
+	public Map<String, String> getUrlparam() {
 		return getQueryURL();
 	}
 
@@ -414,15 +405,14 @@ public class ListingPage {
 				"Location parameter is not correct.in the url");
 		s_assert.assertTrue(parameters.get("locality_text").contains(locality_name),
 				"Location parameter is not correct in the url.");
-		
+
 		GenericFunctions.getDateAfterDays3format("0");
-		
+
 		GenericFunctions.getDateAfterDays("5");
-		
-		
+
 		s_assert.assertTrue(parameters.get("locality_text").contains(locality_name),
 				"Location parameter is not correct in the url.");
-		
+
 		s_assert.assertEquals(rooms, parameters.get("occupancy"),
 				"Occupancy is not Matching with default value. i.e 1 OR is broken");
 		s_assert.assertTrue(parameters.get("nearcity").contains("New Delhi"),
@@ -519,7 +509,7 @@ public class ListingPage {
 		s_assert.assertEquals(hotelName_DetailsPage, hotelName_ListPage,
 				"Hotels Names are not matching on details and list page");
 		s_assert.assertEquals(price_DetailsPage, price_ListPage,
-				"Hotels Prices are not matching on details and list page for Hotel: "+hotelName_ListPage);
+				"Hotels Prices are not matching on details and list page for Hotel: " + hotelName_ListPage);
 		Map<String, String> parametersDetails = getQueryURL();
 		String cityName_DetailsPage = parametersListPage.get("locationsearch");
 		// Asserting URL
@@ -538,20 +528,20 @@ public class ListingPage {
 		return generic.isVisible(roomSelectionRoomTypeNumber_WE + roomType + "]" + disabledRoomSelectionNumberOfRooms_WE
 				+ roomNumber + "')]");
 	}
-	
+
 	public boolean isSoldOut_roomType(int roomType) {
 		return generic.isVisible(roomType_WE + roomType + "]" + soldOutText_Lbl);
 	}
-	
+
 	public String getText_roomsLeft_roomType(int roomNumber) {
 		return generic.getText(roomType_WE + roomNumber + "]" + roomsLeft_Lbl);
 	}
-	
+
 	public void click_SingleProperty_WE() {
 		generic.click(singleProperty_WE);
 
 	}
-	
+
 	public boolean isEnabled_roomNumber(int roomType, int roomNumber) {
 		return generic.isVisible(
 				roomSelectionRoomTypeNumber_WE + roomType + "]" + roomSelectionNumberOfRooms_WE + roomNumber + "')]");
@@ -560,6 +550,7 @@ public class ListingPage {
 	public void click_Filters_WE() {
 		generic.click(filters_WE);
 	}
+
 	public void click_Find_Fabhotels_Btn() {
 		generic.click(find_Fabhotels_Btn);
 	}
@@ -585,5 +576,3 @@ public class ListingPage {
 	}
 
 }
-
-

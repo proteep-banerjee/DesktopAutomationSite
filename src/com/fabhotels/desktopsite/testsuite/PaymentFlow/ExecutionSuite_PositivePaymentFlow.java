@@ -25,7 +25,7 @@ public class ExecutionSuite_PositivePaymentFlow extends Config {
 
 	@Test
 	public void TC_positiveCase_Payment_CreditCard() {
-		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());
+		generic.loadURL_HandlePopup(UrlProvider.getGothamPropertyPageUrl());
 
 		DetailPage DetailPage = new DetailPage(driver, generic);
 		SearchResultPage SearchResultPage = new SearchResultPage(driver, generic);
@@ -47,7 +47,7 @@ public class ExecutionSuite_PositivePaymentFlow extends Config {
 
 	@Test
 	public void TC_positiveCase_Payment_DebitCard() {
-		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());
+		generic.loadURL_HandlePopup(UrlProvider.getGothamPropertyPageUrl());
 		DetailPage DetailPage = new DetailPage(driver, generic);
 
 		SearchResultPage SearchResultPage = new SearchResultPage(driver, generic);
@@ -69,7 +69,7 @@ public class ExecutionSuite_PositivePaymentFlow extends Config {
 
 	@Test
 	public void TC_positiveCase_Payment_Netbanking() {
-		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());
+		generic.loadURL_HandlePopup(UrlProvider.getGothamPropertyPageUrl());
 		DetailPage DetailPage = new DetailPage(driver, generic);
 
 		SearchResultPage SearchResultPage = new SearchResultPage(driver, generic);
@@ -92,7 +92,7 @@ public class ExecutionSuite_PositivePaymentFlow extends Config {
 
 	@Test
 	public void TC_positiveCase_Payment_Wallets() {
-		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());
+		generic.loadURL_HandlePopup(UrlProvider.getGothamPropertyPageUrl());
 		DetailPage DetailPage = new DetailPage(driver, generic);
 
 		SearchResultPage SearchResultPage = new SearchResultPage(driver, generic);
@@ -118,7 +118,7 @@ public class ExecutionSuite_PositivePaymentFlow extends Config {
 
 	@Test
 	public void TC_positiveCase_Payment_PayAtHotels() {
-		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());
+		generic.loadURL_HandlePopup(UrlProvider.getGothamPropertyPageUrl());
 		DetailPage DetailPage = new DetailPage(driver, generic);
 
 		SearchResultPage SearchResultPage = new SearchResultPage(driver, generic);

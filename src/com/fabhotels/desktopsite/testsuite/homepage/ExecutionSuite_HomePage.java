@@ -2,7 +2,6 @@ package com.fabhotels.desktopsite.testsuite.homepage;
 
 import java.text.ParseException;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
@@ -41,9 +40,7 @@ public class ExecutionSuite_HomePage extends Config {
 	@BeforeMethod
 	public void beforeMethod() {
 		driver.manage().deleteAllCookies();
-		generic.loadURL(UrlProvider.getHomePageUrl());
-		JavascriptExecutor executor = (JavascriptExecutor) driver;
-		executor.executeScript("setVoucherCloseCookie()");
+		generic.loadURL_HandlePopup(UrlProvider.getHomePageUrl());
 		softAssert = new SoftAssert();
 	}
 

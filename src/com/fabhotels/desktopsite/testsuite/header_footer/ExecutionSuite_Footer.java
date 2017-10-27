@@ -31,7 +31,7 @@ public class ExecutionSuite_Footer extends UrlProvider {
 		generic = new GenericFunctions(driver);
 		driver = generic.startDriver(Driver_Type);
 		footer = new Footer(driver, generic);
-		generic.loadURL(getHomePageUrl());
+		generic.loadURL_HandlePopup(getHomePageUrl());
 	}
 
 
@@ -54,7 +54,7 @@ public class ExecutionSuite_Footer extends UrlProvider {
 	public void TC_Footer_001_Validate_FooterLinks_Landings(int rowNo, String LinkName, String Link_Type) {
 		SoftAssert s_assert = new SoftAssert();
 		System.out.println("Row --->> " + rowNo + ", Linkname --->> " + LinkName + ", Link_Type --->> " + Link_Type);
-		generic.loadURL(getHomePageUrl());
+		generic.loadURL_HandlePopup(getHomePageUrl());
 		if (Link_Type.equalsIgnoreCase("Static")) {
 			String Xpath = Footer.footerDiv_WE + Footer.staticText_Lnk + LinkName + "')]";
 			s_assert.assertTrue(generic.isVisible(Xpath), "Fail Static Text " + LinkName + " Not Visible!!");
@@ -74,7 +74,7 @@ public class ExecutionSuite_Footer extends UrlProvider {
 	@Test
 	public void TC_Footer_002_Validate_Structure_StaticText() {
 		SoftAssert s_assert = new SoftAssert();
-		generic.loadURL(getHomePageUrl());
+		generic.loadURL_HandlePopup(getHomePageUrl());
 		s_assert.assertTrue(generic.getText(Footer.footerData_Lbl).length() > 50,
 				"Footer text data is not comming for Home Page");
 		s_assert.assertEquals(generic.getAttributeValue(Footer.subscribe_placeholder_input, "placeholder"),
@@ -85,7 +85,7 @@ public class ExecutionSuite_Footer extends UrlProvider {
 
 	@Test
 	public void TC_Footer_003_Validate_CopyRightText() {
-		generic.loadURL(getHomePageUrl());
+		generic.loadURL_HandlePopup(getHomePageUrl());
 		String presentYear = new SimpleDateFormat("yyyy").format(new Date());
 		String text = footer.get_copy_rightText();
 		Assert.assertTrue(text.contains(presentYear), "The Year Shown in Footer is Wrong !! \n\n" + text);
@@ -114,7 +114,7 @@ public class ExecutionSuite_Footer extends UrlProvider {
 		SoftAssert s_assert = new SoftAssert();
 		System.out.println("Row --->> " + row + ", Linkname --->> " + LinkName + ", link type --->> " + Link_Type);
 		if (!driver.getTitle().equals(Footer.homePage_title))
-			generic.loadURL(getHomePageUrl());
+			generic.loadURL_HandlePopup(getHomePageUrl());
 
 		if (Link_Type.equalsIgnoreCase("CityLink")) {
 			boolean check = true;
@@ -157,7 +157,7 @@ public class ExecutionSuite_Footer extends UrlProvider {
 		SoftAssert s_assert = new SoftAssert();
 		System.out.println("Row --->> " + row + ", Linkname --->> " + LinkName + ", link type --->> " + Link_Type);
 		if (!driver.getTitle().equals(Footer.homePage_title))
-			generic.loadURL(getHomePageUrl());
+			generic.loadURL_HandlePopup(getHomePageUrl());
 		if (Link_Type.equalsIgnoreCase("OtherCityLink")) {
 			boolean check = true;
 			footer.clickLink(LinkName);
@@ -189,7 +189,7 @@ public class ExecutionSuite_Footer extends UrlProvider {
 	public void TC_Footer_006_Validate_Localities_Landmarks_LocalityPage() {
 		SoftAssert s_assert = new SoftAssert();
 		String localityName = "Sarojini Nagar";
-		generic.loadURL(getHomePageUrl());
+		generic.loadURL_HandlePopup(getHomePageUrl());
 		ListingPage listingPage = new ListingPage(driver, generic);
 		listingPage.performSearch(localityName, "", "", "");
 		s_assert.assertTrue(generic.isVisible(By.xpath(footer.popularLocalities_Lbl("Nearby Localities"))),
@@ -210,7 +210,7 @@ public class ExecutionSuite_Footer extends UrlProvider {
 	@Test
 	public void TC_Footer_007_Validate_Localities_Landmarks_CityPage() {
 		SoftAssert s_assert = new SoftAssert();
-		generic.loadURL(getListingPageUrl());
+		generic.loadURL_HandlePopup(getListingPageUrl());
 		s_assert.assertTrue(generic.isVisible(By.xpath(footer.popularLocalities_Lbl("Popular Localities"))),
 				"Popular Localities is not present in footer under city Page : i.e " + getListingPageUrl());
 		s_assert.assertTrue(generic.isVisible(By.xpath(footer.popularLocalities_Lbl("Popular Landmarks"))),
@@ -242,7 +242,7 @@ public class ExecutionSuite_Footer extends UrlProvider {
 
 	@Test(dataProvider = "Subscription")
 	public void TC_Footer_008_FieldLevelValidations_SubscriberEmail(String Email, String Expected) {
-		generic.loadURL(UrlProvider.getHomePageUrl());
+		generic.loadURL_HandlePopup(UrlProvider.getHomePageUrl());
 		footer.fill_subscriber_Email_Txt(Email);
 		footer.click_subscribe_Btn();
 		if (Expected.equalsIgnoreCase("NewSubmission")) {

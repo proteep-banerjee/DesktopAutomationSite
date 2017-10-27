@@ -67,7 +67,7 @@ public class ExecutionSuite_PaymentPage extends Config {
 	@Test (dataProvider = "DataProvider_paymentPage")
 	public void TC_Validate_coupon_minimumOrderAmount (int rowno, String locality, String checkInDate, String checkOutDate,
 		String expectResults) throws InterruptedException {
-		generic.loadURL(UrlProvider.getListingPageUrl(locality));
+		generic.loadURL_HandlePopup(UrlProvider.getListingPageUrl(locality));
 		ListingPage listingPage = new ListingPage(driver, generic);
 		DetailPage detailPage = new DetailPage(driver, generic);
 		PaymentPage paymentPage = new PaymentPage(driver, generic);
@@ -102,7 +102,7 @@ public class ExecutionSuite_PaymentPage extends Config {
 	@Test (dataProvider = "DataProvider_paymentPage")
 	public void TC_Validate_coupon_maximumCapValue (int rowno, String locality, String checkInDate, String checkOutDate,
 		    String expectResults) throws InterruptedException {
-		generic.loadURL(UrlProvider.getListingPageUrl(locality));
+		generic.loadURL_HandlePopup(UrlProvider.getListingPageUrl(locality));
 		ListingPage listingPage = new ListingPage(driver, generic);
 		DetailPage detailPage = new DetailPage(driver, generic);
 		PaymentPage paymentPage = new PaymentPage(driver, generic);
@@ -125,7 +125,7 @@ public class ExecutionSuite_PaymentPage extends Config {
 	@Test (dataProvider = "DataProvider_paymentPage")
 	public void TC_Validate_coupon_fixed (int rowno, String locality, String checkInDate, String checkOutDate,
 		    String expectResults) throws InterruptedException {
-		generic.loadURL(UrlProvider.getListingPageUrl(locality));
+		generic.loadURL_HandlePopup(UrlProvider.getListingPageUrl(locality));
 		ListingPage listingPage = new ListingPage(driver, generic);
 		DetailPage detailPage = new DetailPage(driver, generic);
 		PaymentPage paymentPage = new PaymentPage(driver, generic);
@@ -148,7 +148,7 @@ public class ExecutionSuite_PaymentPage extends Config {
 	@Test (dataProvider = "DataProvider_paymentPage")
 	public void TC_Validate_coupon_percent (int rowno, String locality, String checkInDate, String checkOutDate,
 		    String expectResults) throws InterruptedException {
-		generic.loadURL(UrlProvider.getListingPageUrl(locality));
+		generic.loadURL_HandlePopup(UrlProvider.getListingPageUrl(locality));
 		ListingPage listingPage = new ListingPage(driver, generic);
 		DetailPage detailPage = new DetailPage(driver, generic);
 		PaymentPage paymentPage = new PaymentPage(driver, generic);
@@ -176,7 +176,7 @@ public class ExecutionSuite_PaymentPage extends Config {
 	@Test (dataProvider = "DataProvider_paymentPage")
 	public void TC_Validate_coupon_expire (int rowno, String locality, String checkInDate, String checkOutDate,
 		    String expectResults) throws InterruptedException {
-		generic.loadURL(UrlProvider.getListingPageUrl(locality));
+		generic.loadURL_HandlePopup(UrlProvider.getListingPageUrl(locality));
 		ListingPage listingPage = new ListingPage(driver, generic);
 		DetailPage detailPage = new DetailPage(driver, generic);
 		PaymentPage paymentPage = new PaymentPage(driver, generic);
@@ -200,7 +200,7 @@ public class ExecutionSuite_PaymentPage extends Config {
 	@Test (dataProvider = "DataProvider_paymentPage")
 	public void TC_Validate_coupon_inactive (int rowno, String locality, String checkInDate, String checkOutDate,
 		    String expectResults) throws InterruptedException {
-		generic.loadURL(UrlProvider.getListingPageUrl(locality));
+		generic.loadURL_HandlePopup(UrlProvider.getListingPageUrl(locality));
 		ListingPage listingPage = new ListingPage(driver, generic);
 		DetailPage detailPage = new DetailPage(driver, generic);
 		PaymentPage paymentPage = new PaymentPage(driver, generic);
@@ -224,7 +224,7 @@ public class ExecutionSuite_PaymentPage extends Config {
 	@Test (dataProvider = "DataProvider_paymentPage")
 	public void TC_Validate_coupon_cityNotAccepted (int rowno, String locality, String checkInDate, String checkOutDate,
 		    String expectResults) throws InterruptedException {
-		generic.loadURL(UrlProvider.getListingPageUrl(locality));
+		generic.loadURL_HandlePopup(UrlProvider.getListingPageUrl(locality));
 		ListingPage listingPage = new ListingPage(driver, generic);
 		DetailPage detailPage = new DetailPage(driver, generic);
 		PaymentPage paymentPage = new PaymentPage(driver, generic);
@@ -259,7 +259,7 @@ public class ExecutionSuite_PaymentPage extends Config {
 	@Test (dataProvider = "DataProvider_paymentPage")
 	public void TC_Validate_coupon_propertyNotAccepted (int rowno, String locality, String checkInDate, String checkOutDate,
 		    String expectResults) throws InterruptedException {
-		generic.loadURL(UrlProvider.getListingPageUrl(locality));
+		generic.loadURL_HandlePopup(UrlProvider.getListingPageUrl(locality));
 		ListingPage listingPage = new ListingPage(driver, generic);
 		DetailPage detailPage = new DetailPage(driver, generic);
 		PaymentPage paymentPage = new PaymentPage(driver, generic);
@@ -306,7 +306,7 @@ public class ExecutionSuite_PaymentPage extends Config {
 		    String expectResults) throws InterruptedException {
 		double propertyFinalValue = 0, subTotal = 0, taxValue =0;
 		String tax = " ";
-		generic.loadURL(UrlProvider.getListingPageUrl(locality));
+		generic.loadURL_HandlePopup(UrlProvider.getListingPageUrl(locality));
 		ListingPage listingPage = new ListingPage(driver, generic);
 		DetailPage detailPage = new DetailPage(driver, generic);
 		PaymentPage paymentPage = new PaymentPage(driver, generic);
@@ -342,7 +342,7 @@ public class ExecutionSuite_PaymentPage extends Config {
 		    String expectResults) throws InterruptedException {
 		double propertyFinalValue = 0, subTotal = 0, taxValue =0;
 		String tax = " ";
-		generic.loadURL(UrlProvider.getListingPageUrl(locality));
+		generic.loadURL_HandlePopup(UrlProvider.getListingPageUrl(locality));
 		ListingPage listingPage = new ListingPage(driver, generic);
 		DetailPage detailPage = new DetailPage(driver, generic);
 		PaymentPage paymentPage = new PaymentPage(driver, generic);
@@ -379,7 +379,7 @@ public class ExecutionSuite_PaymentPage extends Config {
 		    String expectResults) throws InterruptedException {
 		double subTotal =0, taxValue=0;
 		String tax = " ";
-		generic.loadURL(UrlProvider.getListingPageUrl(locality));
+		generic.loadURL_HandlePopup(UrlProvider.getListingPageUrl(locality));
 		ListingPage listingPage = new ListingPage(driver, generic);
 		DetailPage detailPage = new DetailPage(driver, generic);
 		PaymentPage paymentPage = new PaymentPage(driver, generic);
@@ -414,7 +414,7 @@ public class ExecutionSuite_PaymentPage extends Config {
 		    String expectResults) throws InterruptedException {
 		double subTotal =0, taxValue=0;
 		String tax = " ";
-		generic.loadURL(UrlProvider.getListingPageUrl(locality));
+		generic.loadURL_HandlePopup(UrlProvider.getListingPageUrl(locality));
 		ListingPage listingPage = new ListingPage(driver, generic);
 		DetailPage detailPage = new DetailPage(driver, generic);
 		PaymentPage paymentPage = new PaymentPage(driver, generic);
