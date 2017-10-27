@@ -61,6 +61,11 @@ public class ExecutionSuite_Header extends Config {
 		softAssert.assertEquals(driver.getCurrentUrl(), UrlProvider.getHomePageUrl());
 		softAssert.assertAll();
 	}
+	
+	@Test
+	public void TC_ExecutionSuite_Header_002_verifyAllCities(){
+		
+	}
 
 	@AfterTest
 	public void afterTest() {
