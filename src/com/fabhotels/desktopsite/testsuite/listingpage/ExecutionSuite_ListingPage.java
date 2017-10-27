@@ -43,7 +43,7 @@ public class ExecutionSuite_ListingPage extends Config {
 	@BeforeMethod(firstTimeOnly = true)
 	public void beforeMethod() {
 		driver.manage().deleteAllCookies();
-		generic.loadURL(UrlProvider.getListingPageUrl());
+		generic.loadURL_HandlePopup(UrlProvider.getListingPageUrl());
 	}
 
 	@Test
@@ -62,7 +62,7 @@ public class ExecutionSuite_ListingPage extends Config {
 
 	@DataProvider(name = "DataProvider_Cities")
 	public Object[][] DataProvider_Cities() {
-		generic.loadURL(UrlProvider.getListingPageUrl());
+		generic.loadURL_HandlePopup(UrlProvider.getListingPageUrl());
 
 		Object result[][] = new Object[3][2];
 		List<WebElement> we = header.getWebElements_AllCities_DD();
@@ -120,7 +120,7 @@ public class ExecutionSuite_ListingPage extends Config {
 
 	@Test
 	public void TC_HotelInfoContainer_listPage() throws ParseException {
-		generic.loadURL(UrlProvider.getListingPageUrl());
+		generic.loadURL_HandlePopup(UrlProvider.getListingPageUrl());
 		cal.Select_CheckIn_CheckOut_Date_Calendar_WE(GenericFunctions.getDateAfterDays("0"),
 				GenericFunctions.getDateAfterDays("2"));
 		listingPage.selectRooms();
@@ -163,7 +163,7 @@ public class ExecutionSuite_ListingPage extends Config {
 
 	@Test
 	public void TC_No_Hotelsfound_listPage() {
-		generic.loadURL(UrlProvider.getHomePageUrl());
+		generic.loadURL_HandlePopup(UrlProvider.getHomePageUrl());
 		listingPage.performSearch("*", "", "", "");
 		listingPage.No_Hotelsfound();
 	}
@@ -190,7 +190,7 @@ public class ExecutionSuite_ListingPage extends Config {
 	public void TC_ListPage_SoldOut_listPage() throws ParseException {
 		listingPage.performSearch("New Delhi", GenericFunctions.getDateAfterDays("0"),
 				GenericFunctions.getDateAfterDays("5"), "1");
-		generic.loadURL(UrlProvider.getGothamListPageUrl());
+		generic.loadURL_HandlePopup(UrlProvider.getGothamListPageUrl());
 		s_assert.assertEquals(generic.getText(ListingPage.soldOut_Lbl), "SOLD OUT");
 		s_assert.assertEquals(generic.getText(ListingPage.lastHotelName_WE), soldOut_HotelName);
 		s_assert.assertEquals(generic.getText(ListingPage.lastSoldOut_btn), "SOLD OUT");
@@ -201,7 +201,7 @@ public class ExecutionSuite_ListingPage extends Config {
 	public void TC_DetailsPageLanding_SoldOut_listPage() throws ParseException {
 		listingPage.performSearch("New Delhi", GenericFunctions.getDateAfterDays("0"),
 				GenericFunctions.getDateAfterDays("1"), "2");
-		generic.loadURL(UrlProvider.getGothamListPageUrl());
+		generic.loadURL_HandlePopup(UrlProvider.getGothamListPageUrl());
 		String price_ListPage = generic.getText(ListingPage.lastHotelPrice_WE).replaceAll("[^0-9.]", "");
 		// Click on sold out button from list page.
 		generic.click(ListingPage.lastSoldOut_btn);
@@ -235,7 +235,7 @@ public class ExecutionSuite_ListingPage extends Config {
 	public void TC_DetailsPageLanding_SomeRoomLeft_listPage() throws ParseException {
 		listingPage.performSearch("New Delhi", GenericFunctions.getDateAfterDays("0"),
 				GenericFunctions.getDateAfterDays("5"), "5");
-		generic.loadURL(UrlProvider.getGothamListPageUrl());
+		generic.loadURL_HandlePopup(UrlProvider.getGothamListPageUrl());
 		s_assert.assertEquals(generic.getText(ListingPage.roomLeftLbl), "3 ROOMS LEFT",
 				"proper room left warning is not comming on List page.");
 		generic.click(ListingPage.roomLeftBookNow_btn);

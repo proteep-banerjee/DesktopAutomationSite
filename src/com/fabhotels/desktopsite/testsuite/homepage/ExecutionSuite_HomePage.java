@@ -42,7 +42,7 @@ public class ExecutionSuite_HomePage extends Config {
 	@BeforeMethod
 	public void beforeMethod() {
 		driver.manage().deleteAllCookies();
-		generic.loadURL(UrlProvider.getHomePageUrl());
+		generic.loadURL_HandlePopup(UrlProvider.getHomePageUrl());
 		softAssert = new SoftAssert();
 	}
 
@@ -50,7 +50,7 @@ public class ExecutionSuite_HomePage extends Config {
 	@Test
 	public void TC_ExecutionSuite_HomePage_001_verifyPageHeadline_subHealine_popularCities(){
 		SoftAssert softAssert = new SoftAssert();
-		generic.loadURL(UrlProvider.getHomePageUrl());
+		generic.loadURL_HandlePopup(UrlProvider.getHomePageUrl());
 		softAssert.assertEquals(hp.getLabelText_mainTitle_Lbl(), "India’s Best Budget Hotels");
 		softAssert.assertEquals(hp.getLabelText_secondaryTitle_Lbl(), "250+ Budget Hotels in India | 20+ Cities");
 		softAssert.assertEquals(hp.getLabelText_popularCities_Lbl(), "Popular Cities:");

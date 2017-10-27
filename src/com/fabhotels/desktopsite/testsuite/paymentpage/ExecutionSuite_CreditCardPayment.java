@@ -26,7 +26,7 @@ public class ExecutionSuite_CreditCardPayment extends Config {
 /*	
 	@Test
 	public void TC_positiveCase_Payment_CreditCard() {
-		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());
+		generic.loadURL_HandlePopup(UrlProvider.getGothamPropertyPageUrl());
 		DetailPage DetailPage=new DetailPage(driver,generic);
 
 		SearchResultPage SearchResultPage=new SearchResultPage(driver,generic);
@@ -52,13 +52,13 @@ public class ExecutionSuite_CreditCardPayment extends Config {
 		
 		for(int i=0;i<2;i++)
 		{
-			generic.loadURL(UrlProvider.getListingPageUrl());
+			generic.loadURL_HandlePopup(UrlProvider.getListingPageUrl());
 			JavascriptExecutor executor = (JavascriptExecutor) driver;
 			//executor.executeScript("setVoucherCounter();");
 			executor.executeScript("setVoucherCloseCookie();");
 			driver.navigate().refresh();
-			//generic.loadURL(UrlProvider.getHomePageUrl());
-			//generic.loadURL(UrlProvider.getGothamPropertyPageUrl());
+			//generic.loadURL_HandlePopup(UrlProvider.getHomePageUrl());
+			//generic.loadURL_HandlePopup(UrlProvider.getGothamPropertyPageUrl());
 			generic.goToSleep(60000);
 		}
 		
