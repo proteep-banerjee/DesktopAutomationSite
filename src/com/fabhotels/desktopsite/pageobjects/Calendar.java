@@ -20,8 +20,8 @@ public class Calendar {
 	public static String date;
 
 	public static final By checkIn_Date_WE = By.id("checkIn");
-	public static final By checkIn_DateCalander2_WE = By.id("checkIn1");
 	public static final By checkOut_Date_WE = By.id("checkOut");
+	public static final By checkIn_DateCalander2_WE = By.id("checkIn1");
 	public static final By checkOut_DateCalander2_WE = By.id("checkOut1");
 	public static final By month_WE = By.xpath("//th[@class='datepicker-switch'][1]");
 	public static final By year_WE = By.xpath("(//th[@class='datepicker-switch'])[2]");
@@ -31,111 +31,210 @@ public class Calendar {
 	public static final String selectDate_Lnk = "//td[(@class='day') and text()='";
 	public static final By searchBox_WE = By.xpath("//input[@name='locationsearch']");
 	public static final By checkAvailabilityInMiddle_Btn = By.xpath("//a[@id='DetailPageBtn']");
-	
-	
+
 	public Calendar(WebDriver driver, GenericFunctions generic) {
 		this.driver = driver;
 		this.generic = generic;
 	}
-	
-	
-	
+
+	public void click_checkIn_Date_WE() {
+		generic.click(checkIn_Date_WE);
+	}
+
+	public String getElementText_checkIn_Date_WE() {
+		return generic.getAttributeValue(checkIn_Date_WE, "value");
+
+	}
+
+	public void click_checkIn_DateCalander2_WE() {
+		generic.click(checkIn_DateCalander2_WE);
+	}
+
+	public String getElementText_checkIn_DateCalander2_WE() {
+		return generic.getText(checkIn_DateCalander2_WE);
+
+	}
+
+	public void click_checkOut_Date_WE() {
+		generic.getAttributeValue(checkOut_Date_WE, "value");
+	}
+
+	public String getElementText_checkOut_Date_WE() {
+		return generic.getText(checkOut_Date_WE);
+
+	}
+
+	public void click_checkOut_DateCalander2_WE() {
+		generic.click(checkOut_DateCalander2_WE);
+	}
+
+	public String getElementText_checkOut_DateCalander2_WE() {
+		return generic.getText(checkOut_DateCalander2_WE);
+
+	}
+
+	public void click_month_WE() {
+		generic.click(month_WE);
+	}
+
+	public String getElementText_month_WE() {
+		return generic.getText(month_WE);
+
+	}
+
+	public void click_year_WE() {
+		generic.click(year_WE);
+	}
+
+	public String getElementText_year_WE() {
+		return generic.getText(year_WE);
+
+	}
+
+	public void click_nextYearClick_WE() {
+		generic.click(nextYearClick_WE);
+	}
+
+	public String getElementText_nextYearClick_WE() {
+		return generic.getText(nextYearClick_WE);
+
+	}
+
+	public void click_Date_WE() {
+		generic.click(Date_WE);
+	}
+
+	public String getElementText_Date_WE() {
+		return generic.getText(Date_WE);
+
+	}
+
+	public void click_selectMonth_Lnk() {
+		generic.click(selectMonth_Lnk);
+	}
+
+	public String getLinkText_selectMonth_Lnk() {
+		return generic.getText(selectMonth_Lnk);
+	}
+
+	public void click_selectDate_Lnk() {
+		generic.click(selectDate_Lnk);
+	}
+
+	public String getLinkText_selectDate_Lnk() {
+		return generic.getText(selectDate_Lnk);
+	}
+
+	public void click_searchBox_WE() {
+		generic.click(searchBox_WE);
+	}
+
+	public String getElementText_searchBox_WE() {
+		return generic.getText(searchBox_WE);
+
+	}
+
+	public void click_checkAvailabilityInMiddle_Btn() {
+		generic.click(checkAvailabilityInMiddle_Btn);
+	}
+
 	// Here the date format should be "dd MMMM uuuu"
-	public void Select_CheckIn_CheckOut_Date_Calendar_WE(String checkindate, String checkoutdate) throws ParseException {
+	public void Select_CheckIn_CheckOut_Date_Calendar_WE(String checkindate, String checkoutdate)
+			throws ParseException {
 		if (checkindate.length() < 1)
 			return;
 		if (checkoutdate.length() < 1)
 			return;
 		String str[] = checkindate.split("\\s+");
-		String inDate =str[0];
-		inDate = inDate.charAt(0)=='0'?inDate.substring(1):inDate;
-		String inMonth =str[1];
+		String inDate = str[0];
+		inDate = inDate.charAt(0) == '0' ? inDate.substring(1) : inDate;
+		String inMonth = str[1];
 		String inMonthFormatted = inMonth.substring(0, 3);
-		String inYear =str[2];
+		String inYear = str[2];
 		String str1[] = checkoutdate.split("\\s+");
-		String outDate =str1[0];
-		outDate = outDate.charAt(0)=='0'?outDate.substring(1):outDate;
-		String outMonth =str1[1];
+		String outDate = str1[0];
+		outDate = outDate.charAt(0) == '0' ? outDate.substring(1) : outDate;
+		String outMonth = str1[1];
 		String outMonthFormatted = outMonth.substring(0, 3);
-		String outYear =str1[2];
+		String outYear = str1[2];
 		generic.click(checkIn_Date_WE);
 		generic.click(month_WE);
-		while(!generic.getText(year_WE).equals(inYear)){
+		while (!generic.getText(year_WE).equals(inYear)) {
 			generic.click(nextYearClick_WE);
 		}
-		generic.click(selectMonth_Lnk+inMonthFormatted+"']");
-		generic.click(selectDate_Lnk+inDate+"']");
+		generic.click(selectMonth_Lnk + inMonthFormatted + "']");
+		generic.click(selectDate_Lnk + inDate + "']");
 		generic.click(month_WE);
-		while(!generic.getText(year_WE).equals(outYear)){
+		while (!generic.getText(year_WE).equals(outYear)) {
 			generic.click(nextYearClick_WE);
 		}
-		generic.click(selectMonth_Lnk+outMonthFormatted+"']");
+		generic.click(selectMonth_Lnk + outMonthFormatted + "']");
 		generic.performMouseHover(searchBox_WE);
-		generic.click(selectDate_Lnk+outDate+"']");
-		
+		generic.click(selectDate_Lnk + outDate + "']");
+
 	}
-	
+
 	// Here the date format should be "dd MMMM uuuu"
-		public void Select_CheckIn_CheckOut_Date_SecondCalendaronDEtailsPage_WE(String checkindate, String checkoutdate) throws ParseException {
-			if (checkindate.length() < 1)
-				return;
-			if (checkoutdate.length() < 1)
-				return;
-			String str[] = checkindate.split("\\s+");
-			String inDate =str[0];
-			inDate = inDate.charAt(0)=='0'?inDate.substring(1):inDate;
-			String inMonth =str[1];
-			String inMonthFormatted = inMonth.substring(0, 3);
-			String inYear =str[2];
-			String str1[] = checkoutdate.split("\\s+");
-			String outDate =str1[0];
-			outDate = outDate.charAt(0)=='0'?outDate.substring(1):outDate;
-			String outMonth =str1[1];
-			String outMonthFormatted = outMonth.substring(0, 3);
-			String outYear =str1[2];
-			generic.scrollToElement(checkIn_DateCalander2_WE,true);
-			generic.customPageScrollToBottomInSlowMotion(0, -450);
-			generic.click(checkIn_DateCalander2_WE);
-			generic.click(month_WE);
-			while(!generic.getText(year_WE).equals(inYear)){
-				generic.click(nextYearClick_WE);
-			}
-			generic.click(selectMonth_Lnk+inMonthFormatted+"']");
-			generic.click(selectDate_Lnk+inDate+"']");
-			generic.click(month_WE);
-			while(!generic.getText(year_WE).equals(outYear)){
-				generic.click(nextYearClick_WE);
-			}
-			generic.scrollToElement(checkIn_DateCalander2_WE,true);
-			generic.customPageScrollToBottomInSlowMotion(0, -450);
-			generic.click(selectMonth_Lnk+outMonthFormatted+"']");
-			generic.performMouseHover(checkAvailabilityInMiddle_Btn);
-			generic.clickJS(selectDate_Lnk+outDate+"']");
-			
+	public void Select_CheckIn_CheckOut_Date_SecondCalendaronDEtailsPage_WE(String checkindate, String checkoutdate)
+			throws ParseException {
+		if (checkindate.length() < 1)
+			return;
+		if (checkoutdate.length() < 1)
+			return;
+		String str[] = checkindate.split("\\s+");
+		String inDate = str[0];
+		inDate = inDate.charAt(0) == '0' ? inDate.substring(1) : inDate;
+		String inMonth = str[1];
+		String inMonthFormatted = inMonth.substring(0, 3);
+		String inYear = str[2];
+		String str1[] = checkoutdate.split("\\s+");
+		String outDate = str1[0];
+		outDate = outDate.charAt(0) == '0' ? outDate.substring(1) : outDate;
+		String outMonth = str1[1];
+		String outMonthFormatted = outMonth.substring(0, 3);
+		String outYear = str1[2];
+		generic.scrollToElement(checkIn_DateCalander2_WE, true);
+		generic.customPageScrollToBottomInSlowMotion(0, -450);
+		generic.click(checkIn_DateCalander2_WE);
+		generic.click(month_WE);
+		while (!generic.getText(year_WE).equals(inYear)) {
+			generic.click(nextYearClick_WE);
 		}
-	
-		
-		// Here the date format should be "dd MMMM uuuu"
-				public void Select_CheckInOnly_SecondCalendaronDEtailsPage_WE(String checkindate) throws ParseException {
-					if (checkindate.length() < 1)
-						return;
-					String str[] = checkindate.split("\\s+");
-					String inDate =str[0];
-					inDate = inDate.charAt(0)=='0'?inDate.substring(1):inDate;
-					String inMonth =str[1];
-					String inMonthFormatted = inMonth.substring(0, 3);
-					String inYear =str[2];
-					generic.scrollToElement(checkIn_DateCalander2_WE,true);
-					generic.customPageScrollToBottomInSlowMotion(0, -450);
-					generic.click(checkIn_DateCalander2_WE);
-					generic.click(month_WE);
-					while(!generic.getText(year_WE).equals(inYear)){
-						generic.click(nextYearClick_WE);
-					}
-					generic.click(selectMonth_Lnk+inMonthFormatted+"']");
-					generic.click(selectDate_Lnk+inDate+"']");
-				}
-	
+		generic.click(selectMonth_Lnk + inMonthFormatted + "']");
+		generic.click(selectDate_Lnk + inDate + "']");
+		generic.click(month_WE);
+		while (!generic.getText(year_WE).equals(outYear)) {
+			generic.click(nextYearClick_WE);
+		}
+		generic.scrollToElement(checkIn_DateCalander2_WE, true);
+		generic.customPageScrollToBottomInSlowMotion(0, -450);
+		generic.click(selectMonth_Lnk + outMonthFormatted + "']");
+		generic.performMouseHover(checkAvailabilityInMiddle_Btn);
+		generic.clickJS(selectDate_Lnk + outDate + "']");
+
+	}
+
+	// Here the date format should be "dd MMMM uuuu"
+	public void Select_CheckInOnly_SecondCalendaronDEtailsPage_WE(String checkindate) throws ParseException {
+		if (checkindate.length() < 1)
+			return;
+		String str[] = checkindate.split("\\s+");
+		String inDate = str[0];
+		inDate = inDate.charAt(0) == '0' ? inDate.substring(1) : inDate;
+		String inMonth = str[1];
+		String inMonthFormatted = inMonth.substring(0, 3);
+		String inYear = str[2];
+		generic.scrollToElement(checkIn_DateCalander2_WE, true);
+		generic.customPageScrollToBottomInSlowMotion(0, -450);
+		generic.click(checkIn_DateCalander2_WE);
+		generic.click(month_WE);
+		while (!generic.getText(year_WE).equals(inYear)) {
+			generic.click(nextYearClick_WE);
+		}
+		generic.click(selectMonth_Lnk + inMonthFormatted + "']");
+		generic.click(selectDate_Lnk + inDate + "']");
+	}
+
 	// for short month pass format as "dd-mm-yyyy" for full month pass "dd MMMM
 	// uuuu"
 	public String dateWithDifferentFormat(String format) {

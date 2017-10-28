@@ -16,7 +16,7 @@ import org.testng.asserts.SoftAssert;
 import com.fabhotels.automationframework.genericfunctions.GenericFunctions;
 import com.fabhotels.automationframework.xlsreader.Xls_Reader;
 import com.fabhotels.desktopsite.pageobjects.Footer;
-import com.fabhotels.desktopsite.pageobjects.ListingPage;
+import com.fabhotels.desktopsite.pageobjects.SearchBar;
 import com.fabhotels.desktopsite.utils.Constants;
 import com.fabhotels.desktopsite.utils.UrlProvider;
 
@@ -33,7 +33,6 @@ public class ExecutionSuite_Footer extends UrlProvider {
 		footer = new Footer(driver, generic);
 		generic.loadURL_HandlePopup(getHomePageUrl());
 	}
-
 
 	@DataProvider(name = "Validate_Links_Landings_Footer")
 	public Object[][] DataProvider_Footer() {
@@ -190,8 +189,8 @@ public class ExecutionSuite_Footer extends UrlProvider {
 		SoftAssert s_assert = new SoftAssert();
 		String localityName = "Sarojini Nagar";
 		generic.loadURL_HandlePopup(getHomePageUrl());
-		ListingPage listingPage = new ListingPage(driver, generic);
-		listingPage.performSearch(localityName, "", "", "");
+		SearchBar searchBar = new SearchBar(driver, generic);
+		searchBar.performSearch(localityName, "", "", "");
 		s_assert.assertTrue(generic.isVisible(By.xpath(footer.popularLocalities_Lbl("Nearby Localities"))),
 				"Nearby Localities is not present in footer while searching for a locality : i.e " + localityName);
 		s_assert.assertTrue(generic.isVisible(By.xpath(footer.popularLocalities_Lbl("Nearby Landmarks"))),

@@ -1,23 +1,12 @@
 package com.fabhotels.desktopsite.testsuite.paymentpage;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
 
 import com.fabhotels.automationframework.genericfunctions.GenericFunctions;
 import com.fabhotels.automationframework.xlsreader.Xls_Reader;
-import com.fabhotels.desktopsite.pageobjects.DetailPage;
-import com.fabhotels.desktopsite.pageobjects.ListingPage;
-import com.fabhotels.desktopsite.pageobjects.PaymentPage;
 import com.fabhotels.desktopsite.utils.Config;
-import com.fabhotels.desktopsite.utils.Constants;
-import com.fabhotels.desktopsite.utils.UrlProvider;
 
 public class ExecutionSuite_PaymentPage extends Config {
 	String Sheetname;
@@ -35,6 +24,7 @@ public class ExecutionSuite_PaymentPage extends Config {
 		driver.manage().deleteAllCookies();
 	}
 	
+	/*
 	@DataProvider(name = "DataProvider_paymentPage")
 	public Object[][] DataProvider_DetailPage() {
 		Sheetname = "DetailPage";
@@ -71,10 +61,10 @@ public class ExecutionSuite_PaymentPage extends Config {
 		ListingPage listingPage = new ListingPage(driver, generic);
 		DetailPage detailPage = new DetailPage(driver, generic);
 		PaymentPage paymentPage = new PaymentPage(driver, generic);
-		if(!generic.isVisible(ListingPage.singleProperty_WE)){
+		if(!generic.isVisible(ListingPage.allProperties_WE)){
 			Assert.assertEquals("Property", "NotFound", "Property is not found on the list page !!");
 		}
-		listingPage.click_singleProperty_WE();
+		listingPage.click_allProperties_WE();
 		Thread.sleep(5000L);
 		detailPage.Select_CheckIn_CheckOut_Date_WE(checkInDate, checkOutDate); 		
 		Thread.sleep(3000L);
@@ -106,10 +96,10 @@ public class ExecutionSuite_PaymentPage extends Config {
 		ListingPage listingPage = new ListingPage(driver, generic);
 		DetailPage detailPage = new DetailPage(driver, generic);
 		PaymentPage paymentPage = new PaymentPage(driver, generic);
-		if(!generic.isVisible(ListingPage.singleProperty_WE)){
+		if(!generic.isVisible(ListingPage.allProperties_WE)){
 			Assert.assertEquals("Property", "NotFound", "Property is not found on the list page !!");
 		}
-		listingPage.click_singleProperty_WE();
+		listingPage.click_allProperties_WE();
 		Thread.sleep(5000L);
 		detailPage.Select_CheckIn_CheckOut_Date_WE(checkInDate, checkOutDate); 		
 		Thread.sleep(3000L);
@@ -129,10 +119,10 @@ public class ExecutionSuite_PaymentPage extends Config {
 		ListingPage listingPage = new ListingPage(driver, generic);
 		DetailPage detailPage = new DetailPage(driver, generic);
 		PaymentPage paymentPage = new PaymentPage(driver, generic);
-		if(!generic.isVisible(ListingPage.singleProperty_WE)){
+		if(!generic.isVisible(ListingPage.allProperties_WE)){
 			Assert.assertEquals("Property", "NotFound", "Property is not found on the list page !!");
 		}
-		listingPage.click_singleProperty_WE();
+		listingPage.click_allProperties_WE();
 		Thread.sleep(5000L);
 		detailPage.Select_CheckIn_CheckOut_Date_WE(checkInDate, checkOutDate); 		
 		Thread.sleep(3000L);
@@ -153,10 +143,10 @@ public class ExecutionSuite_PaymentPage extends Config {
 		DetailPage detailPage = new DetailPage(driver, generic);
 		PaymentPage paymentPage = new PaymentPage(driver, generic);
 		double discount=0, paymentPageDiscount=0;
-		if(!generic.isVisible(ListingPage.singleProperty_WE)){
+		if(!generic.isVisible(ListingPage.allProperties_WE)){
 			Assert.assertEquals("Property", "NotFound", "Property is not found on the list page !!");
 		}
-		listingPage.click_singleProperty_WE();
+		listingPage.click_allProperties_WE();
 		Thread.sleep(5000L);
 		detailPage.Select_CheckIn_CheckOut_Date_WE(checkInDate, checkOutDate); 		
 		Thread.sleep(3000L);
@@ -180,10 +170,10 @@ public class ExecutionSuite_PaymentPage extends Config {
 		ListingPage listingPage = new ListingPage(driver, generic);
 		DetailPage detailPage = new DetailPage(driver, generic);
 		PaymentPage paymentPage = new PaymentPage(driver, generic);
-		if(!generic.isVisible(ListingPage.singleProperty_WE)){
+		if(!generic.isVisible(ListingPage.allProperties_WE)){
 			Assert.assertEquals("Property", "NotFound", "Property is not found on the list page !!");
 		}
-		listingPage.click_singleProperty_WE();
+		listingPage.click_allProperties_WE();
 		Thread.sleep(5000L);
 		detailPage.Select_CheckIn_CheckOut_Date_WE(checkInDate, checkOutDate); 		
 		Thread.sleep(3000L);
@@ -204,10 +194,10 @@ public class ExecutionSuite_PaymentPage extends Config {
 		ListingPage listingPage = new ListingPage(driver, generic);
 		DetailPage detailPage = new DetailPage(driver, generic);
 		PaymentPage paymentPage = new PaymentPage(driver, generic);
-		if(!generic.isVisible(ListingPage.singleProperty_WE)){
+		if(!generic.isVisible(ListingPage.allProperties_WE)){
 			Assert.assertEquals("Property", "NotFound", "Property is not found on the list page !!");
 		}
-		listingPage.click_singleProperty_WE();
+		listingPage.click_allProperties_WE();
 		Thread.sleep(5000L);
 		detailPage.Select_CheckIn_CheckOut_Date_WE(checkInDate, checkOutDate); 		
 		Thread.sleep(3000L);
@@ -229,10 +219,10 @@ public class ExecutionSuite_PaymentPage extends Config {
 		DetailPage detailPage = new DetailPage(driver, generic);
 		PaymentPage paymentPage = new PaymentPage(driver, generic);
 		String errorMssg = " ";
-		if(!generic.isVisible(ListingPage.singleProperty_WE)){
+		if(!generic.isVisible(ListingPage.allProperties_WE)){
 			Assert.assertEquals("Property", "NotFound", "Property is not found on the list page !!");
 		}
-		listingPage.click_singleProperty_WE();
+		listingPage.click_allProperties_WE();
 		Thread.sleep(5000L);
 		detailPage.Select_CheckIn_CheckOut_Date_WE(checkInDate, checkOutDate); 		
 		Thread.sleep(3000L);
@@ -264,10 +254,10 @@ public class ExecutionSuite_PaymentPage extends Config {
 		DetailPage detailPage = new DetailPage(driver, generic);
 		PaymentPage paymentPage = new PaymentPage(driver, generic);
 		String propertyName = " ", errorMssg = " ";
-		if(!generic.isVisible(ListingPage.singleProperty_WE)){
+		if(!generic.isVisible(ListingPage.allProperties_WE)){
 			Assert.assertEquals("Property", "NotFound", "Property is not found on the list page !!");
 		}
-		listingPage.click_singleProperty_WE();
+		listingPage.click_allProperties_WE();
 		Thread.sleep(5000L);
 		detailPage.Select_CheckIn_CheckOut_Date_WE(checkInDate, checkOutDate); 		
 		Thread.sleep(3000L);
@@ -310,10 +300,10 @@ public class ExecutionSuite_PaymentPage extends Config {
 		ListingPage listingPage = new ListingPage(driver, generic);
 		DetailPage detailPage = new DetailPage(driver, generic);
 		PaymentPage paymentPage = new PaymentPage(driver, generic);
-		if(!generic.isVisible(ListingPage.singleProperty_WE)){
+		if(!generic.isVisible(ListingPage.allProperties_WE)){
 			Assert.assertEquals("Property", "NotFound", "Property is not found on the list page !!");
 		}
-		listingPage.click_singleProperty_WE();
+		listingPage.click_allProperties_WE();
 		detailPage.Select_CheckIn_CheckOut_Date_WE(checkInDate, checkOutDate); 		
 		Thread.sleep(3000L);
 		detailPage.click_bookNow_Btn();
@@ -346,10 +336,10 @@ public class ExecutionSuite_PaymentPage extends Config {
 		ListingPage listingPage = new ListingPage(driver, generic);
 		DetailPage detailPage = new DetailPage(driver, generic);
 		PaymentPage paymentPage = new PaymentPage(driver, generic);
-		if(!generic.isVisible(ListingPage.singleProperty_WE)){
+		if(!generic.isVisible(ListingPage.allProperties_WE)){
 			Assert.assertEquals("Property", "NotFound", "Property is not found on the list page !!");
 		}
-		listingPage.click_singleProperty_WE();
+		listingPage.click_allProperties_WE();
 		detailPage.Select_CheckIn_CheckOut_Date_WE(checkInDate, checkOutDate); 		
 		Thread.sleep(5000L);
 		detailPage.click_bookNow_Btn();
@@ -383,10 +373,10 @@ public class ExecutionSuite_PaymentPage extends Config {
 		ListingPage listingPage = new ListingPage(driver, generic);
 		DetailPage detailPage = new DetailPage(driver, generic);
 		PaymentPage paymentPage = new PaymentPage(driver, generic);
-		if(!generic.isVisible(ListingPage.singleProperty_WE)){
+		if(!generic.isVisible(ListingPage.allProperties_WE)){
 			Assert.assertEquals("Property", "NotFound", "Property is not found on the list page !!");
 		}
-		listingPage.click_singleProperty_WE();
+		listingPage.click_allProperties_WE();
 		detailPage.Select_CheckIn_CheckOut_Date_WE(checkInDate, checkOutDate); 		
 		Thread.sleep(3000L);
 		detailPage.click_bookNow_Btn();
@@ -418,10 +408,10 @@ public class ExecutionSuite_PaymentPage extends Config {
 		ListingPage listingPage = new ListingPage(driver, generic);
 		DetailPage detailPage = new DetailPage(driver, generic);
 		PaymentPage paymentPage = new PaymentPage(driver, generic);
-		if(!generic.isVisible(ListingPage.singleProperty_WE)){
+		if(!generic.isVisible(ListingPage.allProperties_WE)){
 			Assert.assertEquals("Property", "NotFound", "Property is not found on the list page !!");
 		}
-		listingPage.click_singleProperty_WE();
+		listingPage.click_allProperties_WE();
 		detailPage.Select_CheckIn_CheckOut_Date_WE(checkInDate, checkOutDate); 		
 		Thread.sleep(3000L);
 		detailPage.click_bookNow_Btn();
@@ -447,7 +437,7 @@ public class ExecutionSuite_PaymentPage extends Config {
 	
 	
 
-	
+	*/
 	@AfterTest
 	public void afterTest() {
 		driver.quit();

@@ -608,7 +608,7 @@ public class DetailPage {
 	}
 
 	public String getLabelText_price_Lbl() {
-		return generic.getText(price_Lbl);
+		return generic.getText(price_Lbl).replaceAll("[^0-9.]", "");
 	}
 
 	public void click_onwards_Lbl() {
