@@ -17,7 +17,6 @@ public class Calendar {
 
 	WebDriver driver;
 	GenericFunctions generic;
-	public static String date;
 
 	public static final By checkIn_Date_WE = By.id("checkIn");
 	public static final By checkOut_Date_WE = By.id("checkOut");
@@ -241,16 +240,15 @@ public class Calendar {
 		DateTimeFormatter dTF = new DateTimeFormatterBuilder().parseCaseInsensitive().appendPattern(format)
 				.toFormatter();
 		LocalDate todayDate1 = LocalDate.now();
-		date = todayDate1.plusDays(2).format(dTF);
-		return date;
+		return todayDate1.plusDays(2).format(dTF);
+		
 	}
 
 	public String dateWithDifferentFormat(String format, int day) {
 		DateTimeFormatter dTF = new DateTimeFormatterBuilder().parseCaseInsensitive().appendPattern(format)
 				.toFormatter();
 		LocalDate todayDate1 = LocalDate.now();
-		date = todayDate1.plusDays(day).format(dTF);
-		return date;
+		return todayDate1.plusDays(day).format(dTF);
 	}
 
 	// for short month pass format as "dd-mm-yyyy" for full month pass "dd MMMM
