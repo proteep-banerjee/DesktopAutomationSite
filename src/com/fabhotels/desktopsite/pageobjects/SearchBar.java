@@ -30,14 +30,6 @@ public class SearchBar extends Calendar {
 		this.generic = generic;
 	}
 
-	public void fill_searchBox_Txt(String inputdata) {
-		if (inputdata.trim().length() == 0) {
-			clear_searchBox_Txt();
-			return;
-		}
-		generic.fill(searchBox_Txt, inputdata);
-	}
-
 	public void clear_searchBox_Txt() {
 		generic.clear(searchBox_Txt);
 	}
@@ -68,7 +60,7 @@ public class SearchBar extends Calendar {
 		return new Select(driver.findElement(noOfRooms_DD)).getFirstSelectedOption().getAttribute("value");
 	}
 
-	public void click_findFabHotel_Btn() {
+	public void click_FindFabHotel_Btn() {
 		generic.click(findFabHotel_Btn);
 	}
 

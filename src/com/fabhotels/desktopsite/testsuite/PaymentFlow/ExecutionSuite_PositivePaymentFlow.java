@@ -5,6 +5,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import com.fabhotels.automationframework.core.CustomAssert;
 import com.fabhotels.automationframework.xlsreader.Xls_Reader;
 import com.fabhotels.desktopsite.pageobjects.CheckoutReview;
 import com.fabhotels.desktopsite.pageobjects.DetailPage;
@@ -25,6 +26,7 @@ public class ExecutionSuite_PositivePaymentFlow extends Config {
 
 	@Test
 	public void TC_positiveCase_Payment_CreditCard() {
+		CustomAssert customAssert = new CustomAssert();
 		generic.loadURL_HandlePopup(UrlProvider.getGothamPropertyPageUrl());
 
 		DetailPage DetailPage = new DetailPage(driver, generic);
@@ -47,6 +49,7 @@ public class ExecutionSuite_PositivePaymentFlow extends Config {
 
 	@Test
 	public void TC_positiveCase_Payment_DebitCard() {
+		CustomAssert customAssert = new CustomAssert();
 		generic.loadURL_HandlePopup(UrlProvider.getGothamPropertyPageUrl());
 		DetailPage DetailPage = new DetailPage(driver, generic);
 
@@ -69,6 +72,8 @@ public class ExecutionSuite_PositivePaymentFlow extends Config {
 
 	@Test
 	public void TC_positiveCase_Payment_Netbanking() {
+		CustomAssert customAssert = new CustomAssert();
+
 		generic.loadURL_HandlePopup(UrlProvider.getGothamPropertyPageUrl());
 		DetailPage DetailPage = new DetailPage(driver, generic);
 
@@ -92,6 +97,8 @@ public class ExecutionSuite_PositivePaymentFlow extends Config {
 
 	@Test
 	public void TC_positiveCase_Payment_Wallets() {
+		CustomAssert customAssert = new CustomAssert();
+
 		generic.loadURL_HandlePopup(UrlProvider.getGothamPropertyPageUrl());
 		DetailPage DetailPage = new DetailPage(driver, generic);
 
@@ -118,6 +125,7 @@ public class ExecutionSuite_PositivePaymentFlow extends Config {
 
 	@Test
 	public void TC_positiveCase_Payment_PayAtHotels() {
+		CustomAssert customAssert = new CustomAssert();
 		generic.loadURL_HandlePopup(UrlProvider.getGothamPropertyPageUrl());
 		DetailPage DetailPage = new DetailPage(driver, generic);
 
