@@ -122,7 +122,7 @@ public class ExecutionSuite_ListingPage extends Config {
 	}
 
 	@Test
-	public void TC_ListPage_006_Validate_Clickablity_AllLinks_hotelTuples() {
+	public void TC_ListPage_006_Validate_Clickablity_AllLinks_hotelTuple() {
 		generic.loadURL_HandlePopup(UrlProvider.getListingPageUrl());
 		CustomAssert customAssert = new CustomAssert();
 		DetailPage detailPage = new DetailPage(driver, generic);
