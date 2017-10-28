@@ -367,7 +367,6 @@ public class ListingPage {
 
 		generic.click(findFabHotel_Btn);
 		generic.goToSleep(1000);
-		generic.waitForCompletePageLoad(driver);
 	}
 
 	// Func to get url parameters.

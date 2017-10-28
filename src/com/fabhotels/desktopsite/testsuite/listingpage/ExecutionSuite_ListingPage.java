@@ -172,7 +172,6 @@ public class ExecutionSuite_ListingPage extends Config {
 				.replaceAll("[^0-9.]", "");
 		//Click on sold out button from list page.
 		generic.click(ListingPage.lastSoldOut_btn);
-		generic.waitForCompletePageLoad(driver);
 		String hotelName_DetailsPage = generic.getText(ListingPage.hotelName_Lbl);
 		String price_DetailsPage = generic.getText(ListingPage.price_Lbl).replaceAll("[^0-9.]", "");
 		// Asserting Detail Page UI
@@ -202,7 +201,6 @@ public class ExecutionSuite_ListingPage extends Config {
 		s_assert.assertEquals(generic.getText(ListingPage.roomLeftLbl),"3 ROOMS LEFT","proper room left warning is not comming on List page.");
 		generic.click(ListingPage.roomLeftBookNow_btn);
 		s_assert.assertEquals(generic.getText(ListingPage.roomSoldOutAlertBox_Lbl),ListingPage.soldOutByRooms_Msg,"Rooms are not available error message is not comming on details page.");
-		generic.waitForCompletePageLoad(driver);
 		s_assert.assertTrue(listingPage.isDisabled_roomNumber(2, 0), "Room 2 is Enabled");
 		s_assert.assertTrue(listingPage.isDisabled_roomNumber(2, 5), "Room 2 is Enabled");
 		s_assert.assertTrue(listingPage.isSoldOut_roomType(4), "Sold Out Lablel is not displayed.");
