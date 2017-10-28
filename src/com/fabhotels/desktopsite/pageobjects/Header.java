@@ -54,4 +54,12 @@ public class Header {
 		generic.performMouseHover(allCities_WE);
 		generic.click(cities_Xpath_WE + "[text()='" + cityName + "']");
 	}
+	public void click_CityNameByHref_Header_WE(String cityName) {
+		generic.performMouseHover(allCities_WE);
+		String modCity = cityName.toLowerCase();
+		if(modCity.contains(" ")){
+			modCity = modCity.replace(" ", "-");
+		}
+		generic.click(cities_Xpath_WE + "[@href='/hotels-in-"+modCity+"/']");
+	}
 }

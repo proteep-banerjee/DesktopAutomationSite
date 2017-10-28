@@ -25,9 +25,10 @@ public class HomePage {
 	public static final By mostPopularHotesHeadline_Lbl = By.xpath("//strong[text()='Most popular FabHotels']");
 	public static final By inHighestDemandHeadline_Lbl = By.xpath("//h4[text()='In highest demand']");
 	public static final String hotelsInDemandImages_WE = "(//div[@class='hotels_fig_wrap']/img)";
-	public static final String hotelsInDemandRatings_WE = "(//div[@class='reviewer_rating float_left'])";
+	public static final String hotelsInDemandOnlyRatings_WE = "((//div[@class='reviewer_rating float_left'])/span/span)";
+	public static final String hotelsInDemandOnlyReviews_WE = "((//div[@class='reviewer_rating float_left'])/small)";
 	public static final String hotelsInDemandPrices_WE = "(//span[@class='popular_fabhotels_price'])";
-	public static final String hotelsInDemandName_WE = "(//div[@class='review_bottom_content']/h3)";
+	public static final String hotelsInDemandName_Lnk = "(//div[@class='review_bottom_content']/h3)";
 	public static final String hotelsInDemandLocality_WE = "(//div[@class='popular_fabhotels_address']/span)";
 	public static final By hotelsInDemandCheveron_Btn = By.xpath("(//li/a[@class='flex-next'])[1]");
 	public static final String hotelsInDemandCard_Lnk = "(//div[@class='hotels_fig_wrap'])";
@@ -223,16 +224,20 @@ public class HomePage {
 
 	}
 
-	public void click_hotelsInDemandRatings_WE(){
-		generic.click(hotelsInDemandRatings_WE);
-	}
+	
 
-	public boolean isVisible_hotelsInDemandRatings_Txt(){
-		return generic.isVisible(hotelsInDemandRatings_WE);
-	}
+	public String getElementText_hotelsInDemandOnlyRatings_WE(int i){
+		return generic.getText(hotelsInDemandOnlyRatings_WE+"["+i+"]");
 
-	public String getElementText_hotelsInDemandRatings_WE(int i){
-		return generic.getText(hotelsInDemandRatings_WE+"["+i+"]");
+	}
+	public String getWidth_hotelsInDemandOnlyRatings_WE(int i){
+		return generic.getAttributeValue(By.xpath(hotelsInDemandOnlyRatings_WE+"["+i+"]"), "style");
+
+	}
+	
+
+	public String getElementText_hotelsInDemandOnlyReviews_WE(int i){
+		return generic.getText(hotelsInDemandOnlyReviews_WE+"["+i+"]");
 
 	}
 
@@ -249,16 +254,16 @@ public class HomePage {
 
 	}
 
-	public void click_hotelsInDemandName_WE(){
-		generic.click(hotelsInDemandName_WE);
+	public void click_hotelsInDemandName_Lnk(int i){
+		generic.click(hotelsInDemandName_Lnk+"["+i+"]");
 	}
 
-	public boolean isVisible_hotelsInDemandName_Txt(){
-		return generic.isVisible(hotelsInDemandName_WE);
+	public boolean isVisible_hotelsInDemandName_Lnk(int i){
+		return generic.isVisible(hotelsInDemandName_Lnk+"["+i+"]");
 	}
 
-	public String getElementText_hotelsInDemandName_WE(int i){
-		return generic.getText(hotelsInDemandName_WE+"["+i+"]");
+	public String getElementText_hotelsInDemandName_Lnk(int i){
+		return generic.getText(hotelsInDemandName_Lnk+"["+i+"]");
 
 	}
 
@@ -274,7 +279,9 @@ public class HomePage {
 		return generic.getText(hotelsInDemandLocality_WE+"["+i+"]");
 
 	}
-
+	public boolean isVisible_hotelsInDemandCheveron_Btn(){
+		return generic.isVisible(hotelsInDemandCheveron_Btn);
+	}
 	public void click_hotelsInDemandCheveron_Btn(){
 		generic.click(hotelsInDemandCheveron_Btn);
 	}
