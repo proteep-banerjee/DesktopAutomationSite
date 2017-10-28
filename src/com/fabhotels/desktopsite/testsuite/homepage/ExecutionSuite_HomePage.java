@@ -109,13 +109,16 @@ public class ExecutionSuite_HomePage extends Config {
 		int i = 1;
 		while (!driver.findElement(By.xpath(HomePage.hotelsInDemandCard_Lnk + "[last()]")).isDisplayed()) {
 			for (int j = i; j < i + 2; j++) {
-				softAssert.assertTrue(hp.getElementText_hotelsInDemandRatings_WE(j).length() > 5, "Failed rating on hotels card");
+				String review = hp.getElementText_hotelsInDemandOnlyReviews_WE(j);
+				String getWidth = hp.getWidth_hotelsInDemandOnlyRatings_WE(j);
 				softAssert.assertTrue(hp.getElementText_hotelsInDemandPrices_WE(j).length() > 5, "Failed Prices");
 				softAssert.assertTrue(hp.isVisible_hotelsInDemandImages_WE(j), "Failed imagess");
 				String hotelName = hp.getElementText_hotelsInDemandName_Lnk(j);
 				hp.click_hotelsInDemandName_Lnk(j);
 				generic.switchtoNewWindow();
 				softAssert.assertTrue(hotelName.equals(dp.getLabelText_hotelName_Lbl()),"Redirection Failed");
+				softAssert.assertEquals(dp.getWidth_starRating_WE(), getWidth,"Failed width "+dp.getLabelText_hotelName_Lbl());
+				softAssert.assertEquals(dp.getLinkText_reviews_Lnk(), review,"Failed reviews "+dp.getLabelText_hotelName_Lbl());
 				driver.close();
 				generic.switchtoOriginalWindow();
 			}

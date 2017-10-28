@@ -568,6 +568,29 @@ public class ExecutionSuite_DetailPage extends Config {
 		softAssert.assertAll();
 	}
 
+
+	@Test
+	public void TC_ExecutionSuite_DetailPage_031_VerifyThatAllThereviewsAndRatingsareInSync(){
+		SoftAssert softAssert = new SoftAssert();
+		generic.loadURL_HandlePopup(UrlProvider.getHomePageUrl() + "hotels-in-new-delhi/fabhotel-checkin-by-oran-cp.html");
+		String rating1 = dp.getWidth_ratingsLogo_WE();
+		String rating2 = dp.getWidth_starRating_WE();
+		String rating3 = dp.getWidth_starsInRatingBlock_WE();
+		String reviewsNumber1 = dp.getLinkText_reviews_Lnk();
+		String reviewsNumber2 = dp.getElementText_ratedVeryGood_WE();
+		String reviewsNumber3 = dp.getLabelText_ratedInBlock_Lbl();
+		softAssert.assertEquals(rating1, rating2,"Ratings 1 and 2 did not match");
+		softAssert.assertEquals(rating3, rating2,"Ratings 3 and 2 did not match");
+		softAssert.assertEquals(reviewsNumber2, reviewsNumber3,"Reviews 3 and 2 did not match");
+		softAssert.assertTrue(reviewsNumber2.contains(reviewsNumber1), "Reviews 1 and 2 did not match");
+		softAssert.assertEquals(dp.getElementText_numericRating_WE(), dp.getLabelText_ratingNumbers_Lbl(),"Ratings are different");
+		double rating = Double.parseDouble(dp.getElementText_numericRating_WE());
+		rating = rating*20;
+		int rat1 = (int) rating;
+		softAssert.assertEquals("width: "+rat1+"%;",dp.getWidth_ratingsLogo_WE(),"Ratings are different");
+		softAssert.assertAll();
+	}
+
 	@AfterTest
 	public void afterTest() {
 		driver.quit();

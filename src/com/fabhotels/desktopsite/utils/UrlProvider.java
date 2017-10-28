@@ -53,7 +53,7 @@ public class UrlProvider extends Config {
 			return "http://" + Environment + ".fabhotels.com/hotels-in-new-delhi/fabhotel-cabana-gk1.html/";
 		
 		if (Environment.toLowerCase().contains("pp2"))
-			return "http://" + Environment + ".fabhotels.com/hotels-in-new-delhi/fabhotel-checkin-by-oran-cp.html/";
+			return "http://" + Environment + ".fabhotels.com/hotels-in-new-delhi/fabhotel-cabana-gk1.html";
 
 
 		if (Environment.toLowerCase().contains("test2"))

@@ -80,7 +80,7 @@ public class DetailPage {
 	public static final By breadCrumbsClickable2_Lnk = By
 			.xpath("(//div[@class='breadcrumb breadcrumb-top']/ul/li/a)[2]");
 	public static final By starRating_WE = By
-			.xpath("//div[@class='hotel-content clearfix']/div[@class='hotel-review']/div[@class='review-star']/span");
+			.xpath("//div[@class='hotel-content clearfix']/div[@class='hotel-review']/div[@class='review-star']/span/span");
 	public static final By hotelName_Lbl = By.xpath("//h1");
 	public static final By hotelsAdress_Lbl = By.xpath("//div[@class='hotel-title']/p");
 	public static final By reviews_Lnk = By
@@ -95,7 +95,7 @@ public class DetailPage {
 	public static final By rackRate_Lbl = By.xpath("//div[@class='select-room-price']//del");
 	public static final By price_Lbl = By.xpath("//div[@class='select-room-price']//strong");
 	public static final By onwards_Lbl = By.xpath("//div[@class='select-room-price']//span");
-	public static final By selectRooms_Btn = By.id("propertySselectRoom");
+	public static final By selectRooms_Btn = By.id("propertySelectRoom");
 	public static final By calanderMiddle_WE = By
 			.xpath("//div[@class='datepicker-days']/table[@class='table-condensed']");
 	public static final By numberOfRoomsSelectionAll_Btn = By
@@ -106,7 +106,7 @@ public class DetailPage {
 	public static final By centrallyLocated_WE = By.xpath("//li[@class='hotel-review-location']");
 	public static final By ratings_WE = By.xpath("(//div[@class='hotel-overview-left']/div/div/h4)[1]");
 	public static final By ratingsLogo_WE = By
-			.xpath("//div[@class='hotel-overview-left']//span[@class='review-star-icon']");
+			.xpath("//div[@class='hotel-overview-left']//span[@class='review-star-icon']/span");
 	public static final By numericRating_WE = By.xpath("//div[@class='hotel-overview-left']//strong[@class='rated']");
 	public static final By ratedVeryGood_WE = By
 			.xpath("//div[@class='hotel-overview-left']//div[@class='hotel-overview-rating']/span");
@@ -136,7 +136,7 @@ public class DetailPage {
 	public static final By reviewsInRatingBlock_Lbl = By.xpath("(//div[@class='rating-reviews-left']/strong)[2]");
 	public static final By reviewsInRatingBlockBracket_Lbl = By.xpath("//div[@class='rating-reviews-left']/span");
 	public static final By ratingNumbers_Lbl = By.xpath("//div[@class='rating-reviews-point']");
-	public static final By starsInRatingBlock_WE = By.xpath("(//div[@class='rating-reviews-left']/strong)[2]");
+	public static final By starsInRatingBlock_WE = By.xpath("(//div[@class='rating-reviews-listing clearfix']//span[@class='review-star-icon']/span)[1]");
 	public static final By ratedInBlock_Lbl = By.xpath("(//div[@class='rating-reviews-user-content']/p)[1]");
 	public static final By viewMoreReviews_Lnk = By.id("moreReviewLink");
 	public static final By hotelPolicies_Lbl = By.xpath("//div[@id='policies']/h2");
@@ -256,6 +256,15 @@ public class DetailPage {
 
 	public void click_hotelNameNearby_Lbl(int i) {
 		generic.click(exploreMorePropertiesCard_WE + "[" + i + "]" + hotelNameNearby_Lbl);
+	}
+	
+	public String getWidth_starRating_WE(){
+		return generic.getAttributeValue(starRating_WE, "style");
+
+	}
+	public String getWidth_starsInRatingBlock_WE(){
+		return generic.getAttributeValue(starsInRatingBlock_WE, "style");
+
 	}
 
 	public String getLabelText_hotelNameNearby_Lbl(int i) {
@@ -439,7 +448,7 @@ public class DetailPage {
 	public String getText_roomsLeft_roomType(int roomNumber) {
 		return generic.getText(roomType_WE + roomNumber + "]" + roomsLeft_Lbl);
 	}
-	
+
 	public boolean isVisible_roomsLeft_roomType(int roomNumber) {
 		return generic.isVisible(roomType_WE + roomNumber + "]" + roomsLeft_Lbl);
 	}
@@ -678,6 +687,10 @@ public class DetailPage {
 
 	public String getElementText_ratingsLogo_WE() {
 		return generic.getText(ratingsLogo_WE);
+
+	}
+	public String getWidth_ratingsLogo_WE(){
+		return generic.getAttributeValue((ratingsLogo_WE), "style");
 
 	}
 
