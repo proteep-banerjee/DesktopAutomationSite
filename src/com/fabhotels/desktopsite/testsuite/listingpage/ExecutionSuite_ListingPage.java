@@ -61,9 +61,12 @@ public class ExecutionSuite_ListingPage extends Config {
 		generic.loadURL_HandlePopup(UrlProvider.getListingPageUrl());
 		List<WebElement> filters = generic.findElements(ListingPage.filters_WE);
 		Assert.assertTrue(filters.size() > 1, "No of Filters less than equal to 1  !!");
-		listingPage.click_FirstFilter_WE();
-		Assert.assertTrue(generic.isVisible(ListingPage.searchResultContainer_WE),
-				"No Results After Clicking Filter !!");
+		int hotelList_BeforeFilter = listingPage.getSize_hotelList_WE();
+		filters.get(0).click();
+		generic.goToSleep(1000);
+		int hotelList_AfterFilter = listingPage.getSize_hotelList_WE();
+		Assert.assertEquals(hotelList_AfterFilter, hotelList_BeforeFilter,
+				"Results do not change after applying filter !!");
 	}
 
 	@DataProvider(name = "DataProvider_Cities")
@@ -153,6 +156,7 @@ public class ExecutionSuite_ListingPage extends Config {
 		Assert.assertTrue(generic.isVisible(ListingPage.reviewsModalDialogue_WE),
 				"Review box not visible on list page !!");
 		listingPage.click_Review_close_Btn();
+		generic.goToSleep(1000);
 		Assert.assertTrue(!generic.isVisible(ListingPage.review_close_Btn),
 				"Reviews Modal is not closing on clicking cross button !!");
 	}
