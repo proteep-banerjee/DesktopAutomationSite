@@ -93,12 +93,12 @@ public class ExecutionSuite_HomePage extends Config {
 	@Test(dataProvider="polularCities")
 	public void TC_ExecutionSuite_HomePage_004_verifyPopularCitiesRedirection(String cityName, String url){
 		hp.click_popularCitiesNames_Btn(cityName);
-		generic.switchtoNewWindow();
+		//generic.switchtoNewWindow();
 		generic.goToSleep(2000);
 		softAssert.assertEquals(driver.getCurrentUrl(), UrlProvider.getHomePageUrl()+url,"Wrong Url Formed");
 		softAssert.assertTrue(lp.getText_resultsCountText_Lbl().contains("Budget Hotels in "+cityName) ,"Page is not getting loaded properly");
-		generic.closeNewWindow();
-		generic.switchtoOriginalWindow();
+		//generic.closeNewWindow();
+		//generic.switchtoOriginalWindow();
 		softAssert.assertAll();
 	}
 
@@ -111,7 +111,8 @@ public class ExecutionSuite_HomePage extends Config {
 			for (int j = i; j < i + 2; j++) {
 				String review = hp.getElementText_hotelsInDemandOnlyReviews_WE(j);
 				String getWidth = hp.getWidth_hotelsInDemandOnlyRatings_WE(j);
-				softAssert.assertTrue(hp.getElementText_hotelsInDemandPrices_WE(j).length() > 5, "Failed Prices");
+				System.out.println(hp.getElementText_hotelsInDemandPrices_WE(j).length());
+				softAssert.assertTrue(hp.getElementText_hotelsInDemandPrices_WE(j).length() >=5, "Failed Prices for: "+j+" hotel" );
 				softAssert.assertTrue(hp.isVisible_hotelsInDemandImages_WE(j), "Failed imagess");
 				String hotelName = hp.getElementText_hotelsInDemandName_Lnk(j);
 				hp.click_hotelsInDemandName_Lnk(j);
@@ -137,16 +138,19 @@ public class ExecutionSuite_HomePage extends Config {
 		softAssert.assertEquals(hp.getLabelText_stayMoreSaveMoreHeadline_Lbl(), "Stay more, Save more");
 		hp.click_fifteenPercentOffCard_Lnk();
 		generic.switchtoNewWindow();
+		generic.goToSleep(2000);
 		softAssert.assertEquals(driver.getCurrentUrl(), UrlProvider.getHomePageUrl()+"deals/fab-grab-flat-15-percent-off");
 		driver.close();
 		generic.switchtoOriginalWindow();
 		hp.click_rFourHundredOffCard_Lnk();
 		generic.switchtoNewWindow();
+		generic.goToSleep(2000);
 		softAssert.assertEquals(driver.getCurrentUrl(), UrlProvider.getHomePageUrl()+"deals/fab-grab-rs-400-off");
 		driver.close();
 		generic.switchtoOriginalWindow();
 		hp.click_seeAllOffers_Lnk();
 		generic.switchtoNewWindow();
+		generic.goToSleep(2000);
 		softAssert.assertEquals(driver.getCurrentUrl(), UrlProvider.getHomePageUrl()+"deals-and-offers");
 		driver.close();
 		generic.switchtoOriginalWindow();
@@ -159,6 +163,7 @@ public class ExecutionSuite_HomePage extends Config {
 		softAssert.assertEquals(hp.getLabelText_hearFromOurGuestsHeadline_Lbl(), "Hear from our guests");
 		hp.click_readAllReviews_Lnk();
 		generic.switchtoNewWindow();
+		generic.goToSleep(2000);
 		softAssert.assertEquals(driver.getCurrentUrl(), UrlProvider.getHomePageUrl()+"customer-reviews");
 		driver.close();
 		generic.switchtoOriginalWindow();
@@ -205,6 +210,7 @@ public class ExecutionSuite_HomePage extends Config {
 		softAssert.assertTrue(hp.isVisible_workWithUsImage_WE(),"Hopitality Team Image is missing");
 		hp.click_seeAllOpenings_Lnk();
 		generic.switchtoNewWindow();
+		generic.goToSleep(2000);
 		softAssert.assertEquals(driver.getCurrentUrl(), UrlProvider.getHomePageUrl()+"careers");
 		driver.close();
 		generic.switchtoOriginalWindow();
@@ -223,13 +229,13 @@ public class ExecutionSuite_HomePage extends Config {
 		softAssert.assertEquals(hp.getLabelText_forbesDate_Lbl(), "30 Aug 2016 | Source : Forbes");
 		hp.click_economicTimes_Lnk();
 		generic.switchtoNewWindow();
-		generic.goToSleep(2000);
+		generic.waitForCompletePageLoad();
 		softAssert.assertEquals(driver.getCurrentUrl(), "https://economictimes.indiatimes.com/small-biz/money/fabhotels-secures-25-million-series-b-funding-led-by-goldman-sachs-investment-partners/articleshow/59769274.cms");
 		driver.close();
 		generic.switchtoOriginalWindow();
 		hp.click_forbes_Lnk();
 		generic.switchtoNewWindow();
-		generic.goToSleep(2000);
+		generic.waitForCompletePageLoad();
 		softAssert.assertTrue(driver.getCurrentUrl().contains("https://www.forbes.com/forbes/welcome/"),"Not getting redirected to forbes");
 		driver.close();
 		generic.switchtoOriginalWindow();

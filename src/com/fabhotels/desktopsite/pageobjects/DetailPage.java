@@ -390,7 +390,7 @@ public class DetailPage {
 	public Boolean isDisabled_selectRoomsDisabled_Btn() {
 		String className = generic.getAttributeValue(selectRooms_Btn, "class");
 		System.out.println(className);
-		if (className.equals("btn property_detail_select_rooms_button  property_book_now_disabled")) {
+		if (className.equals("btn property_detail_select_rooms_button property_book_now_disabled")) {
 			return true;
 		} else
 			return false;

@@ -42,7 +42,7 @@ public class ExecutionSuite_DetailPage extends Config {
 
 	@BeforeMethod()
 	public void beforeMethod() {
-		driver.manage().deleteAllCookies();
+		//driver.manage().deleteAllCookies();
 	}
 
 	@Test
@@ -226,7 +226,7 @@ public class ExecutionSuite_DetailPage extends Config {
 		SoftAssert softAssert = new SoftAssert();
 		generic.loadURL_HandlePopup(UrlProvider.getGothamPropertyPageUrl());
 		softAssert.assertEquals(dp.getElementText_ratings_WE(), "Ratings");
-		softAssert.assertEquals(dp.getElementText_numericRating_WE(), "5");
+		softAssert.assertEquals(dp.getElementText_numericRating_WE(), "5.0");
 		softAssert.assertEquals(dp.getElementText_topReview_WE(), "Top Review");
 		softAssert.assertEquals(dp.getElementText_topReviewValue_WE(),
 				"A nice and a clean hotel.....I have earlier also recommended");
@@ -236,6 +236,7 @@ public class ExecutionSuite_DetailPage extends Config {
 		softAssert.assertEquals(dp.getElementText_landmarkOnMap_WE(), "Landmark: Daman");
 		dp.click_getDirectionOnMap_Lnk();
 		generic.switchtoNewWindow();
+		generic.goToSleep(2000);
 		softAssert.assertTrue(generic.getCurrentUrl().contains("https://www.google.com/maps/dir//"),
 				"Not getting redirected to Maps");
 		softAssert.assertAll();
@@ -256,6 +257,7 @@ public class ExecutionSuite_DetailPage extends Config {
 	public void TC_ExecutionSuite_DetailPage_014_verifyRoomSelectionMultipleRoomTypes() throws ParseException {
 		SoftAssert softAssert = new SoftAssert();
 		generic.loadURL_HandlePopup(UrlProvider.getGothamPropertyPageUrl());
+		generic.refreshPage();
 		cal.Select_CheckIn_CheckOut_Date_Calendar_WE(GenericFunctions.getDateAfterDays("10"),
 				GenericFunctions.getDateAfterDays("20"));
 		dp.click_selectRooms_Btn();
