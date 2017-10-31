@@ -45,7 +45,7 @@ public class Header {
 		return generic.findElements(cities_WE);
 	}
 
-	public void click_CityHeader_WE(int cityNumber) {
+	public void click_CityNo_Header_WE(int cityNumber) {
 		generic.performMouseHover(allCities_WE);
 		generic.findElements(cities_WE).get(cityNumber).click();
 	}

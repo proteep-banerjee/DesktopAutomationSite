@@ -15,4 +15,14 @@ public interface Constants {
 	// String FILEPATH_TESTDATASHEET_GUESTDETAILS =
 	// "./TestData/guestDetails.xls";
 
+	String LOCALITY_NAME = "Sarojini Nagar";
+
+	String KEY_LOCATIONSEARCH = "locationsearch";
+	String KEY_LOCALITYTEXT = "locality_text";
+	String KEY_NEARCITY = "nearcity";
+	String KEY_OCCUPANCY = "occupancy";
+	String KEY_ROOMS = "rooms";
+	
+	public static String SOLDOUT_MSG_DETAILSPAGE = "This hotel is SOLD OUT for selected dates. Change dates or explore nearby Hotels.";
+	public static String SOLDOUT_MSG_ROOMS_DETAILSPAGE = "Selected number of rooms are not available. Adjust dates or number of rooms.";
 }

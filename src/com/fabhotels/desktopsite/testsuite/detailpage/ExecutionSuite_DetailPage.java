@@ -310,7 +310,8 @@ public class ExecutionSuite_DetailPage extends Config {
 	@Test
 	public void TC_ExecutionSuite_DetailPage_015_verifySomeRoomTypeSoldOut() throws ParseException {
 		SoftAssert softAssert = new SoftAssert();
-		generic.loadURL_HandlePopup(UrlProvider.getHomePageUrl() + "hotels-in-gotham/fabhotel-some-rooms-sold-out.html");
+		generic.loadURL_HandlePopup(
+				UrlProvider.getHomePageUrl() + "hotels-in-gotham/fabhotel-some-rooms-sold-out.html");
 		cal.Select_CheckIn_CheckOut_Date_Calendar_WE(GenericFunctions.getDateAfterDays("0"),
 				GenericFunctions.getDateAfterDays("2"));
 		dp.click_checkAvailabilityOnTop_Btn();
@@ -349,7 +350,8 @@ public class ExecutionSuite_DetailPage extends Config {
 	@Test
 	public void TC_ExecutionSuite_DetailPage_017_verifyCheckAvailability_MiddleOne() throws ParseException {
 		SoftAssert softAssert = new SoftAssert();
-		generic.loadURL_HandlePopup(UrlProvider.getHomePageUrl() + "hotels-in-gotham/fabhotel-some-rooms-sold-out.html");
+		generic.loadURL_HandlePopup(
+				UrlProvider.getHomePageUrl() + "hotels-in-gotham/fabhotel-some-rooms-sold-out.html");
 		cal.Select_CheckIn_CheckOut_Date_SecondCalendaronDEtailsPage_WE(GenericFunctions.getDateAfterDays("2"),
 				GenericFunctions.getDateAfterDays("5"));
 		dp.click_checkAvailabilityInMiddle_Btn();
@@ -427,7 +429,8 @@ public class ExecutionSuite_DetailPage extends Config {
 	@Test
 	public void TC_ExecutionSuite_DetailPage_021_verifyExploreMore() {
 		SoftAssert softAssert = new SoftAssert();
-		generic.loadURL_HandlePopup(UrlProvider.getHomePageUrl() + "hotels-in-goa/fabhotel-the-kings-court-calangute.html");
+		generic.loadURL_HandlePopup(
+				UrlProvider.getHomePageUrl() + "hotels-in-goa/fabhotel-the-kings-court-calangute.html");
 		generic.scrollToElement(By.xpath(DetailPage.cheveronNextNearby_Btn), false);
 		int i = 1;
 		while (!driver.findElement(By.xpath(DetailPage.exploreMorePropertiesCard_WE + "[last()]")).isDisplayed()) {

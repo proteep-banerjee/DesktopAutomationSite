@@ -1,117 +1,130 @@
 package com.fabhotels.desktopsite.pageobjects;
 
+import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.text.ParseException;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Select;
 
 import com.fabhotels.automationframework.genericfunctions.GenericFunctions;
 
-public class SearchBar {
+public class SearchBar extends Calendar {
 
 	WebDriver driver;
 	GenericFunctions generic;
 
-	public static final By locality_Txt = By.id("autocomplete-location");
-	public static final By checkInDateInput_WE = By.id("checkIn");
-	public static final By checkInDateDiv_WE = By.id("daterangepicker_start");
-	public static final By checkOutDate_WE = By.id("checkOut");
-	public static final By findFabHotels_Btn = By.id("homePageSearchBtn");
-	public static final By calendar_WE = By.xpath("//div[contains(@class,'daterangepicker dropdown-menu ltr show-calendar')]");
-	public static final By calendar_Month_WE = By.xpath("(//th[@class='month'])[1]");
-	public static final String calendar_Dates_WE = "//div[@class='calendar left']//td";
-	public static final By calendar_NextArrow_WE = By.xpath("//th[@class='next available']");
-	public static final By noofRooms_Lbl = By.xpath("//div[@class='custom-value-content clearfix']/span");
-	public static final By addRoom_Btn = By.id("addroom");
-	public static final By removeRoom_Btn = By.id("rooms");
-	public static final By errorMessage_WE = By.id("cityErrorMsg");
-	
+	private static final By searchBox_Txt = By.xpath("//input[@name='locationsearch']");
+	private static final By noOfRooms_DD = By.xpath("//div[@class='custom-value-content clearfix']");
+	private static final By findFabHotel_Btn = By
+			.xpath("//*[contains(text(), ' Find FabHotels ') or contains(@value ,'Find FabHotels')]");
+	private static String roomsNumber_WE = "//div[@class='custom-value-dropdown']//li/a[contains(text(),'";
+
 	public SearchBar(WebDriver driver, GenericFunctions generic) {
+		super(driver, generic);
 		this.driver = driver;
 		this.generic = generic;
 	}
 
-	public void Fill_Locality_Txt(String input) {
-		generic.fill(locality_Txt, input);
+	public void clear_searchBox_Txt() {
+		generic.clear(searchBox_Txt);
 	}
 
-	public void Select_CheckIn_CheckOut_Date_WE(String checkindate, String checkoutdate) {
+	public void click_searchBox_Txt() {
+		generic.click(searchBox_Txt);
+	}
 
-		if (checkindate.length() < 1)
+	public String getText_searchBox_Txt() {
+		return generic.getText(searchBox_Txt);
+	}
+
+	public void select_noOfRooms_DD(String inputdata) {
+		if (inputdata.trim().length() == 0)
 			return;
+		generic.select(noOfRooms_DD, inputdata);
+	}
 
-		generic.click(checkInDateDiv_WE);
+	public void deSelect_noOfRooms_DD(String inputdata) {
+		new Select(driver.findElement(noOfRooms_DD)).deselectByVisibleText(inputdata);
+	}
 
-		String str[] = checkindate.split("\\s+");
-		for(int i=0; i<str.length; i++){
-			System.out.println("str[]"+str[i]);
+	public String getSelectedText_noOfRooms_DD() {
+		return generic.getFirstSelectedOptionBy(noOfRooms_DD);
+	}
+
+	public String getSelectedID_noOfRooms_DD() {
+		return new Select(driver.findElement(noOfRooms_DD)).getFirstSelectedOption().getAttribute("value");
+	}
+
+	public void click_FindFabHotel_Btn() {
+		generic.click(findFabHotel_Btn);
+	}
+
+	// Func to get url parameters.
+	public Map<String, String> getParameters_URL() {
+		Map<String, String> query_pairs = new LinkedHashMap<>();
+		String result = "";
+		String query = "";
+		int occupancy_count = 0;
+		try {
+			result = java.net.URLDecoder.decode(generic.getCurrentUrl(), "UTF-8");
+			query = new URL(result).getQuery();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
 		}
-		System.out.println(driver.getCurrentUrl());
-		System.out.println();
-
-		while (!generic.getText(calendar_Month_WE).equals(str[1] + " " + str[2]))
-			generic.click(calendar_NextArrow_WE);
-		
-		if(str[0].startsWith("0")){
-			str[0] = str[0].substring(1, str[0].length());
+		String[] pairs = query.split("&");
+		for (String pair : pairs) {
+			int idx = pair.indexOf("=");
+			if (pair.substring(0, idx).equals("occupancy[]")) {
+				occupancy_count++;
+			} else {
+				query_pairs.put(pair.substring(0, idx), pair.substring(idx + 1));
+			}
 		}
+		// Storing occupancy count on Map as occupancy property is redundant.
+		// USE occupancy as a key to get the occupancy count.
+		query_pairs.put("occupancy", String.valueOf(occupancy_count));
+		return query_pairs;
 
-		System.out.println(calendar_Dates_WE + "[text()='" + str[0] + "']");
-		generic.click(calendar_Dates_WE + "[text()='" + str[0] + "']");
+	}
 
-		if (checkoutdate.length() < 1)
+	public void fill_SearchBox_Txt(String input) {
+		if (input.length() < 1)
 			return;
+		else
+			generic.fill(searchBox_Txt, input);
+	}
 
-		str = checkoutdate.split("\\s+");
-
-		while (!generic.getText(calendar_Month_WE).equals(str[1] + " " + str[2]))
-			generic.click(calendar_NextArrow_WE);
-		
-		if(str[0].startsWith("0")){
-			str[0] = str[0].substring(1, str[0].length());
+	public void performSearch(String searchText, String checkIn, String checkOut, String noofRooms) {
+		fill_SearchBox_Txt(searchText);
+		Calendar cal = new Calendar(driver, generic);
+		if (checkIn.length() > 0 && checkOut.length() > 0) {
+			try {
+				cal.Select_CheckIn_CheckOut_Date_Calendar_WE(checkIn, checkOut);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
 		}
 
-		generic.click(calendar_Dates_WE + "[text()='" + str[0] + "']");
-
-	}
-
-	public void Click_findFabHotels_Btn() {
-		generic.click(findFabHotels_Btn);
-	}
-
-	public void Click_addRoom_Btn() {
-		generic.click(addRoom_Btn);
-	}
-
-	public void Click_RemoveRoom_Btn() {
-		generic.click(removeRoom_Btn);
-	}
-
-	public String GetText_NoofRooms_Lbl() {
-		return generic.getText(noofRooms_Lbl);
-	}
-
-	public String GetText_Locality_Txt() {
-		return generic.getValue(locality_Txt);
-	}
-
-	public String GetText_CheckInDate_WE() {
-		return generic.getValue(checkInDateInput_WE);
-	}
-
-	public String GetText_CheckOutDate_WE() {
-		return generic.getValue(checkOutDate_WE);
-	}
-
-	public void Fill_NoofRooms_WE(String input) {
-		int current = Integer.parseInt(GetText_NoofRooms_Lbl());
-		int expected = Integer.parseInt(input);
-
-		if (current < expected) {
-			for (int i = 0; i < expected - current; i++)
-				Click_addRoom_Btn();
-		} else {
-			for (int i = 0; i < current - expected; i++)
-				Click_RemoveRoom_Btn();
+		if (noofRooms.length() > 0) {
+			generic.performMouseHover(noOfRooms_DD);
+			generic.click(roomsNumber_WE + noofRooms + "')]");
 		}
+
+		generic.click(findFabHotel_Btn);
+		generic.goToSleep(1000);
+	}
+
+	public void select_RoomsNumber_WE(int rooms) {
+		generic.performMouseHover(noOfRooms_DD);
+		generic.click(roomsNumber_WE + rooms + "')]");
+		generic.click(findFabHotel_Btn);
 	}
 
 }
