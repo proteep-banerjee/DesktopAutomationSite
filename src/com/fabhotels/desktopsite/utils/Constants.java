@@ -14,9 +14,10 @@ public interface Constants {
 	String FILEPATH_TESTDATASHEET_HEADER = "./TestData/Header.xls";
 	// String FILEPATH_TESTDATASHEET_GUESTDETAILS =
 	// "./TestData/guestDetails.xls";
-
+	
+	String KEY_CHECKINDATE= "checkIn";
+	String KEY_CHECKOUTDATE= "checkOut";
 	String LOCALITY_NAME = "Sarojini Nagar";
-
 	String KEY_LOCATIONSEARCH = "locationsearch";
 	String KEY_LOCALITYTEXT = "locality_text";
 	String KEY_NEARCITY = "nearcity";

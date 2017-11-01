@@ -211,8 +211,8 @@ public class DetailPage {
 	public static String cheveronNextNearby_Btn = "(//div[@class='nearby_properties_container'])[2]//a[@class='flex-next']";
 	public static final By hotelPolicies_WE = By.xpath("//div[@id='policies']");
 	public static final By searchBox_WE = By.xpath("//input[@name='locationsearch']");
-	public static final By firstValueFromLocationSuggestor_Lbl = By.xpath("//div[@class='pac-item'][1]");
-	//
+	public static final By firstValueFromLocationSuggestor_Lbl = By.xpath("//div[@class='pac-item'][1]");//span[@id="total_amount"][1]
+	public static final String roomTypePerNightPrice_WE = "(//span[@id='total_amount'])[";
 
 	// New Details Page methods
 	public void click_firstValueFromLocationSuggestor_Lbl() {
@@ -1217,6 +1217,8 @@ public class DetailPage {
 		generic.click(bookNow_Btn);
 	}
 
-	//
+	public String return_priceByRoomType(int index) {
+		return generic.getText(By.xpath(roomTypePerNightPrice_WE+index+"]")).replace(",", "").replaceAll("\\D+", "");
+	}
 
 }

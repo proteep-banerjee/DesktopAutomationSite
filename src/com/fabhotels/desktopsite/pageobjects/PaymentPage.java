@@ -1,13 +1,20 @@
 package com.fabhotels.desktopsite.pageobjects;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
 import com.fabhotels.automationframework.genericfunctions.GenericFunctions;
+import com.fabhotels.automationframework.xlsreader.Xls_Reader;
+import com.fabhotels.desktopsite.utils.Constants;
+import com.fabhotels.desktopsite.utils.UrlProvider;
 
 public class PaymentPage {
 	WebDriver driver;
 	GenericFunctions generic;
+	Xls_Reader dataTable;
+	ListingPage listingpage;
+	SearchBar performSearch;
 
 	public static final By roomCountNIghtCountAndGuestCount_Lbl = By.xpath("(//div[contains(text(), 'guest')])[2]");
 	public static final By subTotal_Lbl = By.xpath("//span[@class='sub-total-amount']");
@@ -23,7 +30,10 @@ public class PaymentPage {
 	public static final By taxPercentTitle_Lbl = By.xpath("//div[@class='review_booking_tax_title']");
 	public static final By reviewBookingContinue_btn = By.xpath("//div[@class='review_booking_continue submit-booking-details']/span");
 	public static final By couponApplyFillBox_Txt = By.xpath("//input[contains(@class, 'coupon-code')]");
-	public static final By propertyName_Lbl = By.xpath("//div[contains(@class, 'property_name')]/h1");
+	public static final By propertyName_Lbl = By.xpath("//div[contains(@class, 'review_property_name')]");
+	public static final By propertyContainer_WE=By.xpath("(//div[contains(@class,'hotel-list')]//input)[1]");
+	public static final By propertyDetailPageContianer_WE=By.xpath("//div[@class='property_container']");
+	public String minimumRoomTypeWarning_Lbl=" minimum room nights required to use this coupon";
 	
 
 	public PaymentPage(WebDriver driver, GenericFunctions generic) {
@@ -31,7 +41,28 @@ public class PaymentPage {
 		this.generic = generic;
 	}
 	
+	public String getSheetTxt_ByType(String sheetName,String colName,String cellValue)
+	{
+		dataTable = new Xls_Reader(Constants.FILEPATH_TESTDATASHEET_DETAILPAGEANDPAYMENTPAGE);
+		int getRowNum=dataTable.getCellRowNum(sheetName, colName, cellValue);
+		return dataTable.getCellData(sheetName, "couponName", getRowNum);
+	}
 	
+	public String getPropertyId_ByItsName(String hotelName)
+	{	
+		String hotelid="";
+		listingpage=new ListingPage(driver, generic);
+		((JavascriptExecutor)driver).executeScript("window.open()");
+		generic.switchtoNewWindow();
+		generic.loadURL(UrlProvider.getListingPageUrl());
+		performSearch.performSearch(hotelName,"","","");
+		hotelid = driver.findElement(propertyContainer_WE).getAttribute("value");
+		generic.closeNewWindow();
+		generic.SwitchtoOriginalWindow();
+		System.out.println(hotelName+", its id : "+hotelid);
+		return hotelid;	
+	}
+
 	public String getText_roomCountNIghtCountAndGuestCount_Lbl ()  {
 		return generic.getText(roomCountNIghtCountAndGuestCount_Lbl);
 	}
@@ -99,6 +130,9 @@ public class PaymentPage {
     
     public String getText_propertyName_Lbl () {
     	return generic.getText(propertyName_Lbl);
+    }
+    public String getText_propertyIdOnDetailsPage_WE () {
+    	return generic.getAttributeValue(propertyDetailPageContianer_WE, "data-property-id");
     }
     
     
