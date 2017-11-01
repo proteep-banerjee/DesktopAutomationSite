@@ -1,7 +1,6 @@
 package com.fabhotels.desktopsite.testsuite.paymentpage;
 
 import java.text.ParseException;
-import java.time.LocalDate;
 import java.util.Map;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
@@ -9,6 +8,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import com.fabhotels.apiautomation.pojo.priceDetails.PriceTaxDetail;
 import com.fabhotels.apiautomation.utils.FabLogic;
@@ -30,6 +30,11 @@ public class ExecutionSuite_PaymentPage extends Config {
 	DetailPage detailspage;
 	ListingPage listingPage;
 	PaymentPage paymentPage;
+	PriceTaxDetail fromAPI;
+	Map<String, String> parameters ;
+	double subTotal = 0,propertyFinalValue = 0,paymentPageDiscount = 0,discount = 0;
+	String propertyId="",todayDate="",discountedPrice="";
+	String propertyName = "",errorMssg="",nextDate="";
 
 	@BeforeTest
 	public void beforeTest() {
@@ -65,8 +70,7 @@ public class ExecutionSuite_PaymentPage extends Config {
 	}
 
 	@Test(dataProvider = "DataProvider_paymentPage")
-	public void TC_Validate_coupon_minimumOrderAmount(int rowno, String locality, String checkInDateAfter,String checkOutDateAfter, int NumberOfRooms) throws InterruptedException, ParseException {
-		int paymentPageFinalAmount = 0;
+	public void TC_PaymentPage_Coupon_01_minimumOrderAmount(int rowno, String locality, String checkInDateAfter,String checkOutDateAfter, int NumberOfRooms) throws InterruptedException, ParseException {
 		generic.loadURL(UrlProvider.getListingPageUrl(locality));
 		listingPage.performSearch(locality,GenericFunctions.getDateAfterDays(checkInDateAfter),GenericFunctions.getDateAfterDays(checkOutDateAfter), "2");
 		Assert.assertTrue(generic.isVisible(ListingPage.listResults_WE), "Property is not found on the list page !!");
@@ -74,9 +78,9 @@ public class ExecutionSuite_PaymentPage extends Config {
 		detailspage.click_selectRooms_Btn();
 		generic.goToSleep(1000);
 		detailspage.click_roomNumber(1, NumberOfRooms);
-		paymentPageFinalAmount = Integer.parseInt(detailspage.getText_bookNow_Btn().replaceAll("[^0-9.]", ""));
+		propertyFinalValue = Integer.parseInt(detailspage.getText_bookNow_Btn().replaceAll("[^0-9.]", ""));
 		detailspage.click_bookNow_Btn();
-		if (paymentPageFinalAmount >= 2000) {
+		if (propertyFinalValue >= 2000) {
 			paymentPage.sendKeys_coupon_applyCouponTextBtn(PaymentPage.couponApplyFillBox_Txt,
 					paymentPage.getSheetTxt_ByType(CoupnSheet,"couponType","minPrice_2000"));
 			paymentPage.click_couponCodeApply_Btn();
@@ -92,7 +96,7 @@ public class ExecutionSuite_PaymentPage extends Config {
 	}
 	
 	@Test(dataProvider = "DataProvider_paymentPage")
-	public void TC_Validate_coupon_maximumCapValue(int rowno, String locality, String checkInDateAfter,String checkOutDateAfter, int NumberOfRooms) throws InterruptedException {
+	public void TC_PaymentPage_Coupon_02_maximumCapValue(int rowno, String locality, String checkInDateAfter,String checkOutDateAfter, int NumberOfRooms) throws InterruptedException {
 		generic.loadURL(UrlProvider.getListingPageUrl(locality));
 		listingPage.performSearch(locality,GenericFunctions.getDateAfterDays(checkInDateAfter),GenericFunctions.getDateAfterDays(checkOutDateAfter), "2");
 		Assert.assertTrue(generic.isVisible(ListingPage.listResults_WE), "Property is not found on the list page !!");
@@ -108,7 +112,7 @@ public class ExecutionSuite_PaymentPage extends Config {
 	}
 	
 	@Test(dataProvider = "DataProvider_paymentPage")
-	public void TC_Validate_coupon_fixed(int rowno, String locality, String checkInDateAfter,String checkOutDateAfter, int NumberOfRooms) throws InterruptedException {
+	public void TC_PaymentPage_Coupon_03_fixed(int rowno, String locality, String checkInDateAfter,String checkOutDateAfter, int NumberOfRooms) throws InterruptedException {
 		generic.loadURL(UrlProvider.getListingPageUrl(locality));
 		listingPage.performSearch(locality,GenericFunctions.getDateAfterDays(checkInDateAfter),GenericFunctions.getDateAfterDays(checkOutDateAfter), "2");
 		Assert.assertTrue(generic.isVisible(ListingPage.listResults_WE), "Property is not found on the list page !!");
@@ -125,8 +129,7 @@ public class ExecutionSuite_PaymentPage extends Config {
 
 	
 	@Test(dataProvider = "DataProvider_paymentPage")
-	public void TC_Validate_coupon_percent(int rowno, String locality, String checkInDateAfter,String checkOutDateAfter, int NumberOfRooms) throws InterruptedException {
-		double discount = 0, paymentPageDiscount = 0;
+	public void TC_PaymentPage_Coupon_04_percent(int rowno, String locality, String checkInDateAfter,String checkOutDateAfter, int NumberOfRooms) throws InterruptedException {
 		generic.loadURL(UrlProvider.getListingPageUrl(locality));
 		listingPage.performSearch(locality,GenericFunctions.getDateAfterDays(checkInDateAfter),GenericFunctions.getDateAfterDays(checkOutDateAfter), "2");
 		Assert.assertTrue(generic.isVisible(ListingPage.listResults_WE), "Property is not found on the list page !!");
@@ -145,7 +148,7 @@ public class ExecutionSuite_PaymentPage extends Config {
 	}
 	
 	@Test(dataProvider = "DataProvider_paymentPage")
-	public void TC_Validate_coupon_expire(int rowno, String locality, String checkInDateAfter,String checkOutDateAfter, int NumberOfRooms) throws InterruptedException {
+	public void TC_PaymentPage_Coupon_05_expire(int rowno, String locality, String checkInDateAfter,String checkOutDateAfter, int NumberOfRooms) throws InterruptedException {
 		generic.loadURL(UrlProvider.getListingPageUrl(locality));
 		listingPage.performSearch(locality,GenericFunctions.getDateAfterDays(checkInDateAfter),GenericFunctions.getDateAfterDays(checkOutDateAfter), "2");
 		Assert.assertTrue(generic.isVisible(ListingPage.listResults_WE), "Property is not found on the list page !!");
@@ -161,7 +164,7 @@ public class ExecutionSuite_PaymentPage extends Config {
 	}
 	
 	@Test(dataProvider = "DataProvider_paymentPage")
-	public void TC_Validate_coupon_inactive(int rowno, String locality, String checkInDateAfter,String checkOutDateAfter, int NumberOfRooms) throws InterruptedException {
+	public void TC_PaymentPage_Coupon_06_inactive(int rowno, String locality, String checkInDateAfter,String checkOutDateAfter, int NumberOfRooms) throws InterruptedException {
 		generic.loadURL(UrlProvider.getListingPageUrl(locality));
 		listingPage.performSearch(locality,GenericFunctions.getDateAfterDays(checkInDateAfter),GenericFunctions.getDateAfterDays(checkOutDateAfter), "2");
 		Assert.assertTrue(generic.isVisible(ListingPage.listResults_WE), "Property is not found on the list page !!");
@@ -177,8 +180,7 @@ public class ExecutionSuite_PaymentPage extends Config {
 	}
 	
 	@Test(dataProvider = "DataProvider_paymentPage")
-	public void TC_Validate_coupon_cityNotAccepted(int rowno, String locality, String checkInDateAfter,String checkOutDateAfter, int NumberOfRooms) throws InterruptedException {
-		String errorMssg = " ";
+	public void TC_PaymentPage_Coupon_07_cityNotAccepted(int rowno, String locality, String checkInDateAfter,String checkOutDateAfter, int NumberOfRooms) throws InterruptedException {
 		generic.loadURL(UrlProvider.getListingPageUrl(locality));
 		listingPage.performSearch(locality,GenericFunctions.getDateAfterDays(checkInDateAfter),GenericFunctions.getDateAfterDays(checkOutDateAfter), "2");
 		Assert.assertTrue(generic.isVisible(ListingPage.listResults_WE), "Property is not found on the list page !!");
@@ -203,8 +205,7 @@ public class ExecutionSuite_PaymentPage extends Config {
 	}
 	
 	@Test(dataProvider = "DataProvider_paymentPage")
-	public void TC_Validate_coupon_propertyNotAccepted(int rowno, String locality, String checkInDateAfter,String checkOutDateAfter, int NumberOfRooms) throws InterruptedException {
-		String propertyName = " ", errorMssg = " ";
+	public void TC_PaymentPage_Coupon_08_propertyNotAccepted(int rowno, String locality, String checkInDateAfter,String checkOutDateAfter, int NumberOfRooms) throws InterruptedException {
 		generic.loadURL(UrlProvider.getListingPageUrl(locality));
 		listingPage.performSearch(locality,GenericFunctions.getDateAfterDays(checkInDateAfter),GenericFunctions.getDateAfterDays(checkOutDateAfter), "2");
 		Assert.assertTrue(generic.isVisible(ListingPage.listResults_WE), "Property is not found on the list page !!");
@@ -236,12 +237,11 @@ public class ExecutionSuite_PaymentPage extends Config {
 	}
 
 	@Test(dataProvider = "DataProvider_paymentPage")
-	public void TC_Validate_coupon_priceCheckForFixedCoupon(int rowno, String locality, String checkInDateAfter,String checkOutDateAfter, int NumberOfRooms) throws Exception {
-		double propertyFinalValue = 0;
-		Map<String, String> parameters ;
-		String propertyId="",propertyName = "",nextDate="",todayDate ="";
+	public void TC_PaymentPage_Coupon_09_priceCheckForFixedCoupon(int rowno, String locality, String checkInDateAfter,String checkOutDateAfter, int NumberOfRooms) throws Exception {
+		todayDate = GenericFunctions.getDate0forTodayPlus1forTommorrowMinusOneForYesterday(Integer.parseInt(checkInDateAfter));
+		nextDate = GenericFunctions.getDate0forTodayPlus1forTommorrowMinusOneForYesterday(Integer.parseInt(checkOutDateAfter));
 		generic.loadURL(UrlProvider.getListingPageUrl(locality));
-		listingPage.performSearch(locality,GenericFunctions.getDateAfterDays(checkInDateAfter),GenericFunctions.getDateAfterDays(checkOutDateAfter), "2");
+		listingPage.performSearch(locality,GenericFunctions.getDateAfterDays(checkInDateAfter),GenericFunctions.getDateAfterDays(checkOutDateAfter), "1");
 		Assert.assertTrue(generic.isVisible(ListingPage.listResults_WE), "Property is not found on the list page !!");
 		generic.click(ListingPage.bookNow_FirstTuple_Lbl);
 		detailspage.click_selectRooms_Btn();
@@ -253,51 +253,47 @@ public class ExecutionSuite_PaymentPage extends Config {
 		paymentPage.click_couponCodeApply_Btn();
 		propertyName = paymentPage.getText_propertyName_Lbl().split("\n")[0];
 		propertyId=paymentPage.getPropertyId_ByItsName(propertyName);
-		todayDate = LocalDate.now().toString();
-		nextDate = LocalDate.now().plusDays(Integer.parseInt(checkOutDateAfter)).toString();
-		PriceTaxDetail check = FabLogic.getFinalPriceAndTaxWithCoupon(todayDate, nextDate, propertyId, parameters.get(Constants.KEY_ROOMS), parameters.get(Constants.KEY_OCCUPANCY), 150);
-		propertyFinalValue = Double.parseDouble(paymentPage.getText_finalAmount_Lbl());
-		Assert.assertEquals(propertyFinalValue, check.getFinalGrandTotal(),
-				"When the fixed coupon is applied the final amount value is not correct !! ");
-	}
-
-	@Test(dataProvider = "DataProvider_paymentPage")
-	public void TC_Validate_coupon_priceCheckForPercentCoupon(int rowno, String locality, String checkInDateAfter,String checkOutDateAfter, int NumberOfRooms) throws Exception {
-		Map<String, String> parameters ;
-		double propertyFinalValue = 0, subTotal = 0;
-		String propertyId="",propertyName = "",nextDate="",todayDate ="";
-		generic.loadURL(UrlProvider.getListingPageUrl(locality));
-		listingPage.performSearch(locality,GenericFunctions.getDateAfterDays(checkInDateAfter),GenericFunctions.getDateAfterDays(checkOutDateAfter), "2");
-		Assert.assertTrue(generic.isVisible(ListingPage.listResults_WE), "Property is not found on the list page !!");
-		generic.click(ListingPage.bookNow_FirstTuple_Lbl);
-		generic.goToSleep(1000);
-		detailspage.click_selectRooms_Btn();
-		parameters= listingPage.getQueryURL();
-		detailspage.click_roomNumber(1, NumberOfRooms);
-		detailspage.click_bookNow_Btn();
-		subTotal = Double.parseDouble(paymentPage.getText_subTotal_Lbl());
-		Double discount = subTotal * (10 / 100f);
-		Integer discountInt = discount.intValue();
-		Double discountValue = discountInt.doubleValue();
-		PriceTaxDetail fromAPI = FabLogic.getFinalPriceAndTaxWithCoupon(todayDate, nextDate, propertyId, parameters.get(Constants.KEY_ROOMS), parameters.get(Constants.KEY_OCCUPANCY), discountValue);
-		paymentPage.sendKeys_coupon_applyCouponTextBtn(PaymentPage.couponApplyFillBox_Txt,paymentPage.getSheetTxt_ByType(CoupnSheet,"couponType","percentDiscount_10"));
-		paymentPage.click_couponCodeApply_Btn();
-		propertyName = paymentPage.getText_propertyName_Lbl().split("\n")[0];	
-		propertyId=paymentPage.getPropertyId_ByItsName(propertyName);
-		todayDate = LocalDate.now().toString();
-		nextDate = LocalDate.now().plusDays(Integer.parseInt(checkOutDateAfter)).toString();
+		PriceTaxDetail fromAPI = FabLogic.getFinalPriceAndTaxWithCoupon(todayDate, nextDate, propertyId, parameters.get(Constants.KEY_ROOMS), parameters.get(Constants.KEY_OCCUPANCY), 150);
 		propertyFinalValue = Double.parseDouble(paymentPage.getText_finalAmount_Lbl());
 		Assert.assertEquals(propertyFinalValue, fromAPI.getFinalGrandTotal(),
-				"When the fixed coupon is applied the final amount value is not correct !! ");
+				"When the fixed coupon is applied the final amount value is not correct, comparing with data from API and found on UI !! ");
 	}
 
 	@Test(dataProvider = "DataProvider_paymentPage")
-	public void TC_Validate_coupon_priceCheckForRemoveFixedCoupon(int rowno, String locality, String checkInDateAfter,String checkOutDateAfter, int NumberOfRooms) throws Exception {
-		Map<String, String> parameters ;
-		String propertyId="",propertyName = "",nextDate="",todayDate ="";
+	public void TC_PaymentPage_Coupon_10_priceCheckForPercentCoupon(int rowno, String locality, String checkInDateAfter,String checkOutDateAfter, int NumberOfRooms) throws Exception {
+		todayDate = GenericFunctions.getDate0forTodayPlus1forTommorrowMinusOneForYesterday(Integer.parseInt(checkInDateAfter));
+		nextDate = GenericFunctions.getDate0forTodayPlus1forTommorrowMinusOneForYesterday(Integer.parseInt(checkOutDateAfter));
 		generic.loadURL(UrlProvider.getListingPageUrl(locality));
-		listingPage.performSearch(locality,GenericFunctions.getDateAfterDays(checkInDateAfter),GenericFunctions.getDateAfterDays(checkOutDateAfter), "2");
+		listingPage.performSearch(locality,GenericFunctions.getDateAfterDays(checkInDateAfter),GenericFunctions.getDateAfterDays(checkOutDateAfter), "1");
 		Assert.assertTrue(generic.isVisible(ListingPage.listResults_WE), "Property is not found on the list page !!");
+		propertyId=driver.findElement(PaymentPage.propertyContainer_WE).getAttribute("value");
+		generic.click(ListingPage.bookNow_FirstTuple_Lbl);
+		generic.goToSleep(1000);
+		detailspage.click_selectRooms_Btn();
+		detailspage.click_roomNumber(1, NumberOfRooms);
+		parameters= listingPage.getQueryURL();
+		detailspage.click_bookNow_Btn();
+		subTotal = Double.parseDouble(paymentPage.getText_subTotal_Lbl());
+		Double discount = subTotal * (10 / 100f);
+		Integer discountInt = discount.intValue();
+		Double discountValue = discountInt.doubleValue();
+		PriceTaxDetail fromAPI = FabLogic.getFinalPriceAndTaxWithCoupon(todayDate, nextDate, propertyId, parameters.get(Constants.KEY_ROOMS), parameters.get(Constants.KEY_OCCUPANCY), discountValue);
+		paymentPage.sendKeys_coupon_applyCouponTextBtn(PaymentPage.couponApplyFillBox_Txt,paymentPage.getSheetTxt_ByType(CoupnSheet,"couponType","percentDiscount_10"));
+		paymentPage.click_couponCodeApply_Btn();
+		generic.goToSleep(1000);
+		propertyFinalValue = Double.parseDouble(paymentPage.getText_finalAmount_Lbl());
+		Assert.assertEquals(propertyFinalValue, fromAPI.getFinalGrandTotal(),
+				"When the fixed coupon is applied the final amount value is not correct, comparing with data from API and found on UI !! ");
+	}
+
+	@Test(dataProvider = "DataProvider_paymentPage")
+	public void TC_PaymentPage_Coupon_11_priceCheckForRemoveFixedCoupon(int rowno, String locality, String checkInDateAfter,String checkOutDateAfter, int NumberOfRooms) throws Exception {
+		todayDate = GenericFunctions.getDate0forTodayPlus1forTommorrowMinusOneForYesterday(Integer.parseInt(checkInDateAfter));
+		nextDate = GenericFunctions.getDate0forTodayPlus1forTommorrowMinusOneForYesterday(Integer.parseInt(checkOutDateAfter));
+		generic.loadURL(UrlProvider.getListingPageUrl(locality));
+		listingPage.performSearch(locality,GenericFunctions.getDateAfterDays(checkInDateAfter),GenericFunctions.getDateAfterDays(checkOutDateAfter), "1");
+		Assert.assertTrue(generic.isVisible(ListingPage.listResults_WE), "Property is not found on the list page !!");
+		propertyId=driver.findElement(PaymentPage.propertyContainer_WE).getAttribute("value");
 		generic.click(ListingPage.bookNow_FirstTuple_Lbl);
 		generic.goToSleep(1000);
 		parameters= listingPage.getQueryURL();
@@ -306,25 +302,22 @@ public class ExecutionSuite_PaymentPage extends Config {
 		detailspage.click_bookNow_Btn();
 		paymentPage.sendKeys_coupon_applyCouponTextBtn(PaymentPage.couponApplyFillBox_Txt,paymentPage.getSheetTxt_ByType(CoupnSheet,"couponType","fixedDiscount_150"));
 		paymentPage.click_couponCodeApply_Btn();
-		propertyName = paymentPage.getText_propertyName_Lbl().split("\n")[0];
-		propertyId=paymentPage.getPropertyId_ByItsName(propertyName);
-		todayDate = LocalDate.now().toString();
-		nextDate = LocalDate.now().plusDays(Integer.parseInt(checkOutDateAfter)).toString();
+		//propertyName = paymentPage.getText_propertyName_Lbl().split("\n")[0];
+		//propertyId=paymentPage.getPropertyId_ByItsName(propertyName);
 		PriceTaxDetail fromAPI = FabLogic.getFinalPriceAndTaxWithoutCoupon(todayDate, nextDate, propertyId, parameters.get(Constants.KEY_ROOMS), parameters.get(Constants.KEY_OCCUPANCY));
-		paymentPage.click_couponCodeApply_Btn();
 		paymentPage.click_removeCouponCode_Lbl();
 		Assert.assertEquals(Double.parseDouble(paymentPage.getText_finalAmount_Lbl()), fromAPI.getFinalGrandTotal(),
-				"When the fixed coupon is removed the final amount value is not correct !! ");
+				"When the fixed coupon is removed the final amount value is not correct, comparing with data from API and found on UI !! ");
 	}
 
 	@Test(dataProvider = "DataProvider_paymentPage")
-	public void TC_Validate_coupon_priceCheckForRemovePercentCoupon(int rowno, String locality, String checkInDateAfter,String checkOutDateAfter, int NumberOfRooms) throws Exception {
-		Map<String, String> parameters ;
-		double subTotal = 0;
-		String propertyId="",propertyName = "",nextDate="",todayDate ="";
+	public void TC_PaymentPage_Coupon_12_priceCheckForRemovePercentCoupon(int rowno, String locality, String checkInDateAfter,String checkOutDateAfter, int NumberOfRooms) throws Exception {
+		todayDate = GenericFunctions.getDate0forTodayPlus1forTommorrowMinusOneForYesterday(Integer.parseInt(checkInDateAfter));
+		nextDate = GenericFunctions.getDate0forTodayPlus1forTommorrowMinusOneForYesterday(Integer.parseInt(checkOutDateAfter));
 		generic.loadURL(UrlProvider.getListingPageUrl(locality));
-		listingPage.performSearch(locality,GenericFunctions.getDateAfterDays(checkInDateAfter),GenericFunctions.getDateAfterDays(checkOutDateAfter), "2");
+		listingPage.performSearch(locality,GenericFunctions.getDateAfterDays(checkInDateAfter),GenericFunctions.getDateAfterDays(checkOutDateAfter), "1");
 		Assert.assertTrue(generic.isVisible(ListingPage.listResults_WE), "Property is not found on the list page !!");
+		propertyId=driver.findElement(PaymentPage.propertyContainer_WE).getAttribute("value");
 		generic.click(ListingPage.bookNow_FirstTuple_Lbl);
 		generic.goToSleep(1000);
 		parameters= listingPage.getQueryURL();
@@ -335,18 +328,124 @@ public class ExecutionSuite_PaymentPage extends Config {
 		Double discount = subTotal * (10 / 100f);
 		Integer discountInt = discount.intValue();
 		Double discountValue = discountInt.doubleValue();
-		propertyName = paymentPage.getText_propertyName_Lbl().split("\n")[0];
+		//propertyName = paymentPage.getText_propertyName_Lbl().split("\n")[0];
 		paymentPage.sendKeys_coupon_applyCouponTextBtn(PaymentPage.couponApplyFillBox_Txt,paymentPage.getSheetTxt_ByType(CoupnSheet,"couponType","percentDiscount_10"));
-		propertyId=paymentPage.getPropertyId_ByItsName(propertyName);
-		todayDate = LocalDate.now().toString();
-		nextDate = LocalDate.now().plusDays(Integer.parseInt(checkOutDateAfter)).toString();
-		PriceTaxDetail fromAPI = FabLogic.getFinalPriceAndTaxWithCoupon(todayDate, nextDate, propertyId, parameters.get(Constants.KEY_ROOMS), parameters.get(Constants.KEY_OCCUPANCY), discountValue);
+		//paymentPage.getPropertyId_ByItsName(propertyName);
+		System.out.println(todayDate + "\t"  +nextDate  +"\t"+propertyId+ "\t"+parameters.get(Constants.KEY_ROOMS)+"\t"+parameters.get(Constants.KEY_OCCUPANCY)+"\t"+discountValue);
 		paymentPage.click_couponCodeApply_Btn();
+		generic.goToSleep(1000);
+		PriceTaxDetail fromAPI = FabLogic.getFinalPriceAndTaxWithoutCoupon(todayDate, nextDate, propertyId, parameters.get(Constants.KEY_ROOMS), parameters.get(Constants.KEY_OCCUPANCY));
 		paymentPage.click_removeCouponCode_Lbl();
 		Assert.assertEquals(Double.parseDouble(paymentPage.getText_finalAmount_Lbl()), fromAPI.getFinalGrandTotal(),
-				"When the percent coupon is removed the final amount value is not correct !! ");
+				"When the percent coupon is removed the final amount value is not correct, comparing with data from API and found on UI !! ");
+	}
+	
+	@Test
+	public void TC_PaymentPage_Coupon_13_byNights() throws Exception {
+		String checkinAfter="2",checkoutAfter="5";
+		todayDate = GenericFunctions.getDate0forTodayPlus1forTommorrowMinusOneForYesterday(Integer.parseInt(checkinAfter));
+		nextDate = GenericFunctions.getDate0forTodayPlus1forTommorrowMinusOneForYesterday(Integer.parseInt(checkoutAfter));
+		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());		
+		propertyId=paymentPage.getText_propertyIdOnDetailsPage_WE();
+		System.out.println(propertyId);
+		cal.Select_CheckIn_CheckOut_Date_Calendar_WE(GenericFunctions.getDateAfterDays(checkinAfter),GenericFunctions.getDateAfterDays(checkoutAfter));
+		detailspage.click_selectRooms_Btn();
+		String sellPrice = detailspage.getLabelText_price_Lbl().replace(",", "").replaceAll("\\D+", "");
+		double oneRoomPriceWithTax=FabLogic.getGstSlabBasedTax(Double.parseDouble(sellPrice));
+		int singleRoomPriceWithtax=(int) Math.round(oneRoomPriceWithTax+Double.parseDouble(sellPrice));
+		generic.goToSleep(1000);
+		detailspage.click_roomNumber(1, 1);
+		detailspage.click_bookNow_Btn();
+		PriceTaxDetail fromAPI = FabLogic.getFinalPriceAndTaxWithCoupon(todayDate, nextDate, propertyId, "1", "1", singleRoomPriceWithtax);
+		paymentPage.sendKeys_coupon_applyCouponTextBtn(PaymentPage.couponApplyFillBox_Txt,paymentPage.getSheetTxt_ByType(CoupnSheet,"couponType","1NightOff_onMin3Night_onTestProperty"));
+		paymentPage.click_couponCodeApply_Btn();
+		generic.goToSleep(1000);
+		propertyFinalValue = Double.parseDouble(paymentPage.getText_finalAmount_Lbl());
+		Assert.assertEquals(propertyFinalValue, fromAPI.getFinalGrandTotal(),"When by night coupons is applied the final amount value is not correct, comparing with data from API and found on UI !!");
+		Assert.assertEquals(paymentPage.getText_couponCodeSuccessMssg_Lbl(),
+				"Fab! You just saved Rs. "+singleRoomPriceWithtax+" on your booking", "by nights coupon is not Working !!");
+	}
+	
+	@Test
+	public void TC_PaymentPage_Coupon_14_byNights_multipleRoomTypes() throws Exception {
+		SoftAssert customassert = new SoftAssert();
+		String checkinAfter="2",checkoutAfter="5";
+		todayDate = GenericFunctions.getDate0forTodayPlus1forTommorrowMinusOneForYesterday(Integer.parseInt(checkinAfter));
+		nextDate = GenericFunctions.getDate0forTodayPlus1forTommorrowMinusOneForYesterday(Integer.parseInt(checkoutAfter));
+		int totalNights =  Integer.parseInt(checkoutAfter)-Integer.parseInt(checkinAfter);
+		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());		
+		cal.Select_CheckIn_CheckOut_Date_Calendar_WE(GenericFunctions.getDateAfterDays(checkinAfter),GenericFunctions.getDateAfterDays(checkoutAfter));
+		detailspage.click_selectRooms_Btn();
+		generic.goToSleep(1000);
+		detailspage.click_roomNumber(1, 1);
+		detailspage.click_roomNumber(3, 1);
+		int roomType1Price=Integer.parseInt(detailspage.return_priceByRoomType(1));
+		int roomType2Price=Integer.parseInt(detailspage.return_priceByRoomType(3));
+		int roomType1TotalNightsPriceWithTax=(int) ((FabLogic.getGstSlabBasedTax(roomType1Price)+roomType1Price)*totalNights);
+		int roomType2TotalNightsPriceWithTax=(int) ((FabLogic.getGstSlabBasedTax(roomType2Price)+roomType2Price)*totalNights);
+		System.out.println("first "+roomType1TotalNightsPriceWithTax+"second"+roomType2TotalNightsPriceWithTax);	
+		propertyId=paymentPage.getText_propertyIdOnDetailsPage_WE();
+		double totalRoomPriceWithTax=roomType1TotalNightsPriceWithTax+roomType2TotalNightsPriceWithTax;
+		int avgRoomPriceWithtax=(int) (totalRoomPriceWithTax/totalNights);
+		detailspage.click_bookNow_Btn();
+		System.out.println("totalRoomPriceWithTax"+totalRoomPriceWithTax+"avgRoomPriceWithtax"+avgRoomPriceWithtax);
+		paymentPage.sendKeys_coupon_applyCouponTextBtn(PaymentPage.couponApplyFillBox_Txt,paymentPage.getSheetTxt_ByType(CoupnSheet,"couponType","1NightOff_onMin3Night_onTestProperty"));
+		paymentPage.click_couponCodeApply_Btn();
+		generic.goToSleep(1000);
+		customassert.assertEquals(avgRoomPriceWithtax, Double.parseDouble(paymentPage.getText_discountValue_Lbl()),"When nights coupons is applied ON MULTIPLE ROOM TYPE ,the discounted price is not correct, comparing with data from API and found on UI !!");
+		customassert.assertAll();
 	}
 
+	@Test
+	public void TC_PaymentPage_Coupon_15_minThreeNightRequiredWarning() throws Exception {
+		SoftAssert customassert = new SoftAssert();
+		String checkinAfter="2",checkoutAfter="4";
+		todayDate = GenericFunctions.getDate0forTodayPlus1forTommorrowMinusOneForYesterday(Integer.parseInt(checkinAfter));
+		nextDate = GenericFunctions.getDate0forTodayPlus1forTommorrowMinusOneForYesterday(Integer.parseInt(checkoutAfter));
+		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());		
+		cal.Select_CheckIn_CheckOut_Date_Calendar_WE(GenericFunctions.getDateAfterDays(checkinAfter),GenericFunctions.getDateAfterDays(checkoutAfter));
+		detailspage.click_selectRooms_Btn();
+		generic.goToSleep(1000);
+		detailspage.click_roomNumber(1, 1);
+		detailspage.click_bookNow_Btn();
+		paymentPage.sendKeys_coupon_applyCouponTextBtn(PaymentPage.couponApplyFillBox_Txt,paymentPage.getSheetTxt_ByType(CoupnSheet,"couponType","1NightOff_onMin3Night_onTestProperty"));
+		paymentPage.click_couponCodeApply_Btn();
+		generic.goToSleep(1000);
+		customassert.assertEquals(paymentPage.getText_couponCodeErrorMssg_Lbl(), "3"+paymentPage.minimumRoomTypeWarning_Lbl,
+				"When less than 3 nights are provided the coupon is failing, Min 3 nights are requred for this coupon.. Asserting the warning message.. ");
+		customassert.assertAll();
+	}
+
+	@Test
+	public void TC_PaymentPage_Coupon_16_priceCheckForRemoveCouponbyNights() throws Exception {
+		SoftAssert customassert = new SoftAssert();
+		String checkinAfter="2",checkoutAfter="5";
+		todayDate = GenericFunctions.getDate0forTodayPlus1forTommorrowMinusOneForYesterday(Integer.parseInt(checkinAfter));
+		nextDate = GenericFunctions.getDate0forTodayPlus1forTommorrowMinusOneForYesterday(Integer.parseInt(checkoutAfter));
+		int totalNights =  Integer.parseInt(checkoutAfter)-Integer.parseInt(checkinAfter);
+		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());		
+		cal.Select_CheckIn_CheckOut_Date_Calendar_WE(GenericFunctions.getDateAfterDays(checkinAfter),GenericFunctions.getDateAfterDays(checkoutAfter));
+		detailspage.click_selectRooms_Btn();
+		generic.goToSleep(1000);
+		detailspage.click_roomNumber(1, 1);
+		detailspage.click_roomNumber(3, 1);
+		int roomType1Price=Integer.parseInt(detailspage.return_priceByRoomType(1));
+		int roomType2Price=Integer.parseInt(detailspage.return_priceByRoomType(3));
+		int roomType1TotalNightsPriceWithTax=(int) ((FabLogic.getGstSlabBasedTax(roomType1Price)+roomType1Price)*totalNights);
+		int roomType2TotalNightsPriceWithTax=(int) ((FabLogic.getGstSlabBasedTax(roomType2Price)+roomType2Price)*totalNights);
+		double totalRoomPriceWithTax=roomType1TotalNightsPriceWithTax+roomType2TotalNightsPriceWithTax;
+		int avgRoomPriceWithtax=(int) (totalRoomPriceWithTax/totalNights);
+		detailspage.click_bookNow_Btn();
+		System.out.println("totalRoomPriceWithTax"+totalRoomPriceWithTax+"avgRoomPriceWithtax"+avgRoomPriceWithtax);
+		paymentPage.sendKeys_coupon_applyCouponTextBtn(PaymentPage.couponApplyFillBox_Txt,paymentPage.getSheetTxt_ByType(CoupnSheet,"couponType","1NightOff_onMin3Night_onTestProperty"));
+		paymentPage.click_couponCodeApply_Btn();
+		generic.goToSleep(1000);
+		paymentPage.click_removeCouponCode_Lbl();
+		customassert.assertEquals(Double.parseDouble(paymentPage.getText_finalAmount_Lbl()), totalRoomPriceWithTax,
+				"When the by nights coupon is removed the final amount value is not correct, comparing with data from API and found on UI !! ");
+		customassert.assertAll();
+	}
+	
 	@AfterTest
 	public void afterTest() {
 		driver.quit();

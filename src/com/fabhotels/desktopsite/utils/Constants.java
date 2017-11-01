@@ -17,7 +17,7 @@ public interface Constants {
 	
 	String KEY_CHECKINDATE= "checkIn";
 	String KEY_CHECKOUTDATE= "checkOut";
-	String KEY_OCCUPANCY= "occupancy[]";
+	String KEY_OCCUPANCY= "occupancy";
 	String KEY_ROOMS ="rooms";
 
 }

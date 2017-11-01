@@ -95,7 +95,7 @@ public class DetailPage {
 	public static final By rackRate_Lbl = By.xpath("//div[@class='select-room-price']//del");
 	public static final By price_Lbl = By.xpath("//div[@class='select-room-price']//strong");
 	public static final By onwards_Lbl = By.xpath("//div[@class='select-room-price']//span");
-	public static final By selectRooms_Btn = By.id("propertySselectRoom");
+	public static final By selectRooms_Btn = By.id("propertySelectRoom");
 	public static final By calanderMiddle_WE = By
 			.xpath("//div[@class='datepicker-days']/table[@class='table-condensed']");
 	public static final By numberOfRoomsSelectionAll_Btn = By
@@ -211,8 +211,8 @@ public class DetailPage {
 	public static String cheveronNextNearby_Btn = "(//div[@class='nearby_properties_container'])[2]//a[@class='flex-next']";
 	public static final By hotelPolicies_WE = By.xpath("//div[@id='policies']");
 	public static final By searchBox_WE = By.xpath("//input[@name='locationsearch']");
-	public static final By firstValueFromLocationSuggestor_Lbl = By.xpath("//div[@class='pac-item'][1]");
-	//
+	public static final By firstValueFromLocationSuggestor_Lbl = By.xpath("//div[@class='pac-item'][1]");//span[@id="total_amount"][1]
+	public static final String roomTypePerNightPrice_WE = "(//span[@id='total_amount'])[";
 
 	// New Details Page methods
 	public void click_firstValueFromLocationSuggestor_Lbl() {
@@ -1204,6 +1204,8 @@ public class DetailPage {
 		generic.click(bookNow_Btn);
 	}
 
-	//
+	public String return_priceByRoomType(int index) {
+		return generic.getText(By.xpath(roomTypePerNightPrice_WE+index+"]")).replace(",", "").replaceAll("\\D+", "");
+	}
 
 }

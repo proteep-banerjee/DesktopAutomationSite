@@ -31,6 +31,8 @@ public class PaymentPage {
 	public static final By couponApplyFillBox_Txt = By.xpath("//input[contains(@class, 'coupon-code')]");
 	public static final By propertyName_Lbl = By.xpath("//div[contains(@class, 'review_property_name')]");
 	public static final By propertyContainer_WE=By.xpath("(//div[contains(@class,'hotel-list')]//input)[1]");
+	public static final By propertyDetailPageContianer_WE=By.xpath("//div[@class='property_container']");
+	public String minimumRoomTypeWarning_Lbl=" minimum room nights required to use this coupon";
 	
 
 	public PaymentPage(WebDriver driver, GenericFunctions generic) {
@@ -127,6 +129,9 @@ public class PaymentPage {
     
     public String getText_propertyName_Lbl () {
     	return generic.getText(propertyName_Lbl);
+    }
+    public String getText_propertyIdOnDetailsPage_WE () {
+    	return generic.getAttributeValue(propertyDetailPageContianer_WE, "data-property-id");
     }
     
     
