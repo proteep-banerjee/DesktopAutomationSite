@@ -75,9 +75,9 @@ public class ExecutionSuite_PaymentPage extends Config {
 
 	@Test(dataProvider = "DataProvider_paymentPage")
 	public void TC_PaymentPage_Coupon_01_minimumOrderAmount(int rowno, String locality, String checkInDateAfter,String checkOutDateAfter, int NumberOfRooms) throws InterruptedException, ParseException {
-		generic.loadURL(UrlProvider.getListingPageUrl(locality));
+		generic.loadURL_HandlePopup(UrlProvider.getListingPageUrl(locality));
 		performSearch.performSearch(locality,GenericFunctions.getDateAfterDays(checkInDateAfter),GenericFunctions.getDateAfterDays(checkOutDateAfter), "2");
-		Assert.assertTrue(listingPage.getSize_hotelList_WE()==0, "Property is not found on the list page !!");
+		Assert.assertFalse(listingPage.getSize_hotelList_WE()==0, "Property is not found on the list page !!");
 		generic.click(ListingPage.hotelName_WE);
 		detailspage.click_selectRooms_Btn();
 		generic.goToSleep(1000);
@@ -101,9 +101,9 @@ public class ExecutionSuite_PaymentPage extends Config {
 	
 	@Test(dataProvider = "DataProvider_paymentPage")
 	public void TC_PaymentPage_Coupon_02_maximumCapValue(int rowno, String locality, String checkInDateAfter,String checkOutDateAfter, int NumberOfRooms) throws InterruptedException {
-		generic.loadURL(UrlProvider.getListingPageUrl(locality));
+		generic.loadURL_HandlePopup(UrlProvider.getListingPageUrl(locality));
 		performSearch.performSearch(locality,GenericFunctions.getDateAfterDays(checkInDateAfter),GenericFunctions.getDateAfterDays(checkOutDateAfter), "2");
-		Assert.assertTrue(listingPage.getSize_hotelList_WE()==0, "Property is not found on the list page !!");
+		Assert.assertFalse(listingPage.getSize_hotelList_WE()==0, "Property is not found on the list page !!");
 		generic.click(ListingPage.hotelName_WE);
 		detailspage.click_selectRooms_Btn();
 		generic.goToSleep(1000);
@@ -117,9 +117,9 @@ public class ExecutionSuite_PaymentPage extends Config {
 	
 	@Test(dataProvider = "DataProvider_paymentPage")
 	public void TC_PaymentPage_Coupon_03_fixed(int rowno, String locality, String checkInDateAfter,String checkOutDateAfter, int NumberOfRooms) throws InterruptedException {
-		generic.loadURL(UrlProvider.getListingPageUrl(locality));
+		generic.loadURL_HandlePopup(UrlProvider.getListingPageUrl(locality));
 		performSearch.performSearch(locality,GenericFunctions.getDateAfterDays(checkInDateAfter),GenericFunctions.getDateAfterDays(checkOutDateAfter), "2");
-		Assert.assertTrue(listingPage.getSize_hotelList_WE()==0, "Property is not found on the list page !!");
+		Assert.assertFalse(listingPage.getSize_hotelList_WE()==0, "Property is not found on the list page !!");
 		generic.click(ListingPage.hotelName_WE);
 		detailspage.click_selectRooms_Btn();
 		generic.goToSleep(1000);
@@ -133,9 +133,9 @@ public class ExecutionSuite_PaymentPage extends Config {
 
 	@Test(dataProvider = "DataProvider_paymentPage")
 	public void TC_PaymentPage_Coupon_04_percent(int rowno, String locality, String checkInDateAfter,String checkOutDateAfter, int NumberOfRooms) throws InterruptedException {
-		generic.loadURL(UrlProvider.getListingPageUrl(locality));
+		generic.loadURL_HandlePopup(UrlProvider.getListingPageUrl(locality));
 		performSearch.performSearch(locality,GenericFunctions.getDateAfterDays(checkInDateAfter),GenericFunctions.getDateAfterDays(checkOutDateAfter), "2");
-		Assert.assertTrue(listingPage.getSize_hotelList_WE()==0, "Property is not found on the list page !!");
+		Assert.assertFalse(listingPage.getSize_hotelList_WE()==0, "Property is not found on the list page !!");
 		generic.click(ListingPage.hotelName_WE);
 		detailspage.click_selectRooms_Btn();
 		generic.goToSleep(1000);
@@ -152,9 +152,9 @@ public class ExecutionSuite_PaymentPage extends Config {
 
 	@Test(dataProvider = "DataProvider_paymentPage")
 	public void TC_PaymentPage_Coupon_05_expire(int rowno, String locality, String checkInDateAfter,String checkOutDateAfter, int NumberOfRooms) throws InterruptedException {
-		generic.loadURL(UrlProvider.getListingPageUrl(locality));
+		generic.loadURL_HandlePopup(UrlProvider.getListingPageUrl(locality));
 		performSearch.performSearch(locality,GenericFunctions.getDateAfterDays(checkInDateAfter),GenericFunctions.getDateAfterDays(checkOutDateAfter), "2");
-		Assert.assertTrue(listingPage.getSize_hotelList_WE()==0, "Property is not found on the list page !!");
+		Assert.assertFalse(listingPage.getSize_hotelList_WE()==0, "Property is not found on the list page !!");
 		generic.click(ListingPage.hotelName_WE);
 		detailspage.click_selectRooms_Btn();
 		generic.goToSleep(1000);
@@ -168,9 +168,9 @@ public class ExecutionSuite_PaymentPage extends Config {
 
 	@Test(dataProvider = "DataProvider_paymentPage")
 	public void TC_PaymentPage_Coupon_06_inactive(int rowno, String locality, String checkInDateAfter,String checkOutDateAfter, int NumberOfRooms) throws InterruptedException {
-		generic.loadURL(UrlProvider.getListingPageUrl(locality));
+		generic.loadURL_HandlePopup(UrlProvider.getListingPageUrl(locality));
 		performSearch.performSearch(locality,GenericFunctions.getDateAfterDays(checkInDateAfter),GenericFunctions.getDateAfterDays(checkOutDateAfter), "2");
-		Assert.assertTrue(listingPage.getSize_hotelList_WE()==0, "Property is not found on the list page !!");
+		Assert.assertFalse(listingPage.getSize_hotelList_WE()==0, "Property is not found on the list page !!");
 		generic.click(ListingPage.hotelName_WE);
 		detailspage.click_selectRooms_Btn();
 		generic.goToSleep(1000);
@@ -184,9 +184,9 @@ public class ExecutionSuite_PaymentPage extends Config {
 
 	@Test(dataProvider = "DataProvider_paymentPage")
 	public void TC_PaymentPage_Coupon_07_cityNotAccepted(int rowno, String locality, String checkInDateAfter,String checkOutDateAfter, int NumberOfRooms) throws InterruptedException {
-		generic.loadURL(UrlProvider.getListingPageUrl(locality));
+		generic.loadURL_HandlePopup(UrlProvider.getListingPageUrl(locality));
 		performSearch.performSearch(locality,GenericFunctions.getDateAfterDays(checkInDateAfter),GenericFunctions.getDateAfterDays(checkOutDateAfter), "2");
-		Assert.assertTrue(listingPage.getSize_hotelList_WE()==0, "Property is not found on the list page !!");
+		Assert.assertFalse(listingPage.getSize_hotelList_WE()==0, "Property is not found on the list page !!");
 		generic.click(ListingPage.hotelName_WE);
 		detailspage.click_selectRooms_Btn();
 		generic.goToSleep(1000);
@@ -209,9 +209,9 @@ public class ExecutionSuite_PaymentPage extends Config {
 
 	@Test(dataProvider = "DataProvider_paymentPage")
 	public void TC_PaymentPage_Coupon_08_propertyNotAccepted(int rowno, String locality, String checkInDateAfter,String checkOutDateAfter, int NumberOfRooms) throws InterruptedException {
-		generic.loadURL(UrlProvider.getListingPageUrl(locality));
+		generic.loadURL_HandlePopup(UrlProvider.getListingPageUrl(locality));
 		performSearch.performSearch(locality,GenericFunctions.getDateAfterDays(checkInDateAfter),GenericFunctions.getDateAfterDays(checkOutDateAfter), "2");
-		Assert.assertTrue(listingPage.getSize_hotelList_WE()==0, "Property is not found on the list page !!");
+		Assert.assertFalse(listingPage.getSize_hotelList_WE()==0, "Property is not found on the list page !!");
 		generic.click(ListingPage.hotelName_WE);
 		detailspage.click_selectRooms_Btn();
 		generic.goToSleep(1000);
@@ -243,9 +243,10 @@ public class ExecutionSuite_PaymentPage extends Config {
 	public void TC_PaymentPage_Coupon_09_priceCheckForFixedCoupon(int rowno, String locality, String checkInDateAfter,String checkOutDateAfter, int NumberOfRooms) throws Exception {
 		todayDate = GenericFunctions.getDate0forTodayPlus1forTommorrowMinusOneForYesterday(Integer.parseInt(checkInDateAfter));
 		nextDate = GenericFunctions.getDate0forTodayPlus1forTommorrowMinusOneForYesterday(Integer.parseInt(checkOutDateAfter));
-		generic.loadURL(UrlProvider.getListingPageUrl(locality));
+		generic.loadURL_HandlePopup(UrlProvider.getListingPageUrl(locality));
 		performSearch.performSearch(locality,GenericFunctions.getDateAfterDays(checkInDateAfter),GenericFunctions.getDateAfterDays(checkOutDateAfter), "1");
-		Assert.assertTrue(listingPage.getSize_hotelList_WE()==0, "Property is not found on the list page !!");
+		generic.goToSleep(3000);
+		Assert.assertFalse(listingPage.getSize_hotelList_WE()==0, "Property is not found on the list page !!");
 		listingPage.click_BookNow_FirstTuple_Btn();
 		detailspage.click_selectRooms_Btn();
 		generic.goToSleep(1000);
@@ -255,20 +256,21 @@ public class ExecutionSuite_PaymentPage extends Config {
 		paymentPage.sendKeys_coupon_applyCouponTextBtn(PaymentPage.couponApplyFillBox_Txt,paymentPage.getSheetTxt_ByType(CoupnSheet,"couponType","fixedDiscount_150"));
 		paymentPage.click_couponCodeApply_Btn();
 		propertyName = paymentPage.getText_propertyName_Lbl().split("\n")[0];
+		System.out.println("sasassa"+propertyName);
 		propertyId=paymentPage.getPropertyId_ByItsName(propertyName);
 		PriceTaxDetail fromAPI = FabLogic.getFinalPriceAndTaxWithCoupon(todayDate, nextDate, propertyId, parameters.get(Constants.KEY_ROOMS), parameters.get(Constants.KEY_OCCUPANCY), 150);
 		propertyFinalValue = Double.parseDouble(paymentPage.getText_finalAmount_Lbl());
 		Assert.assertEquals(propertyFinalValue, fromAPI.getFinalGrandTotal(),
 				"When the fixed coupon is applied the final amount value is not correct, comparing with data from API and found on UI !! ");
 	}
-
+//expected [1603.0] but found [1602.0]
 	@Test(dataProvider = "DataProvider_paymentPage")
 	public void TC_PaymentPage_Coupon_10_priceCheckForPercentCoupon(int rowno, String locality, String checkInDateAfter,String checkOutDateAfter, int NumberOfRooms) throws Exception {
 		todayDate = GenericFunctions.getDate0forTodayPlus1forTommorrowMinusOneForYesterday(Integer.parseInt(checkInDateAfter));
 		nextDate = GenericFunctions.getDate0forTodayPlus1forTommorrowMinusOneForYesterday(Integer.parseInt(checkOutDateAfter));
-		generic.loadURL(UrlProvider.getListingPageUrl(locality));
+		generic.loadURL_HandlePopup(UrlProvider.getListingPageUrl(locality));
 		performSearch.performSearch(locality,GenericFunctions.getDateAfterDays(checkInDateAfter),GenericFunctions.getDateAfterDays(checkOutDateAfter), "1");
-		Assert.assertTrue(listingPage.getSize_hotelList_WE()==0, "Property is not found on the list page !!");
+		Assert.assertFalse(listingPage.getSize_hotelList_WE()==0, "Property is not found on the list page !!");
 		propertyId=driver.findElement(PaymentPage.propertyContainer_WE).getAttribute("value");
 		listingPage.click_BookNow_FirstTuple_Btn();
 		generic.goToSleep(1000);
@@ -280,6 +282,7 @@ public class ExecutionSuite_PaymentPage extends Config {
 		Double discount = subTotal * (10 / 100f);
 		Integer discountInt = discount.intValue();
 		Double discountValue = discountInt.doubleValue();
+		//System.out.println("todayDate"+todayDate+"nextDate"+ nextDate+ "propertyId"+propertyId+ "KEY_ROOMS"+parameters.get(Constants.KEY_ROOMS)+ "KEY_OCCUPANCY"+parameters.get(Constants.KEY_OCCUPANCY)+"discountValue"+discountValue);
 		PriceTaxDetail fromAPI = FabLogic.getFinalPriceAndTaxWithCoupon(todayDate, nextDate, propertyId, parameters.get(Constants.KEY_ROOMS), parameters.get(Constants.KEY_OCCUPANCY), discountValue);
 		paymentPage.sendKeys_coupon_applyCouponTextBtn(PaymentPage.couponApplyFillBox_Txt,paymentPage.getSheetTxt_ByType(CoupnSheet,"couponType","percentDiscount_10"));
 		paymentPage.click_couponCodeApply_Btn();
@@ -293,9 +296,9 @@ public class ExecutionSuite_PaymentPage extends Config {
 	public void TC_PaymentPage_Coupon_11_priceCheckForRemoveFixedCoupon(int rowno, String locality, String checkInDateAfter,String checkOutDateAfter, int NumberOfRooms) throws Exception {
 		todayDate = GenericFunctions.getDate0forTodayPlus1forTommorrowMinusOneForYesterday(Integer.parseInt(checkInDateAfter));
 		nextDate = GenericFunctions.getDate0forTodayPlus1forTommorrowMinusOneForYesterday(Integer.parseInt(checkOutDateAfter));
-		generic.loadURL(UrlProvider.getListingPageUrl(locality));
+		generic.loadURL_HandlePopup(UrlProvider.getListingPageUrl(locality));
 		performSearch.performSearch(locality,GenericFunctions.getDateAfterDays(checkInDateAfter),GenericFunctions.getDateAfterDays(checkOutDateAfter), "1");
-		Assert.assertTrue(listingPage.getSize_hotelList_WE()==0, "Property is not found on the list page !!");
+		Assert.assertFalse(listingPage.getSize_hotelList_WE()==0, "Property is not found on the list page !!");
 		propertyId=driver.findElement(PaymentPage.propertyContainer_WE).getAttribute("value");
 		listingPage.click_BookNow_FirstTuple_Btn();
 		generic.goToSleep(1000);
@@ -317,9 +320,9 @@ public class ExecutionSuite_PaymentPage extends Config {
 	public void TC_PaymentPage_Coupon_12_priceCheckForRemovePercentCoupon(int rowno, String locality, String checkInDateAfter,String checkOutDateAfter, int NumberOfRooms) throws Exception {
 		todayDate = GenericFunctions.getDate0forTodayPlus1forTommorrowMinusOneForYesterday(Integer.parseInt(checkInDateAfter));
 		nextDate = GenericFunctions.getDate0forTodayPlus1forTommorrowMinusOneForYesterday(Integer.parseInt(checkOutDateAfter));
-		generic.loadURL(UrlProvider.getListingPageUrl(locality));
+		generic.loadURL_HandlePopup(UrlProvider.getListingPageUrl(locality));
 		performSearch.performSearch(locality,GenericFunctions.getDateAfterDays(checkInDateAfter),GenericFunctions.getDateAfterDays(checkOutDateAfter), "1");
-		Assert.assertTrue(listingPage.getSize_hotelList_WE()==0, "Property is not found on the list page !!");
+		Assert.assertFalse(listingPage.getSize_hotelList_WE()==0, "Property is not found on the list page !!");
 		propertyId=driver.findElement(PaymentPage.propertyContainer_WE).getAttribute("value");
 		listingPage.click_BookNow_FirstTuple_Btn();
 		generic.goToSleep(1000);
@@ -348,7 +351,7 @@ public class ExecutionSuite_PaymentPage extends Config {
 		String checkinAfter="2",checkoutAfter="5";
 		todayDate = GenericFunctions.getDate0forTodayPlus1forTommorrowMinusOneForYesterday(Integer.parseInt(checkinAfter));
 		nextDate = GenericFunctions.getDate0forTodayPlus1forTommorrowMinusOneForYesterday(Integer.parseInt(checkoutAfter));
-		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());		
+		generic.loadURL_HandlePopup(UrlProvider.getGothamPropertyPageUrl());		
 		propertyId=paymentPage.getText_propertyIdOnDetailsPage_WE();
 		System.out.println(propertyId);
 		cal.Select_CheckIn_CheckOut_Date_Calendar_WE(GenericFunctions.getDateAfterDays(checkinAfter),GenericFunctions.getDateAfterDays(checkoutAfter));
@@ -368,7 +371,7 @@ public class ExecutionSuite_PaymentPage extends Config {
 		Assert.assertEquals(paymentPage.getText_couponCodeSuccessMssg_Lbl(),
 				"Fab! You just saved Rs. "+singleRoomPriceWithtax+" on your booking", "by nights coupon is not Working !!");
 	}
-	
+	//expected [6090.0] but found [6089]
 	@Test
 	public void TC_PaymentPage_Coupon_14_byNights_multipleRoomTypes() throws Exception {
 		SoftAssert customassert = new SoftAssert();
@@ -376,7 +379,7 @@ public class ExecutionSuite_PaymentPage extends Config {
 		todayDate = GenericFunctions.getDate0forTodayPlus1forTommorrowMinusOneForYesterday(Integer.parseInt(checkinAfter));
 		nextDate = GenericFunctions.getDate0forTodayPlus1forTommorrowMinusOneForYesterday(Integer.parseInt(checkoutAfter));
 		int totalNights =  Integer.parseInt(checkoutAfter)-Integer.parseInt(checkinAfter);
-		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());		
+		generic.loadURL_HandlePopup(UrlProvider.getGothamPropertyPageUrl());		
 		cal.Select_CheckIn_CheckOut_Date_Calendar_WE(GenericFunctions.getDateAfterDays(checkinAfter),GenericFunctions.getDateAfterDays(checkoutAfter));
 		detailspage.click_selectRooms_Btn();
 		generic.goToSleep(1000);
@@ -394,7 +397,7 @@ public class ExecutionSuite_PaymentPage extends Config {
 		System.out.println("totalRoomPriceWithTax"+totalRoomPriceWithTax+"avgRoomPriceWithtax"+avgRoomPriceWithtax);
 		paymentPage.sendKeys_coupon_applyCouponTextBtn(PaymentPage.couponApplyFillBox_Txt,paymentPage.getSheetTxt_ByType(CoupnSheet,"couponType","1NightOff_onMin3Night_onTestProperty"));
 		paymentPage.click_couponCodeApply_Btn();
-		generic.goToSleep(1000);
+		generic.goToSleep(2000);
 		customassert.assertEquals(avgRoomPriceWithtax, Double.parseDouble(paymentPage.getText_discountValue_Lbl()),"When nights coupons is applied ON MULTIPLE ROOM TYPE ,the discounted price is not correct, comparing with data from API and found on UI !!");
 		customassert.assertAll();
 	}
@@ -405,7 +408,7 @@ public class ExecutionSuite_PaymentPage extends Config {
 		String checkinAfter="2",checkoutAfter="4";
 		todayDate = GenericFunctions.getDate0forTodayPlus1forTommorrowMinusOneForYesterday(Integer.parseInt(checkinAfter));
 		nextDate = GenericFunctions.getDate0forTodayPlus1forTommorrowMinusOneForYesterday(Integer.parseInt(checkoutAfter));
-		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());		
+		generic.loadURL_HandlePopup(UrlProvider.getGothamPropertyPageUrl());		
 		cal.Select_CheckIn_CheckOut_Date_Calendar_WE(GenericFunctions.getDateAfterDays(checkinAfter),GenericFunctions.getDateAfterDays(checkoutAfter));
 		detailspage.click_selectRooms_Btn();
 		generic.goToSleep(1000);
@@ -418,7 +421,7 @@ public class ExecutionSuite_PaymentPage extends Config {
 				"When less than 3 nights are provided the coupon is failing, Min 3 nights are requred for this coupon.. Asserting the warning message.. ");
 		customassert.assertAll();
 	}
-
+	//expected [18269.0] but found [18270.0]
 	@Test
 	public void TC_PaymentPage_Coupon_16_priceCheckForRemoveCouponbyNights() throws Exception {
 		SoftAssert customassert = new SoftAssert();
@@ -426,7 +429,7 @@ public class ExecutionSuite_PaymentPage extends Config {
 		todayDate = GenericFunctions.getDate0forTodayPlus1forTommorrowMinusOneForYesterday(Integer.parseInt(checkinAfter));
 		nextDate = GenericFunctions.getDate0forTodayPlus1forTommorrowMinusOneForYesterday(Integer.parseInt(checkoutAfter));
 		int totalNights =  Integer.parseInt(checkoutAfter)-Integer.parseInt(checkinAfter);
-		generic.loadURL(UrlProvider.getGothamPropertyPageUrl());		
+		generic.loadURL_HandlePopup(UrlProvider.getGothamPropertyPageUrl());		
 		cal.Select_CheckIn_CheckOut_Date_Calendar_WE(GenericFunctions.getDateAfterDays(checkinAfter),GenericFunctions.getDateAfterDays(checkoutAfter));
 		detailspage.click_selectRooms_Btn();
 		generic.goToSleep(1000);

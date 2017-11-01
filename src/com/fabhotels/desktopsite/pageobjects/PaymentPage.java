@@ -52,9 +52,11 @@ public class PaymentPage {
 	{	
 		String hotelid="";
 		listingpage=new ListingPage(driver, generic);
+		performSearch=new SearchBar(driver, generic);
 		((JavascriptExecutor)driver).executeScript("window.open()");
 		generic.switchtoNewWindow();
 		generic.loadURL(UrlProvider.getListingPageUrl());
+		
 		performSearch.performSearch(hotelName,"","","");
 		hotelid = driver.findElement(propertyContainer_WE).getAttribute("value");
 		generic.closeNewWindow();
