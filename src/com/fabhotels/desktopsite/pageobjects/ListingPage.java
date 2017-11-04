@@ -310,7 +310,7 @@ public class ListingPage {
 	}
 
 	public float distanceFromSearchedHotel_nearByHotel_WE(int i) {
-		return Float.parseFloat(generic.getText(distanceFromSearchedHotel_Lbl + "[" + i + "]").split(" ")[0]);
+		return Float.parseFloat(generic.getText(distanceFromSearchedHotel_Lbl + "[" + i + "]").replaceAll("/(?!-)[^0-9.]/g",""));
 	}
 
 	public String getWidth_starRating_WE() {

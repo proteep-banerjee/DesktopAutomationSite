@@ -64,8 +64,7 @@ public class ExecutionSuite_ListingPage extends Config {
 		filters.get(0).click();
 		generic.goToSleep(1000);
 		int hotelList_AfterFilter = listingPage.getSize_hotelList_WE();
-		Assert.assertEquals(hotelList_AfterFilter, hotelList_BeforeFilter,
-				"Results do not change after applying filter !!");
+		Assert.assertNotEquals(hotelList_AfterFilter, hotelList_BeforeFilter,"Results do not change after applying filter !!");
 	}
 
 	@DataProvider(name = "DataProvider_Cities")
@@ -417,7 +416,7 @@ public class ExecutionSuite_ListingPage extends Config {
 		generic.click(listingPage.get_nearByBook_btn(i));
 		generic.goToSleep(2000);
 		String hotelName_DetailsPage = detailPage.getLabelText_hotelName_Lbl();
-		String hotelPrice_DetailsPage = detailPage.getLabelText_onwards_Lbl().replaceAll("[^0-9.]", "");
+		String hotelPrice_DetailsPage = detailPage.getLabelText_price_Lbl();
 		String reviewCount_DetailsPage = detailPage.getLinkText_reviews_Lnk().trim().split(" ")[0];
 		String imgSrcMain = generic.getAttributeValue(DetailPage.mainImage_WE, "src");
 		String mainImageSrc_DetailsPage = imgSrcMain.split("/")[imgSrcMain.split("/").length - 1];
