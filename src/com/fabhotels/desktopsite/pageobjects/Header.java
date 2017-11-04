@@ -18,7 +18,8 @@ public class Header {
 	public static final By allCities_WE = By.xpath("//div[@class='other-cities']");
 	public static final By cities_WE = By.xpath("//div[@class='other-cities']//li/a");
 	public static final String cities_Xpath_WE = "//div[@class='other-cities']//li/a";
-
+	public static final By mainLocaities_WE=By.xpath("//li[@class='main-locality']");
+	
 	public Header(WebDriver driver, GenericFunctions generic) {
 		this.driver = driver;
 		this.generic = generic;
@@ -62,4 +63,9 @@ public class Header {
 		}
 		generic.click(cities_Xpath_WE + "[@href='/hotels-in-"+modCity+"/']");
 	}
+	
+	public int getCount_MainLocaity_WE() {
+		return generic.getSize(mainLocaities_WE);
+	}
+	
 }

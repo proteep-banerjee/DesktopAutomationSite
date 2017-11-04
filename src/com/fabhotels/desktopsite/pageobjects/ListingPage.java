@@ -23,14 +23,15 @@ public class ListingPage {
 
 	// All Tuples
 	public static final By hotelName_WE = By.xpath("//div[@class='hotel-list-desc-above']/h3/a");
-	public static final By location_WE = By.xpath("//div[@class='location']");
+	public static String location_WE = "//div[@class='location']";
 	public static final By rating_WE = By.xpath("//span[@class='review-star-icon']");
+
 	public static final By reviewsCount_WE = By.xpath("//div[@class='review-star']/a");
 	public static final By peopleLookingNow_WE = By.xpath("//div[@class='booking-now']");
 	public static final By price_WE = By.xpath("//span[@class='new-price']");
 	public static final By rackPrice_WE = By.xpath("//span[@class='old-price']/del");
 	public static final By bookNow_WE = By.xpath("//a[text()=' Book Now']");
-	public static final By hotelImage_WE = By.xpath("//div[@class='hotel-list-pic']");
+	public static String hotelImage_WE = "//div[@class='hotel-list-pic']";
 
 	// First Tuple
 	public static final By hotelName_FirstTuple_Lbl = By.xpath("(//div[@class='hotel-list-desc-above']/h3/a)[1]");
@@ -47,43 +48,54 @@ public class ListingPage {
 	public static final By reviewsModalDialogue_WE = By.xpath("//div[@class='modal-content review-modal']");
 	public static final By cross_reviewsModal_Btn = By.xpath("//button[contains(@class,'modal_review_cls')]");
 	public static final By hotelName_ReviewsModal_Lbl = By.xpath("//h4[@id='myModalLabel']/a");
+	public static final By title_ReviewsModal_Lbl = By.xpath("//h4[@class='modal-title']");
 	public static final By ratingText_ReviewsModal_Lbl = By.xpath("//p[@class='modal-subtitle']");
 	public static final By allTuples_ReviewsModal_WE = By.xpath("//div[@class='review_bx_main_bx_sngl ']");
 	public static final By loadMoreReviews_ReviewsModal_Lnk = By.id("moreReviewLink_2");
-	public static final By readMore_ReviewsModal_Lnk = By.xpath("//a[text()='Read More']");
 	public static final By reviewLetter_Icon_ReviewsModal_Lnk = By
 			.xpath("//div[@class='review_bx_heading_wrd bg_cyan']");
 	public static final By reviewerName_Date_ReviewsModal_Lnk = By.xpath("//div[@class='review_bx_heading_wrd_name']");
 	public static final By reviewDate_ReviewsModal_Lnk = By.xpath("//div[@class='review_bx_heading_wrd_name']/span");
-	public static final By reviewRating_ReviewsModal_Lnk = By
-			.xpath("//div[@class='modal-content review-modal']//span[@class='review-star-icon']/span");
+	public static final By reviewRating_ReviewsModal_Lnk = By.xpath("//span[@class='review-star-icon']/span");
 	public static final By reviewBody_ReviewsModal_Lnk = By.xpath("//div[@class='review_text_bx']//p");
+	public static String readMore_ReviewsModal_Lnk = "//a[contains(text(),'Read More')]";
+	public static String readLess_ReviewsModal_Lnk = "(//a[contains(text(),'Read Less')])";
+	public static String partialReview = "(//p[starts-with(@id,'lessReview')])";
+	public static String completeReview = "(//following-sibling::p[starts-with(@id,'fullReview')])";
 
-	public static final By selectRooms_Btn = By.id("propertySselectRoom");
+	public static final By selectRooms_Btn = By.id("propertySelectRoom");
 
 	public static final By featureBox_WE = By.xpath("//div[@class='catalogue_property_feature_box clearfix']");
 	public static final By closeToAirport_Lbl = By.xpath("//span[@class='link-airport']");
 	public static final By priceContainer_WE = By.xpath("//div[@class='price']");
 	public static final By popCloseButton_Btn = By.xpath("//button[contains(@class,'vouchure_close')]");
 	public static final By nearByHotel_Lbl = By.xpath("//h2[@class='sub-title']");
-	public static String totalNearByProperty_WE = "//ul[@id='more_properties_content']//li";
-	public static final By lastHotelNearBy_WE = By.xpath("(" + totalNearByProperty_WE + ")" + "[last()]");
 	public static String defaultHotelImage_name = "mainMedium.png";
-
 	public static final By goToHomePage_Btn = By.xpath("//a[text()=' Go to Home Page ']");
 	public static final By searchResultContainer_WE = By.xpath("//div[@class='container search-result-page']");
-	public static final By nearByProperty_nav = By.xpath("//a[@class='flex-next']");
+
+	// Explore more
+	public static final By nearByPropertyNext_nav = By.xpath("//a[@class='flex-next']");
+	public static final By nearByPropertyPrevious_nav = By.xpath("//a[@class='flex-prev']");
 	public static final By footer_stayUpdated = By.xpath("//div[@class='footer_row']//div[@class='stay_update']");
 	public static final By homePage_mainTitle_lbl = By.xpath("//div[contains(text(),'Innnndia’s Best')]");
 	public static String bookingNow_Lbl = "(//div[@class='booking-now'])";
 	public static String nearBy_txt = "Explore more hotels near ";
-	public static String nearByBook_btn = "//ul[@id='more_properties_content']//a[@class='btn']";
-	public static String nearByHotelName_lbl = "//ul[@id='more_properties_content']//h3/a";
-	public static String nearByHotelReview_lbl = "//ul[@id='more_properties_content']//div[@class='review-star']";
-	public static String nearByHotelImg_img = "//ul[@id='more_properties_content']//img";
+	public static String nearByBook_btn = "(//ul[@id='more_properties_content']//a[@class='btn'])";
+	public static String distanceFromSearchedHotel_Lbl = "(//ul[@id='more_properties_content']//div[@class='location'])";
+	public static String nearByHotelName_lbl = "(//ul[@id='more_properties_content']//h3/a)";
+	public static String nearByHotelReview_lbl = "(//ul[@id='more_properties_content']//div[@class='review-star'])";
+	public static String nearByHotelImg_img = "(//ul[@id='more_properties_content']//img)";
+	public static String nearByHotelPrice_WE = "//span[@class='new-price']";
+	public static String totalNearByProperty_WE = "(//ul[@id='more_properties_content']//li)";
+	public static final By lastHotelNearBy_WE = By.xpath(totalNearByProperty_WE + "[last()]");
+	public static final By lastHotelBook_Btn = By.xpath("(//ul[@id='more_properties_content']//a[@class='btn'])[last()]");
+
 	public static final By cityErrorMsg_WE = By.xpath("//div[@id='cityErrorMsg']");
 	public static String cityErrorMsg_txt = "Please tell us where you are headed!";
 	public static final String noHotelFoundMsg_txt = "//h2[contains(text(),' We couldn’t find hotels matching ')]";
+	public static final By cityPage_breadcrumb_WE = By.xpath("//div[contains(@class,'breadcrumb-top')]");
+	public static final By cityPage_breadcrumb_AllHotels_Lnk = By.xpath("//a[text()=' All Hotels ']");
 
 	// Sold out
 	public static final By soldOut_Lbl = By.xpath("//div[@class='sold-out-caption']");
@@ -95,10 +107,8 @@ public class ListingPage {
 	public static final By lastSoldOut_btn = By.xpath("(" + soldOut_Btn + ")" + "[last()]");
 	public static final By soldOutAlertBox_Lbl = By.xpath("//div[contains(@class,'error_msg_alert')]//p");
 	public static final By roomSoldOutAlertBox_Lbl = By.xpath("(//div[contains(@class,'error_msg_alert')]//p)[2]");
-	public static final By roomLeft_Lbl = By
-			.xpath("//a[contains(text(),'FabHotel Some Rooms Sold Out')]//ancestor::div/div/a/following-sibling::div");
-	public static final By roomLeftBookNow_btn = By.xpath(
-			"//a[contains(text(),'FabHotel Some Rooms Sold Out')]//following::div/a[contains(text(),'Book Now')]");
+	public static final By roomLeft_Lbl = By.xpath("//a[contains(text(),'FabHotel Some Rooms Sold Out')]//ancestor::div/div/a/following-sibling::div");
+	public static final By roomLeftBookNow_btn = By.xpath("//a[contains(text(),'FabHotel Some Rooms Sold Out')]//following::div/a[contains(text(),'Book Now')]");
 	public static final By someRoomLeft_WE = By.xpath("//a[contains(text(),'" + someRoomsLeft_Lbl + "')]");
 	public static final String roomSelectionRoomTypeNumber_WE = "(//div[@class='room-types-selection'])[";
 	public static final String disabledRoomSelectionNumberOfRooms_WE = "//a[@class='outOfStock' and contains(text(),'";
@@ -212,11 +222,11 @@ public class ListingPage {
 	}
 
 	public String getImagePath_Tuple(int tupleNo) {
-		return generic.findElement(hotelImage_WE + "//img[" + tupleNo + "]").getAttribute("src");
+		return generic.findElement("(" + hotelImage_WE + "//img)" + "[" + tupleNo + "]").getAttribute("src");
 	}
 
 	public String getLandmark_Tuple(int tupleNo) {
-		return generic.getText(location_WE + "[" + tupleNo + "]").trim();
+		return generic.getText("(" + location_WE + ")" + "[" + tupleNo + "]").trim();
 	}
 
 	public String getLastBookedText_Tuple(int tupleNo) {
@@ -255,8 +265,94 @@ public class ListingPage {
 		return generic.getSize(ListingPage.disabledRooms_Btn);
 	}
 
-	public void verifyNearByPropertyOnListPage() {
+	public By get_nearByBook_btn(int i) {
+		return By.xpath(nearByBook_btn + "[" + i + "]");
+	}
 
+	public By get_nearByHotelName_lbl(int i) {
+		return By.xpath(nearByHotelName_lbl + "[" + i + "]");
+	}
+
+	public By get_nearByHotelReview_lbl(int i) {
+		return By.xpath(nearByHotelReview_lbl + "[" + i + "]");
+	}
+
+	public By get_nearByHotelImg_img(int i) {
+		return By.xpath(nearByHotelImg_img + "[" + i + "]");
+	}
+
+	public By get_nearByTuple(int i) {
+		return By.xpath(totalNearByProperty_WE + "[" + i + "]");
+	}
+
+	public By get_nearByHotelPrice_WE(int i) {
+		return By.xpath(totalNearByProperty_WE + "[" + i + "]" + nearByHotelPrice_WE);
+	}
+
+	public By get_lastHotelBook_Btn() {
+		return lastHotelBook_Btn;
+	}
+
+	public void click_nearByPropertyNext_nav() {
+		generic.click(nearByPropertyNext_nav);
+	}
+
+	public void click_nearByPropertyPrevious_nav() {
+		generic.click(nearByPropertyPrevious_nav);
+	}
+
+	public String getText_nearByHotel_Lbl() {
+		return generic.getText(nearByHotel_Lbl);
+	}
+
+	public String getReviewCount_nearByHotel_WE(int i) {
+		return generic.getText(nearByHotelReview_lbl + "[" + i + "]" + "//child::a").split(" ")[0];
+	}
+
+	public float distanceFromSearchedHotel_nearByHotel_WE(int i) {
+		return Float.parseFloat(generic.getText(distanceFromSearchedHotel_Lbl + "[" + i + "]").split(" ")[0]);
+	}
+
+	public String getWidth_starRating_WE() {
+		return generic.getAttributeValue(reviewRating_ReviewsModal_Lnk, "style");
+	}
+
+	public String getElementText_reviewsCount_WE() {
+		return generic.getText(reviewsCount_WE);
+	}
+
+	public int getCount_allTuples_ReviewsModal_WE() {
+		return generic.getSize(allTuples_ReviewsModal_WE);
+	}
+
+	public void click_readMore_ReviewsModal_Lnk(int i) {
+		generic.scrollToElement(By.xpath(partialReview + "[" + i + "]" + readMore_ReviewsModal_Lnk), false);
+		generic.click(By.xpath(partialReview + "[" + i + "]" + readMore_ReviewsModal_Lnk));
+	}
+
+	public void click_readLess_ReviewsModal_Lnk(int i) {
+		generic.scrollToElement(By.xpath(readLess_ReviewsModal_Lnk + "[" + i + "]"), true);
+		generic.click(By.xpath(readLess_ReviewsModal_Lnk + "[" + i + "]"));
+	}
+
+	public int getLength_beforeClickingReadMore_ReviewsModal(int i) {
+		return generic.getText(By.xpath(partialReview + "[" + i + "]")).length();
+	}
+
+	public int getLength_afterClickingReadMore_ReviewsModal(int i) {
+		return generic.getText(By.xpath(completeReview + "[" + i + "]")).length();
+	}
+
+	public String getText_title_ReviewsModal_Lbl() {
+		return generic.getText(title_ReviewsModal_Lbl);
+	}
+
+	public String getText_subTitle_ReviewsModal_Lbl() {
+		return generic.getText(ratingText_ReviewsModal_Lbl);
+	}
+
+	public void click_cityPage_breadcrumb_AllHotels_Lnk() {
+		generic.click(cityPage_breadcrumb_AllHotels_Lnk);
 	}
 
 }

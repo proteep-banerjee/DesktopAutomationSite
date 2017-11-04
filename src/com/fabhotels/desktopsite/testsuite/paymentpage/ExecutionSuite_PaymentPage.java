@@ -263,7 +263,7 @@ public class ExecutionSuite_PaymentPage extends Config {
 		Assert.assertEquals(propertyFinalValue, fromAPI.getFinalGrandTotal(),
 				"When the fixed coupon is applied the final amount value is not correct, comparing with data from API and found on UI !! ");
 	}
-//expected [1603.0] but found [1602.0]
+//expected [1593.0] but found [1592.0]
 	@Test(dataProvider = "DataProvider_paymentPage")
 	public void TC_PaymentPage_Coupon_10_priceCheckForPercentCoupon(int rowno, String locality, String checkInDateAfter,String checkOutDateAfter, int NumberOfRooms) throws Exception {
 		todayDate = GenericFunctions.getDate0forTodayPlus1forTommorrowMinusOneForYesterday(Integer.parseInt(checkInDateAfter));
@@ -273,7 +273,7 @@ public class ExecutionSuite_PaymentPage extends Config {
 		Assert.assertFalse(listingPage.getSize_hotelList_WE()==0, "Property is not found on the list page !!");
 		propertyId=driver.findElement(PaymentPage.propertyContainer_WE).getAttribute("value");
 		listingPage.click_BookNow_FirstTuple_Btn();
-		generic.goToSleep(1000);
+		generic.goToSleep(3000);
 		detailspage.click_selectRooms_Btn();
 		detailspage.click_roomNumber(1, NumberOfRooms);
 		parameters= performSearch.getParameters_URL();
@@ -282,7 +282,7 @@ public class ExecutionSuite_PaymentPage extends Config {
 		Double discount = subTotal * (10 / 100f);
 		Integer discountInt = discount.intValue();
 		Double discountValue = discountInt.doubleValue();
-		//System.out.println("todayDate"+todayDate+"nextDate"+ nextDate+ "propertyId"+propertyId+ "KEY_ROOMS"+parameters.get(Constants.KEY_ROOMS)+ "KEY_OCCUPANCY"+parameters.get(Constants.KEY_OCCUPANCY)+"discountValue"+discountValue);
+		System.out.println("todayDate"+todayDate+"nextDate"+ nextDate+ "propertyId"+propertyId+ "KEY_ROOMS"+parameters.get(Constants.KEY_ROOMS)+ "KEY_OCCUPANCY"+parameters.get(Constants.KEY_OCCUPANCY)+"discountValue"+discountValue);
 		PriceTaxDetail fromAPI = FabLogic.getFinalPriceAndTaxWithCoupon(todayDate, nextDate, propertyId, parameters.get(Constants.KEY_ROOMS), parameters.get(Constants.KEY_OCCUPANCY), discountValue);
 		paymentPage.sendKeys_coupon_applyCouponTextBtn(PaymentPage.couponApplyFillBox_Txt,paymentPage.getSheetTxt_ByType(CoupnSheet,"couponType","percentDiscount_10"));
 		paymentPage.click_couponCodeApply_Btn();
@@ -437,6 +437,8 @@ public class ExecutionSuite_PaymentPage extends Config {
 		detailspage.click_roomNumber(3, 1);
 		int roomType1Price=Integer.parseInt(detailspage.return_priceByRoomType(1));
 		int roomType2Price=Integer.parseInt(detailspage.return_priceByRoomType(3));
+		System.out.println("GST of room 1: "+FabLogic.getGstSlabBasedTax(roomType1Price));
+		System.out.println("GST of room 2: "+FabLogic.getGstSlabBasedTax(roomType2Price));
 		int roomType1TotalNightsPriceWithTax=(int) ((FabLogic.getGstSlabBasedTax(roomType1Price)+roomType1Price)*totalNights);
 		int roomType2TotalNightsPriceWithTax=(int) ((FabLogic.getGstSlabBasedTax(roomType2Price)+roomType2Price)*totalNights);
 		double totalRoomPriceWithTax=roomType1TotalNightsPriceWithTax+roomType2TotalNightsPriceWithTax;
@@ -450,6 +452,7 @@ public class ExecutionSuite_PaymentPage extends Config {
 		customassert.assertEquals(Double.parseDouble(paymentPage.getText_finalAmount_Lbl()), totalRoomPriceWithTax,
 				"When the by nights coupon is removed the final amount value is not correct, comparing with data from API and found on UI !! ");
 		customassert.assertAll();
+		
 	}
 
 	@AfterTest

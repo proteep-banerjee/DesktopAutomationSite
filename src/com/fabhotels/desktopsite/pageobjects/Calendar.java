@@ -22,12 +22,12 @@ public class Calendar {
 	public static final By checkOut_Date_WE = By.id("checkOut");
 	public static final By checkIn_DateCalander2_WE = By.id("checkIn1");
 	public static final By checkOut_DateCalander2_WE = By.id("checkOut1");
-	public static final By month_WE = By.xpath("//th[@class='datepicker-switch'][1]");
+	public static final By month_WE = By.xpath("(//th[@class='datepicker-switch'])[1]");
 	public static final By year_WE = By.xpath("(//th[@class='datepicker-switch'])[2]");
 	public static final By nextYearClick_WE = By.xpath("(//th[@class='next'])[2]");
 	public static final String Date_WE = "//table[@class='table-condensed']//td";
 	public static final String selectMonth_Lnk = "//span[contains(@class,'month') and text()='";
-	public static final String selectDate_Lnk = "//td[(@class='day') and text()='";
+	public static final String selectDate_Lnk = "//td[(contains(@class,'day')) and text()='";
 	public static final By searchBox_WE = By.xpath("//input[@name='locationsearch']");
 	public static final By checkAvailabilityInMiddle_Btn = By.xpath("//a[@id='DetailPageBtn']");
 
