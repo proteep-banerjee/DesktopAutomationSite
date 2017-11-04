@@ -346,7 +346,7 @@ public class ExecutionSuite_ListingPage extends Config {
 	}
 
 	@Test
-	public void TC_ListPage_014_NearByHotels() {
+	public void TC_ListPage_014_NearByHotels_listPage() {
 		String checkIn = GenericFunctions.getDateAfterDays("0");
 		String checkOut = GenericFunctions.getDateAfterDays("1");
 		String exploreMoreHotel_Lbl = "Explore more hotels near " + Constants.LOCALITY_NAME;
