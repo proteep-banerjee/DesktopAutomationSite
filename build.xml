@@ -25,6 +25,7 @@
 		<pathelement location="${Common_Resources}/jars/testng-6.8.jar" />
 		<pathelement location="${Common_Resources}/jars/fabxslt.jar" />
 		<pathelement location="${Common_Resources}/jars/java-client-4.1.2.jar" />
+		<pathelement location="${Common_Resources}/jars/jsonschema2pojo-core-0.4.23.jar" />
 		<pathelement location="${Common_Resources}/jars/ApiAutomation.jar" />
 	</path>
 

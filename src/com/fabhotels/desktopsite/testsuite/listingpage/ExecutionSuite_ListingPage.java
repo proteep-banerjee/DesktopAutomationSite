@@ -108,11 +108,12 @@ public class ExecutionSuite_ListingPage extends Config {
 		Assert.assertTrue(generic.isVisible(ListingPage.rackPrice_WE), "Rack prices not Visible !!");
 	}
 
-	@Test(dataProvider = "DataProvider_Cities", dependsOnMethods = { "TC_ListPage_004_Validate_Visibility_RackPrice" })
+	@Test(dataProvider = "DataProvider_Cities")
 	public void TC_ListPage_005_CheckRackPrice(int No, String cityName) {
 		CustomAssert customAssert = new CustomAssert();
 		header.click_CityNo_Header_WE(No);
 		List<WebElement> tuples = generic.findElements(ListingPage.allProperties_WE);
+		Assert.assertTrue(generic.isVisible(ListingPage.rackPrice_WE), "Rack prices not Visible !!");
 		for (WebElement webElement : tuples) {
 			if (webElement.findElements(ListingPage.rackPrice_WE).size() > 0) {
 				String hotelName = webElement.findElement(By.xpath("//h3/a")).getText();
@@ -417,11 +418,11 @@ public class ExecutionSuite_ListingPage extends Config {
 		generic.goToSleep(2000);
 		String hotelName_DetailsPage = detailPage.getLabelText_hotelName_Lbl();
 		String hotelPrice_DetailsPage = detailPage.getLabelText_price_Lbl();
-		String reviewCount_DetailsPage = detailPage.getLinkText_reviews_Lnk().trim().split(" ")[0];
+		String reviewCount_DetailsPage = detailPage.getLinkText_reviews_Lnk();
 		String imgSrcMain = generic.getAttributeValue(DetailPage.mainImage_WE, "src");
 		String mainImageSrc_DetailsPage = imgSrcMain.split("/")[imgSrcMain.split("/").length - 1];
 		customAssert.assertEquals(hotelName_NearByProperty,hotelName_DetailsPage,"Hotel Name is not identical on Near by Hotel and its Details Page.");
-		customAssert.assertEquals(price_NearByProperty,hotelPrice_DetailsPage,"Hotel Price is not identical on Near by Hotel and its Details Page.");
+		customAssert.assertEquals(price_NearByProperty,hotelPrice_DetailsPage,"Hotel Price are not identical on Near by Hotel and its Details Page.");
 		customAssert.assertEquals(hotelButton_NearByProperty,"BOOK NOW","");
 		customAssert.assertEquals(reviewCount_NearByProperty,reviewCount_DetailsPage,"Review count is not identical on Near by Hotel and its Details Page.");
 		customAssert.assertEquals(imageName_NearByProperty,mainImageSrc_DetailsPage,"Main image is not identical on Near by Hotel and its Details Page.");
