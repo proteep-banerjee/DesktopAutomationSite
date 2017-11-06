@@ -201,8 +201,8 @@ public class ExecutionSuite_PaymentPage extends Config {
 		} else {
 			paymentPage.sendKeys_coupon_applyCouponTextBtn(PaymentPage.couponApplyFillBox_Txt,paymentPage.getSheetTxt_ByType(CoupnSheet,"couponType","fixedDiscount_400_onCityDelhi"));
 			paymentPage.click_couponCodeApply_Btn();
-			errorMssg = "Sorry! This doesn't seem to be a valid coupon code or Loyalty Card Number in this city";
-			Assert.assertEquals(paymentPage.getText_couponCodeErrorMssg_Lbl(), errorMssg,
+			errorMssg = "seem to be a valid coupon code or Loyalty Card Number in this city";
+			Assert.assertEquals(paymentPage.getText_couponCodeErrorMssg_Lbl().substring(20), errorMssg,
 					"The coupon is assigned to new delhi but it is applicable into other cities also !!");
 		}
 	}
@@ -227,14 +227,14 @@ public class ExecutionSuite_PaymentPage extends Config {
 		} else if (locality.equalsIgnoreCase("new delhi")) {
 			paymentPage.sendKeys_coupon_applyCouponTextBtn(PaymentPage.couponApplyFillBox_Txt,paymentPage.getSheetTxt_ByType(CoupnSheet,"couponType","fixedDiscount_400_onProperty"));
 			paymentPage.click_couponCodeApply_Btn();
-			errorMssg = "Sorry! This doesn't seem to be a valid coupon code or Loyalty Card Number on this property";
-			Assert.assertEquals(paymentPage.getText_couponCodeErrorMssg_Lbl(), errorMssg,
+			errorMssg = "seem to be a valid coupon code or Loyalty Card Number on this property";
+			Assert.assertEquals(paymentPage.getText_couponCodeErrorMssg_Lbl().substring(20), errorMssg,
 					"The coupon is assigned to new delhi (fabhotel Cabana GK1), but working for other hotel !!"+"under property :"+propertyName);
 		} else {
 			paymentPage.sendKeys_coupon_applyCouponTextBtn(PaymentPage.couponApplyFillBox_Txt,paymentPage.getSheetTxt_ByType(CoupnSheet,"couponType","fixedDiscount_400_onProperty"));
 			paymentPage.click_couponCodeApply_Btn();
-			errorMssg = "Sorry! This doesn't seem to be a valid coupon code or Loyalty Card Number in this city";
-			Assert.assertEquals(paymentPage.getText_couponCodeErrorMssg_Lbl(), errorMssg,
+			errorMssg = "seem to be a valid coupon code or Loyalty Card Number in this city";
+			Assert.assertEquals(paymentPage.getText_couponCodeErrorMssg_Lbl().substring(20), errorMssg,
 					"The coupon is assigned to new delhi (fabhotel Cabana GK1), but working for other hotel !!"+"under property :"+propertyName);
 		}
 	}

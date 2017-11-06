@@ -319,7 +319,7 @@ public class ExecutionSuite_ListingPage extends Config {
 	public void TC_ListPage_013_DetailsPageLanding_SomeRoomLeftCase() {
 		CustomAssert customAssert = new CustomAssert();
 		generic.loadURL_HandlePopup(UrlProvider.getGothamListPageUrl());
-		String checkIn = GenericFunctions.getDateAfterDays("0");
+		String checkIn = GenericFunctions.getDateAfterDays("3");
 		String checkOut = GenericFunctions.getDateAfterDays("5");
 		String rooms = "5";
 		searchBar.performSearch("", checkIn, checkOut, rooms);
@@ -417,7 +417,7 @@ public class ExecutionSuite_ListingPage extends Config {
 		generic.click(listingPage.get_nearByBook_btn(i));
 		generic.goToSleep(2000);
 		String hotelName_DetailsPage = detailPage.getLabelText_hotelName_Lbl();
-		String hotelPrice_DetailsPage = detailPage.getLabelText_price_Lbl();
+		String hotelPrice_DetailsPage = detailPage.getText_priceWithoutRupeeSymbol_Lbl();
 		String reviewCount_DetailsPage = detailPage.getLinkText_reviews_Lnk();
 		String imgSrcMain = generic.getAttributeValue(DetailPage.mainImage_WE, "src");
 		String mainImageSrc_DetailsPage = imgSrcMain.split("/")[imgSrcMain.split("/").length - 1];

@@ -94,6 +94,7 @@ public class DetailPage {
 	public static final By closeGallery_Lnk = By.xpath("//a[@class='close-gallery']");
 	public static final By rackRate_Lbl = By.xpath("//div[@class='select-room-price']//del");
 	public static final By price_Lbl = By.xpath("//div[@class='select-room-price']//strong");
+	public static final By priceWithoutRupeeSymbol_Lbl = By.xpath("//span[@id='avgSellingPrice']");
 	public static final By onwards_Lbl = By.xpath("//div[@class='select-room-price']//span");
 	public static final By selectRooms_Btn = By.id("propertySelectRoom");
 	public static final By calanderMiddle_WE = By
@@ -230,6 +231,11 @@ public class DetailPage {
 		generic.fill(searchBox_WE, value);
 	}
 
+	public String getText_priceWithoutRupeeSymbol_Lbl()
+	{
+		return generic.getText(priceWithoutRupeeSymbol_Lbl);
+	}
+	
 	public String getText_searchBox_WE() {
 		return generic.getValue(searchBox_WE);
 	}
