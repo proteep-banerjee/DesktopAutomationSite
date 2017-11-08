@@ -86,6 +86,7 @@ public class ExecutionSuite_GuestDetails extends Config {
 			Assert.assertTrue((currentError.equals(ExpectedErrors)), "Errors does not matches. ");
 		} else if(Expected.equalsIgnoreCase("Submitted")){
 			checkoutReview.positivePayAtHotels();
+			checkoutReview.click_bookNow_Btn();
 			String errorOTP = checkoutReview.captureError();
 			System.out.println("error OTP : " + errorOTP);
 			Assert.assertEquals(errorOTP.trim(), ", Please enter a valid input", "OTP Error mismatch");
@@ -109,6 +110,7 @@ public class ExecutionSuite_GuestDetails extends Config {
 			Assert.assertTrue((currentError.equals(ExpectedErrors)), "Errors does not matches. ");
 		} else if(Expected.equalsIgnoreCase("Submitted")){
 			checkoutReview.positivePayAtHotels();
+			checkoutReview.click_bookNow_Btn();
 			String errorOTP = checkoutReview.captureError();
 			System.out.println("error OTP : " + errorOTP);
 			Assert.assertEquals(errorOTP.trim(), ", Please enter a valid input", "OTP Error mismatch");
@@ -132,6 +134,7 @@ public class ExecutionSuite_GuestDetails extends Config {
 		} else if(Expected.equalsIgnoreCase("Submitted")) {
 			checkoutReview.positivePayAtHotels();
 			String errorOTP = checkoutReview.captureError();
+			checkoutReview.click_bookNow_Btn();
 			System.out.println("error OTP : " + errorOTP);
 			Assert.assertEquals(errorOTP.trim(), ", Please enter a valid input", "OTP Error mismatch");
 		}
