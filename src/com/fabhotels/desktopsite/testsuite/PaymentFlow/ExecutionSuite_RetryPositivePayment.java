@@ -36,7 +36,7 @@ public class ExecutionSuite_RetryPositivePayment extends Config {
 		SearchResultPage SearchResultPage = new SearchResultPage(driver, generic);
 		SearchResultPage.positive_selectHotelFromDetail();
 
-		DetailPage.Positive_CheckInCheckOutDateWE();
+		DetailPage.positive_CheckInCheckOutDateWE();
 
 		CheckoutReview CheckoutReview = new CheckoutReview(driver, generic);
 		CheckoutReview.positiveCheckoutReview();
@@ -59,7 +59,7 @@ public class ExecutionSuite_RetryPositivePayment extends Config {
 
 		SearchResultPage SearchResultPage = new SearchResultPage(driver, generic);
 		SearchResultPage.positive_selectHotelFromDetail();
-		DetailPage.Positive_CheckInCheckOutDateWE();
+		DetailPage.positive_CheckInCheckOutDateWE();
 
 		CheckoutReview CheckoutReview = new CheckoutReview(driver, generic);
 		CheckoutReview.positiveCheckoutReview();
@@ -84,7 +84,7 @@ public class ExecutionSuite_RetryPositivePayment extends Config {
 		SearchResultPage SearchResultPage = new SearchResultPage(driver, generic);
 		SearchResultPage.positive_selectHotelFromDetail();
 
-		DetailPage.Positive_CheckInCheckOutDateWE();
+		DetailPage.positive_CheckInCheckOutDateWE();
 
 		CheckoutReview CheckoutReview = new CheckoutReview(driver, generic);
 		CheckoutReview.positiveCheckoutReview();
@@ -109,7 +109,7 @@ public class ExecutionSuite_RetryPositivePayment extends Config {
 		SearchResultPage SearchResultPage = new SearchResultPage(driver, generic);
 		SearchResultPage.positive_selectHotelFromDetail();
 
-		DetailPage.Positive_CheckInCheckOutDateWE();
+		DetailPage.positive_CheckInCheckOutDateWE();
 
 		CheckoutReview CheckoutReview = new CheckoutReview(driver, generic);
 		CheckoutReview.positiveCheckoutReview();
@@ -136,7 +136,7 @@ public class ExecutionSuite_RetryPositivePayment extends Config {
 		SearchResultPage SearchResultPage = new SearchResultPage(driver, generic);
 		SearchResultPage.positive_selectHotelFromDetail();
 
-		DetailPage.Positive_CheckInCheckOutDateWE();
+		DetailPage.positive_CheckInCheckOutDateWE();
 
 		CheckoutReview checkoutReview = new CheckoutReview(driver, generic);
 		checkoutReview.positiveCheckoutReview();

@@ -11,6 +11,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+
 import com.fabhotels.automationframework.core.CustomAssert;
 import com.fabhotels.automationframework.genericfunctions.GenericFunctions;
 import com.fabhotels.desktopsite.pageobjects.Calendar;
@@ -121,6 +123,9 @@ public class ExecutionSuite_ListingPage extends Config {
 				int pri_value = Integer.parseInt(listingPage.getText_SellingPrice_WE(webElement));
 				customAssert.assertTrue(rac_value > pri_value, "Price is greator than Rack Price !! under city :"
 						+ hotelName + " Rack price is :" + rac_value + " And offered price is :" + pri_value);
+			}
+			else {
+				Assert.assertTrue(false, "Rack prices not Visible !!");
 			}
 		}
 		customAssert.assertAll();
@@ -398,7 +403,7 @@ public class ExecutionSuite_ListingPage extends Config {
 		String checkOut = GenericFunctions.getDateAfterDays("1");
 		String rooms = "4";
 		int i = 1;
-		CustomAssert customAssert = new CustomAssert();
+		SoftAssert customAssert = new SoftAssert();
 		generic.loadURL_HandlePopup(UrlProvider.getListingPageUrl());
 		searchBar.performSearch(Constants.LOCALITY_NAME, checkIn, checkOut, rooms);
 		generic.waitForCompletePageLoad();
@@ -409,7 +414,7 @@ public class ExecutionSuite_ListingPage extends Config {
 		generic.scrollToElement(ListingPage.nearByPropertyNext_nav, false);
 		String hotelName_NearByProperty = generic.getText(listingPage.get_nearByHotelName_lbl(i));
 		System.out.println(i + ". Hotel ," + hotelName_NearByProperty);
-		String price_NearByProperty=generic.getText(listingPage.get_nearByHotelPrice_WE(1)).split(" ")[0].replaceAll("[^0-9.]", "");
+		String price_NearByProperty=generic.getText(listingPage.get_nearByHotelPrice_WE(1)).replaceAll("[^0-9.]", "");
 		String hotelButton_NearByProperty=generic.getText(listingPage.get_nearByBook_btn(i));
 		String reviewCount_NearByProperty=generic.getText(listingPage.get_nearByHotelReview_lbl(i));
 		String imgSrc = generic.getAttributeValue(listingPage.get_nearByHotelImg_img(i), "src");

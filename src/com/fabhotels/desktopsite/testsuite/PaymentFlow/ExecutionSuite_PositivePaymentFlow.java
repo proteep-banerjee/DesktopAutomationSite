@@ -33,7 +33,7 @@ public class ExecutionSuite_PositivePaymentFlow extends Config {
 		SearchResultPage SearchResultPage = new SearchResultPage(driver, generic);
 		SearchResultPage.positive_selectHotelFromDetail();
 
-		DetailPage.Positive_CheckInCheckOutDateWE();
+		DetailPage.positive_CheckInCheckOutDateWE();
 
 		CheckoutReview CheckoutReview = new CheckoutReview(driver, generic);
 		CheckoutReview.positiveCheckoutReview();
@@ -55,7 +55,7 @@ public class ExecutionSuite_PositivePaymentFlow extends Config {
 
 		SearchResultPage SearchResultPage = new SearchResultPage(driver, generic);
 		SearchResultPage.positive_selectHotelFromDetail();
-		DetailPage.Positive_CheckInCheckOutDateWE();
+		DetailPage.positive_CheckInCheckOutDateWE();
 
 		CheckoutReview CheckoutReview = new CheckoutReview(driver, generic);
 		CheckoutReview.positiveCheckoutReview();
@@ -80,7 +80,7 @@ public class ExecutionSuite_PositivePaymentFlow extends Config {
 		SearchResultPage SearchResultPage = new SearchResultPage(driver, generic);
 		SearchResultPage.positive_selectHotelFromDetail();
 
-		DetailPage.Positive_CheckInCheckOutDateWE();
+		DetailPage.positive_CheckInCheckOutDateWE();
 
 		CheckoutReview CheckoutReview = new CheckoutReview(driver, generic);
 		CheckoutReview.positiveCheckoutReview();
@@ -98,16 +98,11 @@ public class ExecutionSuite_PositivePaymentFlow extends Config {
 	@Test
 	public void TC_positiveCase_Payment_Wallets() {
 		CustomAssert customAssert = new CustomAssert();
-
+		CheckoutReview CheckoutReview = new CheckoutReview(driver, generic);
 		generic.loadURL_HandlePopup(UrlProvider.getGothamPropertyPageUrl());
-		DetailPage DetailPage = new DetailPage(driver, generic);
-
 		SearchResultPage SearchResultPage = new SearchResultPage(driver, generic);
 		SearchResultPage.positive_selectHotelFromDetail();
-
-		DetailPage.Positive_CheckInCheckOutDateWE();
-
-		CheckoutReview CheckoutReview = new CheckoutReview(driver, generic);
+		CheckoutReview.positiveCheckoutReview();
 		CheckoutReview.positiveCheckoutReview();
 		CheckoutReview.positiveGuestDetails();
 		CheckoutReview.positiveWalletsPayment();
@@ -132,7 +127,7 @@ public class ExecutionSuite_PositivePaymentFlow extends Config {
 		SearchResultPage SearchResultPage = new SearchResultPage(driver, generic);
 		SearchResultPage.positive_selectHotelFromDetail();
 
-		DetailPage.Positive_CheckInCheckOutDateWE();
+		DetailPage.positive_CheckInCheckOutDateWE();
 
 		CheckoutReview checkoutReview = new CheckoutReview(driver, generic);
 		checkoutReview.positiveCheckoutReview();
