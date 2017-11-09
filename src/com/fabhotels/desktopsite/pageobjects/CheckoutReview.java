@@ -11,7 +11,7 @@ import com.fabhotels.automationframework.xlsreader.Xls_Reader;
 public class CheckoutReview {
 
 	WebDriver driver;
-	GenericFunctions generic = new GenericFunctions(driver);
+	GenericFunctions generic;
 
 	public CheckoutReview(WebDriver driver, GenericFunctions generic) {
 		this.driver = driver;
@@ -76,6 +76,7 @@ public class CheckoutReview {
 	public static final String bookNow_Btn = "//div[@class='review_payment_option_details']//span[text()='Book Now']";
 	public static final String tryAgain_Btn = "//div[@data-url='/checkout/review']";
 	public static final String errorMessage_Err = "//p[contains(@class,'_error')]";
+	public static final By booking_response_Title=By.xpath("//span[@class='booking_response_title']");
 
 	//Guest detail tab
 	public static final By checkbox_Subscribe_Chk = By.xpath("(//label[@class='review_details_checkbox_label'])[1]");
@@ -306,10 +307,15 @@ public class CheckoutReview {
 
 	public void click_bookNow_Btn() {
 		generic.click(bookNow_Btn);
+		generic.goToSleep(2000);
 	}
 
 	public void fill_Otp_Num(String otp) {
 		generic.fill(otp_Number_Field, otp);
 	}
 
+	public String get_booking_response_Title()
+	{
+		return generic.getText(booking_response_Title);
+	}
 }

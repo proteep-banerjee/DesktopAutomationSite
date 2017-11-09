@@ -1,9 +1,11 @@
 package com.fabhotels.desktopsite.testsuite.PaymentFlow;
 
+import static org.testng.Assert.assertEquals;
+
 import java.lang.reflect.Method;
 
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -40,9 +42,9 @@ public class ExecutionSuite_GuestDetails extends Config {
 
 	@DataProvider(name = "DataProvider_GuestDetailsPage")
 	public Object[][] DataProvider_GuestDetailPage(Method selectTC) {
-		if (selectTC.getName().equalsIgnoreCase("TC_GuestDetails_001_validate_MobileNumber_errorMsg")) {
+		if (selectTC.getName().equalsIgnoreCase("TC_GuestDetails_002_validate_MobileNumber")) {
 			Sheetname = "GuestMobileNumber";
-		} else if (selectTC.getName().equalsIgnoreCase("TC_GuestDetails_002_validate_EmailId_errorMsg")) {
+		} else if (selectTC.getName().equalsIgnoreCase("TC_GuestDetails_003_validate_EmailId")) {
 			Sheetname = "GuestEmailId";
 		} else
 			Sheetname = "GuestName";
@@ -67,6 +69,8 @@ public class ExecutionSuite_GuestDetails extends Config {
 		checkoutReview.positivePayAtHotels();
 		checkoutReview.fill_Otp_Num(getOtp.getOtp());
 		checkoutReview.click_bookNow_Btn();
+		generic.goToSleep(2000);
+		Assert.assertEquals(checkoutReview.get_booking_response_Title(), "Fabulous!","Booking creation is not sucessfull!!!!!!");
 	}
 
 	@Test(dataProvider = "DataProvider_GuestDetailsPage")
@@ -126,6 +130,7 @@ public class ExecutionSuite_GuestDetails extends Config {
 		checkoutReview.positiveCheckoutReview();
 		checkoutReview.click_continue_Btn();
 		checkoutReview.TestCase_GuestDetails(datatable, Sheetname, rowNo);
+		checkoutReview.click_guestProceedToPay_Btn();
 		String currentError = checkoutReview.captureError();
 		String ExpectedErrors = datatable.getCellData(Sheetname, "ExpectedErrors", rowNo);
 		String Expected = datatable.getCellData(Sheetname, "Expected", rowNo);
@@ -133,13 +138,13 @@ public class ExecutionSuite_GuestDetails extends Config {
 			Assert.assertTrue((currentError.equals(ExpectedErrors)), "Errors does not matches. ");
 		} else if(Expected.equalsIgnoreCase("Submitted")) {
 			checkoutReview.positivePayAtHotels();
-			String errorOTP = checkoutReview.captureError();
 			checkoutReview.click_bookNow_Btn();
+			String errorOTP = checkoutReview.captureError();
 			System.out.println("error OTP : " + errorOTP);
 			Assert.assertEquals(errorOTP.trim(), ", Please enter a valid input", "OTP Error mismatch");
 		}
 	}
-	
+
 	@Test
 	public void TC_GuestDetails_005_validate_checkBoxes_guestDetails() {
 		generic.loadURL_HandlePopup(UrlProvider.getGothamPropertyPageUrl());
@@ -178,7 +183,7 @@ public class ExecutionSuite_GuestDetails extends Config {
 		generic.closeNewWindow();
 		generic.SwitchtoOriginalWindow();
 	}
-	
+
 	@Test
 	public void TC_GuestDetails_007_validate_header_guestDetails() {
 		generic.loadURL_HandlePopup(UrlProvider.getGothamPropertyPageUrl());
@@ -191,9 +196,9 @@ public class ExecutionSuite_GuestDetails extends Config {
 		String reviewDetailsFinalHeader=email+" / "+MobileNumber;
 		Assert.assertEquals(checkoutReview.getText_guest_reviewDetails_Header(), reviewDetailsFinalHeader,"Guest Details Header is not appropriate..");
 	}
-	
-	@AfterMethod(lastTimeOnly = true)
-	public void afterMethod() {
+
+	@AfterTest
+	public void aftertest() {
 		driver.quit();
 	}
 
