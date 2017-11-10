@@ -76,10 +76,11 @@ public class ExecutionSuite_HomePage extends Config {
 		String chkIn = hp.getElementText_checkIn_Date_WE();
 		String chkOu = hp.getElementText_checkOut_Date_WE();
 		hp.click_FindFabHotel_Btn();
+		generic.goToSleep(2000);
 		customAssert.assertTrue(lp.getText_resultsCountText_Lbl().contains("Budget Hotels in and around Koramangala"),
 				"Not getting redirected to correct URL");
-		customAssert.assertEquals(lp.getText_checkIn_Date_WE(), chkIn);
-		customAssert.assertEquals(lp.getText_checkOut_Date_WE(), chkOu);
+		customAssert.assertEquals(lp.getText_checkIn_Date_WE(), chkIn,"check in dates are not identical on home page and list page");
+		customAssert.assertEquals(lp.getText_checkOut_Date_WE(), chkOu,"check out dates are not identical on home page and list page");
 		customAssert.assertAll();
 	}
 

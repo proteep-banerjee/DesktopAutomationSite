@@ -414,7 +414,7 @@ public class ExecutionSuite_ListingPage extends Config {
 		generic.scrollToElement(ListingPage.nearByPropertyNext_nav, false);
 		String hotelName_NearByProperty = generic.getText(listingPage.get_nearByHotelName_lbl(i));
 		System.out.println(i + ". Hotel ," + hotelName_NearByProperty);
-		String price_NearByProperty=generic.getText(listingPage.get_nearByHotelPrice_WE(1)).replaceAll("[^0-9.]", "");
+		String price_NearByProperty=generic.getText(listingPage.get_nearByHotelPrice_WE(1)).replaceAll("[^0-9.,]", "");
 		String hotelButton_NearByProperty=generic.getText(listingPage.get_nearByBook_btn(i));
 		String reviewCount_NearByProperty=generic.getText(listingPage.get_nearByHotelReview_lbl(i));
 		String imgSrc = generic.getAttributeValue(listingPage.get_nearByHotelImg_img(i), "src");
