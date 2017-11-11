@@ -1,7 +1,5 @@
 package com.fabhotels.desktopsite.testsuite.PaymentFlow;
 
-import static org.testng.Assert.assertEquals;
-
 import java.lang.reflect.Method;
 
 import org.testng.Assert;

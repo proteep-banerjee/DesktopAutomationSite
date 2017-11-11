@@ -42,7 +42,7 @@ public class ExecutionSuite_DetailPage extends Config {
 
 	@BeforeMethod()
 	public void beforeMethod() {
-		//driver.manage().deleteAllCookies();
+		driver.manage().deleteAllCookies();
 	}
 
 	@Test
@@ -312,8 +312,8 @@ public class ExecutionSuite_DetailPage extends Config {
 		SoftAssert softAssert = new SoftAssert();
 		generic.loadURL_HandlePopup(
 				UrlProvider.getHomePageUrl() + "hotels-in-gotham/fabhotel-some-rooms-sold-out.html");
-		cal.Select_CheckIn_CheckOut_Date_Calendar_WE(GenericFunctions.getDateAfterDays("0"),
-				GenericFunctions.getDateAfterDays("2"));
+		cal.Select_CheckIn_CheckOut_Date_Calendar_WE(GenericFunctions.getDateAfterDays("30"),
+				GenericFunctions.getDateAfterDays("32"));
 		dp.click_checkAvailabilityOnTop_Btn();
 		softAssert.assertTrue(dp.isSoldOut_roomType(2), "Sold Out Lablel is not displayed.");
 		softAssert.assertTrue(dp.isDisabled_roomNumber(2, 0), "Room 2 is Enabled");
@@ -442,7 +442,7 @@ public class ExecutionSuite_DetailPage extends Config {
 				softAssert.assertTrue(dp.getLinkText_reviewsOnlyNearby_Lnk(j).length() > 5, "Failed review only");
 				softAssert.assertTrue(dp.getLabelText_peopleBookingNowNearby_Lbl(j).length() > 5,
 						"Failed people Looking at it");
-				softAssert.assertTrue(dp.getLabelText_sellPriceNearBy_Lbl(j).length() > 5, "Failed sell price");
+				softAssert.assertTrue(dp.getLabelText_sellPriceNearBy_Lbl(j).length() > 3, "Failed sell price");
 				softAssert.assertTrue(dp.isVisible_bookNowNearBy_Btn(j), "Failed review and ratings");
 			}
 			i = i + 2;
@@ -516,6 +516,7 @@ public class ExecutionSuite_DetailPage extends Config {
 		softAssert.assertTrue(dp.isDisabled_selectRoomsDisabled_Btn(), "Button is not disabled.");
 		cal.Select_CheckIn_CheckOut_Date_Calendar_WE("01 January 2018", "04 January 2018");
 		dp.click_checkAvailabilityOnTop_Btn();
+		generic.goToSleep(2000);
 		dp.click_roomNumber(2, 2);
 		dp.click_bookNowFooter_Btn();
 		softAssert.assertAll();
@@ -547,7 +548,7 @@ public class ExecutionSuite_DetailPage extends Config {
 	@Test
 	public void TC_ExecutionSuite_DetailPage_029_verifyDAtesOfDifferentMonth() throws ParseException {
 		generic.loadURL_HandlePopup(UrlProvider.getGothamPropertyPageUrl());
-		cal.Select_CheckIn_CheckOut_Date_Calendar_WE("30 November 2018", "02 December 2018");
+		cal.Select_CheckIn_CheckOut_Date_Calendar_WE("30 March 2018", "02 April 2018");
 		dp.click_checkAvailabilityOnTop_Btn();
 		generic.goToSleep(1000);
 		dp.click_roomNumber(1, 1);
@@ -572,7 +573,6 @@ public class ExecutionSuite_DetailPage extends Config {
 		softAssert.assertTrue(dp.isDisabled_selectRoomsDisabled_Btn(), "Button is not disabled.");
 		softAssert.assertAll();
 	}
-
 
 	@Test
 	public void TC_ExecutionSuite_DetailPage_031_VerifyThatAllThereviewsAndRatingsareInSync(){

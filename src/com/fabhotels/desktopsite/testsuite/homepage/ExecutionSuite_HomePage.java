@@ -69,10 +69,10 @@ public class ExecutionSuite_HomePage extends Config {
 	public void TC_ExecutionSuite_HomePage_003_verifyWithDateSearches() throws ParseException {
 		CustomAssert customAssert = new CustomAssert();
 		hp.fill_SearchBox_Txt("Koramangala");
-		generic.goToSleep(2000);
 		dp.click_firstValueFromLocationSuggestor_Lbl();
 		cal.Select_CheckIn_CheckOut_Date_Calendar_WE(GenericFunctions.getDateAfterDays("2"),
 				GenericFunctions.getDateAfterDays("4"));
+		generic.goToSleep(3000);
 		String chkIn = hp.getElementText_checkIn_Date_WE();
 		String chkOu = hp.getElementText_checkOut_Date_WE();
 		hp.click_FindFabHotel_Btn();
@@ -269,9 +269,8 @@ public class ExecutionSuite_HomePage extends Config {
 		hp.click_seeMoreMentions_Lnk();
 		generic.switchtoNewWindow();
 		customAssert.assertEquals(driver.getCurrentUrl(), UrlProvider.getHomePageUrl() + "press");
-		driver.close();
-		generic.switchtoOriginalWindow();
 		customAssert.assertAll();
+		
 	}
 
 	@AfterTest
