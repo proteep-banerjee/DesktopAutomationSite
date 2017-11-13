@@ -62,7 +62,7 @@ public class ExecutionSuite_GuestDetails extends Config {
 		checkoutReview.positiveCheckoutReview();
 		checkoutReview.click_continue_Btn();
 		//mobile number for otp is mentoned in excel
-		checkoutReview.TestCase_GuestDetails(datatable, "GuestName", 2);
+		checkoutReview.testCase_GuestDetails(datatable, "GuestName", 2);
 		checkoutReview.click_guestProceedToPay_Btn();
 		checkoutReview.positivePayAtHotels();
 		checkoutReview.fill_Otp_Num(getOtp.getOtp());
@@ -79,7 +79,7 @@ public class ExecutionSuite_GuestDetails extends Config {
 		detailPage.positive_CheckInCheckOutDateWE();
 		checkoutReview.positiveCheckoutReview();
 		checkoutReview.click_continue_Btn();
-		checkoutReview.TestCase_GuestDetails(datatable, Sheetname, rowNo);
+		checkoutReview.testCase_GuestDetails(datatable, Sheetname, rowNo);
 		checkoutReview.click_guestProceedToPay_Btn();
 		String currentError = checkoutReview.captureError();
 		String ExpectedErrors = datatable.getCellData(Sheetname, "ExpectedErrors", rowNo);
@@ -103,7 +103,7 @@ public class ExecutionSuite_GuestDetails extends Config {
 		detailPage.positive_CheckInCheckOutDateWE();
 		checkoutReview.positiveCheckoutReview();
 		checkoutReview.click_continue_Btn();
-		checkoutReview.TestCase_GuestDetails(datatable, Sheetname, rowNo);
+		checkoutReview.testCase_GuestDetails(datatable, Sheetname, rowNo);
 		checkoutReview.click_guestProceedToPay_Btn();
 		String currentError = checkoutReview.captureError();
 		String ExpectedErrors = datatable.getCellData(Sheetname, "ExpectedErrors", rowNo);
@@ -127,7 +127,7 @@ public class ExecutionSuite_GuestDetails extends Config {
 		detailPage.positive_CheckInCheckOutDateWE();
 		checkoutReview.positiveCheckoutReview();
 		checkoutReview.click_continue_Btn();
-		checkoutReview.TestCase_GuestDetails(datatable, Sheetname, rowNo);
+		checkoutReview.testCase_GuestDetails(datatable, Sheetname, rowNo);
 		checkoutReview.click_guestProceedToPay_Btn();
 		String currentError = checkoutReview.captureError();
 		String ExpectedErrors = datatable.getCellData(Sheetname, "ExpectedErrors", rowNo);
@@ -148,7 +148,7 @@ public class ExecutionSuite_GuestDetails extends Config {
 		generic.loadURL_HandlePopup(UrlProvider.getGothamPropertyPageUrl());
 		detailPage.positive_CheckInCheckOutDateWE();
 		checkoutReview.click_continue_Btn();
-		checkoutReview.TestCase_GuestDetails(datatable, "GuestName", 2);
+		checkoutReview.testCase_GuestDetails(datatable, "GuestName", 2);
 		Assert.assertEquals(checkoutReview.get_checkbox_Subscribe_Chk(), CheckoutReview.checkbox_Subscribe_Msg,"Subscribe checkbox under 'Guest Details' is broken !!");
 		checkoutReview.click_checkbox_Subscribe_Chk();
 		checkoutReview.click_termsAndCondition_Chk();
@@ -187,7 +187,7 @@ public class ExecutionSuite_GuestDetails extends Config {
 		generic.loadURL_HandlePopup(UrlProvider.getGothamPropertyPageUrl());
 		detailPage.positive_CheckInCheckOutDateWE();
 		checkoutReview.click_continue_Btn();
-		checkoutReview.TestCase_GuestDetails(datatable, "GuestName", 2);		
+		checkoutReview.testCase_GuestDetails(datatable, "GuestName", 2);		
 		checkoutReview.click_guestProceedToPay_Btn();
 		String email=datatable.getCellData("GuestName", "Email", 2);
 		String MobileNumber="+91-"+datatable.getCellData("GuestName", "MobileNumber", 2);

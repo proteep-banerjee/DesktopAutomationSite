@@ -72,15 +72,13 @@ public class ExecutionSuite_HomePage extends Config {
 		dp.click_firstValueFromLocationSuggestor_Lbl();
 		cal.Select_CheckIn_CheckOut_Date_Calendar_WE(GenericFunctions.getDateAfterDays("2"),
 				GenericFunctions.getDateAfterDays("4"));
-		generic.goToSleep(3000);
-		String chkIn = hp.getElementText_checkIn_Date_WE();
-		String chkOu = hp.getElementText_checkOut_Date_WE();
 		hp.click_FindFabHotel_Btn();
-		generic.goToSleep(2000);
-		customAssert.assertTrue(lp.getText_resultsCountText_Lbl().contains("Budget Hotels in and around Koramangala"),
-				"Not getting redirected to correct URL");
-		customAssert.assertEquals(lp.getText_checkIn_Date_WE(), chkIn,"check in dates are not identical on home page and list page");
-		customAssert.assertEquals(lp.getText_checkOut_Date_WE(), chkOu,"check out dates are not identical on home page and list page");
+		customAssert.assertTrue(lp.getText_resultsCountText_Lbl().contains("Budget Hotels in and around Koramangala"),"Not getting redirected to correct URL");
+		String chkIn = lp.getText_checkIn_Date_WE();
+		String chkOu = lp.getText_checkOut_Date_WE();
+		generic.navigateToPreviousPage();
+		customAssert.assertEquals(hp.getElementText_checkIn_Date_WE(), chkIn,"check in dates are not identical on home page and list page");
+		customAssert.assertEquals(hp.getElementText_checkOut_Date_WE(), chkOu,"check out dates are not identical on home page and list page");
 		customAssert.assertAll();
 	}
 
@@ -261,7 +259,7 @@ public class ExecutionSuite_HomePage extends Config {
 		hp.click_forbes_Lnk();
 		generic.switchtoNewWindow();
 		generic.waitForCompletePageLoad();
-		generic.goToSleep(1000);
+		generic.goToSleep(3000);
 		customAssert.assertTrue(driver.getCurrentUrl().contains("https://www.forbes.com/forbes/welcome/"),
 				"Not getting redirected to forbes");
 		driver.close();
@@ -270,7 +268,6 @@ public class ExecutionSuite_HomePage extends Config {
 		generic.switchtoNewWindow();
 		customAssert.assertEquals(driver.getCurrentUrl(), UrlProvider.getHomePageUrl() + "press");
 		customAssert.assertAll();
-		
 	}
 
 	@AfterTest

@@ -1,4 +1,4 @@
-package com.fabhotels.desktopsite.testsuite.paymentpage;
+package com.fabhotels.desktopsite.testsuite.PaymentFlow;
 
 import java.text.ParseException;
 import java.util.Map;
@@ -24,7 +24,7 @@ import com.fabhotels.desktopsite.utils.Config;
 import com.fabhotels.desktopsite.utils.Constants;
 import com.fabhotels.desktopsite.utils.UrlProvider;
 
-public class ExecutionSuite_PaymentPage extends Config {
+public class ExecutionSuite_Coupons extends Config {
 	String Sheetname;
 	String CoupnSheet="Coupons";
 	Xls_Reader datatable;

@@ -65,6 +65,7 @@ public class CheckoutReview {
 	public static final String netbankingSBI_Rd = "//input[@id='netbanking_SBI']";
 	public static final String netbankingAXIS_Rd = "//input[@id='netbanking_AXIS']";
 	public static final String netbankingKOTAK_Rd = "//input[@id='netbanking_KOTAK']";
+	public static final String netbankingCancel_Btn ="//a[text()='Click here']";
 
 	public static final String chooseBank_DD = "//select[@class='bank-list']//option[text()='SBI']";
 	public static final String payRupees_Btn = "//div[@class='review_payment_submit']//div";
@@ -103,13 +104,12 @@ public class CheckoutReview {
 
 	public void positiveCheckoutReview() {
 		generic.goToSleep(500);
-		generic.click(couponCode_Txt);
 		generic.fill(couponCode_Txt, "ICICI20");
 		click_applyButton_Btn();
 		generic.goToSleep(2000);
 	}
 
-	public void TestCase_GuestDetails(Xls_Reader datatable, String sheetname, int rowNo) {
+	public void testCase_GuestDetails(Xls_Reader datatable, String sheetname, int rowNo) {
 		generic.goToSleep(2000);
 		generic.fill(guestName_Txt, datatable.getCellData(sheetname, "Name", rowNo));
 		generic.fill(guestEmail_Txt, datatable.getCellData(sheetname, "Email", rowNo));
@@ -119,21 +119,13 @@ public class CheckoutReview {
 		generic.goToSleep(2000);
 	}
 
-	public void positiveGuestDetails() {
-		generic.fill(guestName_Txt, "Testing Script");
-		generic.fill(guestEmail_Txt, "sankalp.sharma@fabhotels.com");
-		generic.fill(guestMobileNumber_Txt, "9650752666");
-		click_guestProceedToPay_Btn();
-		generic.goToSleep(3000);
-	}
-
 	public void positiveCreditCardPayment() {
 		generic.fill(creditCardNo_Txt, "4375514425814000");
 		generic.fill(creditCVV_Txt, "007");
 		generic.fill(creditExpiryDate_Txt, "01/18");
 		generic.fill(creditHolderName_Txt, "Sankalp Sharma");
 		generic.click(payRupees_Btn);
-		generic.goToSleep(8000);
+		generic.waitForCompletePageLoad();
 	}
 
 	public void positiveCreditCardPaymentRetry() {
@@ -142,8 +134,6 @@ public class CheckoutReview {
 		generic.fill(creditExpiryDate_Txt, "01/18");
 		generic.fill(creditHolderName_Txt, "Sankalp Sharma");
 		generic.click(payRupees_Btn);
-		generic.goToSleep(3000);
-		generic.alertBox_Accept();
 		generic.click(creditCardCancel_Btn);
 		generic.goToSleep(3000);
 		generic.click(tryAgain_Btn);
@@ -156,7 +146,7 @@ public class CheckoutReview {
 		generic.fill(debitExpiryDate_Txt, "01/24");
 		generic.fill(debitHolderName_Txt, "Sankalp Sharma");
 		generic.click(payRupees_Btn);
-		generic.goToSleep(3000);
+		generic.waitForCompletePageLoad();
 	}
 
 	public void positiveDebitCardPaymentRetry() {
@@ -166,41 +156,34 @@ public class CheckoutReview {
 		generic.fill(debitExpiryDate_Txt, "01/24");
 		generic.fill(debitHolderName_Txt, "Sankalp Sharma");
 		generic.click(payRupees_Btn);
-		generic.goToSleep(3000);
-		// generic.alertBox_Accept();
 		generic.click(debitCardCancel_Btn);
 		generic.alertBox_Accept();
 		generic.goToSleep(3000);
-		generic.click(tryAgain_Btn);
+		generic.click(tryAgain_Btn);		
 	}
 
 	public void positiveNetBankingPayment() {
 		generic.click(netBanking_Btn);
 		generic.click(netbankingICICI_Rd);
 		generic.click(payRupees_Btn);
-		generic.goToSleep(8000);
-		generic.alertBox_Accept();
+		generic.waitForCompletePageLoad();
 	}
 
 	public void positiveNetBankingPaymentRetry() {
 		generic.click(netBanking_Btn);
-		generic.click(netbankingICICI_Rd);
+		generic.click(netbankingSBI_Rd);
 		generic.click(payRupees_Btn);
-		generic.goToSleep(5000);
-		driver.navigate().back();
-		driver.navigate().refresh();
-		generic.alertBox_Accept();
-		driver.navigate().refresh();
-		generic.goToSleep(5000);
+		generic.waitForCompletePageLoad();
+		generic.click(netbankingCancel_Btn);
+		generic.waitForCompletePageLoad();
 		generic.click(tryAgain_Btn);
 	}
 
 	public void positiveWalletsPayment() {
 		generic.click(wallets_Btn);
 		generic.click(payRupees_Btn);
-		generic.goToSleep(8000);
+		generic.waitForCompletePageLoad();
 		generic.click(payTmCancel_Btn);
-		generic.alertBox_Accept();
 	}
 
 	public void positiveWalletsPaymentRetry() {
@@ -208,7 +191,6 @@ public class CheckoutReview {
 		generic.click(payRupees_Btn);
 		generic.goToSleep(8000);
 		generic.click(payTmCancel_Btn);
-		generic.alertBox_Accept();
 		generic.goToSleep(5000);
 		generic.click(tryAgain_Btn);
 	}
