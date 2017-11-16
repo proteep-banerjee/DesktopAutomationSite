@@ -11,6 +11,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import com.fabhotels.automationframework.core.CustomAssert;
 import com.fabhotels.automationframework.genericfunctions.GenericFunctions;
@@ -65,29 +66,32 @@ public class ExecutionSuite_ListingPage extends Config {
 		filters.get(0).click();
 		generic.goToSleep(1000);
 		int hotelList_AfterFilter = listingPage.getSize_hotelList_WE();
-		Assert.assertEquals(hotelList_AfterFilter, hotelList_BeforeFilter,
-				"Results do not change after applying filter !!");
+		Assert.assertNotEquals(hotelList_AfterFilter, hotelList_BeforeFilter,"Results do not change after applying filter !!");
 	}
 
 	@DataProvider(name = "DataProvider_Cities")
 	public Object[][] DataProvider_Cities() {
 		generic.loadURL_HandlePopup(UrlProvider.getListingPageUrl());
 
-		Object result[][] = new Object[3][2];
+		Object result[][] = new Object[4][2];
 		List<WebElement> we = header.getWebElements_AllCities_DD();
 
-		int ranNo = generic.getRandomNumberBetween(1, we.size());
+		int ranNo = generic.getRandomNumberBetween(1, header.getCount_MainLocaity_WE()-1);
 		result[0][0] = ranNo;
 		result[0][1] = we.get(ranNo).getText();
 
-		ranNo = generic.getRandomNumberBetween(1, we.size());
+		ranNo = generic.getRandomNumberBetween(1, header.getCount_MainLocaity_WE()-1);
 		result[1][0] = ranNo;
 		result[1][1] = we.get(ranNo).getText();
 
-		ranNo = generic.getRandomNumberBetween(1, we.size());
+		ranNo = generic.getRandomNumberBetween(1, header.getCount_MainLocaity_WE()-1);
 		result[2][0] = ranNo;
 		result[2][1] = we.get(ranNo).getText();
 
+		ranNo = generic.getRandomNumberBetween(1, header.getCount_MainLocaity_WE()-1);
+		result[3][0] = ranNo;
+		result[3][1] = we.get(ranNo).getText();
+		
 		return result;
 
 	}
@@ -103,15 +107,15 @@ public class ExecutionSuite_ListingPage extends Config {
 	@Test
 	public void TC_ListPage_004_Validate_Visibility_RackPrice() {
 		generic.loadURL_HandlePopup(UrlProvider.getListingPageUrl());
-		Assert.assertTrue(generic.findElements(ListingPage.rackPrice_WE).size() > 0, "Rack prices not Visible !!");
+		Assert.assertTrue(generic.isVisible(ListingPage.rackPrice_WE), "Rack prices not Visible !!");
 	}
 
-	@Test(dataProvider = "DataProvider_Cities", dependsOnMethods = { "TC_ListPage_004_Validate_Visibility_RackPrice" })
+	@Test(dataProvider = "DataProvider_Cities")
 	public void TC_ListPage_005_CheckRackPrice(int No, String cityName) {
 		CustomAssert customAssert = new CustomAssert();
 		header.click_CityNo_Header_WE(No);
-
 		List<WebElement> tuples = generic.findElements(ListingPage.allProperties_WE);
+		Assert.assertTrue(generic.isVisible(ListingPage.rackPrice_WE), "Rack prices not Visible !!");
 		for (WebElement webElement : tuples) {
 			if (webElement.findElements(ListingPage.rackPrice_WE).size() > 0) {
 				String hotelName = webElement.findElement(By.xpath("//h3/a")).getText();
@@ -119,6 +123,9 @@ public class ExecutionSuite_ListingPage extends Config {
 				int pri_value = Integer.parseInt(listingPage.getText_SellingPrice_WE(webElement));
 				customAssert.assertTrue(rac_value > pri_value, "Price is greator than Rack Price !! under city :"
 						+ hotelName + " Rack price is :" + rac_value + " And offered price is :" + pri_value);
+			}
+			else {
+				Assert.assertTrue(false, "Rack prices not Visible !!");
 			}
 		}
 		customAssert.assertAll();
@@ -151,30 +158,37 @@ public class ExecutionSuite_ListingPage extends Config {
 
 	@Test
 	public void TC_ListPage_007_Validate_Functionality_ReviewsModal() {
+		CustomAssert customAssert = new CustomAssert();
 		generic.loadURL_HandlePopup(UrlProvider.getListingPageUrl());
 		listingPage.click_ReviewsCount_FirstTuple_WE();
-		Assert.assertTrue(generic.isVisible(ListingPage.reviewsModalDialogue_WE),
-				"Review box not visible on list page !!");
+		Assert.assertTrue(generic.isVisible(ListingPage.reviewsModalDialogue_WE),"Review box not visible on list page !!");
+		customAssert.assertEquals(listingPage.getCount_allTuples_ReviewsModal_WE(), 20,"Default listing reviews count is not 20 !!");
+		generic.scrollToElement(ListingPage.loadMoreReviews_ReviewsModal_Lnk, false);
+		customAssert.assertEquals(generic.getText(ListingPage.loadMoreReviews_ReviewsModal_Lnk), Constants.REVIEWBOX_LOADMORE," Load more reviews Link is appropriate !!");
+		generic.click(ListingPage.loadMoreReviews_ReviewsModal_Lnk);
+		generic.goToSleep(1000);
+		customAssert.assertEquals(listingPage.getCount_allTuples_ReviewsModal_WE(), 40,"Load more reviews button is broken, it is not loading other reviews.");
 		listingPage.click_Review_close_Btn();
 		generic.goToSleep(1000);
-		Assert.assertTrue(!generic.isVisible(ListingPage.review_close_Btn),
-				"Reviews Modal is not closing on clicking cross button !!");
+		Assert.assertTrue(!generic.isVisible(ListingPage.review_close_Btn),"Reviews Modal is not closing on clicking cross button !!");
 	}
 
 	@Test(dataProvider = "DataProvider_Cities")
 	public void TC_ListPage_008_Validate_visibility_ImageLandmark_LastBooked(int no, String cityName) {
 		CustomAssert customAssert = new CustomAssert();
+		header.click_CityNo_Header_WE(no);
+		generic.pageScrollToBottomInSlowMotion();
 		int ranHotel = generic.getRandomNumberBetween(1, listingPage.getTotalTupleCount_ListPage());
 		String imgsrc = listingPage.getImagePath_Tuple(ranHotel);
 		String hotelImageName = imgsrc.split("/")[imgsrc.split("/").length - 1];
 
 		customAssert.assertNotEquals(hotelImageName, ListingPage.defaultHotelImage_name,
 				"Under city " + cityName + " , Hotel image is not comming proper !!");
-		customAssert.assertTrue(listingPage.getLandmark_Tuple(no).length() > 16,
+		customAssert.assertTrue(listingPage.getLandmark_Tuple(ranHotel).length() > 16,
 				"Under city " + cityName + ", Landmark is not comming !!");
-		customAssert.assertTrue(listingPage.getLastBookedText_Tuple(no).contains("people looking"),
+		customAssert.assertTrue(listingPage.getLastBookedText_Tuple(ranHotel).contains("people looking"),
 				"Under city " + cityName + " , people looking label is not comming !!");
-		customAssert.assertTrue(listingPage.getLastBookedText_Tuple(no).contains("Last booked"),
+		customAssert.assertTrue(listingPage.getLastBookedText_Tuple(ranHotel).contains("Last booked"),
 				"Under city " + cityName + " , last booked label is not comming !!");
 
 		customAssert.assertAll();
@@ -266,7 +280,7 @@ public class ExecutionSuite_ListingPage extends Config {
 		String checkIn = GenericFunctions.getDateAfterDays("0");
 		String checkOut = GenericFunctions.getDateAfterDays("5");
 		String rooms = "1";
-		searchBar.performSearch("New Delhi", checkIn, checkOut, rooms);
+		searchBar.performSearch("", checkIn, checkOut, rooms);
 		customAssert.assertEquals(generic.getText(ListingPage.soldOut_Lbl), "SOLD OUT");
 		customAssert.assertEquals(generic.getText(ListingPage.lastHotelName_WE), soldOut_HotelName);
 		customAssert.assertEquals(generic.getText(ListingPage.lastSoldOut_btn), "SOLD OUT");
@@ -310,11 +324,11 @@ public class ExecutionSuite_ListingPage extends Config {
 	public void TC_ListPage_013_DetailsPageLanding_SomeRoomLeftCase() {
 		CustomAssert customAssert = new CustomAssert();
 		generic.loadURL_HandlePopup(UrlProvider.getGothamListPageUrl());
-		String checkIn = GenericFunctions.getDateAfterDays("0");
+		String checkIn = GenericFunctions.getDateAfterDays("3");
 		String checkOut = GenericFunctions.getDateAfterDays("5");
 		String rooms = "5";
 		searchBar.performSearch("", checkIn, checkOut, rooms);
-		customAssert.assertEquals(listingPage.getText_RoomLeft_Lbl(), "3 ROOMS LEFT",
+		customAssert.assertEquals(listingPage.getText_RoomLeft_Lbl(), "4 ROOMS LEFT",
 				"Proper room left warning is not comming on List page !!");
 		generic.click(ListingPage.roomLeftBookNow_btn);
 		customAssert.assertEquals(listingPage.getText_RoomSoldOutAlertBox_Lbl(),
@@ -325,7 +339,7 @@ public class ExecutionSuite_ListingPage extends Config {
 		customAssert.assertTrue(listingPage.isSoldOut_roomType(4), "Sold Out Lablel is not displayed.");
 		customAssert.assertTrue(listingPage.isDisabled_roomNumber(4, 0), "Room 2 is Enabled");
 		customAssert.assertTrue(listingPage.isDisabled_roomNumber(4, 5), "Room 2 is Enabled");
-		customAssert.assertEquals(listingPage.getText_roomsLeft_roomType(1), "2 ROOMS LEFT");
+		customAssert.assertEquals(listingPage.getText_roomsLeft_roomType(1), "3 ROOMS LEFT");
 		customAssert.assertEquals(listingPage.getText_roomsLeft_roomType(3), "1 ROOM LEFT");
 		customAssert.assertTrue(listingPage.isDisabled_roomNumber(1, 0), "Room 2 is Enabled");
 		customAssert.assertTrue(listingPage.isDisabled_roomNumber(1, 4), "Room 2 is Enabled");
@@ -336,59 +350,190 @@ public class ExecutionSuite_ListingPage extends Config {
 		customAssert.assertAll();
 	}
 
-	/*
-	 * @Test public void TC_ListPage_009_NearByHotels_listPage() {
-	 * generic.loadURL_HandlePopup(UrlProvider.getListingPageUrl()); String
-	 * checkIn = GenericFunctions.getDateAfterDays("0"); String checkOut =
-	 * GenericFunctions.getDateAfterDays("1"); String rooms = "4";
-	 * searchBar.performSearch(Constants.LOCALITY_NAME, checkIn, checkOut,
-	 * rooms);
-	 * Assert.assertTrue(generic.isVisible(ListingPage.searchResultContainer_WE)
-	 * , "Search results not visible on performing Search !!");
-	 * Assert.assertTrue(generic.getText(ListingPage.resultsCountText_Lbl).
-	 * contains(ListingPage.locality_name),
-	 * "Search results not Appropriate on ListPage !!"); SoftAssert s_assert =
-	 * new SoftAssert(); int i = 1; generic.goToSleep(1000);
-	 * generic.scrollToElement(nearByProperty_nav, false);
-	 * Assert.assertTrue(generic.isVisible("(" + nearByHotelName_lbl + ")" + "["
-	 * + i + "]"), "Near By Property is Not Coming!!!.");
-	 * generic.goToSleep(2000); while
-	 * (!driver.findElement(lastHotelNearBy_WE).isDisplayed()) { if
-	 * (driver.findElement(By.xpath("(" + nearByHotelName_lbl + ")" + "[" + i +
-	 * "]")).isDisplayed()) { String hotelName = generic.getText("(" +
-	 * nearByHotelName_lbl + ")" + "[" + i + "]"); System.out.println(i +
-	 * ". Hotel ," + hotelName); s_assert.assertTrue(generic.isVisible("(" +
-	 * totalNearByProperty_WE + ")" + "[" + i + "]"),
-	 * "0 Near By Hotels are comming"); s_assert.assertTrue( generic.isVisible(
-	 * "(" + totalNearByProperty_WE + ")" + "[" + i + "]" +
-	 * "//span[@class='new-price']"), "Price is not comming for :" + hotelName);
-	 * 
-	 * s_assert.assertTrue(generic.isVisible("(" + nearByBook_btn + ")" + "[" +
-	 * i + "]"), "'Book Now' or 'Sold Out' button is not coming for :" +
-	 * hotelName);
-	 * 
-	 * s_assert.assertTrue(generic.isVisible("(" + nearByHotelName_lbl + ")" +
-	 * "[" + i + "]"), "Hotel Name is not coming for :" + hotelName);
-	 * 
-	 * s_assert.assertTrue(generic.isVisible("(" + nearByHotelReview_lbl + ")" +
-	 * "[" + i + "]"), "Hotel review is not coming for :" + hotelName);
-	 * 
-	 * String imgSrc = generic.getAttributeValue(By.xpath("(" +
-	 * nearByHotelImg_img + ")" + "[" + i + "]"), "src"); String imageName =
-	 * imgSrc.split("/")[imgSrc.split("/").length - 1];
-	 * s_assert.assertNotEquals(imageName, "mainMedium.png",
-	 * "Main images are not comming for :" + hotelName); i++; } else {
-	 * generic.click(nearByProperty_nav); } }
-	 * s_assert.assertTrue(driver.findElement(footer_stayUpdated).isDisplayed(),
-	 * "On Footer stay updated is not comming."); // Clicking on last nearby
-	 * hotel book button String lastNearByHotelName = generic.getText("(" +
-	 * nearByHotelName_lbl + ")" + "[" + i + "]"); generic.click("(" +
-	 * nearByBook_btn + ")" + "[" + i + "]"); String hotelName_DetailsPage = ""
-	 * ; generic.goToSleep(2000); s_assert.assertEquals(hotelName_DetailsPage,
-	 * lastNearByHotelName,
-	 * "Navigating from near by property hotel to Details page is failing...");
-	 * s_assert.assertAll(); }
-	 */
+	@Test
+	public void TC_ListPage_014_NearByHotels_listPage() {
+		String checkIn = GenericFunctions.getDateAfterDays("0");
+		String checkOut = GenericFunctions.getDateAfterDays("1");
+		String exploreMoreHotel_Lbl = "Explore more hotels near " + Constants.LOCALITY_NAME;
+		String rooms = "4";
+		int i = 1;
+		CustomAssert customAssert = new CustomAssert();
+		generic.loadURL_HandlePopup(UrlProvider.getListingPageUrl());
+		searchBar.performSearch(Constants.LOCALITY_NAME, checkIn, checkOut, rooms);
+		generic.waitForCompletePageLoad();
+		Assert.assertTrue(generic.isVisible(ListingPage.searchResultContainer_WE),
+				"Search results not visible on performing Search !!");
+		customAssert.assertTrue(generic.getText(ListingPage.resultsCountText_Lbl).contains(Constants.LOCALITY_NAME),
+				"Search results not Appropriate on ListPage !!");
+		generic.scrollToElement(ListingPage.nearByPropertyNext_nav, false);
+		customAssert.assertEquals(listingPage.getText_nearByHotel_Lbl(), exploreMoreHotel_Lbl,
+				"Explore more lable under SRP is not appropriate.");
+		customAssert.assertTrue(generic.isVisible(listingPage.get_nearByHotelName_lbl(i)),
+				"Near By Property is Not Coming!!!.");
+		while (!driver.findElement(ListingPage.lastHotelNearBy_WE).isDisplayed()) {
+			if (driver.findElement(listingPage.get_nearByHotelName_lbl(i)).isDisplayed()) {
+
+				String hotelName = generic.getText(listingPage.get_nearByHotelName_lbl(i));
+				System.out.println(i + ". Hotel ," + hotelName);
+				customAssert.assertTrue(generic.isVisible(listingPage.get_nearByTuple(i)),
+						"Near By Hotels are comming under SRP of hotel");
+				customAssert.assertTrue(driver.findElement(listingPage.get_nearByHotelPrice_WE(i)).isDisplayed(),
+						"Price is not comming for :" + hotelName);
+				customAssert.assertTrue(generic.isVisible(listingPage.get_nearByBook_btn(i)),
+						"'Book Now' or 'Sold Out' button is not coming for :" + hotelName);
+				customAssert.assertTrue(generic.isVisible(listingPage.get_nearByHotelName_lbl(i)),
+						"Hotel Name is not coming for :" + hotelName);
+				customAssert.assertTrue(generic.isVisible(listingPage.get_nearByHotelReview_lbl(i)),
+						"Hotel review is not coming for :" + hotelName);
+				String imgSrc = generic.getAttributeValue(listingPage.get_nearByHotelImg_img(i), "src");
+				String imageName = imgSrc.split("/")[imgSrc.split("/").length - 1];
+				customAssert.assertNotEquals(imageName, "mainMedium.png",
+						"Main images are not comming for :" + hotelName);
+				i++;
+			} else {
+				listingPage.click_nearByPropertyNext_nav();
+			}
+		}
+		customAssert.assertAll();
+	}
+	
+	@Test
+	public void TC_ListPage_015_DetailsPageLanding_NearByHotels() {
+		String checkIn = GenericFunctions.getDateAfterDays("0");
+		String checkOut = GenericFunctions.getDateAfterDays("1");
+		String rooms = "4";
+		int i = 1;
+		SoftAssert customAssert = new SoftAssert();
+		generic.loadURL_HandlePopup(UrlProvider.getListingPageUrl());
+		searchBar.performSearch(Constants.LOCALITY_NAME, checkIn, checkOut, rooms);
+		generic.waitForCompletePageLoad();
+		Assert.assertTrue(generic.isVisible(ListingPage.searchResultContainer_WE),
+				"Search results not visible on performing Search !!");
+		customAssert.assertTrue(generic.getText(ListingPage.resultsCountText_Lbl).contains(Constants.LOCALITY_NAME),
+				"Search results not Appropriate on ListPage !!");
+		generic.scrollToElement(ListingPage.nearByPropertyNext_nav, false);
+		String hotelName_NearByProperty = generic.getText(listingPage.get_nearByHotelName_lbl(i));
+		System.out.println(i + ". Hotel ," + hotelName_NearByProperty);
+		String price_NearByProperty=generic.getText(listingPage.get_nearByHotelPrice_WE(1)).replaceAll("[^0-9.,]", "");
+		String hotelButton_NearByProperty=generic.getText(listingPage.get_nearByBook_btn(i));
+		String reviewCount_NearByProperty=generic.getText(listingPage.get_nearByHotelReview_lbl(i));
+		String imgSrc = generic.getAttributeValue(listingPage.get_nearByHotelImg_img(i), "src");
+		String imageName_NearByProperty = imgSrc.split("/")[imgSrc.split("/").length - 1];
+		generic.click(listingPage.get_nearByBook_btn(i));
+		generic.goToSleep(2000);
+		String hotelName_DetailsPage = detailPage.getLabelText_hotelName_Lbl();
+		String hotelPrice_DetailsPage = detailPage.getText_priceWithoutRupeeSymbol_Lbl();
+		String reviewCount_DetailsPage = detailPage.getLinkText_reviews_Lnk();
+		String imgSrcMain = generic.getAttributeValue(DetailPage.mainImage_WE, "src");
+		String mainImageSrc_DetailsPage = imgSrcMain.split("/")[imgSrcMain.split("/").length - 1];
+		customAssert.assertEquals(hotelName_NearByProperty,hotelName_DetailsPage,"Hotel Name is not identical on Near by Hotel and its Details Page.");
+		customAssert.assertEquals(price_NearByProperty,hotelPrice_DetailsPage,"Hotel Price are not identical on Near by Hotel and its Details Page.");
+		customAssert.assertEquals(hotelButton_NearByProperty,"BOOK NOW","");
+		customAssert.assertEquals(reviewCount_NearByProperty,reviewCount_DetailsPage,"Review count is not identical on Near by Hotel and its Details Page.");
+		customAssert.assertEquals(imageName_NearByProperty,mainImageSrc_DetailsPage,"Main image is not identical on Near by Hotel and its Details Page.");
+		customAssert.assertAll();
+	}
+
+	@Test(dataProvider = "DataProvider_Cities")
+	public void TC_ListPage_016_DistanceFromSearchedHotel_NearByHotels(int no, String cityName)
+	{
+		String checkIn = GenericFunctions.getDateAfterDays("0");
+		String checkOut = GenericFunctions.getDateAfterDays("1");
+		String rooms = "4";
+		int i = 1;
+		generic.loadURL_HandlePopup(UrlProvider.getListingPageUrl(cityName.replaceAll(" ", "-")));
+		String HotelName=listingPage.getText_HotelName_FirstTuple_Lbl();
+		searchBar.performSearch(HotelName, checkIn, checkOut, rooms);
+		generic.scrollToElement(ListingPage.nearByPropertyNext_nav, false);
+		Assert.assertTrue(generic.isVisible(listingPage.get_nearByHotelName_lbl(i)),"Near By Property is Not Coming!!!.");
+		while (!driver.findElement(ListingPage.lastHotelNearBy_WE).isDisplayed()) {
+			if (driver.findElement(listingPage.get_nearByHotelName_lbl(i)).isDisplayed()) {
+				float distanceFromSearchedHotel=listingPage.distanceFromSearchedHotel_nearByHotel_WE(i);
+				Assert.assertTrue((distanceFromSearchedHotel>7)&&(distanceFromSearchedHotel<26),"Nearby hotels distance from searched hotel is not falling between 8 - 25 Km");
+				i++;
+			} else {
+				listingPage.click_nearByPropertyNext_nav();
+			}
+		}
+	}
+	
+	@Test
+	public void TC_ListPage_017_LastTupleSoldOut_NearByHotels()
+	{
+		String checkIn = GenericFunctions.getDateAfterDays("0");
+		String checkOut = GenericFunctions.getDateAfterDays("1");
+		String rooms = "4";
+		int i = 1;
+		generic.loadURL_HandlePopup(UrlProvider.getListingPageUrl());
+		searchBar.performSearch(Constants.LOCALITY_NAME, checkIn, checkOut, rooms);
+		generic.scrollToElement(ListingPage.nearByPropertyNext_nav, false);
+		Assert.assertTrue(generic.isVisible(listingPage.get_nearByHotelName_lbl(i)),
+				"Near By Property is Not Coming!!!.");
+		listingPage.click_nearByPropertyPrevious_nav();
+		String buttonNameLbl=generic.getText(listingPage.get_lastHotelBook_Btn());
+		Assert.assertEquals(buttonNameLbl, "SOLD OUT","Last tuple of near by property is not sold out on SRP!!");
+		generic.click(listingPage.get_lastHotelBook_Btn());
+		generic.goToSleep(2000);
+		Assert.assertEquals(listingPage.getText_SoldOutAlertBox_Lbl(), Constants.SOLDOUT_MSG_DETAILSPAGE,
+				"Sold out error message is not comming on details page when selecting last tuple from nearby hotles.");
+		Assert.assertTrue(detailPage.isDisabled_selectRoomsDisabled_Btn(),"Button is not disabled for sold out hotel.");
+	}
+	
+	@Test
+	public void TC_ListPage_018_Validate_ReviewsAndRatings_ListAndDetailsPage(){
+		CustomAssert customAssert = new CustomAssert();
+		generic.loadURL_HandlePopup(UrlProvider.getListingPageUrl());
+		String reviewStars_ListPage=listingPage.getWidth_starRating_WE();
+		String reviewsCount_ListPage = listingPage.getElementText_reviewsCount_WE();
+		listingPage.click_HotelName_FirstTuple_Lbl();
+		String reviewStars_DetailsPage = detailPage.getWidth_ratingsLogo_WE();
+		String reviewsCount_DetailsPage = detailPage.getLinkText_reviews_Lnk();
+		customAssert.assertEquals(reviewStars_ListPage, reviewStars_DetailsPage,"Review STARS of Hotel under list page are NOT identical as on its Details Page.");
+		customAssert.assertEquals(reviewsCount_ListPage, reviewsCount_DetailsPage,"Review COUNT of Hotel under list page are NOT identical as on its Details Page.");
+		customAssert.assertAll();
+	}
+	
+	@Test
+	public void TC_ListPage_019_Validate_ReadMoreAndReadLess_ReviewsModal() {
+		generic.loadURL_HandlePopup(UrlProvider.getListingPageUrl());
+		listingPage.click_ReviewsCount_FirstTuple_WE();
+		Assert.assertTrue(generic.isVisible(ListingPage.reviewsModalDialogue_WE),"Review box not visible on list page !!");
+		generic.click(ListingPage.loadMoreReviews_ReviewsModal_Lnk);
+		for(int i=1;i<5;i++)
+		{
+			int lengthOfReviewBefore=listingPage.getLength_beforeClickingReadMore_ReviewsModal(i);
+			listingPage.click_readMore_ReviewsModal_Lnk(i);
+			int lengthOfReviewAfter=listingPage.getLength_afterClickingReadMore_ReviewsModal(i);
+			System.out.println("intial length :"+lengthOfReviewBefore + "length after clicking Read More :"+lengthOfReviewAfter);
+			Assert.assertTrue(lengthOfReviewBefore<lengthOfReviewAfter," Read More functionality is broken in Review Box..");
+			listingPage.click_readLess_ReviewsModal_Lnk(i);
+			int lenOfReviewAfterClickingReadLess=listingPage.getLength_beforeClickingReadMore_ReviewsModal(i);
+			Assert.assertTrue(lengthOfReviewBefore==lenOfReviewAfterClickingReadLess," Read Less functionality is broken in Review Box..");
+		}
+	}
+
+	@Test
+	public void TC_ListPage_020_Validate_Headers_ReviewsModal() {
+		generic.loadURL_HandlePopup(UrlProvider.getListingPageUrl());
+		listingPage.click_ReviewsCount_FirstTuple_WE();
+		Assert.assertTrue(generic.isVisible(ListingPage.reviewsModalDialogue_WE),"Review box not visible on list page !!");
+		Assert.assertEquals(listingPage.getText_title_ReviewsModal_Lbl().trim(), "Reviews for "+listingPage.getText_HotelName_FirstTuple_Lbl(),"Review Modal header's title section is not appropriate.");
+		Assert.assertEquals(listingPage.getText_subTitle_ReviewsModal_Lbl().trim(),"Rated Very Good across "+generic.getText(ListingPage.reviewsCount_FirstTuple_WE),"Review Modal header's Sub-title section is not appropriate.");
+	}
+	
+	@Test
+	public void TC_ListPage_021_Validate_BreadCrumb_CityPage() {
+		generic.loadURL_HandlePopup(UrlProvider.getListingPageUrl());
+		Assert.assertTrue(generic.isVisible(ListingPage.cityPage_breadcrumb_WE),"Bread Crumb is not present at the top of City Page.");
+		listingPage.click_cityPage_breadcrumb_AllHotels_Lnk();
+		Assert.assertEquals(driver.getTitle(),Constants.TITLE_HOMEPAGE,"Breadcrumb link is Not Navigating to HOME PAGE ....");
+	}
+	
+	@Test
+	public void TC_ListPage_022_Validate_Title_CityPage() {
+		generic.loadURL_HandlePopup(UrlProvider.getListingPageUrl());
+		Assert.assertEquals(driver.getTitle(),Constants.DELHI_CITYPAGE_TITLE,"City Page Title is not appropriate.");
+	}
 
 	@AfterTest
 	public void aftertest() {

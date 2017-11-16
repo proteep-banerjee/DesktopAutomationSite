@@ -73,7 +73,7 @@ public class ExecutionSuite_Header extends Config {
 	public Object[][] DataProvider_Cities() {
 		generic.loadURL_HandlePopup(UrlProvider.getDetailsPageUrl());
 		List<WebElement> we = header.getWebElements_AllCities_DD();
-		Object result[][] = new Object[24][1];
+		Object result[][] = new Object[we.size()][1];
 		for (int i = 0; i < we.size(); i++) {
 			result[i][0] = we.get(i).getText();
 		}

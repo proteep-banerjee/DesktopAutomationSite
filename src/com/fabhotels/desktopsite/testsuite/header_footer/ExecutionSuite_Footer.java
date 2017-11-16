@@ -220,7 +220,7 @@ public class ExecutionSuite_Footer extends UrlProvider {
 				generic.isVisible(By.xpath(footer.popularLocalities_Lbl("Popular Hotels in Nearby Cities"))),
 				"Popular Hotels in Nearby Cities is not present in footer under city Page : i.e "
 						+ getListingPageUrl());
-		s_assert.assertEquals(footer.return_footer_RowCount(), 6, "Footer under city Page is not appropriate !!");
+		s_assert.assertEquals(footer.return_footer_RowCount(), 5, "Footer under city Page is not appropriate !!");
 		s_assert.assertAll();
 	}
 

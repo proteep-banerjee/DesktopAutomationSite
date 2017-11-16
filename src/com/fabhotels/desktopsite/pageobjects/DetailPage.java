@@ -1,6 +1,6 @@
 package com.fabhotels.desktopsite.pageobjects;
 
-import java.time.LocalDate;
+import java.text.ParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -15,11 +15,13 @@ public class DetailPage {
 	WebDriver driver;
 	GenericFunctions generic;
 	SoftAssert s_assert;
+	Calendar cal;
 
 	public DetailPage(WebDriver driver, GenericFunctions generic) {
 		this.driver = driver;
 		this.generic = generic;
 		this.s_assert = new SoftAssert();
+		cal=new Calendar(driver, generic);
 	}
 	// Old
 
@@ -94,6 +96,7 @@ public class DetailPage {
 	public static final By closeGallery_Lnk = By.xpath("//a[@class='close-gallery']");
 	public static final By rackRate_Lbl = By.xpath("//div[@class='select-room-price']//del");
 	public static final By price_Lbl = By.xpath("//div[@class='select-room-price']//strong");
+	public static final By priceWithoutRupeeSymbol_Lbl = By.xpath("//span[@id='avgSellingPrice']");
 	public static final By onwards_Lbl = By.xpath("//div[@class='select-room-price']//span");
 	public static final By selectRooms_Btn = By.id("propertySelectRoom");
 	public static final By calanderMiddle_WE = By
@@ -211,8 +214,8 @@ public class DetailPage {
 	public static String cheveronNextNearby_Btn = "(//div[@class='nearby_properties_container'])[2]//a[@class='flex-next']";
 	public static final By hotelPolicies_WE = By.xpath("//div[@id='policies']");
 	public static final By searchBox_WE = By.xpath("//input[@name='locationsearch']");
-	public static final By firstValueFromLocationSuggestor_Lbl = By.xpath("//div[@class='pac-item'][1]");
-	//
+	public static final By firstValueFromLocationSuggestor_Lbl = By.xpath("//div[@class='pac-item'][1]");//span[@id="total_amount"][1]
+	public static final String roomTypePerNightPrice_WE = "(//span[@id='total_amount'])[";
 
 	// New Details Page methods
 	public void click_firstValueFromLocationSuggestor_Lbl() {
@@ -230,6 +233,11 @@ public class DetailPage {
 		generic.fill(searchBox_WE, value);
 	}
 
+	public String getText_priceWithoutRupeeSymbol_Lbl()
+	{
+		return generic.getText(priceWithoutRupeeSymbol_Lbl);
+	}
+	
 	public String getText_searchBox_WE() {
 		return generic.getValue(searchBox_WE);
 	}
@@ -308,7 +316,7 @@ public class DetailPage {
 	}
 
 	public String getLabelText_sellPriceNearBy_Lbl(int i) {
-		return generic.getText(exploreMorePropertiesCard_WE + "[" + i + "]" + sellPriceNearBy_Lbl);
+		return generic.getText(exploreMorePropertiesCard_WE + "[" + i + "]" + sellPriceNearBy_Lbl).replaceAll("[^0-9.]", "");
 	}
 
 	public void click_rackPriceNearBy_Lbl(int i) {
@@ -1196,27 +1204,21 @@ public class DetailPage {
 		Assert.assertEquals(detailFinalAmount, paymentPageFinalAmount, "Final amount is not accurate !!");
 	}
 
-	public void Positive_CheckInCheckOutDateWE() {
-		// LocalDate todayDate = LocalDate.now();
-		// String nextDate = todayDate.plusDays(1).toString();
-		LocalDate todayDate1 = LocalDate.now();
-		String todayDate = todayDate1.plusDays(2).toString();
-		String nextDate = todayDate1.plusDays(3).toString();
-		// System.out.println(todayDate+" , "+nextDate);
-		generic.click(checkIn_Date_WE);
-		String spiltTodayDate[] = todayDate.toString().split("-");
-		// System.out.println(spiltTodayDate[0]+","+spiltTodayDate[1]+","+spiltTodayDate[2]);
-		// System.out.println(checkInDate1_WE+spiltTodayDate[2].replaceFirst("0",
-		// "")+checkInDate2_WE);
-		generic.click(checkInDate1_WE + spiltTodayDate[2].replaceFirst("0", "") + checkInDate2_WE);
-		String spiltNextDate[] = nextDate.toString().split("-");
-		generic.click(checkOutDate1_WE + spiltNextDate[2].replaceFirst("0", "") + checkOutDate2_WE);
-
-		// generic.click(selectRooms_Btn);
-		// generic.click(selectRoomsHref_Btn);
+	public void positive_CheckInCheckOutDateWE()  {
+		try {
+			cal.Select_CheckIn_CheckOut_Date_Calendar_WE(GenericFunctions.getDateAfterDays("3"),GenericFunctions.getDateAfterDays("5"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+			System.out.println("Exception in calander function..");
+		}
+		click_selectRooms_Btn();
+		generic.goToSleep(1000);
+		click_roomNumber(1, 1);
 		generic.click(bookNow_Btn);
 	}
 
-	//
+	public String return_priceByRoomType(int index) {
+		return generic.getText(By.xpath(roomTypePerNightPrice_WE+index+"]")).replace(",", "").replaceAll("\\D+", "");
+	}
 
 }

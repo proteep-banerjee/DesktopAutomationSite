@@ -22,12 +22,12 @@ public class Calendar {
 	public static final By checkOut_Date_WE = By.id("checkOut");
 	public static final By checkIn_DateCalander2_WE = By.id("checkIn1");
 	public static final By checkOut_DateCalander2_WE = By.id("checkOut1");
-	public static final By month_WE = By.xpath("//th[@class='datepicker-switch'][1]");
+	public static final By month_WE = By.xpath("(//th[@class='datepicker-switch'])[1]");
 	public static final By year_WE = By.xpath("(//th[@class='datepicker-switch'])[2]");
 	public static final By nextYearClick_WE = By.xpath("(//th[@class='next'])[2]");
 	public static final String Date_WE = "//table[@class='table-condensed']//td";
 	public static final String selectMonth_Lnk = "//span[contains(@class,'month') and text()='";
-	public static final String selectDate_Lnk = "//td[(@class='day') and text()='";
+	public static final String selectDate_Lnk = "//td[not(contains(@class,'old')) and (contains(@class,'day')) and text()='";
 	public static final By searchBox_WE = By.xpath("//input[@name='locationsearch']");
 	public static final By checkAvailabilityInMiddle_Btn = By.xpath("//a[@id='DetailPageBtn']");
 
@@ -223,8 +223,7 @@ public class Calendar {
 		String inMonth = str[1];
 		String inMonthFormatted = inMonth.substring(0, 3);
 		String inYear = str[2];
-		generic.scrollToElement(checkIn_DateCalander2_WE, true);
-		generic.customPageScrollToBottomInSlowMotion(0, -450);
+		generic.goToSleep(2000);
 		generic.click(checkIn_DateCalander2_WE);
 		generic.click(month_WE);
 		while (!generic.getText(year_WE).equals(inYear)) {
