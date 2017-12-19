@@ -68,7 +68,7 @@ public class ExecutionSuite_CitiesPage extends Config {
 		driver.get(baseUrl+"cities");
 		System.out.println("Test" + linkName);
 		loc.click_cityName_Lnk(linkName);
-		generic.waitForCompletePageLoad(driver);
+		generic.waitForCompletePageLoad();
 		String link = linkName.toLowerCase().replace(" ", "-");
 		String currentURL = generic.getCurrentUrl();
 		Assert.assertEquals(currentURL,(baseUrl + "hotels-in-" + link + "/"),
