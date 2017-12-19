@@ -69,7 +69,7 @@ public class ExecutionSuite_SearchPage extends Config {
 		System.out.println("Test" + linkName);
 		hp.click_searchBar_Txt();
 		sp.click_cityName_Lnk(linkName);
-		generic.waitForCompletePageLoad();
+		generic.waitForCompletePageLoad(driver);
 		String link = linkName.toLowerCase().replace(" ", "-");
 		String currentURL = generic.getCurrentUrl();
 		Assert.assertEquals(currentURL,(baseUrl + "hotels-in-" + link + "/"),
