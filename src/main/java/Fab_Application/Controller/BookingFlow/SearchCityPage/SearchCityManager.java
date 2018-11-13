@@ -1,41 +1,30 @@
 package Fab_Application.Controller.BookingFlow.SearchCityPage;
 
-import Fab_Application.Constants.UiAddresses;
+import Fab_Application.Controller.BookingFlow.SplashScreen.SplashScreen_POM;
 import Fab_Application.Utilities.ReusableMethods;
+import com.relevantcodes.extentreports.ExtentTest;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.io.IOException;
-import java.util.List;
 
 public class SearchCityManager {
 
     public void Validate_TC(WebDriver driver, String cityName,
-                            String checkInDate, String checkoutDate){
+                            String checkInDate, String checkoutDate, ExtentTest logger){
 
         try{
-            ReusableMethods.FindElement(driver, UiAddresses.CitySearchField).sendKeys(cityName);
+            ReusableMethods.type(driver, SplashScreen_POM.searchField(driver, logger), cityName, logger, "City Search Field");
 
             Thread.sleep(4000);
-            List<WebElement> cities = ReusableMethods.FindElements(driver, UiAddresses.autosuggestionList);  //driver.findElements(UiAddresses.autosuggestionList);
-
-            for(WebElement city : cities){
-                if(city.getText().equalsIgnoreCase(cityName)){
-                    city.click();
-                    break;
-                }
-            }
+            ReusableMethods.selectFromListByText(driver, SplashScreen_POM.autosuggestionList(driver, logger), cityName, logger);
 
 
-            ReusableMethods.FindElement(driver, UiAddresses.checkinButton).click();
+            ReusableMethods.Click(driver, SplashScreen_POM.checkInButton(driver, logger), logger, "Calendar CheckIn Button");
 
-            CalendarDateSelection(driver, checkInDate, checkoutDate);
+            CalendarDateSelection(driver, checkInDate, checkoutDate, logger);
 
-
-            ReusableMethods.FindElement(driver, UiAddresses.DoneButton).click();
-
-
-            ReusableMethods.FindElement(driver, UiAddresses.SearchButton).click();
+            ReusableMethods.Click(driver, SplashScreen_POM.SearchButton(driver, logger), logger, "Search Button");
         }
         catch(Exception e){
             e.printStackTrace();
@@ -45,11 +34,10 @@ public class SearchCityManager {
 
     // Calendar date selection logic
     private void CalendarDateSelection(WebDriver driver,
-                                      String checkInDate, String checkoutDate) throws InterruptedException, IOException {
+                                      String checkInDate, String checkoutDate, ExtentTest logger) throws InterruptedException, IOException {
 
-        WebElement nextButton = ReusableMethods.FindElement(driver, UiAddresses.nextButton),
-                calendarYear = ReusableMethods.FindElement(driver, UiAddresses.calendarYear),
-                calendarMonth = ReusableMethods.FindElement(driver, UiAddresses.calendarMonth);
+        WebElement calendarYear = SplashScreen_POM.calendarYear(driver, logger),
+                calendarMonth = SplashScreen_POM.calendarMonth(driver, logger);
 
         // Check in date selection
         String checkinMonth = checkInDate.split("-")[1];
@@ -57,19 +45,12 @@ public class SearchCityManager {
         int userInputCheckinDate = Integer.parseInt(checkInDate.split("-")[0]);
 
         while(!(checkinMonth.equalsIgnoreCase(calendarMonth.getText()) && checkinYear.equalsIgnoreCase(calendarYear.getText()))){
-            nextButton.click();
+            ReusableMethods.Click(driver, SplashScreen_POM.calendarNextButton(driver, logger), logger, "Calendar Next Button");
         }
 
         Thread.sleep(1000);
-
-        List<WebElement> calendarDates = ReusableMethods.FindElements(driver, UiAddresses.calendarDateList);
-
-        for(WebElement calendarDate : calendarDates){
-            if(calendarDate.getText().equals(String.valueOf(userInputCheckinDate))){
-                calendarDate.click();
-                break;
-            }
-        }
+        ReusableMethods.selectFromListByText(driver, SplashScreen_POM.calendarDates(driver, logger),
+                String.valueOf(userInputCheckinDate), logger);
 
         // Check out date selection
         String checkoutMonth = checkoutDate.split("-")[1];
@@ -77,19 +58,13 @@ public class SearchCityManager {
         int userInputCheckoutDate = Integer.parseInt(checkoutDate.split("-")[0]);
 
         while(!(checkoutMonth.equalsIgnoreCase(calendarMonth.getText()) && checkoutYear.equalsIgnoreCase(calendarYear.getText()))){
-            nextButton.click();
+            ReusableMethods.Click(driver, SplashScreen_POM.calendarNextButton(driver, logger), logger, "Calendar Next Button");
         }
 
         Thread.sleep(1000);
+        ReusableMethods.selectFromListByText(driver, SplashScreen_POM.calendarDates(driver, logger),
+                String.valueOf(userInputCheckoutDate), logger);
 
-        calendarDates = ReusableMethods.FindElements(driver, UiAddresses.calendarDateList);
-
-        for(WebElement calendarDate : calendarDates){
-            if(calendarDate.getText().equals(String.valueOf(userInputCheckoutDate))){
-                calendarDate.click();
-                break;
-            }
-        }
-
+        ReusableMethods.Click(driver, SplashScreen_POM.calendarDoneButton(driver, logger), logger, "Calendar Done Button");
     }
 }

@@ -1,6 +1,5 @@
 package Fab_Application.Helper.Common;
 
-import Fab_Application.Utilities.ReusableMethods;
 import com.mongodb.MongoClient;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
@@ -104,12 +103,12 @@ public class BaseTestClass {
 
     @BeforeTest
     public void startReport() {
-        extent = new ExtentReports(getProperty("user.dir") + "/Results/" + "AppiumReport_" + java.time.LocalDate.now() + ".html", true);
+        extent = new ExtentReports(getProperty("user.dir") + "/Results/" + "AutomationReport_" + java.time.LocalDate.now() + ".html", true);
         //System.out.println(getProperty("user.name"));
         extent
-                .addSystemInfo("Host Name", "FabHotels App Automation")
-                .addSystemInfo("Environment", "Appium")
+                .addSystemInfo("Host Name", "FabHotels Mweb")
+                .addSystemInfo("Environment", "chrome desktop")
                 .addSystemInfo("User Name", getProperty("user.name"));
-        extent.loadConfig(new File(getProperty("user.dir") + "/extent-config.xml"));
+        extent.loadConfig(new File(getProperty("user.dir") + "/FabHotels_frontendAtomationFramework/extent-config.xml"));
     }
 }

@@ -16,9 +16,9 @@ public class SRP_Manager {
 
         try{
 
-            ReusableMethods.FindElement(driver, UiAddresses.couponTextCloseIcon).click();
+            driver.findElement(UiAddresses.couponTextCloseIcon).click();
 
-            List<WebElement> listOfProperties = ReusableMethods.FindElements(driver, UiAddresses.listOfProperties);
+            List<WebElement> listOfProperties = driver.findElements(UiAddresses.listOfProperties);
 
             for(WebElement property : listOfProperties){
                 String Property = property.getAttribute("aria-label");

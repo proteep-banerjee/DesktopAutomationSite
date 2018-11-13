@@ -40,30 +40,38 @@ public class DriverHelper {
     public static WebDriver initiateBrowserInstance(String browserName, String ServerName, Map<String, Object> capablitiesList) throws InterruptedException {
         WebDriver driver = null;
 
+        browserName = getValueOfProperty(CONFIGURATION_FILE_PATH, browserName);
 
-        if (browserName.equalsIgnoreCase("Chrome")) {
-            System.setProperty("webdriver.chrome.driver", DriverConfiguration.chromeDriverPath);
+        try{
+            if (browserName.equalsIgnoreCase("Chrome")) {
+                System.setProperty("webdriver.chrome.driver", DriverConfiguration.chromeDriverPath);
 
-            DesiredCapabilities capabilities = BrowserCapabilities.CapabilitiesList(capablitiesList, browserName);
-            driver = new ChromeDriver(capabilities);
+                DesiredCapabilities capabilities = BrowserCapabilities.CapabilitiesList(capablitiesList, browserName);
+                driver = new ChromeDriver(capabilities);
 
-            driver.manage().deleteAllCookies();
-            driver.manage().window().maximize();
-            driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+                driver.manage().deleteAllCookies();
+                driver.manage().window().maximize();
+                driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+                driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
-        } else {
+            } else {
 
-            //import firefox options jars
+                //import firefox options jars
 
 
             /*FirefoxOptions options = new FirefoxOptions()
                     .setProfile(new FirefoxProfile());
             driver = new FirefoxDriver(options);*/
 
+            }
+            String ServiceUrl = getValueOfProperty(CONFIGURATION_FILE_PATH, ServerName);
+            driver.get(ServiceUrl);
         }
-        String ServiceUrl = getValueOfProperty(CONFIGURATION_FILE_PATH, ServerName);
-        driver.get(ServiceUrl);
+        catch(Exception e){
+            e.printStackTrace();
+            System.out.println("Unable to open browser instance.");
+            System.exit(-1);
+        }
 
         return driver;
 

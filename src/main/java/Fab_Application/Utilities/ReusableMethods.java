@@ -28,28 +28,43 @@ public class ReusableMethods extends DriverHelper {
     public static final int impliciteTimeOut = 2;
 
 
-    public static void type(WebDriver driver, WebElement element, String value) {
+    // Method to enter the text into a web element
+    public static void type(WebDriver driver, WebElement element, String value, ExtentTest logger,
+                            String elementName) throws IOException {
+        try{
+            if (isElementPresent(driver, element, logger, elementName)) {
+                element.click();
+                element.clear();
+                element.sendKeys(value);
+                System.out.println("Entered Text :" + value);
+                logger.log(LogStatus.INFO, value + " has been entered as text in the element : " + elementName);
+            }
+        }catch (Exception e){
 
-        if (isElementPresent(driver, element)) {
-            element.click();
-            element.clear();
-            element.sendKeys(value);
-            System.out.println("Entered Text :" + value);
-        } else {
-            System.out.println("Not present element:" + element);
+            String img = captureScreenShot(driver);
+            logger.log(LogStatus.ERROR, "Unable to enter text in the element : " +
+                    elementName + "<br>" + "Exception : " + "<br>" + e.getMessage());
+            logger.addScreenCapture(img);
         }
     }
 
-    public static void Click(WebDriver driver, WebElement element) {
+    // Method to click on the webelement
+    public static void Click(WebDriver driver, WebElement element,
+                             ExtentTest logger, String elementName) throws IOException {
 
-        if (isElementPresent(driver, element)) {
+        try{
+            if (isElementPresent(driver, element, logger, elementName)) {
 
-            element.click();
-        } else {
-            System.out.println("Not present element:" + element);
+                element.click();
+                logger.log(LogStatus.INFO, "Clicked on the element : " + elementName);
+            }
         }
-
-
+        catch (Exception e){
+            String img = captureScreenShot(driver);
+            logger.log(LogStatus.ERROR, "Unable to click on element : " +
+                    elementName + "<br>" + "Exception : " + "<br>" + e.getMessage());
+            logger.addScreenCapture(img);
+        }
     }
 
 
@@ -84,16 +99,20 @@ public class ReusableMethods extends DriverHelper {
      *
      * @return true if element is present false if element is not present
      */
-    public static boolean isElementPresent(WebDriver driver, WebElement element) {
+    public static boolean isElementPresent(WebDriver driver, WebElement element,
+                                           ExtentTest logger, String elementName) throws IOException {
        // driver.manage().timeouts().implicitlyWait(2000, TimeUnit.MILLISECONDS);
 
         if (element.isDisplayed() || element.isEnabled()) {
             //driver.manage().timeouts().implicitlyWait(impliciteTimeOut, TimeUnit.SECONDS);
+            logger.log(LogStatus.INFO, "Element is Present : " + elementName);
             return true;
         } else {
             //driver.manage().timeouts().implicitlyWait(impliciteTimeOut, TimeUnit.SECONDS);
+            String imgPath = ReusableMethods.captureScreenShot(driver);
+            logger.log(LogStatus.ERROR, "Element is not Present : " + elementName);
+            logger.addScreenCapture(imgPath);
             return false;
-
         }
     }
 
@@ -104,26 +123,33 @@ public class ReusableMethods extends DriverHelper {
 
     }
 
-    public static WebElement FindElement(WebDriver driver, By by) throws IOException {
+    // Method to find a single element
+    public static WebElement FindElement(WebDriver driver, By by,
+                                         ExtentTest logger, String elementName) throws IOException {
 
         driver.manage().timeouts().implicitlyWait(2000, TimeUnit.MILLISECONDS);
-        //System.out.println(driver.toString());
         WebElement element = null;
 
         try{
             element = (new WebDriverWait(driver, 15)).until(ExpectedConditions.presenceOfElementLocated(by));
+            logger.log(LogStatus.INFO, "Found the element : " + elementName);
             return element;
         }catch (NoSuchElementException  | StaleElementReferenceException e){
 
+            String img = captureScreenShot(driver);
             System.out.println("Exception occured in finding the element " +e.getMessage());
+            logger.log(LogStatus.ERROR, "Unable to locate element : " +
+                    elementName + "<br>" + "Exception : " + "<br>" + e.getMessage());
+            logger.addScreenCapture(img);
             return null;
         }
-        //WebElement element = driver.findElement(by);
     }
 
 
-
-    public static List<WebElement> FindElements(WebDriver driver, By by) {
+    // Method to find the list of elements and return the same
+    public static List<WebElement> FindElements(WebDriver driver, By by,
+                                                ExtentTest logger,
+                                                String elementName) throws IOException {
         driver.manage().timeouts().implicitlyWait(2000, TimeUnit.MILLISECONDS);
 
         List<WebElement> element = null;
@@ -131,17 +157,20 @@ public class ReusableMethods extends DriverHelper {
         try {
             element = (new WebDriverWait(driver, 15))
                     .until(ExpectedConditions.presenceOfAllElementsLocatedBy(by));
+            logger.log(LogStatus.INFO, "Found the list of elements : " + elementName);
 
             return element;
 
         } catch (NoSuchElementException | StaleElementReferenceException e) {
 
+            String img = captureScreenShot(driver);
             System.out.println("Exception occured in finding the element " + e.getMessage());
+            logger.log(LogStatus.ERROR, "Unable to locate element : " +
+                    elementName + "<br>" + "Exception : " + "<br>" + e.getMessage());
+            logger.addScreenCapture(img);
             return null;
 
-
         }
-        //WebElement element = driver.findElement(by);
 
     }
 
@@ -214,7 +243,7 @@ public class ReusableMethods extends DriverHelper {
         File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         // now copy the  screenshot to desired location using copyFile method
 
-        File rest = new File(System.getProperty("user.dir") + "/screenshots/" + File.separator + newDate + System.currentTimeMillis() + ".png");
+        File rest = new File(System.getProperty("user.dir") + "/Screenshots/" + File.separator + newDate + System.currentTimeMillis() + ".png");
 
         FileUtils.copyFile(src, rest);
         String destination = rest.toString();
@@ -491,6 +520,37 @@ public class ReusableMethods extends DriverHelper {
 
         String spitter[] = allLine.split(" ");
         return spitter[4];
+    }
+
+    // To select element from a dropdown using value attribute.
+    public static void selectByValue(WebDriver driver, WebElement element, String value, ExtentTest logger, String elementName) throws IOException {
+
+        try{
+            if(isElementPresent(driver, element, logger, elementName)){
+                Select select = new Select(element);
+                select.selectByValue(value);
+            }
+        }
+        catch (Exception e){
+
+            String img = captureScreenShot(driver);
+            logger.log(LogStatus.ERROR, "Unable to locate select element by value : " +
+                    value + "<br>" + "Exception : " + "<br>" + e.getMessage());
+            logger.addScreenCapture(img);
+
+        }
+
+    }
+
+    // To select element from a list by matching text
+    public static void selectFromListByText(WebDriver driver, List<WebElement> elmnts, String matcherText, ExtentTest logger) throws IOException {
+
+        for(WebElement elmnt : elmnts){
+            if(elmnt.getText().equalsIgnoreCase(matcherText)){
+                Click(driver, elmnt, logger, matcherText);
+                break;
+            }
+        }
     }
 
 }
