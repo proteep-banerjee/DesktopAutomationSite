@@ -31,8 +31,55 @@ public class UiAddresses {
     public static By calendar_DoneButton = By.xpath(".//*[text()='Done']");
 
     // SRP screen
-    public static By couponTextCloseIcon = By.xpath("//span[@class = 'couponText__close']");
-    public static By listOfProperties = By.xpath("//ul[@class='srp-list-wrap']/li//a");
+    public static By SRP_couponTextCloseIcon = By.xpath("//span[@class = 'couponText__close']");
+    public static By SRP_listOfProperties = By.xpath("//ul[@class='srp-list-wrap']/li//h4");
+    public static By SRP_SortButton = By.className("srp-filter-sort-by");
+    public static By SRP_FiltersButton = By.className("srp-fiters-text");
+    public static By SRP_PropertyPricesList = By.xpath("//span[contains(text(),'Price/night. Ex GST')]/following-sibling::div/div[2]");
+    public static By SRP_HeaderEditBox = By.className("header__searchHeaderEditBox");
+    public static By SRP_SubscribeButton = By.xpath("//button[text() = 'SUBSCRIBE']");
+    public static By SRP_BackToTop = By.className("backtotop");
+    public static By SRP_SoldOutProperties = By.xpath("//div[text()='Sold out']");
+    public static By SRP_SearchDetails_City = By.className("header__editSearchCity");
+    public static By SRP_SearchDetails_Date = By.className("header__editSearchDate");
+    public static By SRP_SearchDetails_Guest = By.className("header__editSearchGuest");
+    public static By SRP_RatingStars = By.xpath("//li//h4/..//div/span");
+    public static By SRP_RatingReviews = By.xpath("//li//h4/..//div/span/following-sibling::strong");
+    public static By SRP_CoupleFriendlyLabel = By.xpath("//span[text()= 'Couple Friendly']");
+    public static By SRP_RackPricesList = By.xpath("//span[contains(text(),'Price/night. Ex GST')]/following-sibling::div/div[1]");
+    public static By SRP_ReviewCountList = By.xpath("//li//h4/..//div/span/..");
+    public static By SRP_FreeBreakfast = By.xpath("//span[text() = 'FREE Breakfast']");
+    public static By SRP_EarnCredits = By.xpath("//strong[contains(text(),'credits')]");
+
+
+    // SRP Edit Details Modal
+    public static By SRP_EditDetails_SearchField = By.id("gp-input");
+    public static By SRP_EditDetails_ClearField = By.xpath("//span[text()='CLEAR']");
+    public static By SRP_EditDetails_CalendarCheckIn = By.className("checkin");
+    public static By SRP_EditDetails_SearchButton = By.xpath("//div[text()='SEARCH']");
+    public static By SRP_EditDetails_GuestPlusButton = By.className(" bplus");
+    public static By SRP_EditDetails_GuestMinusButton = By.className(" bminus");
+    public static By SRP_EditDetails_AutosuggestionList = By.xpath("//div[@class='SearchBox__pacItem']/div[2]/span[1]");
+
+    // SRP Sort Modal
+    public static By SRP_SortModal_RecommendedSort = By.xpath("//ul[@class='header__sortModalList']/li[1]");
+    public static By SRP_SortModal_PriceDesc = By.xpath("//ul[@class='header__sortModalList']/li[@value='price_desc']");
+    public static By SRP_SortModal_PriceAsc = By.xpath("//ul[@class='header__sortModalList']/li[@value='price_asc']");
+
+
+    //Filter Screen
+    public static By Filter_ResetButton = By.xpath("//span[text() = 'Reset All']");
+    public static By Filter_PriceSlider = By.xpath("//div[@role = 'slider']");
+    public static By Filter_PriceSliderTooltip = By.className("rc-slider-tooltip-inner");
+    public static By Filter_CoupleFriendlyPolicy = By.xpath("//label[text()='Couple Friendly']");
+    public static By Filter_Occupancy = By.xpath("//h3[text()='Occupancy']/following-sibling::div/span");
+    public static By Filter_ApplyFilter = By.xpath("//button/span[contains(text(), 'VIEW' )]");
+    public static By Filter_StandardAmenitiesSection = By.xpath("//div[@class='Filters__standard-amenities-list']");
+    public static By Filter_AmenitiesSection = By.xpath("//h3[text()='Amenities']");
+    public static By Filter_OccupancySection = By.xpath("//h3[text()='Occupancy']");
+    public static By Filter_PoliciesSection = By.xpath("//h3[text()='Policies']");
+    public static By Filter_PricepernightSection = By.xpath("//h3[text()='Price/night']");
+    public static By Filter_LocalitySection = By.xpath("//h3[text()='Popular Localities']");
 
     //PDP screen
     public static By PDP_EditButton = By.xpath("//span[text() = 'EDIT']");

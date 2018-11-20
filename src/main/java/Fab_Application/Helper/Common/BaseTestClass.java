@@ -34,6 +34,7 @@ public class BaseTestClass {
     @BeforeSuite(alwaysRun = true)
     public void setEnvironment() throws Exception {
         //startAppium();
+        startReport();
     }
 
     @AfterSuite(alwaysRun = true)
@@ -101,7 +102,6 @@ public class BaseTestClass {
         Thread.sleep(2000);
     }
 
-    @BeforeTest
     public void startReport() {
         extent = new ExtentReports(getProperty("user.dir") + "/Results/" + "AutomationReport_" + java.time.LocalDate.now() + ".html", true);
         //System.out.println(getProperty("user.name"));
@@ -109,6 +109,6 @@ public class BaseTestClass {
                 .addSystemInfo("Host Name", "FabHotels Mweb")
                 .addSystemInfo("Environment", "chrome desktop")
                 .addSystemInfo("User Name", getProperty("user.name"));
-        extent.loadConfig(new File(getProperty("user.dir") + "/FabHotels_frontendAtomationFramework/extent-config.xml"));
+        extent.loadConfig(new File(getProperty("user.dir") + "/extent-config.xml"));
     }
 }

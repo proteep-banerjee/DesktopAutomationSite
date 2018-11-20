@@ -34,36 +34,37 @@ public class DriverHelper {
 
     public static SoftAssert softAssert = new SoftAssert();
 
+
     public static final String CONFIGURATION_FILE_PATH = "Configurations/env_config.properties";
+    public static String OS = null;
 
 
-    public static WebDriver initiateBrowserInstance(String browserName, String ServerName, Map<String, Object> capablitiesList) throws InterruptedException {
+    // Initiating mweb browser instance.
+    public static WebDriver initiateMwebBrowserInstance(String browserName, String ServerName, Map<String, Object> capablitiesList) throws InterruptedException {
         WebDriver driver = null;
 
         browserName = getValueOfProperty(CONFIGURATION_FILE_PATH, browserName);
+        OS = System.getProperty("os.name").toLowerCase();
 
         try{
             if (browserName.equalsIgnoreCase("Chrome")) {
-                System.setProperty("webdriver.chrome.driver", DriverConfiguration.chromeDriverPath);
+                if (OS.contains("windows")){
+                    System.setProperty("webdriver.chrome.driver", DriverConfiguration.chromeDriverPath);
+                }
+                else if (OS.contains("mac")) {
+                    System.setProperty("webdriver.chrome.driver", DriverConfiguration.chromeDriverPath_mac);
+                }
 
                 DesiredCapabilities capabilities = BrowserCapabilities.CapabilitiesList(capablitiesList, browserName);
                 driver = new ChromeDriver(capabilities);
 
                 driver.manage().deleteAllCookies();
-                driver.manage().window().maximize();
+//                driver.manage().window().maximize();
                 driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
                 driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
-            } else {
+            } else { }
 
-                //import firefox options jars
-
-
-            /*FirefoxOptions options = new FirefoxOptions()
-                    .setProfile(new FirefoxProfile());
-            driver = new FirefoxDriver(options);*/
-
-            }
             String ServiceUrl = getValueOfProperty(CONFIGURATION_FILE_PATH, ServerName);
             driver.get(ServiceUrl);
         }
@@ -77,6 +78,7 @@ public class DriverHelper {
 
     }
 
+    // Initiate ios driver instance.
      public static IOSDriver initiateIOSInstance(String PLATFORM_NAME, String DEVICE_NAME, String PLATFORM_VERSION, String APP) throws MalformedURLException {
         IOSDriver driver;
         DesiredCapabilities cap = new DesiredCapabilities();
@@ -100,6 +102,7 @@ public class DriverHelper {
     }
 
 
+    // Initiate android driver instance
     public static AndroidDriver initiateAndroidHomeInstance(String PLATFORM_NAME, String DEVICE_NAME, String PLATFORM_VERSION,String AUTOMATION_NAME, String APP) {
         AndroidDriver driver = null;
         DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -127,14 +130,15 @@ public class DriverHelper {
         return driver;
     }
 
+
+    // Method to get value of properties from env_config.properties file
     public static String getValueOfProperty(String filePath, String keyName) {
         try {
             Properties prop = new Properties();
-            InputStream inpStream = null;
-            inpStream = new FileInputStream(filePath);
-            prop.load(inpStream);
+            prop.load(new FileInputStream(filePath));
             return prop.getProperty(keyName);
-        } catch (IOException var4) {
+        }
+        catch (IOException var4) {
             System.out.println(var4);
             return null;
         }

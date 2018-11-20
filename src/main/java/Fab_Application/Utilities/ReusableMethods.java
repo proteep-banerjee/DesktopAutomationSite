@@ -11,6 +11,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.Reporter;
 
 import java.io.BufferedReader;
@@ -29,42 +30,29 @@ public class ReusableMethods extends DriverHelper {
 
 
     // Method to enter the text into a web element
-    public static void type(WebDriver driver, WebElement element, String value, ExtentTest logger,
-                            String elementName) throws IOException {
-        try{
-            if (isElementPresent(driver, element, logger, elementName)) {
-                element.click();
-                element.clear();
-                element.sendKeys(value);
-                System.out.println("Entered Text :" + value);
-                logger.log(LogStatus.INFO, value + " has been entered as text in the element : " + elementName);
-            }
-        }catch (Exception e){
+    public static void type(WebDriver driver, WebElement element, Object value) {
 
-            String img = captureScreenShot(driver);
-            logger.log(LogStatus.ERROR, "Unable to enter text in the element : " +
-                    elementName + "<br>" + "Exception : " + "<br>" + e.getMessage());
-            logger.addScreenCapture(img);
+        if (isElementPresent(driver, element)) {
+            element.click();
+            element.clear();
+            element.sendKeys((String)value);
+            System.out.println("Entered Text :" + value);
+        } else {
+            System.out.println("Not present element:" + element);
         }
     }
 
     // Method to click on the webelement
-    public static void Click(WebDriver driver, WebElement element,
-                             ExtentTest logger, String elementName) throws IOException {
+    public static void Click(WebDriver driver, WebElement element) {
 
-        try{
-            if (isElementPresent(driver, element, logger, elementName)) {
+        if (isElementPresent(driver, element)) {
 
-                element.click();
-                logger.log(LogStatus.INFO, "Clicked on the element : " + elementName);
-            }
+            element.click();
+        } else {
+            System.out.println("Not present element:" + element);
         }
-        catch (Exception e){
-            String img = captureScreenShot(driver);
-            logger.log(LogStatus.ERROR, "Unable to click on element : " +
-                    elementName + "<br>" + "Exception : " + "<br>" + e.getMessage());
-            logger.addScreenCapture(img);
-        }
+
+
     }
 
 
@@ -99,19 +87,14 @@ public class ReusableMethods extends DriverHelper {
      *
      * @return true if element is present false if element is not present
      */
-    public static boolean isElementPresent(WebDriver driver, WebElement element,
-                                           ExtentTest logger, String elementName) throws IOException {
+    public static boolean isElementPresent(WebDriver driver, WebElement element){
        // driver.manage().timeouts().implicitlyWait(2000, TimeUnit.MILLISECONDS);
 
         if (element.isDisplayed() || element.isEnabled()) {
             //driver.manage().timeouts().implicitlyWait(impliciteTimeOut, TimeUnit.SECONDS);
-            logger.log(LogStatus.INFO, "Element is Present : " + elementName);
             return true;
         } else {
             //driver.manage().timeouts().implicitlyWait(impliciteTimeOut, TimeUnit.SECONDS);
-            String imgPath = ReusableMethods.captureScreenShot(driver);
-            logger.log(LogStatus.ERROR, "Element is not Present : " + elementName);
-            logger.addScreenCapture(imgPath);
             return false;
         }
     }
@@ -125,21 +108,21 @@ public class ReusableMethods extends DriverHelper {
 
     // Method to find a single element
     public static WebElement FindElement(WebDriver driver, By by,
-                                         ExtentTest logger, String elementName) throws IOException {
+                                         ExtentTest logger) throws IOException {
 
         driver.manage().timeouts().implicitlyWait(2000, TimeUnit.MILLISECONDS);
         WebElement element = null;
 
         try{
             element = (new WebDriverWait(driver, 15)).until(ExpectedConditions.presenceOfElementLocated(by));
-            logger.log(LogStatus.INFO, "Found the element : " + elementName);
+            logger.log(LogStatus.INFO, "Found the element : " + element);
             return element;
         }catch (NoSuchElementException  | StaleElementReferenceException e){
 
             String img = captureScreenShot(driver);
             System.out.println("Exception occured in finding the element " +e.getMessage());
             logger.log(LogStatus.ERROR, "Unable to locate element : " +
-                    elementName + "<br>" + "Exception : " + "<br>" + e.getMessage());
+                    element + "<br>" + "Exception : " + "<br>" + e.getMessage());
             logger.addScreenCapture(img);
             return null;
         }
@@ -148,8 +131,7 @@ public class ReusableMethods extends DriverHelper {
 
     // Method to find the list of elements and return the same
     public static List<WebElement> FindElements(WebDriver driver, By by,
-                                                ExtentTest logger,
-                                                String elementName) throws IOException {
+                                                ExtentTest logger) throws IOException {
         driver.manage().timeouts().implicitlyWait(2000, TimeUnit.MILLISECONDS);
 
         List<WebElement> element = null;
@@ -157,7 +139,7 @@ public class ReusableMethods extends DriverHelper {
         try {
             element = (new WebDriverWait(driver, 15))
                     .until(ExpectedConditions.presenceOfAllElementsLocatedBy(by));
-            logger.log(LogStatus.INFO, "Found the list of elements : " + elementName);
+            logger.log(LogStatus.INFO, "Found the list of elements : " + element);
 
             return element;
 
@@ -166,7 +148,7 @@ public class ReusableMethods extends DriverHelper {
             String img = captureScreenShot(driver);
             System.out.println("Exception occured in finding the element " + e.getMessage());
             logger.log(LogStatus.ERROR, "Unable to locate element : " +
-                    elementName + "<br>" + "Exception : " + "<br>" + e.getMessage());
+                    element + "<br>" + "Exception : " + "<br>" + e.getMessage());
             logger.addScreenCapture(img);
             return null;
 
@@ -523,34 +505,122 @@ public class ReusableMethods extends DriverHelper {
     }
 
     // To select element from a dropdown using value attribute.
-    public static void selectByValue(WebDriver driver, WebElement element, String value, ExtentTest logger, String elementName) throws IOException {
+    public static void selectByValue(WebDriver driver, WebElement element, String value) throws IOException {
 
         try{
-            if(isElementPresent(driver, element, logger, elementName)){
+            if(isElementPresent(driver, element)){
                 Select select = new Select(element);
                 select.selectByValue(value);
             }
         }
         catch (Exception e){
 
-            String img = captureScreenShot(driver);
-            logger.log(LogStatus.ERROR, "Unable to locate select element by value : " +
-                    value + "<br>" + "Exception : " + "<br>" + e.getMessage());
-            logger.addScreenCapture(img);
+            System.out.println("Not present element:" + element);
 
         }
 
     }
 
     // To select element from a list by matching text
-    public static void selectFromListByText(WebDriver driver, List<WebElement> elmnts, String matcherText, ExtentTest logger) throws IOException {
+    public static void selectFromListByText(WebDriver driver, List<WebElement> elmnts, String matcherText) {
 
         for(WebElement elmnt : elmnts){
             if(elmnt.getText().equalsIgnoreCase(matcherText)){
-                Click(driver, elmnt, logger, matcherText);
+                Click(driver, elmnt);
                 break;
             }
         }
+    }
+
+    // Scroll into view to a web element
+    public static void scrollIntoView(WebDriver driver, WebElement element) throws IOException {
+
+        try{
+            ((JavascriptExecutor) driver).executeScript
+                    ("arguments[0].scrollIntoView(true);", element);
+
+            Thread.sleep(1000);
+        }
+        catch (Exception e){
+            System.out.println("Unable to scroll to element : " + element);
+        }
+    }
+
+    // Scroll to find an element
+    public static void scrollToFind(WebDriver driver, WebElement element) throws IOException {
+
+        try{
+            while(true){
+                if(element.isDisplayed()|| element.isEnabled()){
+                    break;
+                }
+                else{
+                    ((JavascriptExecutor) driver).executeScript
+                            ("window.scrollTo(0, document.body.scrollHeight);", element);
+                }
+            }
+        }
+        catch(Exception e){
+
+            System.out.println("Not present element:" + element);
+        }
+    }
+
+    // Scroll to the end of the page while the page loads on scrolling
+    public static void scrollToEndLoads(WebDriver driver) throws IOException {
+        try{
+
+            Object lenOfPage = ((JavascriptExecutor) driver).executeScript
+                    ("window.scrollTo(0, document.body.scrollHeight);var lenOfPage=document.body.scrollHeight;return lenOfPage;");
+
+            boolean match = true;
+
+            while(match){
+                Object lastCount = lenOfPage;
+                Thread.sleep(2000);
+                lenOfPage = ((JavascriptExecutor) driver).executeScript
+                        ("window.scrollTo(0, document.body.scrollHeight);var lenOfPage=document.body.scrollHeight;return lenOfPage;");
+                if(lastCount.equals(lenOfPage)){
+                    break;
+                }
+            }
+            Thread.sleep(1000);
+        }
+        catch(Exception e){
+            System.out.println("Unable to scroll to the end of page due to : "+
+                    e.getMessage());
+
+        }
+    }
+
+    public static void getPageTitle(WebDriver driver, String PageTitle) throws IOException {
+
+        driver.manage().timeouts().implicitlyWait(2000, TimeUnit.MILLISECONDS);
+
+        try {
+            (new WebDriverWait(driver, 15)).until(ExpectedConditions.titleIs(PageTitle));
+            Assert.assertEquals(driver.getTitle(), PageTitle, "Page title did not match.");
+            System.out.println("Page title matched.");
+        }
+
+        catch (Exception e) {
+            System.out.println("Unable to fetch page title for the page : " + PageTitle);
+        }
+
+    }
+
+    public static boolean verifyText(WebElement element, String text) {
+
+        if (element.getText().toString().equalsIgnoreCase(text)) {
+            softAssert.assertTrue(true, text + " verified");
+            softAssert.assertAll();
+            return true;
+        } else {
+            softAssert.assertTrue(false, text + " not verified");
+            softAssert.assertAll();
+            return false;
+        }
+
     }
 
 }
