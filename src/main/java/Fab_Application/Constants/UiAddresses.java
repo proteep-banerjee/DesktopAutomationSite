@@ -81,7 +81,7 @@ public class UiAddresses {
     public static By Filter_PricepernightSection = By.xpath("//h3[text()='Price/night']");
     public static By Filter_LocalitySection = By.xpath("//h3[text()='Popular Localities']");
 
-    //PDP screen
+    //PDPScreen screen
     public static By PDP_EditButton = By.xpath("//span[text() = 'EDIT']");
     public static By PDP_BookNowButton = By.xpath("//a[text() = 'BOOK NOW']");
     public static By PDP_EditSelection = By.xpath("//div[@class='sc-fjdhpX ilFFcd']");

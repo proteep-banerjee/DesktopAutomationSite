@@ -7,10 +7,11 @@ import java.util.Map;
 
 public class BrowserCapabilities {
 
-    public static DesiredCapabilities CapabilitiesList(Map<String, Object> optionsList,
-                                                String browserName){
+    public static DesiredCapabilities MWebCapabilitiesList(Map<String, Object> optionsList,
+                                                           String browserName){
 
         DesiredCapabilities capabilities = null;
+
         if(browserName.equalsIgnoreCase("Chrome")){
             capabilities = DesiredCapabilities.chrome();
             capabilities.setCapability(ChromeOptions.CAPABILITY, optionsList);

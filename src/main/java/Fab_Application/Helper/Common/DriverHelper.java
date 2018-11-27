@@ -4,23 +4,18 @@ import Fab_Application.Config.DriverConfiguration;
 import Fab_Application.Constants.BrowserCapabilities;
 import Fab_Application.Utilities.ReusableMethods;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
-
-
 import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.asserts.SoftAssert;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Map;
@@ -28,7 +23,6 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import static io.appium.java_client.remote.MobileCapabilityType.AUTOMATION_NAME;
-
 
 public class DriverHelper {
 
@@ -39,47 +33,45 @@ public class DriverHelper {
     public static String OS = null;
 
 
-    // Initiating mweb browser instance.
+    //in option list we will pass the mobileEmulation i.e. device name and add it to browser Path to open the responsive design (capabilityList)
     public static WebDriver initiateMwebBrowserInstance(String browserName, String ServerName, Map<String, Object> capablitiesList) throws InterruptedException {
         WebDriver driver = null;
 
         browserName = getValueOfProperty(CONFIGURATION_FILE_PATH, browserName);
         OS = System.getProperty("os.name").toLowerCase();
 
-        try{
+        try {
             if (browserName.equalsIgnoreCase("Chrome")) {
-                if (OS.contains("windows")){
+                if (OS.contains("windows")) {
                     System.setProperty("webdriver.chrome.driver", DriverConfiguration.chromeDriverPath);
-                }
-                else if (OS.contains("mac")) {
+                } else if (OS.contains("mac")) {
                     System.setProperty("webdriver.chrome.driver", DriverConfiguration.chromeDriverPath_mac);
                 }
+                else
+                    System.setProperty("webdriver.chrome.driver", DriverConfiguration.chromeDriverPath);
 
-                DesiredCapabilities capabilities = BrowserCapabilities.CapabilitiesList(capablitiesList, browserName);
+                DesiredCapabilities capabilities = BrowserCapabilities.MWebCapabilitiesList(capablitiesList, browserName);
                 driver = new ChromeDriver(capabilities);
 
-                driver.manage().deleteAllCookies();
-//                driver.manage().window().maximize();
-                driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-                driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-
-            } else { }
-
+            }
             String ServiceUrl = getValueOfProperty(CONFIGURATION_FILE_PATH, ServerName);
+            driver.manage().deleteAllCookies();
+//                driver.manage().window().maximize();
+            driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
             driver.get(ServiceUrl);
         }
-        catch(Exception e){
+        catch (Exception e) {
             e.printStackTrace();
             System.out.println("Unable to open browser instance.");
             System.exit(-1);
         }
-
         return driver;
 
     }
 
     // Initiate ios driver instance.
-     public static IOSDriver initiateIOSInstance(String PLATFORM_NAME, String DEVICE_NAME, String PLATFORM_VERSION, String APP) throws MalformedURLException {
+    public static IOSDriver initiateIOSInstance(String PLATFORM_NAME, String DEVICE_NAME, String PLATFORM_VERSION, String APP) throws MalformedURLException {
         IOSDriver driver;
         DesiredCapabilities cap = new DesiredCapabilities();
         cap.setCapability(MobileCapabilityType.PLATFORM_NAME, PLATFORM_NAME);
@@ -87,7 +79,7 @@ public class DriverHelper {
         cap.setCapability(MobileCapabilityType.PLATFORM_VERSION, PLATFORM_VERSION);
         cap.setCapability("noReset", "false");
         cap.setCapability(MobileCapabilityType.APP, APP);
-        cap.setCapability("avd",DEVICE_NAME);
+        cap.setCapability("avd", DEVICE_NAME);
 
         cap.setCapability(MobileCapabilityType.BROWSER_NAME, "");
         URL url = new URL("http://127.0.0.1:4723/wd/hub");
@@ -103,7 +95,7 @@ public class DriverHelper {
 
 
     // Initiate android driver instance
-    public static AndroidDriver initiateAndroidHomeInstance(String PLATFORM_NAME, String DEVICE_NAME, String PLATFORM_VERSION,String AUTOMATION_NAME, String APP) {
+    public static AndroidDriver initiateAndroidHomeInstance(String PLATFORM_NAME, String DEVICE_NAME, String PLATFORM_VERSION, String AUTOMATION_NAME, String APP) {
         AndroidDriver driver = null;
         DesiredCapabilities capabilities = new DesiredCapabilities();
         //capabilities.setCapability(CapabilityType.BROWSER_NAME, "");
@@ -131,17 +123,50 @@ public class DriverHelper {
     }
 
 
-    // Method to get value of properties from env_config.properties file
-    public static String getValueOfProperty(String filePath, String keyName) {
+    // Initiate desktop web browser.
+    public static WebDriver initiateBrowserInstance(String browserName, String ServerName) throws InterruptedException {
+        WebDriver driver = null;
+
+        //browserName = getValueOfProperty(CONFIGURATION_FILE_PATH, browserName);
+        OS = System.getProperty("os.name").toLowerCase();
+
         try {
-            Properties prop = new Properties();
-            prop.load(new FileInputStream(filePath));
-            return prop.getProperty(keyName);
+            if (browserName.equalsIgnoreCase("Chrome") && OS.contains("windows")) {
+                System.setProperty("webdriver.chrome.driver", DriverConfiguration.chromeDriverPath);
+                driver = new ChromeDriver();
+            } else if (browserName.equalsIgnoreCase("Chrome") && OS.contains("mac")) {
+                System.setProperty("webdriver.chrome.driver", DriverConfiguration.chromeDriverPath_mac);
+                driver = new ChromeDriver();
+            }
+
+            driver.manage().deleteAllCookies();
+            driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+
+            String ServiceUrl = getValueOfProperty(CONFIGURATION_FILE_PATH, ServerName);
+            driver.get(ServiceUrl);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Unable to open browser instance.");
+            System.exit(-1);
         }
-        catch (IOException var4) {
-            System.out.println(var4);
-            return null;
-        }
+        return driver;
     }
 
+    // read the value from config.properties
+    public static String getValueOfProperty(String filePath, String keyName) {
+        Properties prop = new Properties();
+        try {
+            prop.load(new FileInputStream(new File(filePath)));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String value = prop.getProperty(keyName);
+        return value;
+    }
+
+
+    public static void closeBrowser(WebDriver driver){
+        driver.quit();
+    }
 }
