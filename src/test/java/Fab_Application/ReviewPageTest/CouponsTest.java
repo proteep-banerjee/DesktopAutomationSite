@@ -20,7 +20,7 @@ public class CouponsTest extends BaseTestClass {
 
     private static String firstServer = "fabhotels_uat";
     private static String browserName = "Chrome";
-    private static String adminServer = "fabhotel_uat_adminPanel";
+   
 
     private static WebDriver driver = null;
 
@@ -38,7 +38,7 @@ public class CouponsTest extends BaseTestClass {
             new SearchCityManager().Validate_TC(driver, cityName, checkInDate, guestsNumber, logger);
             new SRP_Manager().Validate_TC(driver, PropertyName, logger);
             new PDP_Manager().Validate_TC(driver, logger);
-            new Review_Manager().Validate_TC(driver,browserName,adminServer,MobileNumber,logger);
+       //     new Review_Manager().Validate_TC(driver,browserName,adminServer,MobileNumber,logger);
 
             logger.log(LogStatus.PASS, "Booking flow has been tested successfully.");
         }
