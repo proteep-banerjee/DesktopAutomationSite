@@ -8,7 +8,7 @@ import java.util.Map;
 public class BrowserCapabilities {
 
     public static DesiredCapabilities MWebCapabilitiesList(Map<String, Object> optionsList,
-                                                           String browserName){
+                                                String browserName){
 
         DesiredCapabilities capabilities = null;
 

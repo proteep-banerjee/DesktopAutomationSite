@@ -7,10 +7,8 @@ import org.testng.asserts.SoftAssert;
 
 import java.io.IOException;
 
-import static Fab_Application.Controller.POM.LoginScreen.LoginPage_POM.continueButton;
-import static Fab_Application.Controller.POM.LoginScreen.LoginPage_POM.mobileNumberField;
-import static Fab_Application.Controller.POM.LoginScreen.LoginPage_POM.verifyInvalidUserName;
-import static Fab_Application.Controller.POM.SplashScreen.SplashScreen_POM.LoginButton;
+import static Fab_Application.Controller.POM.LoginScreen.LoginPage_POM.*;
+import static Fab_Application.Controller.POM.HomeScreen.HomeScreen_POM.*;
 
 public class verifyLoginWithInvalidUsername_Manager {
     SoftAssert softAssert = new SoftAssert();

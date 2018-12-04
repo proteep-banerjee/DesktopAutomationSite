@@ -3,9 +3,9 @@ package Fab_Application.Utilities;
 import Fab_Application.Helper.Common.DriverHelper;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
+import io.appium.java_client.MobileDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
-import io.appium.java_client.android.AndroidDriver;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -25,18 +25,37 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import static Fab_Application.Helper.Common.BaseTestClass.logger;
+
 public class ReusableMethods extends DriverHelper {
 
     public static final int impliciteTimeOut = 2;
 
 
     // Method to enter the text into a web element
-    public static void type(WebDriver driver, WebElement element, Object value) {
+    public static void type(WebDriver driver, WebElement element, String value) {
 
         if (isElementPresent(driver, element)) {
             element.click();
             element.clear();
-            element.sendKeys((String)value);
+
+            element.sendKeys(value);
+            System.out.println("Entered Text :" + value);
+        } else {
+            System.out.println("Not present element:" + element);
+        }
+    }
+
+    // Method to enter the int text into a web element
+    public static void enterValue(WebDriver driver, WebElement element, String value) {
+
+        if (isElementPresent(driver, element)) {
+            element.click();
+
+            JavascriptExecutor jse = (JavascriptExecutor) driver;
+            jse.executeScript("arguments[0].value='" + value + "';", element);
+
+            System.out.println(element.getTagName());
             System.out.println("Entered Text :" + value);
         } else {
             System.out.println("Not present element:" + element);
@@ -51,13 +70,14 @@ public class ReusableMethods extends DriverHelper {
             element.click();
         } else {
             System.out.println("Not present element:" + element);
+            softAssert.assertTrue(false);
         }
 
 
     }
 
 
-    public static boolean verifyText(AndroidDriver driver, WebElement element, String text) {
+    public static boolean verifyText(WebDriver driver, WebElement element, String text) {
 
         if (element.getText().toString().equalsIgnoreCase(text)) {
             softAssert.assertTrue(true, text + " verified");
@@ -72,15 +92,14 @@ public class ReusableMethods extends DriverHelper {
     }
 
 
-    public static void ClickByXpath(AndroidDriver driver, String locator) {
+    public static void ClickByXpath(WebDriver driver, String locator) {
 
 
-        driver.findElementByXPath(locator).click();
+        driver.findElement(By.xpath(locator)).click();
 
         // else {
         // ((IOSDriver) driver).findElementByXPath(locator).click();
         // }
-
     }
 
     /**
@@ -88,8 +107,8 @@ public class ReusableMethods extends DriverHelper {
      *
      * @return true if element is present false if element is not present
      */
-    public static boolean isElementPresent(WebDriver driver, WebElement element){
-       // driver.manage().timeouts().implicitlyWait(2000, TimeUnit.MILLISECONDS);
+    public static boolean isElementPresent(WebDriver driver, WebElement element) {
+        // driver.manage().timeouts().implicitlyWait(2000, TimeUnit.MILLISECONDS);
 
         if (element.isDisplayed() || element.isEnabled()) {
             //driver.manage().timeouts().implicitlyWait(impliciteTimeOut, TimeUnit.SECONDS);
@@ -100,10 +119,11 @@ public class ReusableMethods extends DriverHelper {
         }
     }
 
-    public static void typeByID(AndroidDriver driver, String locator, String value) {
 
-        driver.findElementById(locator).clear();
-        driver.findElementById(locator).sendKeys(value);
+    public static void typeByID(WebDriver driver, String locator, String value) {
+
+        driver.findElement(By.id(locator)).clear();
+        driver.findElement(By.id(locator)).sendKeys(value);
 
     }
 
@@ -114,36 +134,10 @@ public class ReusableMethods extends DriverHelper {
         driver.manage().timeouts().implicitlyWait(2000, TimeUnit.MILLISECONDS);
         WebElement element = null;
 
-        try{
+        try {
             element = (new WebDriverWait(driver, 15)).until(ExpectedConditions.presenceOfElementLocated(by));
             logger.log(LogStatus.INFO, "Found the element : " + element);
             return element;
-        }catch (NoSuchElementException  | StaleElementReferenceException e){
-
-            String img = captureScreenShot(driver);
-            System.out.println("Exception occured in finding the element " +e.getMessage());
-            logger.log(LogStatus.ERROR, "Unable to locate element : " +
-                    element + "<br>" + "Exception : " + "<br>" + e.getMessage());
-            logger.addScreenCapture(img);
-            return null;
-        }
-    }
-
-
-    // Method to find the list of elements and return the same
-    public static List<WebElement> FindElements(WebDriver driver, By by,
-                                                ExtentTest logger) throws IOException {
-        driver.manage().timeouts().implicitlyWait(2000, TimeUnit.MILLISECONDS);
-
-        List<WebElement> element = null;
-
-        try {
-            element = (new WebDriverWait(driver, 15))
-                    .until(ExpectedConditions.presenceOfAllElementsLocatedBy(by));
-            logger.log(LogStatus.INFO, "Found the list of elements : " + element);
-
-            return element;
-
         } catch (NoSuchElementException | StaleElementReferenceException e) {
 
             String img = captureScreenShot(driver);
@@ -152,16 +146,40 @@ public class ReusableMethods extends DriverHelper {
                     element + "<br>" + "Exception : " + "<br>" + e.getMessage());
             logger.addScreenCapture(img);
             return null;
+        }
+    }
+
+    // Method to find the list of elements and return the same
+    public static List<WebElement> FindElements(WebDriver driver, By by,
+                                                ExtentTest logger) throws IOException {
+        driver.manage().timeouts().implicitlyWait(2000, TimeUnit.MILLISECONDS);
+
+        List<WebElement> elements = null;
+
+        try {
+            elements = (new WebDriverWait(driver, 15))
+                    .until(ExpectedConditions.presenceOfAllElementsLocatedBy(by));
+            logger.log(LogStatus.INFO, "Found the list of elements : " + elements);
+
+            return elements;
+
+        } catch (NoSuchElementException | StaleElementReferenceException e) {
+
+            String img = captureScreenShot(driver);
+            System.out.println("Exception occured in finding the element " + e.getMessage());
+            logger.log(LogStatus.ERROR, "Unable to locate element : " +
+                    elements + "<br>" + "Exception : " + "<br>" + e.getMessage());
+            logger.addScreenCapture(img);
+            return null;
 
         }
 
     }
 
+    public static void typeByXpath(WebDriver driver, String locator, String value) {
 
-    public static void typeByXpath(AndroidDriver driver, String locator, String value) {
-
-        driver.findElementByXPath(locator).clear();
-        driver.findElementByXPath(locator).sendKeys(value);
+        driver.findElement(By.xpath(locator)).clear();
+        driver.findElement(By.xpath(locator)).sendKeys(value);
         // else {
         // ((IOSDriver) driver).findElementByXPath(locator).clear();
         // ((IOSDriver) driver).findElementByXPath(locator).sendKeys(value);
@@ -172,7 +190,7 @@ public class ReusableMethods extends DriverHelper {
      * @param element
      * @param value1
      */
-    public static void dropBoxText(AndroidDriver driver, WebElement element, String value1) {
+    public static void dropBoxText(WebDriver driver, WebElement element, String value1) {
 
         Select dropdownGroup = new Select(element);
 
@@ -187,23 +205,14 @@ public class ReusableMethods extends DriverHelper {
         return strDate;
     }
 
-    static public void hideSoftKeyboard(AndroidDriver driver) {
-        try {
-            driver.hideKeyboard();
-            System.out.println("hided keyboard successfully");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
-    public static void tearDown(AndroidDriver driver) {
+    public static void tearDown(WebDriver driver) {
         driver.quit();
-
     }
 
-    public static void scrollUp(AndroidDriver driver, MobileElement scroll, String text) {
+    public static void scrollUp(WebDriver driver, MobileElement scroll, String text) {
         try {
-            JavascriptExecutor js = driver;
+            JavascriptExecutor js = (JavascriptExecutor) driver;
             HashMap<String, String> scrollObject = new HashMap<String, String>();
             scrollObject.put("direction", "up");
             scrollObject.put("text", text);
@@ -235,9 +244,10 @@ public class ReusableMethods extends DriverHelper {
     }
 
 
-    public static void scrollDown(AndroidDriver driver, String text) {
+    public static void scrollDown(WebDriver driver, String text) {
         try {
-            JavascriptExecutor js = driver;
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            //JavascriptExecutor js = driver;
             HashMap<String, String> scrollObject = new HashMap<String, String>();
             scrollObject.put("direction", "down");
             scrollObject.put("text", text);
@@ -246,7 +256,6 @@ public class ReusableMethods extends DriverHelper {
         } catch (Exception localException) {
         }
     }
-
 
     public static boolean isPresentOnPage(WebDriver driver, By by) {
 
@@ -271,79 +280,31 @@ public class ReusableMethods extends DriverHelper {
 
     }
 
-    public static boolean isPresentOnPageAppiumID(AndroidDriver driver, String locator) {
 
-        WebElement we = null;
-
-        WebDriverWait wait = new WebDriverWait(driver,
-                30);
-
-        we = wait.until(ExpectedConditions
-                .visibilityOfElementLocated(By.id(locator)));
-
-        we = driver.findElementById(locator);
-
-        if (we.isDisplayed() || we.isEnabled()) {
-
-            System.out.println("Element Exist" + locator);
-            return true;
-        } else {
-            System.out.println("Element doesn't Exist" + locator);
-            return false;
-        }
-
-
-    }
-
-
-    public static void wait(AndroidDriver driver, long num, TimeUnit unit) {
+    public static void wait(WebDriver driver, long num, TimeUnit unit) {
         driver.manage().timeouts().implicitlyWait(num, unit);
     }
 
-    public void waitForLoadView(AndroidDriver driver, long num, TimeUnit unit) {
+    public void waitForLoadView(WebDriver driver, long num, TimeUnit unit) {
         driver.manage().timeouts().pageLoadTimeout(num, unit);
     }
 
-    public boolean waitForElementVisible(AndroidDriver driver, By locator) {
+    public boolean waitForElementVisible(WebDriver driver, By locator) {
         WebDriverWait wait = new WebDriverWait(driver, 15);
 
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator)) != null;
 
     }
 
-    public boolean waitForElementclickable(AndroidDriver driver, By locator) {
+    public boolean waitForElementclickable(WebDriver driver, By locator) {
         WebDriverWait wait = new WebDriverWait(driver, 250);
 
         return wait.until(ExpectedConditions.elementToBeClickable(locator)) != null;
     }
 
 
-    public static void sleep(long millis) {
 
-
-        try {
-
-            Thread.sleep(millis);
-
-        } catch (InterruptedException ex) {
-            System.out.println("Sleep interrupted :: " + ex.getMessage());
-
-        }
-
-    }
-
-    public static void longPressAppium(AndroidDriver driver, String locator) {
-
-        MobileElement element = (MobileElement) driver.findElementById(locator);
-
-        TouchAction action = new TouchAction(driver);
-
-        action.longPress(element).release().perform();
-
-    }
-
-
-    public static void elementClick(AndroidDriver driver, By locator1, By locator2, int value) {
+    public static void elementClick(WebDriver driver, By locator1, By locator2, int value) {
 
 
         WebElement element = driver.findElement(locator1);
@@ -364,7 +325,7 @@ public class ReusableMethods extends DriverHelper {
 
         int elementY1 = elementY + 150;
 
-        TouchAction action = new TouchAction(driver);
+        TouchAction action = new TouchAction((MobileDriver) driver);
 
         action.longPress(elementX1, elementY1).release().perform();
     }
@@ -402,18 +363,8 @@ public class ReusableMethods extends DriverHelper {
         }
     }
 
-    public static void assertFalse(boolean condition, String SuccessMessage,
-                                   String FailureMessage) {
-        if (!condition) {
-            // Reporter.log(SuccessMessage, MessageType.PASS, true);
-        } else {
-            // Reporter.log(FailureMessage, MessageType.FAIL, true);
-            throw new AssertionError("Assertion Error");
-        }
-    }
 
-
-    public static void dummyScroll_up(AndroidDriver driver, int swipeUP) {
+    /*public static void dummyScroll_up(WebDriver driver, int swipeUP) {
 
 
         Dimension dimensions = driver.manage().window().getSize();
@@ -444,7 +395,7 @@ public class ReusableMethods extends DriverHelper {
         }
     }
 
-    public static void dummyScroll_down(AndroidDriver driver, int swipeDown) {
+    public static void dummyScroll_down(WebDriver driver, int swipeDown) {
 
 
         Dimension dimensions = driver.manage().window().getSize();
@@ -476,8 +427,8 @@ public class ReusableMethods extends DriverHelper {
 
 
     }
-
-    public static String getDeviceName() throws Exception {
+*/
+    /*public static String getDeviceName() throws Exception {
         String command = "adb devices";
         //System.out.println(command);
         String output = runCommand(command); //run command on terminal
@@ -497,26 +448,26 @@ public class ReusableMethods extends DriverHelper {
         String allLine = "";
         while ((line = r.readLine()) != null) {
             allLine = allLine + "" + line + " ";
-            /*if (line.contains("device")) break*/
+            *//*if (line.contains("device")) break*//*
             ;
         }
 
         String spitter[] = allLine.split(" ");
         return spitter[4];
-    }
+    }*/
 
-    /*---------------------------------Proteep Banerjee----------------------------------------------------*/
+
+    /*-------------------------------------PROTEEP BANERJEE------------------------------------------------*/
 
     // To select element from a dropdown using value attribute.
     public static void selectByValue(WebDriver driver, WebElement element, String value) throws IOException {
 
-        try{
-            if(isElementPresent(driver, element)){
+        try {
+            if (isElementPresent(driver, element)) {
                 Select select = new Select(element);
                 select.selectByValue(value);
             }
-        }
-        catch (Exception e){
+        } catch (Exception e) {
 
             System.out.println("Not present element:" + element);
 
@@ -525,11 +476,11 @@ public class ReusableMethods extends DriverHelper {
     }
 
     // To select element from a list by matching text
-    public static void selectFromListByText(WebDriver driver, List<WebElement> elmnts, String matcherText) {
+    public static void selectFromListByText(WebDriver driver, List<WebElement> elementsList, String matcherText) {
 
-        for(WebElement elmnt : elmnts){
-            if(elmnt.getText().equalsIgnoreCase(matcherText)){
-                Click(driver, elmnt);
+        for (WebElement element : elementsList) {
+            if (element.getText().equalsIgnoreCase(matcherText)) {
+                Click(driver, element);
                 break;
             }
         }
@@ -538,32 +489,30 @@ public class ReusableMethods extends DriverHelper {
     // Scroll into view to a web element
     public static void scrollIntoView(WebDriver driver, WebElement element) throws IOException {
 
-        try{
+        try {
             ((JavascriptExecutor) driver).executeScript
                     ("arguments[0].scrollIntoView(true);", element);
 
             Thread.sleep(1000);
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Unable to scroll to element : " + element);
+            Assert.assertTrue(false);
         }
     }
 
     // Scroll to find an element
     public static void scrollToFind(WebDriver driver, WebElement element) throws IOException {
 
-        try{
-            while(true){
-                if(element.isDisplayed()|| element.isEnabled()){
+        try {
+            while (true) {
+                if (element.isDisplayed() || element.isEnabled()) {
                     break;
-                }
-                else{
+                } else {
                     ((JavascriptExecutor) driver).executeScript
                             ("window.scrollTo(0, document.body.scrollHeight);", element);
                 }
             }
-        }
-        catch(Exception e){
+        } catch (Exception e) {
 
             System.out.println("Not present element:" + element);
         }
@@ -571,31 +520,31 @@ public class ReusableMethods extends DriverHelper {
 
     // Scroll to the end of the page while the page loads on scrolling
     public static void scrollToEndLoads(WebDriver driver) throws IOException {
-        try{
+        try {
 
             Object lenOfPage = ((JavascriptExecutor) driver).executeScript
-                    ("window.scrollTo(0, document.body.scrollHeight);var lenOfPage=document.body.scrollHeight;return lenOfPage;");
+                    ("window.scrollTo(0, document.body.scrollHeight);" +
+                            "var lenOfPage=document.body.scrollHeight;" +
+                            "return lenOfPage;"
+                    );
 
-            boolean match = true;
-
-            while(match){
+            while (true) {
                 Object lastCount = lenOfPage;
                 Thread.sleep(2000);
                 lenOfPage = ((JavascriptExecutor) driver).executeScript
                         ("window.scrollTo(0, document.body.scrollHeight);var lenOfPage=document.body.scrollHeight;return lenOfPage;");
-                if(lastCount.equals(lenOfPage)){
+                if (lastCount.equals(lenOfPage)) {
                     break;
                 }
             }
             Thread.sleep(1000);
-        }
-        catch(Exception e){
-            System.out.println("Unable to scroll to the end of page due to : "+
+        } catch (Exception e) {
+            System.out.println("Unable to scroll to the end of page due to : " +
                     e.getMessage());
-
         }
     }
 
+    // To retrieve the page title of a page.
     public static void getPageTitle(WebDriver driver, String PageTitle) throws IOException {
 
         driver.manage().timeouts().implicitlyWait(2000, TimeUnit.MILLISECONDS);
@@ -604,17 +553,29 @@ public class ReusableMethods extends DriverHelper {
             (new WebDriverWait(driver, 15)).until(ExpectedConditions.titleIs(PageTitle));
             Assert.assertEquals(driver.getTitle(), PageTitle, "Page title did not match.");
             System.out.println("Page title matched.");
-        }
-
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("Unable to fetch page title for the page : " + PageTitle);
         }
 
     }
 
+
+    //to scroll the window till end using ajax scrolling
+    public static void scroll(WebDriver driver) throws InterruptedException {
+        JavascriptExecutor je = (JavascriptExecutor) driver;
+
+        String jscode = "window.scrollBy(0, document.body.scrollHeight)";
+        for (int i = 0; i < 7; i++) {
+            Thread.sleep(5000);
+            je.executeScript(jscode);
+        }
+    }
+
+
+    // To verify the text of a webelement.
     public static boolean verifyText(WebElement element, String text) {
 
-        if (element.getText().toString().equalsIgnoreCase(text)) {
+        if (element.getText().equalsIgnoreCase(text)) {
             softAssert.assertTrue(true, text + " verified");
             softAssert.assertAll();
             return true;
@@ -623,65 +584,47 @@ public class ReusableMethods extends DriverHelper {
             softAssert.assertAll();
             return false;
         }
-
     }
 
-    // The calendar logic for fabhotels.
-    public static void calendar_CheckIn(WebDriver driver, String Month, String Date) {
+    public static void scrollByCount(WebDriver driver, int Num) throws InterruptedException {
+        JavascriptExecutor je = (JavascriptExecutor) driver;
 
-        String CheckIn = "//div[@class='calender-range-details']//span[text()='" + Month + "']/../../../..//dd[text()='" + Date + "']";
-
-        while (true) {
-            try {
-                driver.findElement(By.xpath(CheckIn)).click();
-                break;
-            } catch (NoSuchElementException e) {
-                String nextBtn = "//div[@class='p-cell p-next']";
-                driver.findElement(By.xpath(nextBtn)).click();
-            }
+        String jscode = "window.scrollBy(0, document.body.scrollHeight)";
+        for (int i = 0; i < Num; i++) {
+            Thread.sleep(5000);
+            je.executeScript(jscode);
         }
     }
 
-    // Scroll to the top of page
-    public static void scrollup(WebDriver driver){
 
-        try{
-            ((JavascriptExecutor)driver).executeScript("window.scrollBy(0,-(document.body.scrollHeight))");
-        }
-        catch (Exception e){
-            System.out.println("Unable to scroll to the top of the page : " + e.getMessage());
-
-        }
-
+    public static String getText(WebDriver driver, By by,ExtentTest logger) throws IOException{
+        String text = FindElement(driver,by,logger).getText();
+        return text;
     }
 
-    public static void calendar_CheckInDesktop(WebDriver driver, String Month, String Date) {
 
-        String CheckIn = "//div[@class='datepicker-days']//th[contains(text(),'" + Month + "')]/ancestor::table//td[text()='" + Date + "']";
+//    // The calendar logic for fabhotels.
+//    public static void calendar_CheckIn(WebDriver driver, String Month, String Date) {
+//
+//        String[] months = {"January","February","March","April","May","June","July","August","September","October","November","December"};
+//
+//
+//
+////        String CheckIn = "//div[@class='calender-range-details']//span[text()='" + Month + "']/../../../..//dd[text()='" + Date + "']";
+////
+////        while (true) {
+////            try {
+////                driver.findElement(By.xpath(CheckIn)).click();
+////                break;
+////            } catch (NoSuchElementException e) {
+////                String nextBtn = "//div[@class='p-cell p-next']";
+////                driver.findElement(By.xpath(nextBtn)).click();
+////            }
+////        }
+//    }
 
-        while (true) {
-            try {
-                driver.findElement(By.xpath(CheckIn)).click();
-                break;
-            } catch (NoSuchElementException e) {
-                String nextBtn = "//div[@class='datepicker-days']//th[@class='next']";
-                driver.findElement(By.xpath(nextBtn)).click();
-            }
-        }
-    }
 
-        /*-------------------------------------------------------------------------------------------*/
-
-
-    // Method to move to the element
-    public static void MoveToElement(WebDriver driver, WebElement element) throws IOException {
-        try {
-            Actions act = new Actions(driver);
-            act.moveToElement(element).build().perform();
-        } catch (Exception e){
-            System.out.println("Unable to move to the element ");
-        }
-    }
+    /*------------------------------------------SUMEET SINGH---------------------------------------------*/
 
     // Method to move element by offset
     public static void MoveByOffsetAndClick(WebDriver driver, int x_axis, int y_axis) throws IOException {
@@ -736,15 +679,27 @@ public class ReusableMethods extends DriverHelper {
         }
     }
 
-    public static boolean CompareText(String element1, String element2) {
-        if (element1.equalsIgnoreCase(element2)) {
+    public static boolean CompareText(WebElement element1, WebElement element2) {
+        if (element1.getText().equalsIgnoreCase(element2.getText())) {
             return true;
         } else {
-            System.out.println(element1+" is not equal to "+element2);
+            System.out.println("Failed to compare text");
             return false;
         }
 
     }
 
+    public static void wait(int sec) {
+        int millisec = sec * 1000;
 
+        try {
+            Thread.sleep(millisec);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public static void switchToChildWindow(WebDriver driver, ExtentTest logger) {
+    	
+    }
 }

@@ -1,0 +1,787 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="99478022-86c1-465d-8f47-141c0e6129ae" name="Default Changelist" comment="" />
+    <ignored path="$PROJECT_DIR$/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/Fab_Application/BookingTest/BookingFlowTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="179">
+              <caret line="35" column="41" selection-start-line="35" selection-start-column="41" selection-end-line="35" selection-end-column="41" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Fab_Application/Controller/BookingFlow/HomePage/HomePage_Manager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="12" column="16" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Fab_Application/Controller/BookingFlow/SearchCityPage/SearchCityManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="215">
+              <caret line="67" column="48" selection-start-line="67" selection-start-column="48" selection-end-line="67" selection-end-column="48" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>findelement</find>
+      <find>search</find>
+      <find>dis</find>
+    </findStrings>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SplashScreenTest/verifyLoginWithValidCredentials/verifyLoginWithValidCredentials_Manager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SplashScreenTest/verifyLogout/verifyLogout_Manager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SplashScreenTest/verifyNearbyHotelTag/verifyNearbyHotelTag_Manager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SplashScreenTest/verifyOurLocationsOption/verifyOurLocationsOption_Manager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SplashScreenTest/verifyUserMembership/verifyUserMembership_Manager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SplashScreenTest/verifyUserNameOnWelcomePage/verifyUserNameOnWelcomePage_Manager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SRPTestCases/ValidateEditBoxText/SRP_ValidateEditBox_Manager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Fab_Application/Controller/POM/LoginScreen/LoginPage_POM.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SRPTestCases/HomeScreen/HomeScreenManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SRPTestCases/ValidateBreakfastAmenity/SRP_ValidateFreeBreakfast_Manager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SRPTestCases/FilterTest/SRP_FilterTest_Manager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SRPTestCases/ValidateCredits/SRP_ValidateCredits_Manager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SRPTestCases/ValidateNumberOfReviews/SRP_ValidateNumberOfReviews_Manager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SRPTestCases/ValidatePrice/SRP_ValidatePrice_Manager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SRPTestCases/ValidateRatings/SRP_ValidateRatings_Manager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SRPTestCases/ValidateSorting/SRP_ValidateSorting_Manager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Fab_Application/Controller/BookingFlow/SearchResultPage/SRP_Manager.java" />
+        <option value="$PROJECT_DIR$/src/test/java/Fab_Application/HomePageTest/verifyAllLinksManagerAfterLogInTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/Fab_Application/SRPTests/SRP_FilterSectionsTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/Fab_Application/HomePageTest/verifyAllLinksManagerTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/Fab_Application/HomePageTest/verifyCheckInAndCheckOutDateNotSameManagerTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/Fab_Application/HomePageTest/verifyCityCarousalHomePageManagerTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/Fab_Application/HomePageTest/verifyDateBeforeCurrentNotSelectableManagerTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/Fab_Application/HomePageTest/verifyGuestTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/Fab_Application/HomePageTest/verifyHamburgerMoreOptionsManagerTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/Fab_Application/HomePageTest/verifyHamburgerOptionsManagerTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/Fab_Application/HomePageTest/verifyLoginButtonManagerTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/Fab_Application/HomePageTest/verifyLoginWithValidCredentialsManagerTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/Fab_Application/HomePageTest/verifyLogoutManagerTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/Fab_Application/HomePageTest/verifyNearbyHotelTagManagerTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/Fab_Application/HomePageTest/verifyOurLocationsOptionManagerTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/Fab_Application/HomePageTest/verifyReferOptionManagerTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/Fab_Application/HomePageTest/verifyUserNameOnWelcomePageManagerTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/Fab_Application/SRPTests/SRP_CoupleFriendlyFilterTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/Fab_Application/SRPTests/SRP_CreditsTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/Fab_Application/SRPTests/SRP_EditDetailsTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/Fab_Application/SRPTests/SRP_FilterResetButtonTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/Fab_Application/SRPTests/SRP_FreeBreakfastAmenityTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/Fab_Application/SRPTests/SRP_NonZeroSellPriceTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/Fab_Application/SRPTests/SRP_PriceFilterTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/Fab_Application/SRPTests/SRP_RackPriceTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/Fab_Application/SRPTests/SRP_RatingsTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/Fab_Application/SRPTests/SRP_ReviewCountTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/Fab_Application/SRPTests/SRP_SortPricesTest.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/Fab_Application/Constants/UiAddresses.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Fab_Application/Controller/BookingFlow/ReviewPage/Review_Manager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Fab_Application/Helper/Common/DriverHelper.java" />
+        <option value="$PROJECT_DIR$/src/test/java/Fab_Application/BookingTest/BookingFlowTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/Fab_Application/Payment_Flow/Payment.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Fab_Application/Controller/BookingFlow/SearchCityPage/SearchCityManager.java" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1376" />
+    <option name="height" value="744" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="fab.mweb.1.0.0" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MwebSanity" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fab.mweb.1.0.0" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MwebSanity" type="462c0819:PsiDirectoryNode" />
+              <item name="Configurations" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fab.mweb.1.0.0" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MwebSanity" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fab.mweb.1.0.0" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MwebSanity" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fab.mweb.1.0.0" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MwebSanity" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fab.mweb.1.0.0" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MwebSanity" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="Fab_Application" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fab.mweb.1.0.0" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MwebSanity" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="Fab_Application" type="462c0819:PsiDirectoryNode" />
+              <item name="Helper" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fab.mweb.1.0.0" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MwebSanity" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="Fab_Application" type="462c0819:PsiDirectoryNode" />
+              <item name="Helper" type="462c0819:PsiDirectoryNode" />
+              <item name="Data" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fab.mweb.1.0.0" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MwebSanity" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fab.mweb.1.0.0" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MwebSanity" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fab.mweb.1.0.0" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MwebSanity" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="Fab_Application" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fab.mweb.1.0.0" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MwebSanity" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="Fab_Application" type="462c0819:PsiDirectoryNode" />
+              <item name="BookingTest" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fab.mweb.1.0.0" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MwebSanity" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fab.mweb.1.0.0" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MwebSanity" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="test_data" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fab.mweb.1.0.0" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MwebSanity" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="test_data" type="462c0819:PsiDirectoryNode" />
+              <item name="BookingTest" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543578164545" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="C:/Users/admin/Downloads/MwebSanity/MwebSanity/testng.xml" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="fab.mweb.1.0.0" />
+      <option name="SUITE_NAME" value="$PROJECT_DIR$/testng.xml" />
+      <option name="TEST_OBJECT" value="SUITE" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="TestNG.C:/Users/admin/Downloads/MwebSanity/MwebSanity/testng.xml" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="99478022-86c1-465d-8f47-141c0e6129ae" name="Default Changelist" comment="" />
+      <created>1543317407227</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1543317407227</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="C__Users_admin_Downloads_MwebSanity_MwebSanity_testng_xml - 2018.11.30 at 15h 38m 37s.xml">
+      <configuration name="C:/Users/admin/Downloads/MwebSanity/MwebSanity/testng.xml" configurationId="TestNG" />
+    </history-entry>
+    <history-entry file="C__Users_admin_Downloads_MwebSanity_MwebSanity_testng_xml - 2018.11.30 at 15h 44m 24s.xml">
+      <configuration name="C:/Users/admin/Downloads/MwebSanity/MwebSanity/testng.xml" configurationId="TestNG" />
+    </history-entry>
+    <history-entry file="C__Users_admin_Downloads_MwebSanity_MwebSanity_testng_xml - 2018.11.30 at 16h 07m 31s.xml">
+      <configuration name="C:/Users/admin/Downloads/MwebSanity/MwebSanity/testng.xml" configurationId="TestNG" />
+    </history-entry>
+    <history-entry file="C__Users_admin_Downloads_MwebSanity_MwebSanity_testng_xml - 2018.11.30 at 16h 07m 44s.xml">
+      <configuration name="C:/Users/admin/Downloads/MwebSanity/MwebSanity/testng.xml" configurationId="TestNG" />
+    </history-entry>
+    <history-entry file="C__Users_admin_Downloads_MwebSanity_MwebSanity_testng_xml - 2018.11.30 at 16h 10m 04s.xml">
+      <configuration name="C:/Users/admin/Downloads/MwebSanity/MwebSanity/testng.xml" configurationId="TestNG" />
+    </history-entry>
+    <history-entry file="C__Users_admin_Downloads_MwebSanity_MwebSanity_testng_xml - 2018.11.30 at 16h 10m 26s.xml">
+      <configuration name="C:/Users/admin/Downloads/MwebSanity/MwebSanity/testng.xml" configurationId="TestNG" />
+    </history-entry>
+    <history-entry file="C__Users_admin_Downloads_MwebSanity_MwebSanity_testng_xml - 2018.11.30 at 16h 19m 17s.xml">
+      <configuration name="C:/Users/admin/Downloads/MwebSanity/MwebSanity/testng.xml" configurationId="TestNG" />
+    </history-entry>
+    <history-entry file="C__Users_admin_Downloads_MwebSanity_MwebSanity_testng_xml - 2018.11.30 at 16h 32m 18s.xml">
+      <configuration name="C:/Users/admin/Downloads/MwebSanity/MwebSanity/testng.xml" configurationId="TestNG" />
+    </history-entry>
+    <history-entry file="C__Users_admin_Downloads_MwebSanity_MwebSanity_testng_xml - 2018.11.30 at 16h 35m 35s.xml">
+      <configuration name="C:/Users/admin/Downloads/MwebSanity/MwebSanity/testng.xml" configurationId="TestNG" />
+    </history-entry>
+    <history-entry file="C__Users_admin_Downloads_MwebSanity_MwebSanity_testng_xml - 2018.11.30 at 16h 36m 04s.xml">
+      <configuration name="C:/Users/admin/Downloads/MwebSanity/MwebSanity/testng.xml" configurationId="TestNG" />
+    </history-entry>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1376" height="744" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Image Layers" order="0" />
+      <window_info id="Designer" order="1" />
+      <window_info id="UI Designer" order="2" />
+      <window_info id="Capture Tool" order="3" />
+      <window_info id="Favorites" order="4" side_tool="true" />
+      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.28267476" />
+      <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Messages" weight="0.29623568" />
+      <window_info anchor="bottom" id="Version Control" order="0" />
+      <window_info anchor="bottom" id="Terminal" order="1" />
+      <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="3" />
+      <window_info anchor="bottom" id="Find" order="4" weight="0.3289689" />
+      <window_info active="true" anchor="bottom" id="Run" order="5" visible="true" weight="0.5417349" />
+      <window_info anchor="bottom" id="Debug" order="6" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="7" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="9" />
+      <window_info anchor="right" id="Palette" order="0" />
+      <window_info anchor="right" id="Capture Analysis" order="1" />
+      <window_info anchor="right" id="Theme Preview" order="2" />
+      <window_info anchor="right" id="Palette&#9;" order="3" />
+      <window_info anchor="right" id="Maven" order="4" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="5" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="6" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="7" weight="0.25" />
+    </layout>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SplashScreenTest/verifyUserNameOnWelcomePage/verifyUserNameOnWelcomePage_Manager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SRPTestCases/ValidateEditBoxText/SRP_ValidateEditBox_Manager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1428">
+          <caret line="92" column="2" lean-forward="true" selection-start-line="92" selection-start-column="2" selection-end-line="92" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SRPTestCases/ValidateBreakfastAmenity/SRP_ValidateFreeBreakfast_Manager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="33" column="7" lean-forward="true" selection-start-line="15" selection-start-column="5" selection-end-line="33" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SRPTestCases/FilterTest/SRP_FilterTest_Manager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="422">
+          <caret line="134" column="7" lean-forward="true" selection-start-line="20" selection-start-column="2" selection-end-line="134" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SRPTestCases/ValidateCredits/SRP_ValidateCredits_Manager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="422">
+          <caret line="40" column="7" lean-forward="true" selection-start-line="40" selection-start-column="7" selection-end-line="40" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SRPTestCases/ValidateNumberOfReviews/SRP_ValidateNumberOfReviews_Manager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="32" column="2" lean-forward="true" selection-start-line="32" selection-start-column="2" selection-end-line="32" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SRPTestCases/ValidatePrice/SRP_ValidatePrice_Manager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="422">
+          <caret line="73" column="7" lean-forward="true" selection-start-line="21" selection-start-column="4" selection-end-line="73" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SRPTestCases/ValidateRatings/SRP_ValidateRatings_Manager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="439">
+          <caret line="61" column="1" lean-forward="true" selection-start-line="61" selection-start-column="1" selection-end-line="61" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SRPTestCases/ValidateSorting/SRP_ValidateSorting_Manager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="422">
+          <caret line="97" column="7" lean-forward="true" selection-start-line="97" selection-start-column="7" selection-end-line="97" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SRPTestCases/HomeScreen/HomeScreenManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="26" column="10" selection-start-line="26" selection-start-column="10" selection-end-line="26" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Fab_Application/Controller/BookingFlow/SearchResultPage/SRP_Manager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="33" lean-forward="true" selection-start-line="18" selection-start-column="13" selection-end-line="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/Fab_Application/SRPTests/SRP_FilterSectionsTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="46" column="2" lean-forward="true" selection-start-line="46" selection-start-column="2" selection-end-line="46" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/Fab_Application/HomePageTest/verifyAllLinksManagerAfterLogInTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="36" column="24" lean-forward="true" selection-start-line="36" selection-start-column="24" selection-end-line="36" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Fab_Application/Helper/Data/DataHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/Fab_Application/HomePageTest/verifyAllLinksManagerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="36" column="24" lean-forward="true" selection-start-line="36" selection-start-column="24" selection-end-line="36" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/Fab_Application/HomePageTest/verifyCheckInAndCheckOutDateNotSameManagerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="35" column="7" lean-forward="true" selection-start-line="16" selection-start-column="2" selection-end-line="35" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/Fab_Application/HomePageTest/verifyCityCarousalHomePageManagerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="21" column="14" lean-forward="true" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/Fab_Application/HomePageTest/verifyDateBeforeCurrentNotSelectableManagerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="35" column="7" lean-forward="true" selection-start-line="35" selection-start-column="7" selection-end-line="35" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/Fab_Application/HomePageTest/verifyGuestTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="35" column="7" lean-forward="true" selection-start-line="35" selection-start-column="7" selection-end-line="35" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/Fab_Application/HomePageTest/verifyHamburgerMoreOptionsManagerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="36" column="7" lean-forward="true" selection-start-line="36" selection-start-column="7" selection-end-line="36" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/Fab_Application/HomePageTest/verifyHamburgerOptionsManagerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="34" column="17" lean-forward="true" selection-start-line="34" selection-start-column="17" selection-end-line="34" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/Fab_Application/HomePageTest/verifyLoginButtonManagerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="34" column="7" lean-forward="true" selection-start-line="16" selection-start-column="2" selection-end-line="34" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/Fab_Application/HomePageTest/verifyLoginWithValidCredentialsManagerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="34" column="24" lean-forward="true" selection-start-line="34" selection-start-column="24" selection-end-line="34" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/Fab_Application/HomePageTest/verifyNearbyHotelTagManagerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="35" column="7" lean-forward="true" selection-start-line="17" selection-start-column="4" selection-end-line="35" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/Fab_Application/HomePageTest/verifyLogoutManagerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="39" column="7" lean-forward="true" selection-start-line="19" selection-start-column="5" selection-end-line="39" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/Fab_Application/HomePageTest/verifyOurLocationsOptionManagerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="34" column="7" lean-forward="true" selection-start-line="16" selection-start-column="2" selection-end-line="34" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/Fab_Application/HomePageTest/verifyReferOptionManagerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="35" column="7" lean-forward="true" selection-start-line="17" selection-start-column="4" selection-end-line="35" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/Fab_Application/HomePageTest/verifyUserNameOnWelcomePageManagerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="38" column="7" lean-forward="true" selection-start-line="18" selection-start-column="2" selection-end-line="38" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/Fab_Application/SRPTests/SRP_CoupleFriendlyFilterTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="51" column="7" lean-forward="true" selection-start-line="25" selection-start-column="5" selection-end-line="51" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/Fab_Application/SRPTests/SRP_CreditsTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="50" column="7" lean-forward="true" selection-start-line="23" selection-start-column="5" selection-end-line="50" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/Fab_Application/SRPTests/SRP_EditDetailsTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="50" column="7" lean-forward="true" selection-start-line="23" selection-start-column="2" selection-end-line="50" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/Fab_Application/SRPTests/SRP_FilterResetButtonTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="53" column="7" lean-forward="true" selection-start-line="19" selection-start-column="5" selection-end-line="53" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/Fab_Application/SRPTests/SRP_FreeBreakfastAmenityTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="50" column="7" lean-forward="true" selection-start-line="24" selection-start-column="2" selection-end-line="50" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/Fab_Application/SRPTests/SRP_NonZeroSellPriceTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="42" column="7" lean-forward="true" selection-start-line="21" selection-start-column="2" selection-end-line="42" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/Fab_Application/SRPTests/SRP_PriceFilterTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="48" column="7" lean-forward="true" selection-start-line="22" selection-start-column="2" selection-end-line="48" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/Fab_Application/SRPTests/SRP_RackPriceTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="48" column="7" lean-forward="true" selection-start-line="22" selection-start-column="2" selection-end-line="48" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/Fab_Application/SRPTests/SRP_RatingsTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="48" column="7" lean-forward="true" selection-start-line="24" selection-start-column="2" selection-end-line="48" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/Fab_Application/SRPTests/SRP_ReviewCountTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="50" column="7" lean-forward="true" selection-start-line="24" selection-start-column="2" selection-end-line="50" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/Fab_Application/SRPTests/SRP_SortPricesTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="59" column="17" lean-forward="true" selection-start-line="59" selection-start-column="17" selection-end-line="59" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testng.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="23" column="40" selection-start-line="23" selection-start-column="40" selection-end-line="23" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Fab_Application/Controller/POM/LoginScreen/LoginPage_POM.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="68" column="79" selection-start-line="68" selection-start-column="79" selection-end-line="68" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="387">
+          <caret line="72" selection-start-line="72" selection-end-line="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Fab_Application/Controller/POM/HomeScreen/HomeScreen_POM.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="135" column="84" selection-start-line="135" selection-start-column="84" selection-end-line="135" selection-end-column="84" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Fab_Application/Constants/UiAddresses.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="37">
+          <caret line="63" column="82" selection-start-line="63" selection-start-column="82" selection-end-line="63" selection-end-column="82" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Fab_Application/Controller/BookingFlow/ReviewPage/Review_Manager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="23" column="65" selection-start-line="23" selection-start-column="65" selection-end-line="23" selection-end-column="65" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Fab_Application/Controller/BookingFlow/LoginPage/LoginPageManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="12" column="16" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/Fab_Application/Payment_Flow/Payment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="206">
+          <caret line="46" column="30" lean-forward="true" selection-start-line="46" selection-start-column="30" selection-end-line="46" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Fab_Application/Helper/Common/DriverHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-34">
+          <caret line="128" column="28" selection-start-line="128" selection-start-column="28" selection-end-line="128" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Fab_Application/Controller/BookingFlow/HomePage/HomePage_Manager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="12" column="16" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/Fab_Application/BookingTest/BookingFlowTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="35" column="41" selection-start-line="35" selection-start-column="41" selection-end-line="35" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Fab_Application/Controller/BookingFlow/SearchCityPage/SearchCityManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="67" column="48" selection-start-line="67" selection-start-column="48" selection-end-line="67" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

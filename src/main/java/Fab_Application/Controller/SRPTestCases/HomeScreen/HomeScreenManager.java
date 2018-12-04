@@ -3,28 +3,43 @@ package Fab_Application.Controller.SRPTestCases.HomeScreen;
 import Fab_Application.Utilities.ReusableMethods;
 import com.relevantcodes.extentreports.ExtentTest;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import java.io.IOException;
 
-import static Fab_Application.Controller.POM.SplashScreen.SplashScreen_POM.*;
+import static Fab_Application.Controller.POM.HomeScreen.HomeScreen_POM.*;
 
 public class HomeScreenManager {
 
     public void Validate_TC(WebDriver driver, String cityName,
                             String checkInDate, String checkoutDate, ExtentTest logger) throws IOException, InterruptedException {
 
-
+//            if(installAppClose(driver, logger).size() > 0){
+//                    for(WebElement element : installAppClose(driver, logger)){
+//                            ReusableMethods.Click(driver, element);
+//                    }
+//            }
             ReusableMethods.type(driver, searchField(driver, logger), cityName);
             Thread.sleep(4000);
             ReusableMethods.selectFromListByText(driver, autosuggestionList(driver, logger), cityName);
-            ReusableMethods.Click(driver, checkInButton(driver, logger));
-            ReusableMethods.calendar_CheckInDesktop(driver, checkInDate, checkoutDate);
+     //       ReusableMethods.Click(driver, checkInButton(driver, logger));
+       //     ReusableMethods.calendar_CheckIn(driver, checkInDate, checkoutDate);
+        //    ReusableMethods.Click(driver, calendarDoneButton(driver, logger));
             ReusableMethods.Click(driver, SearchButton(driver, logger));
             Thread.sleep(2000);
 
     }
 
     /*// Calendar date selection logic
+=======
+
+            CalendarDateSelection(driver, checkInDate, checkoutDate, logger);
+            ReusableMethods.Click(driver, SearchButton(driver, logger));
+
+    }
+
+    // Calendar date selection logic
+>>>>>>> remotes/origin/MWebAutomation_Bhupesh
     private void CalendarDateSelection(WebDriver driver,
                                       String checkInDate, String checkoutDate, ExtentTest logger) throws InterruptedException, IOException {
 
@@ -58,5 +73,6 @@ public class HomeScreenManager {
                 String.valueOf(userInputCheckoutDate));
 
         ReusableMethods.Click(driver, calendarDoneButton(driver, logger));
+<<<<<<< HEAD
     }*/
-}
+    }

@@ -13,20 +13,23 @@ public class SRP_ValidateFreeBreakfast_Manager {
 
     SoftAssert softAssert = new SoftAssert();
 
-    public void ValidateFreeBreakfastForProperties(WebDriver driver,
-                                                   ExtentTest logger) throws IOException {
-
-        ReusableMethods.scrollToEndLoads(driver);
-
-        ReusableMethods.scrollup(driver);
-
-        int breakfastSize = FreeBreakfastList(driver, logger).size();
-
-        int properties = listOfProperties(driver, logger).size();
-
-        softAssert.assertEquals(breakfastSize, properties,
-                "Free Breakfast not available for all the properties.");
-
-        softAssert.assertAll();
-    }
+//    public void ValidateFreeBreakfastForProperties(WebDriver driver,
+//                                                   ExtentTest logger) throws IOException {
+//
+//        ReusableMethods.scrollToEndLoads(driver);
+//
+//        if(ReusableMethods.isElementPresent(driver, BackToTop(driver, logger))){
+//            ReusableMethods.Click(driver, BackToTop(driver, logger));
+//        }
+//
+//        int breakfastSize = FreeBreakfastList(driver, logger).size();
+//
+//        int properties = (listOfProperties(driver, logger).size()) -
+//                (soldoutPropertiesList(driver, logger).size());
+//
+//        softAssert.assertEquals(breakfastSize, properties,
+//                "Free Breakfast not available for all the properties.");
+//
+//        softAssert.assertAll();
+//    }
 }

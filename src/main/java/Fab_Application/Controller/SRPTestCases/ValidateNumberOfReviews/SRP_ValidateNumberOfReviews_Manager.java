@@ -10,31 +10,31 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static Fab_Application.Controller.POM.SRPScreen.SRP_POM.BackToTop;
-import static Fab_Application.Controller.POM.SRPScreen.SRP_POM.ReviewCountList;
+import static Fab_Application.Controller.POM.SRPScreen.SRP_POM.*;
 
 public class SRP_ValidateNumberOfReviews_Manager {
 
     SoftAssert softAssert = new SoftAssert();
 
     // Vaidate that the number of reviews for any given property on the SRP is not less than 5.
-    public void Validate_TC(WebDriver driver, ExtentTest logger) throws IOException {
-
-        ReusableMethods.scrollToEndLoads(driver);
-
-        ReusableMethods.scrollup(driver);
-
-        List<Integer> reviewCounts = new ArrayList<Integer>();
-
-        for(WebElement element : ReviewCountList(driver, logger)){
-//            System.out.println(element.getText());
-            reviewCounts.add(Integer.parseInt(element.getText().replaceAll("[^\\d.]", "")));
-        }
-
-        for (int i = 0; i < reviewCounts.size(); i++){
-            softAssert.assertTrue(reviewCounts.get(i) >= 5, "Review Count is less than 5 at index : " + i);
-        }
-
-        softAssert.assertAll();
-    }
+//    public void Validate_TC(WebDriver driver, ExtentTest logger) throws IOException {
+//
+//        ReusableMethods.scrollToEndLoads(driver);
+//
+//        if(ReusableMethods.isElementPresent(driver, BackToTop(driver, logger))){
+//            ReusableMethods.Click(driver, BackToTop(driver, logger));
+//        }
+//
+//        List<Integer> reviewCounts = new ArrayList<Integer>();
+//
+//        for(WebElement element : ReviewCountList(driver, logger)){
+//            reviewCounts.add(Integer.parseInt(element.getText().split("\\|")[1].replaceAll("[^\\d.]", "")));
+//        }
+//
+//        for (int i = 0; i < reviewCounts.size(); i++){
+//            softAssert.assertTrue(reviewCounts.get(i) >= 5, "Review Count is less than 5 at index : " + i);
+//        }
+//
+//        softAssert.assertAll();
+//    }
 }

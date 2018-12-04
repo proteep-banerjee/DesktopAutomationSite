@@ -9,14 +9,13 @@ import org.testng.asserts.SoftAssert;
 import java.io.IOException;
 import java.util.List;
 
-//import static Fab_Application.Controller.POM.SplashScreen.SplashScreen_POM.autosuggestionList;
-import static Fab_Application.Controller.POM.SplashScreen.SplashScreen_POM.searchField;
+import static Fab_Application.Controller.POM.HomeScreen.HomeScreen_POM.*;
 
 public class verifyAutoSearchSuggestion_Manager {
     SoftAssert softAssert = new SoftAssert();
 
     // To verify search field gives suggestion according to the input
- /*   public void VerifyAutoSearchSuggestion(WebDriver driver, String location, ExtentTest logger) throws IOException, InterruptedException {
+    public void VerifyAutoSearchSuggestion(WebDriver driver, String location, ExtentTest logger) throws IOException, InterruptedException {
 
         System.out.println("Entering input in the search field...");
         ReusableMethods.type(driver, searchField(driver, logger), location);
@@ -36,5 +35,5 @@ public class verifyAutoSearchSuggestion_Manager {
                 softAssert.assertAll();
             }
         }
-    }*/
+    }
 }

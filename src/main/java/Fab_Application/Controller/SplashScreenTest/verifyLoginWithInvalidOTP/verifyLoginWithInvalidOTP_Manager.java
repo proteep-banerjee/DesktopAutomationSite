@@ -8,7 +8,7 @@ import org.testng.asserts.SoftAssert;
 import java.io.IOException;
 
 import static Fab_Application.Controller.POM.LoginScreen.LoginPage_POM.*;
-import static Fab_Application.Controller.POM.SplashScreen.SplashScreen_POM.LoginButton;
+import static Fab_Application.Controller.POM.HomeScreen.HomeScreen_POM.*;
 
 public class verifyLoginWithInvalidOTP_Manager {
     SoftAssert softAssert = new SoftAssert();

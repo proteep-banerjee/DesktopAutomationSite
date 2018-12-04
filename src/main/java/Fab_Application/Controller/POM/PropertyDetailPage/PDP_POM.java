@@ -9,27 +9,28 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.Set;
+
+import static Fab_Application.Constants.UiAddresses.*;
 
 
 public class PDP_POM {
 
-    public static WebElement EditButton(WebDriver driver, ExtentTest logger) throws IOException {
-        WebElement element = null;
-        try{
-            element = ReusableMethods.FindElement(driver, UiAddresses.PDP_EditButton,logger);
-            logger.log(LogStatus.PASS, element.getText() + " : Found");
-
-        } catch (Exception e) {
-            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
-            System.out.println(e.getMessage());
-            Assert.assertTrue(false);
-        }
-        return element;
-    }
-
     public static WebElement BookNowButton(WebDriver driver, ExtentTest logger) throws IOException {
         WebElement element = null;
         try{
+            String childWindow = "";
+            Set<String> windowHandles = driver.getWindowHandles();
+            Iterator handlesItr = windowHandles.iterator();
+            while(handlesItr.hasNext()){
+                handlesItr.next();
+                childWindow =   handlesItr.next().toString();
+            }
+
+            driver.switchTo().window(childWindow);
+            System.out.println("Switched to window " + driver.getTitle());
+
             element = ReusableMethods.FindElement(driver, UiAddresses.PDP_BookNowButton, logger);
             logger.log(LogStatus.PASS, element.getText() + " : Found");
 
@@ -41,10 +42,10 @@ public class PDP_POM {
         return element;
     }
 
-    public static WebElement EditSelection(WebDriver driver, ExtentTest logger) throws IOException {
+    public static WebElement ContinueButton(WebDriver driver, ExtentTest logger) throws IOException {
         WebElement element = null;
         try{
-            element = ReusableMethods.FindElement(driver, UiAddresses.PDP_EditSelection, logger);
+            element = ReusableMethods.FindElement(driver, UiAddresses.PDP_continueButton,logger);
             logger.log(LogStatus.PASS, element.getText() + " : Found");
 
         } catch (Exception e) {
@@ -55,123 +56,11 @@ public class PDP_POM {
         return element;
     }
 
-    public static WebElement RedeemFabCredits(WebDriver driver, ExtentTest logger) throws IOException {
-        WebElement element = null;
-        try{
-            element = ReusableMethods.FindElement(driver, UiAddresses.PDP_RedeemFabCredits, logger);
-            logger.log(LogStatus.PASS, element.getText() + " : Found");
-
-        } catch (Exception e) {
-            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
-            System.out.println(e.getMessage());
-            Assert.assertTrue(false);
-        }
-        return element;
-    }
-
-    public static WebElement ViewAllRooms(WebDriver driver, ExtentTest logger) throws IOException {
-        WebElement element = null;
-        try{
-            element = ReusableMethods.FindElement(driver, UiAddresses.PDP_ViewAllRooms, logger);
-            logger.log(LogStatus.PASS, element.getText() + " : Found");
-
-        } catch (Exception e) {
-            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
-            System.out.println(e.getMessage());
-            Assert.assertTrue(false);
-        }
-        return element;
-    }
-
-    public static WebElement OpenMaps(WebDriver driver, ExtentTest logger) throws IOException {
-        WebElement element = null;
-        try{
-            element = ReusableMethods.FindElement(driver, UiAddresses.PDP_OpenMaps, logger);
-            logger.log(LogStatus.PASS, element.getText() + " : Found");
-
-        } catch (Exception e) {
-            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
-            System.out.println(e.getMessage());
-            Assert.assertTrue(false);
-        }
-        return element;
-    }
-
-    public static WebElement CancellationPolicy(WebDriver driver, ExtentTest logger) throws IOException {
-        WebElement element = null;
-        try{
-            element = ReusableMethods.FindElement(driver, UiAddresses.PDP_CancellationPolicy, logger);
-            logger.log(LogStatus.PASS, element.getText() + " : Found");
-
-        } catch (Exception e) {
-            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
-            System.out.println(e.getMessage());
-            Assert.assertTrue(false);
-        }
-        return element;
-    }
-
-    public static WebElement ChildrenPolicy(WebDriver driver, ExtentTest logger) throws IOException {
-        WebElement element = null;
-        try{
-            element = ReusableMethods.FindElement(driver, UiAddresses.PDP_ChildrenPolicy, logger);
-            logger.log(LogStatus.PASS, element.getText() + " : Found");
-
-        } catch (Exception e) {
-            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
-            System.out.println(e.getMessage());
-            Assert.assertTrue(false);
-        }
-        return element;
-    }
-
-    public static WebElement Check_In_Out_Timings(WebDriver driver, ExtentTest logger) throws IOException {
-        WebElement element = null;
-        try{
-            element = ReusableMethods.FindElement(driver, UiAddresses.PDP_Check_In_out_timings, logger);
-            logger.log(LogStatus.PASS, element.getText() + " : Found");
-
-        } catch (Exception e) {
-            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
-            System.out.println(e.getMessage());
-            Assert.assertTrue(false);
-        }
-        return element;
-    }
-
-    public static WebElement ViewMoreHotels(WebDriver driver, ExtentTest logger) throws IOException {
-        WebElement element = null;
-        try{
-            element = ReusableMethods.FindElement(driver, UiAddresses.PDP_ViewMore, logger);
-            logger.log(LogStatus.PASS, element.getText() + " : Found");
-
-        } catch (Exception e) {
-            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
-            System.out.println(e.getMessage());
-            Assert.assertTrue(false);
-        }
-        return element;
-    }
-
-    public static WebElement OpenApp(WebDriver driver, ExtentTest logger) throws IOException {
-        WebElement element = null;
-        try{
-            element = ReusableMethods.FindElement(driver, UiAddresses.PDP_OpenAppButton, logger);
-            logger.log(LogStatus.PASS, element.getText() + " : Found");
-
-        } catch (Exception e) {
-            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
-            System.out.println(e.getMessage());
-            Assert.assertTrue(false);
-        }
-        return element;
-    }
-
-    public static WebElement PayAtHotel(WebDriver driver, ExtentTest logger) throws IOException{
+    public static WebElement ConfirmBooking(WebDriver driver, ExtentTest logger) throws IOException{
         WebElement element = null;
 
         try{
-            element = ReusableMethods.FindElement(driver, UiAddresses.PayAtHotel, logger);
+            element = ReusableMethods.FindElement(driver, UiAddresses.PDP_ConfirmBooking, logger);
             logger.log(LogStatus.PASS, element.getText() + " : Found");
 
         } catch (Exception e) {
@@ -182,5 +71,295 @@ public class PDP_POM {
 
         return element;
     }
+
+    public static WebElement roomIncrementButton(WebDriver driver, ExtentTest logger) throws IOException{
+        WebElement element = null;
+
+        try{
+            element = ReusableMethods.FindElement(driver, PDP_RoomIncrementButton, logger);
+            logger.log(LogStatus.PASS, element.getText() + " : + Button Found");
+
+        } catch (Exception e) {
+            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
+            System.out.println(e.getMessage());
+            Assert.assertTrue(false);
+        }
+
+        return element;
+    }
+
+
+    public static WebElement RoomPriceTotal(WebDriver driver, ExtentTest logger) throws IOException {
+        WebElement element = null;
+        try{
+            element = ReusableMethods.FindElement(driver, UiAddresses.PDP_RoomPriceTotal,logger);
+            logger.log(LogStatus.PASS, element.getText() + " : Found");
+
+        } catch (Exception e) {
+            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
+            System.out.println(e.getMessage());
+            Assert.assertTrue(false);
+        }
+        return element;
+    }
+
+        public static WebElement InfobarPrice(WebDriver driver, ExtentTest logger) throws IOException{
+        WebElement element = null;
+
+        try{
+            element = ReusableMethods.FindElement(driver, PDP_InfobarPrice, logger);
+            logger.log(LogStatus.PASS, element.getText() + " : Book Now Button Found on PDPScreen Screen");
+
+        } catch (Exception e) {
+            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
+            System.out.println(e.getMessage());
+            Assert.assertTrue(false);
+        }
+
+        return element;
+    }
+
+
+    public static WebElement InfobarNightCount(WebDriver driver, ExtentTest logger) throws IOException {
+        WebElement element = null;
+        try{
+            element = ReusableMethods.FindElement(driver, PDP_InfobarNightCount, logger);
+            logger.log(LogStatus.PASS, element.getText() + " : Found");
+
+        } catch (Exception e) {
+            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
+            System.out.println(e.getMessage());
+            Assert.assertTrue(false);
+        }
+        return element;
+    }
+
+    public static WebElement InfobarGuestCount(WebDriver driver, ExtentTest logger) throws IOException {
+        WebElement element = null;
+        try{
+            element = ReusableMethods.FindElement(driver, PDP_InforbarGuestCount, logger);
+            logger.log(LogStatus.PASS, element.getText() + " : Found");
+
+        } catch (Exception e) {
+            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
+            System.out.println(e.getMessage());
+            Assert.assertTrue(false);
+        }
+        return element;
+    }
+
+    public static WebElement DeluxeNightCount(WebDriver driver, ExtentTest logger) throws IOException {
+        WebElement element = null;
+        try{
+            element = ReusableMethods.FindElement(driver, PDP_DeluxeNightCount, logger);
+            logger.log(LogStatus.PASS, element.getText() + " : Found");
+
+        } catch (Exception e) {
+            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
+            System.out.println(e.getMessage());
+            Assert.assertTrue(false);
+        }
+        return element;
+    }
+
+    public static WebElement DeluxeGuestCount(WebDriver driver, ExtentTest logger) throws IOException {
+        WebElement element = null;
+        try{
+            element = ReusableMethods.FindElement(driver, PDP_DeluxeGuestCount, logger);
+            logger.log(LogStatus.PASS, element.getText() + " : Found");
+
+        } catch (Exception e) {
+            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
+            System.out.println(e.getMessage());
+            Assert.assertTrue(false);
+        }
+        return element;
+    }
+
+    public static WebElement PDPScreenPrice(WebDriver driver, ExtentTest logger) throws IOException {
+        WebElement element = null;
+        try{
+            element = ReusableMethods.FindElement(driver, UiAddresses.PDP_ScreenPrice, logger);
+            logger.log(LogStatus.PASS, element.getText() + " : Found");
+
+        } catch (Exception e) {
+            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
+            System.out.println(e.getMessage());
+            Assert.assertTrue(false);
+        }
+        return element;
+    }
+
+
+//
+//    public static WebElement ViewAllRooms(WebDriver driver, ExtentTest logger) throws IOException {
+//        WebElement element = null;
+//        try{
+//            element = ReusableMethods.FindElement(driver, UiAddresses.PDP_ViewAllRooms, logger);
+//            logger.log(LogStatus.PASS, element.getText() + " : Found");
+//
+//        } catch (Exception e) {
+//            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
+//            System.out.println(e.getMessage());
+//            Assert.assertTrue(false);
+//        }
+//        return element;
+//    }
+//
+//    public static WebElement OpenMaps(WebDriver driver, ExtentTest logger) throws IOException {
+//        WebElement element = null;
+//        try{
+//            element = ReusableMethods.FindElement(driver, UiAddresses.PDP_OpenMaps, logger);
+//            logger.log(LogStatus.PASS, element.getText() + " : Found");
+//
+//        } catch (Exception e) {
+//            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
+//            System.out.println(e.getMessage());
+//            Assert.assertTrue(false);
+//        }
+//        return element;
+//    }
+//
+//    public static WebElement CancellationPolicy(WebDriver driver, ExtentTest logger) throws IOException {
+//        WebElement element = null;
+//        try{
+//            element = ReusableMethods.FindElement(driver, UiAddresses.PDP_CancellationPolicy, logger);
+//            logger.log(LogStatus.PASS, element.getText() + " : Found");
+//
+//        } catch (Exception e) {
+//            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
+//            System.out.println(e.getMessage());
+//            Assert.assertTrue(false);
+//        }
+//        return element;
+//    }
+//
+//    public static WebElement ChildrenPolicy(WebDriver driver, ExtentTest logger) throws IOException {
+//        WebElement element = null;
+//        try{
+//            element = ReusableMethods.FindElement(driver, UiAddresses.PDP_ChildrenPolicy, logger);
+//            logger.log(LogStatus.PASS, element.getText() + " : Found");
+//
+//        } catch (Exception e) {
+//            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
+//            System.out.println(e.getMessage());
+//            Assert.assertTrue(false);
+//        }
+//        return element;
+//    }
+//
+//    public static WebElement Check_In_Out_Timings(WebDriver driver, ExtentTest logger) throws IOException {
+//        WebElement element = null;
+//        try{
+//            element = ReusableMethods.FindElement(driver, UiAddresses.PDP_Check_In_out_timings, logger);
+//            logger.log(LogStatus.PASS, element.getText() + " : Found");
+//
+//        } catch (Exception e) {
+//            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
+//            System.out.println(e.getMessage());
+//            Assert.assertTrue(false);
+//        }
+//        return element;
+//    }
+//
+//    public static WebElement ViewMoreHotels(WebDriver driver, ExtentTest logger) throws IOException {
+//        WebElement element = null;
+//        try{
+//            element = ReusableMethods.FindElement(driver, UiAddresses.PDP_ViewMore, logger);
+//            logger.log(LogStatus.PASS, element.getText() + " : Found");
+//
+//        } catch (Exception e) {
+//            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
+//            System.out.println(e.getMessage());
+//            Assert.assertTrue(false);
+//        }
+//        return element;
+//    }
+//
+//    public static WebElement OpenApp(WebDriver driver, ExtentTest logger) throws IOException {
+//        WebElement element = null;
+//        try{
+//            element = ReusableMethods.FindElement(driver, UiAddresses.PDP_OpenAppButton, logger);
+//            logger.log(LogStatus.PASS, element.getText() + " : Found");
+//
+//        } catch (Exception e) {
+//            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
+//            System.out.println(e.getMessage());
+//            Assert.assertTrue(false);
+//        }
+//        return element;
+//    }
+//
+
+//
+//    //Bhupesh
+//
+//
+//
+//    public static WebElement roomDecrementButton(WebDriver driver, ExtentTest logger) throws IOException{
+//        WebElement element = null;
+//
+//        try{
+//            element = ReusableMethods.FindElement(driver, PDP_RoomDecrementButton, logger);
+//            logger.log(LogStatus.PASS, element.getText() + " : - Button Found");
+//
+//        } catch (Exception e) {
+//            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
+//            System.out.println(e.getMessage());
+//            Assert.assertTrue(false);
+//        }
+//
+//        return element;
+//    }
+//
+//    public static WebElement addRoomBtn(WebDriver driver, ExtentTest logger) throws IOException{
+//        WebElement element = null;
+//
+//        try{
+//            element = ReusableMethods.FindElement(driver, PDP_AddRoom_Btn, logger);
+//            logger.log(LogStatus.PASS, element.getText() + " : Add Room Button Found");
+//
+//        } catch (Exception e) {
+//            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
+//            System.out.println(e.getMessage());
+//            Assert.assertTrue(false);
+//        }
+//
+//        return element;
+//    }
+//
+//    public static WebElement removeRoomBtn(WebDriver driver, ExtentTest logger) throws IOException{
+//        WebElement element = null;
+//
+//        try{
+//            element = ReusableMethods.FindElement(driver, PDP_RemoveRoom_Btn, logger);
+//            logger.log(LogStatus.PASS, element.getText() + " : Remove Button Found");
+//
+//        } catch (Exception e) {
+//            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
+//            System.out.println(e.getMessage());
+//            Assert.assertTrue(false);
+//        }
+//
+//        return element;
+//    }
+//
+//    public static WebElement titleCloseBtn(WebDriver driver, ExtentTest logger) throws IOException{
+//        WebElement element = null;
+//
+//        try{
+//            element = ReusableMethods.FindElement(driver, titleClose_Btn, logger);
+//            logger.log(LogStatus.PASS, element.getText() + " : Title Close Button Found");
+//
+//        } catch (Exception e) {
+//            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
+//            System.out.println(e.getMessage());
+//            Assert.assertTrue(false);
+//        }
+//
+//        return element;
+//    }
+//
+
 
 }

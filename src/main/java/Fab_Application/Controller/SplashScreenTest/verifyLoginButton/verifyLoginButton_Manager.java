@@ -9,23 +9,23 @@ import org.testng.asserts.SoftAssert;
 
 import java.io.IOException;
 
-import static Fab_Application.Controller.POM.SplashScreen.SplashScreen_POM.LoginButton;
+import static Fab_Application.Controller.POM.HomeScreen.HomeScreen_POM.LoginButton;
 
 public class verifyLoginButton_Manager {
     SoftAssert softAssert = new SoftAssert();
 
-    public void verifyLoginButton(WebDriver driver, ExtentTest logger) throws IOException {
-        //clicking on login button
-        ReusableMethods.Click(driver, LoginButton(driver, logger));
-        //verifying login page appears or not
-        WebElement text = ReusableMethods.FindElement(driver, UiAddresses.loginScreen_login_SignUpText,logger);
-        System.out.println(text.getText());
-        if(text.getText().contains("Log In/Sign Up")) {
-            softAssert.assertTrue(true);
-            softAssert.assertAll();
-        } else {
-            softAssert.assertTrue(false);
-            softAssert.assertAll();
-        }
-    }
+//    public void verifyLoginButton(WebDriver driver, ExtentTest logger) throws IOException {
+//        //clicking on login button
+//        ReusableMethods.Click(driver, LoginButton(driver, logger));
+//        //verifying login page appears or not
+//        WebElement text = ReusableMethods.FindElement(driver, UiAddresses.loginScreen_login_SignUpText,logger);
+//        System.out.println(text.getText());
+//        if(text.getText().contains("Log In/Sign Up")) {
+//            softAssert.assertTrue(true);
+//            softAssert.assertAll();
+//        } else {
+//            softAssert.assertTrue(false);
+//            softAssert.assertAll();
+//        }
+//    }
 }

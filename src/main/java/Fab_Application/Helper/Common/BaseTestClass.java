@@ -4,11 +4,9 @@ import com.mongodb.MongoClient;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
+import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.*;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -28,13 +26,15 @@ public class BaseTestClass {
 
     public static Process process;
 
+    WebDriver driver = null;
+
     public BaseTestClass() {
     }
 
     @BeforeSuite(alwaysRun = true)
     public void setEnvironment() throws Exception {
-        //startAppium();
         startReport();
+        //startAppium();
     }
 
     @AfterSuite(alwaysRun = true)
@@ -64,6 +64,7 @@ public class BaseTestClass {
 
         extent.flush();
         extent.endTest(logger);
+
 
     }
 
