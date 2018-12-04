@@ -5,9 +5,9 @@
     <!-- Test the booking flow end to end on mweb -->
     <test name="BookingFlowTest">
 
-        <classes>
-            <class name="Fab_Application.SampleTest.SampleTest"/>
-        </classes>
+        <packages>
+            <package name="Fab_Application.SplashScreenTest"/>
+        </packages>
     </test> <!-- Test -->
 
 

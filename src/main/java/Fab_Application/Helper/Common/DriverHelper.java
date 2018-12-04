@@ -127,7 +127,7 @@ public class DriverHelper {
     public static WebDriver initiateBrowserInstance(String browserName, String ServerName) throws InterruptedException {
         WebDriver driver = null;
 
-        //browserName = getValueOfProperty(CONFIGURATION_FILE_PATH, browserName);
+        browserName = getValueOfProperty(CONFIGURATION_FILE_PATH, browserName);
         OS = System.getProperty("os.name").toLowerCase();
 
         try {

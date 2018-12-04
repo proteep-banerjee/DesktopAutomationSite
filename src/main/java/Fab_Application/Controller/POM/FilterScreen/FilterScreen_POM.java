@@ -29,12 +29,12 @@ public class FilterScreen_POM {
         return element;
     }
 
-    public static WebElement FilterPriceSlider(WebDriver driver, ExtentTest logger) throws IOException {
+    public static WebElement FilterPriceSliderLeft(WebDriver driver, ExtentTest logger) throws IOException {
 
         WebElement element = null;
 
         try{
-            element = ReusableMethods.FindElement(driver, UiAddresses.Filter_PriceSlider, logger);
+            element = ReusableMethods.FindElement(driver, UiAddresses.Filter_PriceSliderLeft, logger);
             logger.log(LogStatus.PASS, element.getText() + " : Found");
 
         } catch (Exception e) {
@@ -46,12 +46,48 @@ public class FilterScreen_POM {
         return element;
     }
 
-    public static WebElement FilterPriceSliderTooltip(WebDriver driver, ExtentTest logger) throws IOException {
+
+    public static WebElement FilterPriceSliderRight(WebDriver driver, ExtentTest logger) throws IOException {
 
         WebElement element = null;
 
         try{
-            element = ReusableMethods.FindElement(driver, UiAddresses.Filter_PriceSliderTooltip, logger);
+            element = ReusableMethods.FindElement(driver, UiAddresses.Filter_PriceSliderRight, logger);
+            logger.log(LogStatus.PASS, element.getText() + " : Found");
+
+        } catch (Exception e) {
+            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
+            System.out.println(e.getMessage());
+            Assert.assertTrue(false);
+        }
+
+        return element;
+    }
+
+    public static WebElement FilterLeftPriceSliderTooltip(WebDriver driver, ExtentTest logger) throws IOException {
+
+        WebElement element = null;
+
+        try{
+            element = ReusableMethods.FindElement(driver, UiAddresses.Filter_LeftPriceSliderTooltip, logger);
+            logger.log(LogStatus.PASS, element.getText() + " : Found");
+
+        } catch (Exception e) {
+            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
+            System.out.println(e.getMessage());
+            Assert.assertTrue(false);
+        }
+
+        return element;
+    }
+
+
+    public static WebElement FilterRightPriceSliderTooltip(WebDriver driver, ExtentTest logger) throws IOException {
+
+        WebElement element = null;
+
+        try{
+            element = ReusableMethods.FindElement(driver, UiAddresses.Filter_RightPriceSliderTooltip, logger);
             logger.log(LogStatus.PASS, element.getText() + " : Found");
 
         } catch (Exception e) {
@@ -181,6 +217,25 @@ public class FilterScreen_POM {
 
         return element;
     }
+
+
+    public static WebElement FiltertransportationSection(WebDriver driver, ExtentTest logger) throws IOException {
+
+        WebElement element = null;
+
+        try{
+            element = ReusableMethods.FindElement(driver, UiAddresses.Filter_TransportationSection, logger);
+            logger.log(LogStatus.PASS, element.getText() + " : Found");
+
+        } catch (Exception e) {
+            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
+            System.out.println(e.getMessage());
+            Assert.assertTrue(false);
+        }
+
+        return element;
+    }
+
 
     public static WebElement FilterStandardAmenitiesSection(WebDriver driver, ExtentTest logger) throws IOException {
 

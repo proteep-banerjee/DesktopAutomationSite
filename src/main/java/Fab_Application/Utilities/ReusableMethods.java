@@ -8,6 +8,7 @@ import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -504,6 +505,8 @@ public class ReusableMethods extends DriverHelper {
         return spitter[4];
     }
 
+    /*---------------------------------Proteep Banerjee----------------------------------------------------*/
+
     // To select element from a dropdown using value attribute.
     public static void selectByValue(WebDriver driver, WebElement element, String value) throws IOException {
 
@@ -622,5 +625,126 @@ public class ReusableMethods extends DriverHelper {
         }
 
     }
+
+    // The calendar logic for fabhotels.
+    public static void calendar_CheckIn(WebDriver driver, String Month, String Date) {
+
+        String CheckIn = "//div[@class='calender-range-details']//span[text()='" + Month + "']/../../../..//dd[text()='" + Date + "']";
+
+        while (true) {
+            try {
+                driver.findElement(By.xpath(CheckIn)).click();
+                break;
+            } catch (NoSuchElementException e) {
+                String nextBtn = "//div[@class='p-cell p-next']";
+                driver.findElement(By.xpath(nextBtn)).click();
+            }
+        }
+    }
+
+    // Scroll to the top of page
+    public static void scrollup(WebDriver driver){
+
+        try{
+            ((JavascriptExecutor)driver).executeScript("window.scrollBy(0,-(document.body.scrollHeight))");
+        }
+        catch (Exception e){
+            System.out.println("Unable to scroll to the top of the page : " + e.getMessage());
+
+        }
+
+    }
+
+    public static void calendar_CheckInDesktop(WebDriver driver, String Month, String Date) {
+
+        String CheckIn = "//div[@class='datepicker-days']//th[contains(text(),'" + Month + "')]/ancestor::table//td[text()='" + Date + "']";
+
+        while (true) {
+            try {
+                driver.findElement(By.xpath(CheckIn)).click();
+                break;
+            } catch (NoSuchElementException e) {
+                String nextBtn = "//div[@class='datepicker-days']//th[@class='next']";
+                driver.findElement(By.xpath(nextBtn)).click();
+            }
+        }
+    }
+
+        /*-------------------------------------------------------------------------------------------*/
+
+
+    // Method to move to the element
+    public static void MoveToElement(WebDriver driver, WebElement element) throws IOException {
+        try {
+            Actions act = new Actions(driver);
+            act.moveToElement(element).build().perform();
+        } catch (Exception e){
+            System.out.println("Unable to move to the element ");
+        }
+    }
+
+    // Method to move element by offset
+    public static void MoveByOffsetAndClick(WebDriver driver, int x_axis, int y_axis) throws IOException {
+        try {
+            Actions act = new Actions(driver);
+            act.moveByOffset(x_axis,y_axis).click().build().perform();
+        } catch (Exception e){
+            System.out.println("Unable to move element ");
+        }
+    }
+
+    // Method to move element by element
+    public static void MoveByElementAndClick(WebDriver driver, WebElement element) throws IOException, InterruptedException {
+        try {
+            Actions act = new Actions(driver);
+            act.moveToElement(element).click().build().perform();
+            //Thread.sleep(500);
+            //act.perform();
+        } catch (Exception e){
+            System.out.println("Unable to move element ");
+        }
+        Thread.sleep(500);
+    }
+
+    // To select element from a dropdown using value attribute.
+    public static WebElement GetFirstSelectedValue(WebDriver driver, WebElement element) throws IOException {
+        WebElement option= null;
+        try{
+            if(isElementPresent(driver, element)){
+                Select select = new Select(element);
+                option = select.getFirstSelectedOption();
+            }
+        }
+        catch (Exception e){
+            System.out.println("Unable to select element from the dropdown");
+        }
+        return option;
+    }
+
+    // Method to check whether Webelement is clickable or not
+    public static boolean IsClickable(WebDriver driver, WebElement element) throws IOException {
+        try
+        {
+            WebDriverWait wait = new WebDriverWait(driver, 5);
+            wait.until(ExpectedConditions.elementToBeClickable(element));
+            return true;
+        }
+        catch (Exception e)
+        {
+            System.out.println("Failed to check element is clickable");
+            return false;
+        }
+    }
+
+    public static boolean CompareText(String element1, String element2) {
+        if (element1.equalsIgnoreCase(element2)) {
+            return true;
+        } else {
+            System.out.println(element1+" is not equal to "+element2);
+            return false;
+        }
+
+    }
+
 
 }

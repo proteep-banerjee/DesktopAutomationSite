@@ -421,7 +421,7 @@ public class SRP_POM {
         WebElement element = null;
 
         try{
-            element = ReusableMethods.FindElement(driver, UiAddresses.SRP_SearchDetails_City, logger);
+            element = ReusableMethods.FindElement(driver, UiAddresses.splashScreen_CitySearchField, logger);
             logger.log(LogStatus.PASS, element.getText() + " : Found");
 
         } catch (Exception e) {
@@ -569,6 +569,38 @@ public class SRP_POM {
         try{
             element = ReusableMethods.FindElements(driver, UiAddresses.SRP_EarnCredits, logger);
             logger.log(LogStatus.PASS, element + " : Found");
+
+        } catch (Exception e) {
+            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
+            System.out.println(e.getMessage());
+            Assert.assertTrue(false);
+        }
+
+        return element;
+    }
+
+    public static List<WebElement> SavedAmountList(WebDriver driver, ExtentTest logger) throws IOException {
+        List<WebElement> element = null;
+
+        try{
+            element = ReusableMethods.FindElements(driver, UiAddresses.SRP_SavedPriceAmount, logger);
+            logger.log(LogStatus.PASS, element + " : Found Saved Prices List");
+
+        } catch (Exception e) {
+            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
+            System.out.println(e.getMessage());
+            Assert.assertTrue(false);
+        }
+
+        return element;
+    }
+
+    public static WebElement FooterBannerCloseIcon(WebDriver driver, ExtentTest logger) throws IOException {
+        WebElement element = null;
+
+        try{
+            element = ReusableMethods.FindElement(driver, UiAddresses.SRP_FooterBanner, logger);
+            logger.log(LogStatus.PASS, element.getText() + " : Found");
 
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
