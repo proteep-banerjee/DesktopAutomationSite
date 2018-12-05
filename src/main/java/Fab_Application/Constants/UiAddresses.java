@@ -101,13 +101,14 @@ public class UiAddresses {
     // SRP screen
     public static By SRP_couponTextCloseIcon = By.xpath("//span[@class = 'couponText__close']");
     public static By SRP_listOfProperties = By.xpath("//li[@class = ' hotel_card ']//h3[@class = 'hotel-name']/a");
+    public static By SRP_listOfNearbyProperties = By.xpath("//div[@class = 'nearby-heading']/following-sibling::ul[@class = 'hotel-card-wrapper clearfix']/li");
     public static By SRP_SortButton = By.xpath("//span[@class = 'price-arrow ']");
     public static By SRP_FiltersButton = By.className("srp-fiters-text");
     public static By SRP_PropertyPricesList = By.xpath("//li[@class = ' hotel_card ']//span[@class = 'discounted-price']");
     public static By SRP_HeaderEditBox = By.className("header__searchHeaderEditBox");
     public static By SRP_SubscribeButton = By.xpath("//button[text() = 'SUBSCRIBE']");
     public static By SRP_BackToTop = By.className("backtotop");
-    public static By SRP_SoldOutProperties = By.xpath("//div[text()='Sold out']");
+    public static By SRP_SoldOutProperties = By.xpath("//li[@class = 'soldout hotel_card ']");
     public static By SRP_SearchDetails_City = By.className("header__editSearchCity");
     public static By SRP_SearchDetails_Date = By.className("header__editSearchDate");
     public static By SRP_SearchDetails_Guest = By.className("header__editSearchGuest");
@@ -121,6 +122,8 @@ public class UiAddresses {
     public static By SRP_BackButton = By.xpath("//div[@class='sc-jTzLTM hJRnVL']");
     public static By SRP_SavedPriceAmount = By.xpath("//li[@class = ' hotel_card ']//span[@class = 'save-rupees']");
     public static By SRP_FooterBanner = By.xpath("//div[@class = 'fab-stay-coupan fab_stay_coupon ']//span[@class = 'cross-icon cross_icon']");
+    public static By SRP_AppliedFilterList = By.xpath("//ul[@id = 'top_filters_section']/li");
+    public static By SRP_AppliedFiltersCloseIcon = By.xpath("//ul[@id = 'top_filters_section']/li/span[contains(@class, 'close')]");
 
 
     // SRP Edit Details Modal
@@ -139,13 +142,13 @@ public class UiAddresses {
 
 
     //Filter Screen
-    public static By Filter_ResetButton = By.xpath("//span[text() = 'Reset All']");
+    public static By Filter_ResetButton = By.id("clear_all");
     public static By Filter_PriceSliderLeft = By.xpath("//div[@class = 'range-slider']//div[@class = 'range-caret range-left']");
     public static By Filter_PriceSliderRight = By.xpath("//div[@class = 'range-slider']//div[@class = 'range-caret range-right']");
     public static By Filter_LeftPriceSliderTooltip = By.xpath("//div[@class = 'price-container']//span[@class = 'display_min_price']");
     public static By Filter_RightPriceSliderTooltip = By.xpath("//div[@class = 'price-container']//span[@class = 'display_max_price']");
-    public static By Filter_CoupleFriendlyPolicy = By.xpath("//label[text() = 'Couple Friendly ']");
-    public static By Filter_Occupancy = By.xpath("//h3[text()='Occupancy']/following-sibling::div/span");
+    public static By Filter_CoupleFriendlyPolicy = By.xpath("//label[text() = 'Couple Friendly ']/div");
+    public static By Filter_Occupancy = By.xpath("//div[@id = 'max_guest_filter']//label/div");
     public static By Filter_ApplyFilter = By.xpath("//button/span[contains(text(), 'VIEW' )]");
     public static By Filter_StandardAmenitiesSection = By.xpath("//div[@class = 'standard-amenities']");
     public static By Filter_AmenitiesSection = By.id("room_amenities_filter");

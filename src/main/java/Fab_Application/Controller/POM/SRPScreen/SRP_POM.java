@@ -47,6 +47,23 @@ public class SRP_POM {
         return element;
     }
 
+    public static List<WebElement> listOfNearbyProperties(WebDriver driver, ExtentTest logger) throws IOException {
+
+        List<WebElement> element = null;
+
+        try{
+            element = ReusableMethods.FindElements(driver, UiAddresses.SRP_listOfNearbyProperties, logger);
+            logger.log(LogStatus.PASS, element + " : Found", logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
+
+        } catch (Exception e) {
+            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
+            System.out.println(e.getMessage());
+            Assert.assertTrue(false);
+        }
+
+        return element;
+    }
+
     public static WebElement sortButton(WebDriver driver, ExtentTest logger) throws IOException {
 
         WebElement element = null;
@@ -600,6 +617,39 @@ public class SRP_POM {
 
         try{
             element = ReusableMethods.FindElement(driver, UiAddresses.SRP_FooterBanner, logger);
+            logger.log(LogStatus.PASS, element.getText() + " : Found");
+
+        } catch (Exception e) {
+            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
+            System.out.println(e.getMessage());
+            Assert.assertTrue(false);
+        }
+
+        return element;
+    }
+
+    public static List<WebElement> AppliedFiltersList(WebDriver driver, ExtentTest logger) throws IOException {
+        List<WebElement> element = null;
+
+        try{
+            element = ReusableMethods.FindElements(driver, UiAddresses.SRP_AppliedFilterList, logger);
+            logger.log(LogStatus.PASS, element + " : Found applied filters List");
+
+        } catch (Exception e) {
+            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
+            System.out.println(e.getMessage());
+            Assert.assertTrue(false);
+        }
+
+        return element;
+    }
+
+
+    public static WebElement AppliedFilterCloseIcon(WebDriver driver, ExtentTest logger) throws IOException {
+        WebElement element = null;
+
+        try{
+            element = ReusableMethods.FindElement(driver, UiAddresses.SRP_AppliedFiltersCloseIcon, logger);
             logger.log(LogStatus.PASS, element.getText() + " : Found");
 
         } catch (Exception e) {

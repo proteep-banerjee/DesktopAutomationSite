@@ -1,40 +1,36 @@
 package Fab_Application.SRPTests;
 
 import Fab_Application.Controller.SRPTestManagers.HomeScreen.HomeScreenManager;
-import Fab_Application.Controller.SRPTestManagers.ValidateRatings.SRP_ValidateRatings_Manager;
+import Fab_Application.Controller.SRPTestManagers.ValidatePrice.SRP_ValidatePrice_Manager;
 import Fab_Application.Helper.Common.BaseTestClass;
 import Fab_Application.Helper.Common.DriverHelper;
 import Fab_Application.Helper.Data.TestDataHelper;
-import Fab_Application.Utilities.ReusableMethods;
 import com.relevantcodes.extentreports.LogStatus;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
-import java.io.IOException;
-
-public class SRP_RatingsTest extends BaseTestClass {
+public class SRP_NonZeroSellPriceTest extends BaseTestClass {
 
     private static String firstServer = "fabhotels_uat";
     private static String browserName = "browserName";
 
     public static WebDriver driver = null;
 
-    @Test(dataProvider = "ExcelDataProvider", dataProviderClass = TestDataHelper.class,
-            enabled = true)
-    public void RatingsTest(String cityName, String checkInMonth, String checkInDate) throws IOException {
+    @Test(dataProvider = "ExcelDataProvider", dataProviderClass = TestDataHelper.class, enabled = true)
+    public void nonZeroPriceTest(String cityName, String checkInMonth, String checkInDate){
+
         try{
-            logger = extent.startTest("Ratings Test");
+            logger = extent.startTest("Non zero price Test");
             driver = DriverHelper.initiateBrowserInstance(browserName, firstServer);
             new HomeScreenManager().Validate_TC(driver, cityName, checkInMonth, checkInDate, logger);
-            new SRP_ValidateRatings_Manager().ValidatePropertyRatings(driver, logger);
-            logger.log(LogStatus.PASS, "The ratings have been verified successfully on SRP");
+            new SRP_ValidatePrice_Manager().Validate_TC(driver, logger);
+            logger.log(LogStatus.PASS, "The prices of all properties in the SRP screen" +
+                    " have been verified to be non zero.");
         }
         catch (Exception e){
-            String img = ReusableMethods.captureScreenShot(driver);
-            logger.log(LogStatus.FAIL, "Failed to validate ratings on SRP due to the following exception : " +
+            logger.log(LogStatus.FAIL, "Failed to validate prices due to the following exception : " +
                     "<br>" + e.getMessage());
-            logger.addScreenCapture(img);
         }
     }
 

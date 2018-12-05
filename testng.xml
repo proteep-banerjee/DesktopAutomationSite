@@ -3,10 +3,10 @@
 <suite name="Suite" configfailurepolicy="continue">
 
     <!-- Test the booking flow end to end on mweb -->
-    <test name="BookingFlowTest">
+    <test name="SRP Screen Test Desktop">
 
         <packages>
-            <package name="Fab_Application.SplashScreenTest"/>
+            <package name="Fab_Application.SRPTests"/>
         </packages>
     </test> <!-- Test -->
 

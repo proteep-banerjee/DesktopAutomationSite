@@ -1,9 +1,7 @@
 package Fab_Application.SRPTests;
 
-import Fab_Application.Config.DeviceConfiguration;
-import Fab_Application.Constants.Constants;
-import Fab_Application.Controller.SRPTestCases.FilterTest.SRP_FilterTest_Manager;
-import Fab_Application.Controller.SRPTestCases.HomeScreen.HomeScreenManager;
+import Fab_Application.Controller.SRPTestManagers.FilterTest.SRP_FilterTest_Manager;
+import Fab_Application.Controller.SRPTestManagers.HomeScreen.HomeScreenManager;
 import Fab_Application.Helper.Common.BaseTestClass;
 import Fab_Application.Helper.Common.DriverHelper;
 import Fab_Application.Helper.Data.TestDataHelper;
