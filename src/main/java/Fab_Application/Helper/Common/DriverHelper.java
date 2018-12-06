@@ -88,7 +88,7 @@ public class DriverHelper {
         if (driver == null) {
             //ReportHelper.logValidationFailure("Driver not initiated properly", "AndroidDriver:  on LINUX (511dd936....", driver.toString(), "Driver initiation failure");
             Reporter.log("Driver failed to initiate having session id : - " + driver.getSessionId());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
         return driver;
     }

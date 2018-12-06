@@ -9,9 +9,8 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
+@SuppressWarnings("ConstantConditions")
 public class LoginPage_POM {
 
     public static WebElement googleLogin(WebDriver driver, ExtentTest logger) throws IOException {
@@ -24,7 +23,7 @@ public class LoginPage_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;
@@ -40,7 +39,7 @@ public class LoginPage_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;
@@ -57,7 +56,7 @@ public class LoginPage_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;
@@ -73,7 +72,7 @@ public class LoginPage_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;
@@ -90,7 +89,7 @@ public class LoginPage_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;
@@ -106,7 +105,7 @@ public class LoginPage_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;
@@ -122,7 +121,7 @@ public class LoginPage_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;
@@ -136,7 +135,7 @@ public class LoginPage_POM {
         }
         catch(Exception e){
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;
@@ -150,7 +149,7 @@ public class LoginPage_POM {
         }
         catch(Exception e){
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
         return element;
     }
@@ -163,7 +162,7 @@ public class LoginPage_POM {
         }
         catch(Exception e){
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
         return element;
     }
@@ -176,7 +175,7 @@ public class LoginPage_POM {
         }
         catch(Exception e){
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
         return element;
     }
@@ -189,7 +188,7 @@ public class LoginPage_POM {
         }
         catch(Exception e){
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
             return null;
         }
     }
@@ -202,24 +201,10 @@ public class LoginPage_POM {
         }
         catch(Exception e){
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
         return element;
     }
-
-/*    public static List<WebElement> loginSideTabs(WebDriver driver, ExtentTest logger) throws IOException {
-        List<WebElement> elements = null;
-
-        try{
-            elements = ReusableMethods.FindElements(driver, UiAddresses.loginScreen_sideTabs, logger);
-        }
-        catch(Exception e){
-            System.out.println(e.getMessage());
-            Assert.assertTrue(false);
-        }
-        return elements;
-    }*/
-
 
 
     public static WebElement logoutPopup(WebDriver driver, ExtentTest logger) throws IOException {
@@ -230,7 +215,7 @@ public class LoginPage_POM {
         }
         catch(Exception e){
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
         return element;
     }
@@ -243,7 +228,7 @@ public class LoginPage_POM {
         }
         catch(Exception e){
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
         return element;
     }
@@ -256,7 +241,7 @@ public class LoginPage_POM {
         }
         catch(Exception e){
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
         return element;
     }
@@ -269,7 +254,7 @@ public class LoginPage_POM {
         }
         catch(Exception e){
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
         return element;
     }
@@ -282,7 +267,7 @@ public class LoginPage_POM {
         }
         catch(Exception e){
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
         return element;
     }

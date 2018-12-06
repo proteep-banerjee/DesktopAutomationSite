@@ -17,8 +17,6 @@ public class SRP_ValidateEditBox_Manager {
                                        String checkInDate, String checkOutDate,
                                        String Guests, ExtentTest logger) throws Exception {
 
-        ReusableMethods.Click(driver, EditDetailsBox(driver, logger));
-        ReusableMethods.Click(driver, ClearButton(driver, logger));
         ReusableMethods.type(driver, SearchField(driver, logger), cityName);
 
         Thread.sleep(4000);

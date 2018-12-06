@@ -10,6 +10,7 @@ import org.testng.Assert;
 
 import java.io.IOException;
 
+@SuppressWarnings("ConstantConditions")
 public class FilterScreen_POM {
 
     public static WebElement FilterResetButton(WebDriver driver, ExtentTest logger) throws IOException {
@@ -23,7 +24,7 @@ public class FilterScreen_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;
@@ -40,7 +41,7 @@ public class FilterScreen_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;
@@ -58,7 +59,7 @@ public class FilterScreen_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;
@@ -75,7 +76,7 @@ public class FilterScreen_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;
@@ -93,7 +94,7 @@ public class FilterScreen_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;
@@ -110,7 +111,7 @@ public class FilterScreen_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;
@@ -127,7 +128,7 @@ public class FilterScreen_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;
@@ -144,7 +145,7 @@ public class FilterScreen_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;
@@ -161,7 +162,7 @@ public class FilterScreen_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;
@@ -178,7 +179,7 @@ public class FilterScreen_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;
@@ -195,7 +196,7 @@ public class FilterScreen_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;
@@ -212,7 +213,7 @@ public class FilterScreen_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;
@@ -230,7 +231,7 @@ public class FilterScreen_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;
@@ -248,24 +249,7 @@ public class FilterScreen_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
-        }
-
-        return element;
-    }
-
-    public static WebElement FilterApplyButton(WebDriver driver, ExtentTest logger) throws IOException {
-
-        WebElement element = null;
-
-        try{
-            element = ReusableMethods.FindElement(driver, UiAddresses.Filter_ApplyFilter, logger);
-            logger.log(LogStatus.PASS, element.getText() + " : Found");
-
-        } catch (Exception e) {
-            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
-            System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;

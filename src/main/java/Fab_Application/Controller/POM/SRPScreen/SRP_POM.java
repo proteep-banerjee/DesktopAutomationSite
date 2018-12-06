@@ -11,24 +11,8 @@ import org.testng.Assert;
 import java.io.IOException;
 import java.util.List;
 
+@SuppressWarnings({"ConstantConditions", "DanglingJavadoc"})
 public class SRP_POM {
-
-    public static WebElement couponCloseIcon(WebDriver driver, ExtentTest logger) throws IOException {
-
-        WebElement element = null;
-
-        try{
-            element = ReusableMethods.FindElement(driver, UiAddresses.SRP_couponTextCloseIcon, logger);
-            logger.log(LogStatus.PASS, element.getText() + " : Found");
-
-        } catch (Exception e) {
-            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
-            System.out.println(e.getMessage());
-            Assert.assertTrue(false);
-        }
-
-        return element;
-    }
 
     public static List<WebElement> listOfProperties(WebDriver driver, ExtentTest logger) throws IOException {
 
@@ -41,7 +25,7 @@ public class SRP_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;
@@ -58,7 +42,7 @@ public class SRP_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;
@@ -75,28 +59,12 @@ public class SRP_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;
     }
 
-    public static WebElement filtersButton(WebDriver driver, ExtentTest logger) throws IOException {
-
-        WebElement element = null;
-
-        try{
-            element = ReusableMethods.FindElement(driver, UiAddresses.SRP_FiltersButton, logger);
-            logger.log(LogStatus.PASS, element.getText() + " : Found");
-
-        } catch (Exception e) {
-            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
-            System.out.println(e.getMessage());
-            Assert.assertTrue(false);
-        }
-
-        return element;
-    }
 
     public static List<WebElement> listOfPropertyPrices(WebDriver driver, ExtentTest logger) throws IOException {
 
@@ -109,29 +77,11 @@ public class SRP_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return elements;
     }
-
-    public static WebElement EditDetailsBox(WebDriver driver, ExtentTest logger) throws IOException {
-
-        WebElement element = null;
-
-        try{
-            element = ReusableMethods.FindElement(driver, UiAddresses.SRP_HeaderEditBox, logger);
-            logger.log(LogStatus.PASS, element.getText() + " : Found");
-
-        } catch (Exception e) {
-            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
-            System.out.println(e.getMessage());
-            Assert.assertTrue(false);
-        }
-
-        return element;
-    }
-
 
 
 
@@ -140,22 +90,6 @@ public class SRP_POM {
     /************************************************************************
      * **********************************************************************
      */
-    public static WebElement ClearButton(WebDriver driver, ExtentTest logger) throws IOException {
-
-        WebElement element = null;
-
-        try{
-            element = ReusableMethods.FindElement(driver, UiAddresses.SRP_EditDetails_ClearField, logger);
-            logger.log(LogStatus.PASS, element.getText() + " : Found");
-
-        } catch (Exception e) {
-            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
-            System.out.println(e.getMessage());
-            Assert.assertTrue(false);
-        }
-
-        return element;
-    }
 
     public static WebElement SearchField(WebDriver driver, ExtentTest logger) throws IOException {
 
@@ -168,7 +102,7 @@ public class SRP_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;
@@ -184,7 +118,7 @@ public class SRP_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return elements;
@@ -201,7 +135,7 @@ public class SRP_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;
@@ -218,28 +152,12 @@ public class SRP_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;
     }
 
-    public static WebElement GuestDecrease(WebDriver driver, ExtentTest logger) throws IOException {
-
-        WebElement element = null;
-
-        try{
-            element = ReusableMethods.FindElement(driver, UiAddresses.SRP_EditDetails_GuestMinusButton, logger);
-            logger.log(LogStatus.PASS, element.getText() + " : Found");
-
-        } catch (Exception e) {
-            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
-            System.out.println(e.getMessage());
-            Assert.assertTrue(false);
-        }
-
-        return element;
-    }
 
     public static WebElement SearchButton(WebDriver driver, ExtentTest logger) throws IOException {
 
@@ -252,7 +170,7 @@ public class SRP_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;
@@ -268,7 +186,7 @@ public class SRP_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;
@@ -284,7 +202,7 @@ public class SRP_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;
@@ -300,7 +218,7 @@ public class SRP_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;
@@ -316,7 +234,7 @@ public class SRP_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return elements;
@@ -332,48 +250,14 @@ public class SRP_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;
     }
-/******************************************************************************
- * ***************************************************************************
- * ****************************************************************************/
-
-
-
-    public static WebElement SubscribeButton(WebDriver driver, ExtentTest logger) throws IOException{
-        WebElement element = null;
-
-        try{
-            element = ReusableMethods.FindElement(driver, UiAddresses.SRP_SubscribeButton, logger);
-            logger.log(LogStatus.PASS, element.getText() + " : Found");
-
-        } catch (Exception e) {
-            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
-            System.out.println(e.getMessage());
-            Assert.assertTrue(false);
-        }
-
-        return element;
-    }
-
-    public static WebElement BackToTop(WebDriver driver, ExtentTest logger) throws IOException{
-        WebElement element = null;
-
-        try{
-            element = ReusableMethods.FindElement(driver, UiAddresses.SRP_BackToTop, logger);
-            logger.log(LogStatus.PASS, element.getText() + " : Found");
-
-        } catch (Exception e) {
-            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
-            System.out.println(e.getMessage());
-            Assert.assertTrue(false);
-        }
-
-        return element;
-    }
+/*****************************************************************************
+ ***************************************************************************
+ ****************************************************************************/
 
 
 
@@ -382,21 +266,6 @@ public class SRP_POM {
     /**************************************************************************
      * ************************************************************************
      */
-    public static WebElement HighToLow(WebDriver driver, ExtentTest logger) throws IOException{
-        WebElement element = null;
-
-        try{
-            element = ReusableMethods.FindElement(driver, UiAddresses.SRP_SortModal_PriceDesc, logger);
-            logger.log(LogStatus.PASS, element.getText() + " : Found");
-
-        } catch (Exception e) {
-            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
-            System.out.println(e.getMessage());
-            Assert.assertTrue(false);
-        }
-
-        return element;
-    }
 
     public static WebElement LowToHigh(WebDriver driver, ExtentTest logger) throws IOException{
         WebElement element = null;
@@ -408,7 +277,7 @@ public class SRP_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;
@@ -428,7 +297,7 @@ public class SRP_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return elements;
@@ -444,7 +313,7 @@ public class SRP_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;
@@ -460,7 +329,7 @@ public class SRP_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;
@@ -476,7 +345,7 @@ public class SRP_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;
@@ -492,7 +361,7 @@ public class SRP_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;
@@ -508,7 +377,7 @@ public class SRP_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;
@@ -524,7 +393,7 @@ public class SRP_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;
@@ -541,7 +410,7 @@ public class SRP_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;
@@ -558,7 +427,7 @@ public class SRP_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;
@@ -574,7 +443,7 @@ public class SRP_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;
@@ -590,7 +459,7 @@ public class SRP_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;
@@ -606,7 +475,7 @@ public class SRP_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;
@@ -622,7 +491,7 @@ public class SRP_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;
@@ -638,7 +507,7 @@ public class SRP_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;
@@ -655,7 +524,7 @@ public class SRP_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;
