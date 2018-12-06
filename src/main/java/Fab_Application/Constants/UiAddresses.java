@@ -85,7 +85,7 @@ public class UiAddresses {
     public static By Filter_StandardAmenitiesSection = By.xpath("//div[@class = 'standard-amenities']");
     public static By Filter_AmenitiesSection = By.id("room_amenities_filter");
     public static By Filter_OccupancySection = By.id("max_guest_filter");
-    public static By Filter_PoliciesSection = By.id("policy_filter']");
+    public static By Filter_PoliciesSection = By.id("policy_filter");
     public static By Filter_PricepernightSection = By.xpath("//div[@class = 'price-container']");
     public static By Filter_LocalitySection = By.id("popular_locality_filter");
     public static By Filter_TransportationSection = By.id("transportation_filter");
