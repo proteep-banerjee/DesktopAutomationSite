@@ -13,20 +13,9 @@ public class PDP_Manager {
 
     public void Validate_TC(WebDriver driver, ExtentTest logger) throws IOException {
 
-  //      ReusableMethods.Click(driver, EditButton(driver, logger));
-
-    	
-
         ReusableMethods.Click(driver, BookNowButton(driver, logger));
         ReusableMethods.scrollToEndLoads(driver);
         ReusableMethods.Click(driver,ContinueButton(driver,logger));
-//        ReusableMethods.Click(driver, PayAtHotel(driver, logger));
-//
-//        ReusableMethods.getPageTitle(driver, "Checkout Confirmation - FabHotels.com");
-//
-//        //OTP Validation
-//        ReusableMethods.Click(driver,ConfirmBooking(driver,logger));
-
 
 
     }

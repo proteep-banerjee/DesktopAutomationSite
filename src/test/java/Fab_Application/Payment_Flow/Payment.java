@@ -37,7 +37,7 @@ public class Payment extends BaseTestClass {
     //End To End Flow
     @Test(dataProvider = "ExcelDataProvider", dataProviderClass = TestDataHelper.class, enabled = true)
 
-    public void Payment(String mobileNumber, String otp,String cityName,String checkInDate,String guestNumber,String PropertyName,
+    public void PaymentFlow(String mobileNumber, String otp,String cityName,String checkInDate,String guestNumber,String PropertyName,
     		String cardNumber, String month, String year, String cvv, String CardName) throws IOException, InterruptedException, JSONException {
 
         logger = extent.startTest("End To End Payment Flow");

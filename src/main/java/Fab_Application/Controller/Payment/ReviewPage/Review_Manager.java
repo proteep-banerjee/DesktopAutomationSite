@@ -29,7 +29,7 @@ public class Review_Manager {
       //  ReusableMethods.Click(driver,Review_POM.PayNow(driver,logger));
 
         String totalAmount = Review_POM.TotalAmount(driver,logger).getAttribute("innerText").replaceAll("[^0-9]","");
-        String amountToBePaid = Review_POM.AmountToBePaid(driver,logger).getText().replaceAll("[^0-9]","");
+        String amountToBePaid = Review_POM.AmountToBePaid(driver,logger).getAttribute("innerText").replaceAll("[^0-9]","");
         
         System.out.println("totalAmount "+totalAmount);
         System.out.println("amountToBePaid "+ amountToBePaid);

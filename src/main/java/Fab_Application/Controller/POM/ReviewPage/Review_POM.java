@@ -158,7 +158,7 @@ public class Review_POM {
 
         WebElement element = null;
         try{
-            element = ReusableMethods.FindElement(driver,UiAddresses.appliedCoupon, logger);
+            element = ReusableMethods.FindElement(driver,UiAddresses.Review_appliedCoupon, logger);
             logger.log(LogStatus.PASS, element.getText() + " : Found");
 
         } catch (Exception e) {
@@ -173,22 +173,7 @@ public class Review_POM {
 
         WebElement element = null;
         try{
-            element = ReusableMethods.FindElement(driver,UiAddresses.couponDiscount, logger);
-            logger.log(LogStatus.PASS, element.getText() + " : Found");
-
-        } catch (Exception e) {
-            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
-            System.out.println(e.getMessage());
-            Assert.assertTrue(false);
-        }
-        return element;
-    }
-    
-    public static WebElement rackPrice(WebDriver driver, ExtentTest logger) throws IOException{
-
-        WebElement element = null;
-        try{
-            element = ReusableMethods.FindElement(driver,UiAddresses.rackPrice, logger);
+            element = ReusableMethods.FindElement(driver,UiAddresses.Review_couponDiscount, logger);
             logger.log(LogStatus.PASS, element.getText() + " : Found");
 
         } catch (Exception e) {
@@ -203,7 +188,7 @@ public class Review_POM {
 
         WebElement element = null;
         try{
-            element = ReusableMethods.FindElement(driver,UiAddresses.promoPrice, logger);
+            element = ReusableMethods.FindElement(driver,UiAddresses.Review_promoPrice, logger);
             logger.log(LogStatus.PASS, element.getText() + " : Found");
 
         } catch (Exception e) {
@@ -214,11 +199,27 @@ public class Review_POM {
         return element;
     }
     
+    public static List<WebElement> rackPrice(WebDriver driver, ExtentTest logger) throws IOException{
+
+        List<WebElement> list = null;
+        try{
+        	//list = ReusableMethods.FindElements(driver,UiAddresses.rackPrice, logger);
+        	list = driver.findElements(UiAddresses.Review_rackPrice);
+            logger.log(LogStatus.PASS,  " List of desired elements Found");
+
+        } catch (Exception e) {
+            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
+            System.out.println(e.getMessage());
+            Assert.assertTrue(false);
+        }
+        return list;
+    }
+    
     public static WebElement discountedPrice(WebDriver driver, ExtentTest logger) throws IOException{
 
         WebElement element = null;
         try{
-            element = ReusableMethods.FindElement(driver,UiAddresses.discountedPrice, logger);
+            element = ReusableMethods.FindElement(driver,UiAddresses.Review_discountedPrice, logger);
             logger.log(LogStatus.PASS, element.getText() + " : Found");
 
         } catch (Exception e) {
@@ -233,7 +234,7 @@ public class Review_POM {
 
         WebElement element = null;
         try{
-            element = ReusableMethods.FindElement(driver,UiAddresses.GSTAmount, logger);
+            element = ReusableMethods.FindElement(driver,UiAddresses.Review_GSTAmount, logger);
             logger.log(LogStatus.PASS, element.getText() + " : Found");
 
         } catch (Exception e) {
@@ -248,7 +249,7 @@ public class Review_POM {
 
         WebElement element = null;
         try{
-            element = ReusableMethods.FindElement(driver,UiAddresses.payableAmount, logger);
+            element = ReusableMethods.FindElement(driver,UiAddresses.Review_payableAmount, logger);
             logger.log(LogStatus.PASS, element.getText() + " : Found");
 
         } catch (Exception e) {
@@ -263,7 +264,7 @@ public class Review_POM {
 
         WebElement element = null;
         try{
-            element = ReusableMethods.FindElement(driver,UiAddresses.totalSavings, logger);
+            element = ReusableMethods.FindElement(driver,UiAddresses.Review_totalSavings, logger);
             logger.log(LogStatus.PASS, element.getText() + " : Found");
 
         } catch (Exception e) {
@@ -275,7 +276,65 @@ public class Review_POM {
     }
     
     
+    public static WebElement pointsToBeCredited(WebDriver driver, ExtentTest logger) throws IOException{
+
+        WebElement element = null;
+        try{
+            element = ReusableMethods.FindElement(driver,UiAddresses.Review_pointsToBeCredited, logger);
+            logger.log(LogStatus.PASS, element.getText() + " : Found");
+
+        } catch (Exception e) {
+            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
+            System.out.println(e.getMessage());
+            Assert.assertTrue(false);
+        }
+        return element;
+    }  
     
+    public static WebElement removeCoupon(WebDriver driver, ExtentTest logger) throws IOException{
+
+        WebElement element = null;
+        try{
+            element = ReusableMethods.FindElement(driver,UiAddresses.Review_removeCoupon, logger);
+            logger.log(LogStatus.PASS, element.getText() + " : Found");
+
+        } catch (Exception e) {
+            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
+            System.out.println(e.getMessage());
+            Assert.assertTrue(false);
+        }
+        return element;
+    } 
+    
+    public static WebElement applyCouponField(WebDriver driver, ExtentTest logger) throws IOException{
+
+        WebElement element = null;
+        try{
+            element = ReusableMethods.FindElement(driver,UiAddresses.Review_applyCouponField, logger);
+            logger.log(LogStatus.PASS, element.getText() + " : Found");
+
+        } catch (Exception e) {
+            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
+            System.out.println(e.getMessage());
+            Assert.assertTrue(false);
+        }
+        return element;
+    } 
+    
+    public static WebElement applyCouponButton(WebDriver driver, ExtentTest logger) throws IOException{
+
+        WebElement element = null;
+        try{
+            element = ReusableMethods.FindElement(driver,UiAddresses.Review_applyCouponButton, logger);
+            logger.log(LogStatus.PASS, element.getText() + " : Found");
+
+        } catch (Exception e) {
+            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
+            System.out.println(e.getMessage());
+            Assert.assertTrue(false);
+        }
+        return element;
+    } 
     
     
 }

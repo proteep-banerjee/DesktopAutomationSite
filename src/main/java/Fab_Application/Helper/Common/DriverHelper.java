@@ -130,35 +130,61 @@ public class DriverHelper {
 		//browserName = getValueOfProperty(CONFIGURATION_FILE_PATH, browserName);
 		OS = System.getProperty("os.name").toLowerCase();
 
-		Map<String, Object> prefs = new HashMap<String, Object>();
-
-		// Set the notification setting it will override the default setting
-		prefs.put("profile.default_content_setting_values.notifications", 2);
-
-		ChromeOptions options = new ChromeOptions();
-		//    options.addArguments("--enable-strict-powerful-feature-restrictions");
-		options.setExperimentalOption("prefs", prefs);
 
 		try {
-			if (browserName.equalsIgnoreCase("Chrome") && OS.contains("windows")) {
+			if(browserName.equalsIgnoreCase("Chrome")) {
+				
+			ChromeOptions options = BrowserCapabilities.WebChromeCapabilitiesList();
+			if ( OS.contains("windows")) {
 				System.setProperty("webdriver.chrome.driver", DriverConfiguration.chromeDriverPath);
-				// driver = new ChromeDriver();
-
-				driver = new ChromeDriver(options);
-			} else if (browserName.equalsIgnoreCase("Chrome") && OS.contains("mac")) {
-				System.setProperty("webdriver.chrome.driver", DriverConfiguration.chromeDriverPath_mac);
-				//  driver = new ChromeDriver();
-				driver = new ChromeDriver(options);
+				
+			} else if (OS.contains("mac")) {
+				System.setProperty("webdriver.chrome.driver", DriverConfiguration.chromeDriverPath_mac);		
 			}
-
+			 driver = new ChromeDriver(options);
 
 			driver.manage().deleteAllCookies();
 			driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
 			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+			}
+			
+			else if(browserName.equalsIgnoreCase("Firefox")) {
+				
+				ChromeOptions options = BrowserCapabilities.WebChromeCapabilitiesList();
+				if ( OS.contains("windows")) {
+					System.setProperty("webdriver.chrome.driver", DriverConfiguration.chromeDriverPath);
+					
+				} else if (OS.contains("mac")) {
+					System.setProperty("webdriver.chrome.driver", DriverConfiguration.chromeDriverPath_mac);		
+				}
+				 driver = new ChromeDriver(options);
 
+				driver.manage().deleteAllCookies();
+				driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+				driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+				}
+			
+			else if(browserName.equalsIgnoreCase("InternetExplorer")) {
+				
+				ChromeOptions options = BrowserCapabilities.WebChromeCapabilitiesList();
+				if ( OS.contains("windows")) {
+					System.setProperty("webdriver.chrome.driver", DriverConfiguration.chromeDriverPath);
+					
+				} else if (OS.contains("mac")) {
+					System.setProperty("webdriver.chrome.driver", DriverConfiguration.chromeDriverPath_mac);		
+				}
+				 driver = new ChromeDriver(options);
+
+				driver.manage().deleteAllCookies();
+				driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+				driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+				}
+			
+			
 			String ServiceUrl = getValueOfProperty(CONFIGURATION_FILE_PATH, ServerName);
 			driver.get(ServiceUrl);
-		} catch (Exception e) {
+			
+		 }catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Unable to open browser instance.");
 			System.exit(-1);

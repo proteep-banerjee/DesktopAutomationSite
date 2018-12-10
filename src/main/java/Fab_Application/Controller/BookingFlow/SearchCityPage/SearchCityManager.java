@@ -24,16 +24,13 @@ public class SearchCityManager {
         ReusableMethods.Click(driver, CheckinButton(driver, logger));
         
         Thread.sleep(3000);
-    //    System.out.println("Waiting before calendar");
+   
         CalendarDateSelection(driver,checkInDate,logger);
-      //  CalendarDateSelection(driver,checkoutDate,logger);
-        
-     //   System.out.println("Selecting guest after wait");
-        Thread.sleep(3000);
-        driver.findElement(By.xpath("//span[@class='person-icon-wrap']")).click();
-        Thread.sleep(2000);
+        ReusableMethods.wait(3);
+  
+        ReusableMethods.Click(driver, guestIcon(driver,logger));
+        ReusableMethods.wait(2);
         ReusableMethods.Click(driver, selectGuest(driver,logger,guestNum));
-
         ReusableMethods.Click(driver, SearchButton(driver, logger));
     }
 
@@ -48,35 +45,22 @@ public class SearchCityManager {
         String month = monthYearArray[0];
         String year = monthYearArray[1];
 
-        System.out.println("Displayed month "+ month + " year "+ year);
-
         String[] checkInDateArr = Date.split("-");
         String toBeSelectedYear = checkInDateArr[2];
         String toBeSelectedMonth = checkInDateArr[1];
         String toBeSelectedDate = checkInDateArr[0];
 
-        System.out.println("Date "+ toBeSelectedDate + " Month " + toBeSelectedMonth+ " Year " + toBeSelectedYear);
-
         while(Integer.parseInt(toBeSelectedYear) > Integer.parseInt(year)){
             ReusableMethods.Click(driver,calendarNextButton(driver,logger));
         }
-        System.out.println("After year " + ReusableMethods.getText(driver,calendar_monthYearDisplay,logger));
-
-        System.out.println("months[Integer.parseInt(toBeSelectedMonth) -1] "+ months[Integer.parseInt(toBeSelectedMonth) -1]);
-
+       
         boolean monthResult = month.equalsIgnoreCase(months[Integer.parseInt(toBeSelectedMonth) -1]);
-        System.out.println("monthResult "+ monthResult);
         while(!month.equalsIgnoreCase(months[Integer.parseInt(toBeSelectedMonth) -1])) {
-        	System.out.println("In while loop");
         	ReusableMethods.Click(driver,calendarNextButton(driver,logger));
         }
         
-        System.out.println("After while ");
-
         if(month.equalsIgnoreCase(months[Integer.parseInt(toBeSelectedMonth) - 1])){
         	
-        	System.out.println("Desired month is selected ");
-            
             ReusableMethods.Click(driver, selectCalendarDates(driver,logger,toBeSelectedDate));
         }
         else {

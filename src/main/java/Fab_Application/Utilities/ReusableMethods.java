@@ -25,6 +25,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import static Fab_Application.Controller.POM.ReviewPage.Review_POM.PayAtHotel;
 import static Fab_Application.Helper.Common.BaseTestClass.logger;
 
 public class ReusableMethods extends DriverHelper {
@@ -57,6 +58,18 @@ public class ReusableMethods extends DriverHelper {
 
             System.out.println(element.getTagName());
             System.out.println("Entered Text :" + value);
+        } else {
+            System.out.println("Not present element:" + element);
+        }
+    }
+    
+    public static void sendKeys(WebDriver driver, WebElement element) {
+
+        if (isElementPresent(driver, element)) {
+            element.click();
+
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+
         } else {
             System.out.println("Not present element:" + element);
         }
@@ -601,27 +614,6 @@ public class ReusableMethods extends DriverHelper {
         String text = FindElement(driver,by,logger).getText();
         return text;
     }
-
-
-//    // The calendar logic for fabhotels.
-//    public static void calendar_CheckIn(WebDriver driver, String Month, String Date) {
-//
-//        String[] months = {"January","February","March","April","May","June","July","August","September","October","November","December"};
-//
-//
-//
-////        String CheckIn = "//div[@class='calender-range-details']//span[text()='" + Month + "']/../../../..//dd[text()='" + Date + "']";
-////
-////        while (true) {
-////            try {
-////                driver.findElement(By.xpath(CheckIn)).click();
-////                break;
-////            } catch (NoSuchElementException e) {
-////                String nextBtn = "//div[@class='p-cell p-next']";
-////                driver.findElement(By.xpath(nextBtn)).click();
-////            }
-////        }
-//    }
 
 
     /*------------------------------------------SUMEET SINGH---------------------------------------------*/

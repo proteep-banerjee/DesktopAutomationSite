@@ -5,20 +5,19 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 
 import com.relevantcodes.extentreports.LogStatus;
-
 import Fab_Application.Controller.BookingFlow.HomePage.HomePage_Manager;
 import Fab_Application.Controller.BookingFlow.LoginPage.LoginPageManager;
-import Fab_Application.Controller.BookingFlow.PropertyDetailPage.PDP_Manager;
-import Fab_Application.Controller.BookingFlow.ReviewPage.Review_Manager;
+import Fab_Application.Controller.ReviewPageTestCase.PropertyDetailPage.PDP_Manager;
+import Fab_Application.Controller.ReviewPageTestCase.ReviewPage.ApplyCoupon.Review_Manager;
 import Fab_Application.Controller.BookingFlow.SearchCityPage.SearchCityManager;
 import Fab_Application.Controller.BookingFlow.SearchResultPage.SRP_Manager;
 import Fab_Application.Helper.Common.BaseTestClass;
 import Fab_Application.Helper.Common.DriverHelper;
 import Fab_Application.Helper.Data.TestDataHelper;
 
-public class CouponsTest extends BaseTestClass {
+public class ApplyCouponTest extends BaseTestClass {
 
-    private static String firstServer = "fabhotels_uat";
+    private static String firstServer = "fabhotels_prod";
     private static String browserName = "Chrome";
    
 
@@ -26,8 +25,8 @@ public class CouponsTest extends BaseTestClass {
 
     @Test(dataProvider = "ExcelDataProvider", dataProviderClass = TestDataHelper.class,
             enabled = true)
-    public void ApplyCoupons_Test(String MobileNumber, String OTP,String cityName, String checkInDate,
-            String guestsNumber, String PropertyName){
+    public void ApplyCouponsTest(String MobileNumber, String OTP,String cityName, String checkInDate,
+            String guestsNumber, String PropertyName, String couponCode, String discountPercentage){
 
         try{
             logger = extent.startTest("Coupon Test");
@@ -38,7 +37,7 @@ public class CouponsTest extends BaseTestClass {
             new SearchCityManager().Validate_TC(driver, cityName, checkInDate, guestsNumber, logger);
             new SRP_Manager().Validate_TC(driver, PropertyName, logger);
             new PDP_Manager().Validate_TC(driver, logger);
-       //     new Review_Manager().Validate_TC(driver,browserName,adminServer,MobileNumber,logger);
+            new Review_Manager().Validate_TC(driver,couponCode,Integer.parseInt(discountPercentage),logger);
 
             logger.log(LogStatus.PASS, "Booking flow has been tested successfully.");
         }

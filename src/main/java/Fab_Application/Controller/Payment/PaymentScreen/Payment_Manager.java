@@ -34,7 +34,7 @@ public class Payment_Manager {
         ReusableMethods.Click(driver,driver.findElement(UiAddresses.netBanking));
         ReusableMethods.Click(driver,PaytmOption(driver,logger));
         ReusableMethods.Click(driver, paytmRadioButton(driver,logger));
-        ReusableMethods.Click(driver,Review_POM.AmountToBePaid(driver,logger));
+        ReusableMethods.Click(driver,Pay(driver,logger));
         ReusableMethods.Click(driver, paytmloginLink(driver,logger));
         ReusableMethods.type(driver, paytmLoginField(driver,logger),"7777777777");
         ReusableMethods.type(driver, paytmPasswordField(driver, logger),"Paytm12345");

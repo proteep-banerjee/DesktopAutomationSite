@@ -12,75 +12,84 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
 
 import java.io.IOException;
+import java.util.List;
 
 import static Fab_Application.Controller.POM.PropertyDetailPage.PDP_POM.*;
 import static Fab_Application.Controller.POM.ReviewPage.Review_POM.PayAtHotel;
 
 public class Review_Manager {
 
-    public void Validate_TC(WebDriver driver,String browserName, String serverName, String mobileNumber,ExtentTest logger)
-
-            throws InterruptedException,IOException,JSONException {
-
-       // ReusableMethods.Click(driver,ContinueButton(driver,logger));
-    	//ReusableMethods.MoveByElementAndClick(driver, PayAtHotel(driver,logger));
-    	((JavascriptExecutor) driver).executeScript("arguments[0].click();", PayAtHotel(driver,logger));
+    public void Validate_TC(WebDriver driver,String browserName,String serverName,String mobileNumber,String adminUsername,
+    		 String adminPassword, ExtentTest logger) throws InterruptedException,IOException,JSONException {
     	
-    	System.out.println("Clicked on Pay @");
-    	Thread.sleep(8000);
-    //    ReusableMethods.Click(driver, PayAtHotel(driver, logger));
+    	ReusableMethods.Click(driver, PayAtHotel(driver,logger));
+    	ReusableMethods.wait(5);
+   
         //OTP
-        String otp = getOtpForNumber(driver,browserName,serverName,mobileNumber,logger);
-        
-        System.out.println("Iam on window "+ driver.getTitle());
-        
-        Thread.sleep(5000);
+        String otp = getOtpForNumber(driver,browserName,serverName,mobileNumber,adminUsername,adminPassword,logger);    
+        System.out.println("Iam on window "+ driver.getTitle());       
+        ReusableMethods.wait(5);
         ReusableMethods.type(driver,Review_POM.Otp(driver,logger),otp);
         ReusableMethods.Click(driver,ConfirmBooking(driver,logger));
         
-        
-
-
-
+        String confirmationText = ReusableMethods.getText(driver, UiAddresses.bookingConfirmationText, logger);
+        String bookingId = "";
+        if(confirmationText.equalsIgnoreCase("Booking confirmed!")) {
+        	
+        	 bookingId = ReusableMethods.getText(driver, UiAddresses.bookingId, logger);
+        	System.out.println(bookingId);
+        	logger.log(LogStatus.PASS, "booking created successfully with "+ bookingId);
+        	Assert.assertTrue(true);
+        }
+        else {
+        	System.out.println("Booking creation failed ");
+        	logger.log(LogStatus.FAIL, "booking creation Failed ");
+        	Assert.assertTrue(false);
+        }
+    
     }
 
-    public String getOtpForNumber(WebDriver driver, String browserName, String serverName, String mobileNumber, ExtentTest logger)
+    public String getOtpForNumber(WebDriver driver, String browserName, String serverName, String mobileNumber, 
+    								String adminUsername, String adminPassword, ExtentTest logger)
             throws InterruptedException, IOException, JSONException {
 
         String otp = "";
         WebDriver temp_driver = DriverHelper.initiateWebBrowserInstance(browserName,serverName);
         WebElement username = ReusableMethods.FindElement(temp_driver,UiAddresses.userName,logger);
         username.click();
-        username.sendKeys("Varunbhayana");
+        username.sendKeys(adminUsername);
         WebElement password = ReusableMethods.FindElement(temp_driver,UiAddresses.password,logger);
         password.click();
-        password.sendKeys("password");
+        password.sendKeys(adminPassword);
         ReusableMethods.FindElement(temp_driver,UiAddresses.login,logger).click();
         WebElement abandoned = ReusableMethods.FindElement(temp_driver, UiAddresses.AbandonedCart, logger);
         
-        System.out.println("abandoned ...... "+ abandoned.getText());
+        		try {
+        			ReusableMethods.Click(temp_driver, abandoned);
+        		}
+        		catch(Exception e) {
+        			((JavascriptExecutor)temp_driver).executeScript("window.scrollBy(0,250)");
+            		ReusableMethods.Click(temp_driver, abandoned);
+        		}
         
-        Thread.sleep(5000);
-        
-   //     ReusableMethods.scrollIntoView(driver, abandoned);
-//        ReusableMethods.MoveByElementAndClick(temp_driver, abandoned);
-        
-       // ((JavascriptExecutor) driver).executeScript("arguments[0].click();", abandoned);
+        ReusableMethods.wait(3);
         
         WebElement mobileSearch = ReusableMethods.FindElement(temp_driver,UiAddresses.searchMobile,logger);
-        mobileSearch.click();
-        mobileSearch.sendKeys(mobileNumber);
+        ReusableMethods.Click(temp_driver, mobileSearch);
+        ReusableMethods.type(temp_driver, mobileSearch, mobileNumber);    
         mobileSearch.sendKeys(Keys.ENTER);
 
-        Thread.sleep(5000);
-
-        String mobile = ReusableMethods.FindElement(temp_driver,UiAddresses.mobile,logger).getText().split("-")[1];
+        ReusableMethods.wait(5);
+        
+        String mobile = ReusableMethods.getText(temp_driver, UiAddresses.mobile, logger).split("-")[1];
 
         if(mobile.contains(mobileNumber)){
 
-            otp =  ReusableMethods.FindElement(temp_driver,UiAddresses.transactionId,logger).getText();
+        	otp = ReusableMethods.getText(temp_driver, UiAddresses.transactionId, logger);
             logger.log(LogStatus.PASS,"Otp found "+ otp + "for number");
         } else {
             System.out.println("Otp not found ");

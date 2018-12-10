@@ -15,10 +15,10 @@ public class LoginPageManager {
 
             ReusableMethods.type(driver, mobileNumberField(driver, logger), mobileNumber);
             ReusableMethods.Click(driver, continueButton(driver, logger));
-      //Validate OTP
+    
+            //Validate OTP
             ReusableMethods.type(driver, otpField(driver, logger), OTP);
             ReusableMethods.Click(driver, getStartedButton(driver, logger));
-     //       ReusableMethods.Click(driver, homeButton(driver, logger));
 
 
     }

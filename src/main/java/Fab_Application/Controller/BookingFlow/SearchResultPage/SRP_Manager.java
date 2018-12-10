@@ -16,48 +16,37 @@ import static Fab_Application.Controller.POM.SRPScreen.SRP_POM.*;
 
 public class SRP_Manager {
 
-    public void Validate_TC(WebDriver driver, String PropertyName, ExtentTest logger) throws IOException, InterruptedException {
+	public void Validate_TC(WebDriver driver, String PropertyName, ExtentTest logger) throws IOException, InterruptedException {
 
-      
-            ReusableMethods.scrollToEndLoads(driver);
-          //  ReusableMethods.Click(driver, BackToTop(driver, logger));
-            Thread.sleep(2000);
-    	
-    	boolean prop = false;
 
-            for(WebElement property : listOfProperties(driver, logger)) {
-                String Property = property.getText();
-                
-                System.out.println("Property "+ Property);
-                if (Property.toLowerCase().contains(PropertyName.toLowerCase())) {
-                	
-                	prop = true;
-                	
-                	System.out.println("Got the property name ");
+		ReusableMethods.scrollToEndLoads(driver);
+		ReusableMethods.wait(2);
 
-                    ReusableMethods.scrollIntoView(driver, property);
-                    
-             //       new Actions(driver).moveToElement(property).build().perform();
-                    
-                    System.out.println("Scrolled to property, Clicking now ");
-                    
-                 //   ((JavascriptExecutor) driver).executeScript("arguments[0].click;",property);
-                   
-                   WebElement search = property.findElement(By.xpath("/ancestor :: div[contains(@class,'table-div')]//div[contains(@class,'price-wrap')]"));
-                   
-                //   System.out.println("search btn "+ search);
-                   
-                   Thread.sleep(5000);
-                   ReusableMethods.Click(driver, search);
-                    
-                    System.out.println("Clicked on prop ");
+		boolean prop = false;
 
-                    break;
-                }
-            }
-          
-            	System.out.println("Prop result " +prop);
-            
+		for(WebElement property : listOfProperties(driver, logger)) {
+			String Property = property.getText();
 
-    }
+			if (Property.toLowerCase().contains(PropertyName.toLowerCase())) {
+
+				prop = true;
+
+				ReusableMethods.scrollIntoView(driver, property);
+
+				System.out.println("Scrolled to property, Clicking now ");  
+				ReusableMethods.wait(8);
+
+				((JavascriptExecutor) driver).executeScript ("window.scrollBy(0,-500)");
+				System.out.println("Scrolled ");
+				ReusableMethods.wait(5);
+
+				ReusableMethods.Click(driver, property);
+
+				System.out.println("Clicked on prop ");
+
+				break;
+			}}
+		System.out.println("Prop result " +prop);
+
+	}
 }
