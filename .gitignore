@@ -1,2 +1,6 @@
+/.idea
 /target/
-/bin/
+/Results/
+/Screenshots/
+.DS_Store
+/test-output/

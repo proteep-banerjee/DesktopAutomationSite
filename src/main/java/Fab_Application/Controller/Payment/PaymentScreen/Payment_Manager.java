@@ -31,7 +31,7 @@ public class Payment_Manager {
         ReusableMethods.type(driver, CreditCardCvvNumber(driver,logger),cvv);
         ReusableMethods.enterValue(driver, fullName_Card(driver,logger),CardName);
         ReusableMethods.wait(5);
-        ReusableMethods.Click(driver,driver.findElement(UiAddresses.netBanking));
+//        ReusableMethods.Click(driver,driver.findElement(UiAddresses.netBanking));
         ReusableMethods.Click(driver,PaytmOption(driver,logger));
         ReusableMethods.Click(driver, paytmRadioButton(driver,logger));
         ReusableMethods.Click(driver,Pay(driver,logger));
