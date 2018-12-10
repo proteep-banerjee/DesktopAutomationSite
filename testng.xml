@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Suite" configfailurepolicy="continue">
 
-    <!-- Test the booking flow end to end on mweb -->
+    <!-- Test the booking flow end to end on Desktop -->
     <test name="SRP Screen Test Desktop">
 
         <packages>
