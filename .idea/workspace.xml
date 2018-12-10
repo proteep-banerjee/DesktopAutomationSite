@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="38980280-61bb-4bfb-8271-1579e734b340" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/Fab_Application/Controller/ReviewPageTestCase/ReviewPage/Review_Manager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SRPTestCases/FilterTest/SRP_FilterTest_Manager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SRPTestCases/HomeScreen/HomeScreenManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SRPTestCases/ValidateBreakfastAmenity/SRP_ValidateFreeBreakfast_Manager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SRPTestCases/ValidateCredits/SRP_ValidateCredits_Manager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SRPTestCases/ValidateEditBoxText/SRP_ValidateEditBox_Manager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SRPTestCases/ValidateNumberOfReviews/SRP_ValidateNumberOfReviews_Manager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SRPTestCases/ValidatePrice/SRP_ValidatePrice_Manager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SRPTestCases/ValidateRatings/SRP_ValidateRatings_Manager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SRPTestCases/ValidateSorting/SRP_ValidateSorting_Manager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SplashScreenTest/verifyAllLinks/verifyAllLinks_Manager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SplashScreenTest/verifyAutoSearchSuggestion/verifyAutoSearchSuggestion_Manager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SplashScreenTest/verifyCheckInAndCheckOutDateNotSame/verifyCheckInAndCheckOutDateNotSame_Manager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SplashScreenTest/verifyCityCarousalHomePage/verifyCityCarousalHomePage_Manager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SplashScreenTest/verifyDateBeforeCurrentNotSelectable/verifyDateBeforeCurrentNotSelectable_Manager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SplashScreenTest/verifyGuestList/verifyGuestList_Manager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SplashScreenTest/verifyHamburgerMoreOptions/verifyHamburgerMoreOptions_Manager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SplashScreenTest/verifyHamburgerOptions/verifyHamburgerOptions_Manager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SplashScreenTest/verifyLoginButton/verifyLoginButton_Manager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SplashScreenTest/verifyLoginWithInvalidOTP/verifyLoginWithInvalidOTP_Manager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SplashScreenTest/verifyLoginWithInvalidUsername/verifyLoginWithInvalidUsername_Manager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SplashScreenTest/verifyLoginWithValidCredentials/verifyLoginWithValidCredentials_Manager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SplashScreenTest/verifyLogout/verifyLogout_Manager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SplashScreenTest/verifyNearbyHotelTag/verifyNearbyHotelTag_Manager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SplashScreenTest/verifyOurLocationsOption/verifyOurLocationsOption_Manager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SplashScreenTest/verifyReferOption/verifyReferOption_Manager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SplashScreenTest/verifyUserMembership/verifyUserMembership_Manager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Fab_Application/Controller/SplashScreenTest/verifyUserNameOnWelcomePage/verifyUserNameOnWelcomePage_Manager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Fab_Application/HomePageTest/verifyAllLinksManagerAfterLogInTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Fab_Application/HomePageTest/verifyAllLinksManagerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Fab_Application/HomePageTest/verifyCheckInAndCheckOutDateNotSameManagerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Fab_Application/HomePageTest/verifyCityCarousalHomePageManagerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Fab_Application/HomePageTest/verifyDateBeforeCurrentNotSelectableManagerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Fab_Application/HomePageTest/verifyGuestTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Fab_Application/HomePageTest/verifyHamburgerMoreOptionsManagerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Fab_Application/HomePageTest/verifyHamburgerOptionsManagerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Fab_Application/HomePageTest/verifyLoginButtonManagerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Fab_Application/HomePageTest/verifyLoginWithInvalidOTPManagerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Fab_Application/HomePageTest/verifyLoginWithInvalidUsernameManagerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Fab_Application/HomePageTest/verifyLoginWithValidCredentialsManagerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Fab_Application/HomePageTest/verifyLogoutManagerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Fab_Application/HomePageTest/verifyNearbyHotelTagManagerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Fab_Application/HomePageTest/verifyOurLocationsOptionManagerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Fab_Application/HomePageTest/verifyReferOptionManagerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Fab_Application/HomePageTest/verifySearchTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Fab_Application/HomePageTest/verifyUserNameOnWelcomePageManagerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Fab_Application/SRPTests/SRP_CoupleFriendlyFilterTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Fab_Application/SRPTests/SRP_CreditsTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Fab_Application/SRPTests/SRP_EditDetailsTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Fab_Application/SRPTests/SRP_FilterResetButtonTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Fab_Application/SRPTests/SRP_FilterSectionsTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Fab_Application/SRPTests/SRP_FreeBreakfastAmenityTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Fab_Application/SRPTests/SRP_NonZeroSellPriceTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Fab_Application/SRPTests/SRP_PriceFilterTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Fab_Application/SRPTests/SRP_RackPriceTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Fab_Application/SRPTests/SRP_RatingsTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Fab_Application/SRPTests/SRP_ReviewCountTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Fab_Application/SRPTests/SRP_SortPricesTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/test_data/SRPTests/CoupleFriendlyPolicyFilterTest.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/test_data/SRPTests/CreditsTestSRP.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/test_data/SRPTests/EditBoxDetailsTest.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/test_data/SRPTests/FiltersAllSectionTest.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/test_data/SRPTests/FiltersResetButtonTest.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/test_data/SRPTests/FreeBreakfastTest.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/test_data/SRPTests/PriceFilterTest.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/test_data/SRPTests/RackPricesTest.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/test_data/SRPTests/RatingsTest.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/test_data/SRPTests/ReviewCountTest.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/test_data/SRPTests/highToLowSortTest.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/test_data/SRPTests/nonZeroPriceTest.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/test_data/SplashScreenTest/verifyAllLinksAfterLogIn.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/test_data/SplashScreenTest/verifyHamburgerMoreOptions.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/test_data/SplashScreenTest/verifyHamburgerOptions.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/test_data/SplashScreenTest/verifyLoginWithInvalidOTP.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/test_data/SplashScreenTest/verifyLoginWithInvalidUsername.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/test_data/SplashScreenTest/verifyLoginWithValidCredentials.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/test_data/SplashScreenTest/verifyLogout.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/test_data/SplashScreenTest/verifySearch.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/test_data/SplashScreenTest/verifyUserMembership.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/test_data/SplashScreenTest/verifyUserNameOnWelcomePage.xlsx" beforeDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1376" />
+    <option name="height" value="744" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="fab.desktop.1.0.0" type="b2602c69:ProjectViewProjectNode" />
+              <item name="automationdesktopsite" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.other" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="38980280-61bb-4bfb-8271-1579e734b340" name="Default Changelist" comment="" />
+      <created>1544420187372</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1544420187372</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1376" height="744" extended-state="0" />
+    <layout>
+      <window_info id="Image Layers" order="0" />
+      <window_info id="Designer" order="1" />
+      <window_info id="UI Designer" order="2" />
+      <window_info id="Capture Tool" order="3" />
+      <window_info id="Favorites" order="4" side_tool="true" />
+      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.25" />
+      <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" order="0" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="1" visible="true" weight="0.9198036" />
+      <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="3" />
+      <window_info anchor="bottom" id="Find" order="4" />
+      <window_info anchor="bottom" id="Run" order="5" />
+      <window_info anchor="bottom" id="Debug" order="6" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="7" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="9" />
+      <window_info anchor="right" id="Palette" order="0" />
+      <window_info anchor="right" id="Capture Analysis" order="1" />
+      <window_info anchor="right" id="Theme Preview" order="2" />
+      <window_info anchor="right" id="Palette&#9;" order="3" />
+      <window_info anchor="right" id="Maven" order="4" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="5" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="6" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="7" weight="0.25" />
+    </layout>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
