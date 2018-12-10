@@ -91,28 +91,63 @@ public class UiAddresses {
     public static By calendar_monthYearDisplay = By.xpath("//div[@class='datepicker-days']//th[@class='datepicker-switch']");
     public static By calendar_DateList = By.xpath("//div[@class='datepicker-days']//tbody//td");
 
+    public static By splashScreen_CitySearchField = By.id("autocomplete-location");
+
+    // Calendar
+    public static By calendarYear = By.xpath(".//*[@class = 'p-calendar']//div[contains(@class, 'p-title')]/span[3]");
+    public static By calendarMonth = By.xpath(".//*[@class = 'p-calendar']//div[contains(@class, 'p-title')]/span[1]");
+    public static By calendarDateList = By.xpath(".//*[@class = 'p-calendar']//div[@class='calendar__nextday']/dd");
+    public static By calendar_DoneButton = By.xpath(".//*[text()='Done']");
+
     // SRP Page
-    public static By SRP_listOfProperties = By.xpath("//li[contains(@class,'hotel_card')][not(contains(@class,'soldout'))]//h3/a");
+    public static By SRP_listOfProperties = By.xpath("//li[@class=' hotel_card ']//h3/a");
+    public static By SRP_listOfNearbyProperties = By.xpath("//div[@class = 'nearby-heading']/following-sibling::ul[@class = 'hotel-card-wrapper clearfix']/li");
+    public static By SRP_SortButton = By.xpath("//span[@class = 'price-arrow ']");
+    public static By SRP_PropertyPricesList = By.xpath("//li[@class = ' hotel_card ']//span[@class = 'discounted-price']");
+    public static By SRP_SoldOutProperties = By.xpath("//li[@class = 'soldout hotel_card ']");
+    public static By SRP_SearchDetails_Date = By.className("header__editSearchDate");
+    public static By SRP_SearchDetails_Guest = By.className("header__editSearchGuest");
+    public static By SRP_RatingStars = By.xpath("//li[@class = ' hotel_card ']//span[@class = 'rating-value']");
+    public static By SRP_RatingReviews = By.xpath("//li[@class = ' hotel_card ']//span[@class = 'rating-text']");
+    public static By SRP_CoupleFriendlyLabel = By.xpath("//li[contains(@class, 'hotel_card')]//span[text()= 'Couple Friendly']");
+    public static By SRP_RackPricesList = By.xpath("//li[@class = ' hotel_card ']//span[@class = 'room-price']");
+    public static By SRP_ReviewCountList = By.xpath("//li[@class = ' hotel_card ']//div[@class='rating-review']");
+    public static By SRP_FreeBreakfast = By.xpath("//li[@class = ' hotel_card ']//div[@class = 'additional-discount']");
+    public static By SRP_EarnCredits = By.xpath("//li[@class = ' hotel_card ']//span[@class = 'max-earning-msg']");
+    public static By SRP_SavedPriceAmount = By.xpath("//li[@class = ' hotel_card ']//span[@class = 'save-rupees']");
+    public static By SRP_FooterBanner = By.xpath("//div[@class = 'fab-stay-coupan fab_stay_coupon ']//span[@class = 'cross-icon cross_icon']");
+    public static By SRP_AppliedFilterList = By.xpath("//ul[@id = 'top_filters_section']/li");
+    public static By SRP_AppliedFiltersCloseIcon = By.xpath("//ul[@id = 'top_filters_section']/li/span[contains(@class, 'close')]");
 
 
     // SRP Edit Details Modal
-    public static By SRP_EditDetails_CalendarCheckIn = By.className("searchCheckIn");
+    public static By SRP_EditDetails_SearchField = By.id("gp-input");
+    public static By SRP_EditDetails_SearchButton = By.xpath("//div[text()='SEARCH']");
+    public static By SRP_EditDetails_GuestPlusButton = By.className(" bplus");
+    public static By SRP_EditDetails_AutosuggestionList = By.xpath("//div[@class='SearchBox__pacItem']/div[2]/span[1]");
 
+    // SRP Sort Modal
+    public static By SRP_SortModal_PriceAsc = By.xpath("//span[@class='price-arrow low-to-high']");
 
 
     //Filter Screen
-    public static By Filter_ResetButton = By.xpath("//span[text() = 'Reset All']");
-    public static By Filter_PriceSlider = By.xpath("//div[@role = 'slider']");
-    public static By Filter_PriceSliderTooltip = By.className("rc-slider-tooltip-inner");
-    public static By Filter_CoupleFriendlyPolicy = By.xpath("//label[text()='Couple Friendly']");
-    public static By Filter_Occupancy = By.xpath("//h3[text()='Occupancy']/following-sibling::div/span");
-    public static By Filter_ApplyFilter = By.xpath("//button/span[contains(text(), 'VIEW' )]");
-    public static By Filter_StandardAmenitiesSection = By.xpath("//div[@class='Filters__standard-amenities-list']");
-    public static By Filter_AmenitiesSection = By.xpath("//h3[text()='Amenities']");
-    public static By Filter_OccupancySection = By.xpath("//h3[text()='Occupancy']");
-    public static By Filter_PoliciesSection = By.xpath("//h3[text()='Policies']");
-    public static By Filter_PricepernightSection = By.xpath("//h3[text()='Price/night']");
-    public static By Filter_LocalitySection = By.xpath("//h3[text()='Popular Localities']");
+    public static By Filter_ResetButton = By.id("clear_all");
+    public static By Filter_PriceSliderLeft = By.xpath("//div[@class = 'range-slider']//div[@class = 'range-caret range-left']");
+    public static By Filter_PriceSliderRight = By.xpath("//div[@class = 'range-slider']//div[@class = 'range-caret range-right']");
+    public static By Filter_LeftPriceSliderTooltip = By.xpath("//div[@class = 'price-container']//span[@class = 'display_min_price']");
+    public static By Filter_RightPriceSliderTooltip = By.xpath("//div[@class = 'price-container']//span[@class = 'display_max_price']");
+    public static By Filter_CoupleFriendlyPolicy = By.xpath("//label[text() = 'Couple Friendly ']/div");
+    public static By Filter_Occupancy = By.xpath("//div[@id = 'max_guest_filter']//label/div");
+    public static By Filter_StandardAmenitiesSection = By.xpath("//div[@class = 'standard-amenities']");
+    public static By Filter_AmenitiesSection = By.id("room_amenities_filter");
+    public static By Filter_OccupancySection = By.id("max_guest_filter");
+    public static By Filter_PoliciesSection = By.id("policy_filter");
+    public static By Filter_PricepernightSection = By.xpath("//div[@class = 'price-container']");
+    public static By Filter_LocalitySection = By.id("popular_locality_filter");
+    public static By Filter_TransportationSection = By.id("transportation_filter");
+
+    // SRP Edit Details Modal
+    public static By SRP_EditDetails_CalendarCheckIn = By.className("searchCheckIn");
 
     //Payment screen
     public static By PayAtHotel = By.xpath("//span[contains(@class, 'payment-cta')]/preceding-sibling::div");

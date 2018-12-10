@@ -4,3 +4,4 @@
 /Screenshots/
 .DS_Store
 /test-output/
+*.iml

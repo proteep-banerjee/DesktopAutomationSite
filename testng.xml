@@ -2,6 +2,15 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Suite" configfailurepolicy="continue">
 
+    <!-- Test the booking flow end to end on desktop -->
+    <test name="Booking Flow Test">
+
+        <packages>
+            <package name="Fab_Application.BookingTest"/>
+        </packages>
+    </test> <!-- Test -->
+
+
     <!-- Test the home screen on desktop -->
     <test name="Home Screen Test">
 
@@ -13,11 +22,23 @@
 
 
     <!-- Test the booking flow end to end on desktop -->
-    <test name="Booking Flow Test">
+    <test name="SRP Screen Test Desktop">
 
         <packages>
-            <package name="Fab_Application.BookingTest"/>
+            <package name="Fab_Application.SRPTests"/>
         </packages>
+    </test> <!-- Test -->
+
+
+    <!-- Test the Review Page Test on desktop -->
+    <test name="Review Page Test">
+
+        <!--<packages>
+            <package name="Fab_Application.ReviewPageTest"/>
+        </packages>-->
+        <classes>
+                <class name="Fab_Application.ReviewPageTest.PointsCreditedTest"/>
+        </classes>
     </test> <!-- Test -->
 
 
@@ -27,15 +48,6 @@
         <packages>
             <package name="Fab_Application.Payment_Flow"/>
         </packages>
-    </test> <!-- Test -->
-
-
-    <!-- Test the Review Page Test on desktop -->
-    <!--<test name="Review Page Test">
-
-        <packages>
-            <package name="Fab_Application.ReviewPageTest"/>
-        </packages>
-    </test>--> <!-- Test -->
+    </test>
 
 </suite> <!-- Suite -->

@@ -130,12 +130,12 @@ public class ReusableMethods extends DriverHelper {
         }
     }
 
-    public static void typeByID(AndroidDriver driver, String locator, String value) {
+    /*public static void typeByID(AndroidDriver driver, String locator, String value) {
 
         driver.findElementById(locator).clear();
         driver.findElementById(locator).sendKeys(value);
 
-    }
+    }*/
 
     // Method to find a single element
     public static WebElement FindElement(WebDriver driver, By by,
@@ -188,7 +188,7 @@ public class ReusableMethods extends DriverHelper {
     }
 
 
-    public static void typeByXpath(AndroidDriver driver, String locator, String value) {
+    /*public static void typeByXpath(AndroidDriver driver, String locator, String value) {
 
         driver.findElementByXPath(locator).clear();
         driver.findElementByXPath(locator).sendKeys(value);
@@ -202,7 +202,7 @@ public class ReusableMethods extends DriverHelper {
      * @param element
      * @param value1
      */
-    public static void dropBoxText(AndroidDriver driver, WebElement element, String value1) {
+    /*public static void dropBoxText(AndroidDriver driver, WebElement element, String value1) {
 
         Select dropdownGroup = new Select(element);
 
@@ -241,7 +241,7 @@ public class ReusableMethods extends DriverHelper {
             js.executeScript("mobile: scrollTo", scrollObject);
         } catch (Exception localException) {
         }
-    }
+    }*/
 
 
     public static String captureScreenShot(WebDriver driver) throws IOException {
@@ -265,7 +265,7 @@ public class ReusableMethods extends DriverHelper {
     }
 
 
-    public static void scrollDown(AndroidDriver driver, String text) {
+    /*public static void scrollDown(AndroidDriver driver, String text) {
         try {
             JavascriptExecutor js = driver;
             HashMap<String, String> scrollObject = new HashMap<String, String>();
@@ -275,7 +275,7 @@ public class ReusableMethods extends DriverHelper {
             js.executeScript("mobile: scrollTo", scrollObject);
         } catch (Exception localException) {
         }
-    }
+    }*/
 
 
     public static boolean isPresentOnPage(WebDriver driver, By by) {
@@ -301,7 +301,7 @@ public class ReusableMethods extends DriverHelper {
 
     }
 
-    public static boolean isPresentOnPageAppiumID(AndroidDriver driver, String locator) {
+    /*public static boolean isPresentOnPageAppiumID(AndroidDriver driver, String locator) {
 
         WebElement we = null;
 
@@ -527,12 +527,22 @@ public class ReusableMethods extends DriverHelper {
         String allLine = "";
         while ((line = r.readLine()) != null) {
             allLine = allLine + "" + line + " ";
-            /*if (line.contains("device")) break*/
+            *//*if (line.contains("device")) break*//*
             ;
         }
 
         String spitter[] = allLine.split(" ");
         return spitter[4];
+    }*/
+
+    public static void scrollByCount(WebDriver driver, int Num) throws InterruptedException {
+        JavascriptExecutor je = (JavascriptExecutor) driver;
+
+        String jscode = "window.scrollBy(0, document.body.scrollHeight)";
+        for (int i = 0; i < Num; i++) {
+            Thread.sleep(5000);
+            je.executeScript(jscode);
+        }
     }
 
     /*---------------------------------Proteep Banerjee----------------------------------------------------*/

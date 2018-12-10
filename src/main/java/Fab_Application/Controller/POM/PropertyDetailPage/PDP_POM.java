@@ -15,6 +15,7 @@ import java.util.Set;
 import static Fab_Application.Constants.UiAddresses.*;
 
 
+@SuppressWarnings("ConstantConditions")
 public class PDP_POM {
 
     public static WebElement BookNowButton(WebDriver driver, ExtentTest logger) throws IOException {
@@ -37,7 +38,7 @@ public class PDP_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
         return element;
     }
@@ -51,7 +52,7 @@ public class PDP_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
         return element;
     }
@@ -66,7 +67,7 @@ public class PDP_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;
@@ -82,7 +83,7 @@ public class PDP_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;
@@ -98,7 +99,7 @@ public class PDP_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
         return element;
     }
@@ -113,7 +114,7 @@ public class PDP_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
         return element;
@@ -129,7 +130,7 @@ public class PDP_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
         return element;
     }
@@ -143,7 +144,7 @@ public class PDP_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
         return element;
     }
@@ -157,7 +158,7 @@ public class PDP_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
         return element;
     }
@@ -171,7 +172,7 @@ public class PDP_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
         return element;
     }
@@ -185,7 +186,7 @@ public class PDP_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
         return element;
     }
@@ -199,7 +200,7 @@ public class PDP_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.assertTrue(false);
+            Assert.fail();
         }
         return element;
     }
