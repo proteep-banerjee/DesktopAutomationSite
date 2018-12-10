@@ -14,6 +14,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.Reporter;
+import org.testng.asserts.SoftAssert;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -28,6 +29,7 @@ import java.util.concurrent.TimeUnit;
 public class ReusableMethods extends DriverHelper {
 
     public static final int impliciteTimeOut = 2;
+    public static SoftAssert softAssert = new SoftAssert();
 
 
     // Method to enter the text into a web element
@@ -38,6 +40,34 @@ public class ReusableMethods extends DriverHelper {
             element.clear();
             element.sendKeys((String)value);
             System.out.println("Entered Text :" + value);
+        } else {
+            System.out.println("Not present element:" + element);
+        }
+    }
+
+    // Method to enter the int text into a web element
+    public static void enterValue(WebDriver driver, WebElement element, String value) {
+
+        if (isElementPresent(driver, element)) {
+            element.click();
+
+            JavascriptExecutor jse = (JavascriptExecutor) driver;
+            jse.executeScript("arguments[0].value='" + value + "';", element);
+
+            System.out.println(element.getTagName());
+            System.out.println("Entered Text :" + value);
+        } else {
+            System.out.println("Not present element:" + element);
+        }
+    }
+
+    public static void sendKeys(WebDriver driver, WebElement element) {
+
+        if (isElementPresent(driver, element)) {
+            element.click();
+
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+
         } else {
             System.out.println("Not present element:" + element);
         }
@@ -505,6 +535,8 @@ public class ReusableMethods extends DriverHelper {
         return spitter[4];
     }
 
+    /*---------------------------------Proteep Banerjee----------------------------------------------------*/
+
     // To select element from a dropdown using value attribute.
     public static void selectByValue(WebDriver driver, WebElement element, String value) throws IOException {
 
@@ -594,6 +626,7 @@ public class ReusableMethods extends DriverHelper {
         }
     }
 
+    // Method to get the page title of a web page.
     public static void getPageTitle(WebDriver driver, String PageTitle) throws IOException {
 
         driver.manage().timeouts().implicitlyWait(2000, TimeUnit.MILLISECONDS);
@@ -624,21 +657,38 @@ public class ReusableMethods extends DriverHelper {
 
     }
 
-    // The calendar logic for fabhotels.
-    public static void calendar_CheckIn(WebDriver driver, String Month, String Date) {
 
-        String CheckIn = "//div[@class='calender-range-details']//span[text()='" + Month + "']/../../../..//dd[text()='" + Date + "']";
+    // Scroll to the top of page
+    public static void scrollup(WebDriver driver){
+
+        try{
+            ((JavascriptExecutor)driver).executeScript("window.scrollBy(0,-(document.body.scrollHeight))");
+        }
+        catch (Exception e){
+            System.out.println("Unable to scroll to the top of the page : " + e.getMessage());
+
+        }
+
+    }
+
+    // Calendar date selection logic for desktop
+    public static void calendar_CheckInDesktop(WebDriver driver, String Month, String Date) {
+
+        String CheckIn = "//div[@class='datepicker-days']//th[contains(text(),'" + Month + "')]/ancestor::table//td[text()='" + Date + "']";
 
         while (true) {
             try {
                 driver.findElement(By.xpath(CheckIn)).click();
                 break;
             } catch (NoSuchElementException e) {
-                String nextBtn = "//div[@class='p-cell p-next']";
+                String nextBtn = "//div[@class='datepicker-days']//th[@class='next']";
                 driver.findElement(By.xpath(nextBtn)).click();
             }
         }
     }
+/*************************************************************************************************/
+
+
 
     // Method to move to the element
     public static void MoveToElement(WebDriver driver, WebElement element) throws IOException {
@@ -721,6 +771,11 @@ public class ReusableMethods extends DriverHelper {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public static String getText(WebDriver driver, By by,ExtentTest logger) throws IOException{
+        String text = FindElement(driver,by,logger).getText();
+        return text;
     }
 
 
