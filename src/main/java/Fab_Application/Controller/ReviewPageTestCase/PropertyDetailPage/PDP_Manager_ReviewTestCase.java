@@ -10,7 +10,7 @@ import java.io.IOException;
 
 import static Fab_Application.Controller.POM.PropertyDetailPage.PDP_POM.*;
 
-public class PDP_Manager {
+public class PDP_Manager_ReviewTestCase {
 
     public String Validate_TC(WebDriver driver, ExtentTest logger) throws IOException {
 

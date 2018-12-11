@@ -2,37 +2,35 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Sanity Suite" configfailurepolicy="continue">
 
-    <!-- Test the booking flow end to end on mweb -->
+    <!-- Test the booking flow end to end on desktop -->
     <test name="Booking Flow Test">
 
+        <packages>
+            <package name="Fab_Application.BookingTest"/>
+        </packages>
+
+    </test>
+
+    <!-- Test the payment flow end to end on desktop -->
+    <test name="Payment Flow Test">
+
+        <packages>
+            <package name="Fab_Application.Payment_Flow"/>
+        </packages>
+
+    </test>
+
+    <!-- Verify the points credited  on desktop -->
+    <test name="Points Credited Test">
+
         <classes>
-            <class name="Fab_Application.BookingTest.BookingFlowTest"/>
+            <class name="Fab_Application.ReviewPageTest.PointsCreditedTest"/>
         </classes>
-    </test> <!-- Test -->
+
+    </test>
 
 
-    <!--&lt;!&ndash;Test the home screen for fabhotels mweb&ndash;&gt;-->
-    <!--<test name="Home Screen Test">-->
-
-        <!--<packages>-->
-            <!--<package name="Fab_Application.HomePageTest"/>-->
-        <!--</packages>-->
-    <!--</test> &lt;!&ndash; Test &ndash;&gt;-->
 
 
-    <!--&lt;!&ndash; Test the SRP screen with test cases &ndash;&gt;-->
-    <!--<test name="SRP Screen Test">-->
 
-        <!--<packages>-->
-            <!--<package name="Fab_Application.SRPTests"/>-->
-        <!--</packages>-->
-    <!--</test> &lt;!&ndash; Test &ndash;&gt;-->
-
-
-    <!--<test name="Payment Test">-->
-        <!--<packages>-->
-            <!--<package name="Fab_Application.Payment_Flow"/>-->
-        <!--</packages>-->
-    <!--</test> &lt;!&ndash; Test &ndash;&gt;-->
-
-</suite> <!-- Suite -->
+</suite>

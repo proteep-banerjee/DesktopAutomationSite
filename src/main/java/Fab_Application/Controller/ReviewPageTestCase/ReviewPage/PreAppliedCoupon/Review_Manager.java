@@ -48,15 +48,16 @@ public class Review_Manager {
 		totalSavingAmount = Integer.parseInt(totalSavings.getText());
 		
 		String creditedPointsStr = creditedPoint.getText();
-		
-		System.out.println("Credited Points "+ creditedPointsStr.substring(0,4));
-		creditedPoints = Integer.parseInt(creditedPointsStr.split("//s+")[1]);
+
+		creditedPointsStr = creditedPointsStr.trim().split("//s")[0].replaceAll("[^0-9]", "");
+		System.out.println("Credited Points"+ creditedPointsStr);
 		
 
 		    	if(rackPriceList.size()!= 0) {
 		    		
 		    		System.out.println("Rackprice present");
 		    		rackPriceAmount = Integer.parseInt(rackPriceList.get(0).getText());
+					System.out.println("rackPriceAmount "+ rackPriceAmount);
 		    		
 		    	}else {
 		    		System.out.println("Rackprice not present");

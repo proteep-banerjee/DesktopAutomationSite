@@ -55,9 +55,6 @@ public class Review_Manager {
 			amountPayable = Integer.parseInt(payableAmount.getText());
 		}
 		
-		
-		
-		
 		System.out.println("Credited Points"+ creditedPointsStr);
 		creditedPoints = Integer.parseInt(creditedPointsStr);   		    	
 		creditsVerify(driver,amountPayable,userType,creditedPoints ,logger);

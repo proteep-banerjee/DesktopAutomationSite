@@ -8,7 +8,7 @@ import com.relevantcodes.extentreports.LogStatus;
 
 import Fab_Application.Controller.BookingFlow.HomePage.HomePage_Manager;
 import Fab_Application.Controller.BookingFlow.LoginPage.LoginPageManager;
-import Fab_Application.Controller.ReviewPageTestCase.PropertyDetailPage.PDP_Manager;
+import Fab_Application.Controller.ReviewPageTestCase.PropertyDetailPage.PDP_Manager_ReviewTestCase;
 import Fab_Application.Controller.ReviewPageTestCase.ReviewPage.PreAppliedCoupon.Review_Manager;
 import Fab_Application.Controller.BookingFlow.SearchCityPage.SearchCityManager;
 import Fab_Application.Controller.BookingFlow.SearchResultPage.SRP_Manager;
@@ -37,7 +37,7 @@ public class PreAppliedCouponTest extends BaseTestClass {
             new LoginPageManager().Validate_TC(driver, MobileNumber, OTP, logger);
             new SearchCityManager().Validate_TC(driver, cityName, checkInDate, guestsNumber, logger);
             new SRP_Manager().Validate_TC(driver, PropertyName, logger);
-            new PDP_Manager().Validate_TC(driver, logger);
+            new PDP_Manager_ReviewTestCase().Validate_TC(driver, logger);
             new Review_Manager().Validate_TC(driver,"",logger);
 
             logger.log(LogStatus.PASS, "Booking flow has been tested successfully.");

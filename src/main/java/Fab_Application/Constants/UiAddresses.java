@@ -23,33 +23,18 @@ public class UiAddresses {
     public static By homePage_loginButton = By.xpath("//span[contains(@class,'login_register')]");
     public static By homePage_CitySearchField = By.id("autocomplete-location");
     public static By homePage_CityAutosuggestionList = By.xpath("//span[@class='pac-item-query']/span");
-    public static By homePage_GuestField = By.xpath("//span[contains(@class,'guests_selected')]");
     public static By homePage_GuestList = By.xpath("//div[@class='select-dropdown-section']/span");
     public static By homePage_SearchButton = By.id("listingPageBtn");
-    public static By homePage_ArrowIcon = By.xpath("//span[@class='arrow-icon']");
-    public static By homePage_UserIcon = By.xpath("//*[contains(@class,'icon-person')]");
     public static By homePage_GuestIcon = By.xpath("//span[@class='person-icon-wrap']");
 
     // Calendar
     public static By calendar_monthYearDisplay = By.xpath("//div[@class='datepicker-days']//th[@class='datepicker-switch']");
-    public static By calendar_previousButton = By.xpath("//div[@class='datepicker-days']//th[@class='prev']");
     public static By calendar_nextButton = By.xpath("//div[@class='datepicker-days']//th[@class='next']");
     public static By calendar_DateList = By.xpath("//div[@class='datepicker-days']//tbody//td");
-    public static By calendar_CheckinDate = By.className("//div[contains(@class,'searchCheckInBox')]");
-    public static By calendar_CheckoutDate = By.className("//div[contains(@class,'searchCheckOutBox')]");
 
     // SRP Page
     public static By SRP_listOfProperties = By.xpath("//li[contains(@class,'hotel_card')][not(contains(@class,'soldout'))]//h3/a");
-
-
-    // SRP Edit Details Modal
-    public static By SRP_EditDetails_SearchField = By.id("gp-input");
-    public static By SRP_EditDetails_ClearField = By.xpath("//span[text()='CLEAR']");
     public static By SRP_EditDetails_CalendarCheckIn = By.className("searchCheckIn");
-    public static By SRP_EditDetails_SearchButton = By.xpath("//div[text()='SEARCH']");
-    public static By SRP_EditDetails_GuestPlusButton = By.className(" bplus");
-    public static By SRP_EditDetails_GuestMinusButton = By.className(" bminus");
-    public static By SRP_EditDetails_AutosuggestionList = By.xpath("//div[@class='pac-container pac-logo']/div");
 
 
     //PDP Page
@@ -74,12 +59,9 @@ public class UiAddresses {
     public static By Review_GuestsAndRoomsDetails = By.className("review_details_complete_guests");
     public static By Review_PayNow = By.xpath("//div[@class='payment_options_content guest-payment-option guest_payment_option']//div[@class='review_guest_continue submit-guest-details'][contains(text(),'Pay Now')]");
     public static By Review_Name = By.xpath("//input[@name='User[Name]']");
-    public static By Review_Email = By.xpath("//input[@name='User[Email]']");
     public static By Review_Mobile = By.xpath("//input[@name='User[Mobile]']");
-    public static By Review_CountryCode = By.xpath("country-code");
     public static By Review_Otp = By.xpath("//div[@class='payment_options_content guest-payment-option guest_payment_option']//input[@placeholder='Enter OTP here']");
     public static By Review_ConfirmBooking = By.xpath("//div[@class='payment_options_content guest-payment-option guest_payment_option']//span[contains(text(),'Confirm Booking')]");
-    public static By Review_CountryList = By.xpath("//div[@class='country_code_list_container']/div[@class='country_code_item']");
     public static By Review_TotalAmount = By.xpath("//div[@class='review_details_complete_price']/span[contains(@class,'grand-total-amount')]");
     public static By Review_AmountToBePaid = By.xpath("//div[@class='payment_options_content guest-payment-option guest_payment_option']//span[@class='grand-total-amount']");
     public static By Review_appliedCoupon = By.xpath("//div[contains(@class,'review_booking_offers')]//strong[@class='coupon_code_text']");
@@ -108,7 +90,6 @@ public class UiAddresses {
 
 
     //Payment screen
-    public static By PayAtHotel = By.xpath("//span[contains(@class, 'payment-cta')]/preceding-sibling::div");
     public static By MobileNumber_Field = By.xpath("//label[@class='mobile']");
     public static By fullName_Field = By.xpath("//label[@class='full-name']");
     public static By email_Field = By.xpath("//label[@class='email']");
@@ -117,7 +98,6 @@ public class UiAddresses {
     public static By companyNameField = By.xpath("//label[text()='Company Name']]");
     public static By companyAddressField = By.xpath("//label[text()='Company Address']");
     public static By CreditCardOption = By.xpath("//span[contains(text(),'Credit Card')]");
-    public static By DebitCardOption = By.xpath("//span[contains(text(),'Debit Card')]");
     public static By CreditCardNumberField = By.xpath("//label[contains(text(),'Credit Card')]/following-sibling :: input");
     public static By fullName_Card = By.xpath("//div[@tab-detail-order='1']/descendant :: input[@name='Payment[Card_Name]']");
     public static By CreditCardCvv = By.xpath("//div[@tab-detail-order='1']/descendant :: input[@name='Payment[Card_CVV]']");
@@ -125,7 +105,6 @@ public class UiAddresses {
     public static By payField = By.xpath("//div[contains(@class,'submit-payment-request')]");
     public static By netBanking = By.xpath("//span[contains(text(),'Net Banking')]");
     public static By paytm = By.xpath("//span[contains(text(),'Paytm')]");
-    public static By wallet_CheckBox = By.xpath("//span[@class='payment-mode-selection']/input[@value='PAYTM']");
 
 
     //Booking Confirmation Page
@@ -140,11 +119,5 @@ public class UiAddresses {
     public static By passwordField = By.xpath("//input[@name='password']");
     public static By secureLogin = By.xpath("//button[contains(text(),'Secure Sign In')]");
     public static By walletPayNow = By.xpath("//div[contains(@class,'fullWalletDeduct')]//input[contains(@value,'Pay now')]");
-
-    
-    
-    
-  
-    
 
 }

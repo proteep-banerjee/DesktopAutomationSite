@@ -1,4 +1,4 @@
-package Fab_Application.Controller.Payment.PDPScreen;
+package Fab_Application.Controller.Payment.PropertyDetailPage;
 
 import Fab_Application.Utilities.ReusableMethods;
 import com.relevantcodes.extentreports.ExtentTest;
@@ -6,7 +6,6 @@ import com.relevantcodes.extentreports.ExtentTest;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 
 import java.io.IOException;
@@ -16,7 +15,7 @@ import java.util.Set;
 import static Fab_Application.Controller.POM.PropertyDetailPage.PDP_POM.*;
 import static Fab_Application.Controller.POM.ReviewPage.Review_POM.GuestAndRoomDetails;
 
-public class PDP_Manager {
+public class PDP_Manager_PaymentFlow {
 
     public void Validate_TC(WebDriver driver, ExtentTest logger) throws IOException, InterruptedException {
     	
@@ -85,11 +84,11 @@ public class PDP_Manager {
         String pdpPrice = PDPScreenPrice(driver, logger).getText().replaceAll("[^0-9]", "");
 
 
-        System.out.println("PDPScreen page price is: " + pdpPrice);
+        System.out.println("PropertyDetailPage page price is: " + pdpPrice);
         if (pdpPrice.equals(bookNow_BtnPrice)) {
-            System.out.println("Price Matched on Description page and PDPScreen Screen...");
+            System.out.println("Price Matched on Description page and PropertyDetailPage Screen...");
         } else {
-            Assert.assertTrue(false, "Price not Matched on Description page and PDPScreen Screen...");
+            Assert.assertTrue(false, "Price not Matched on Description page and PropertyDetailPage Screen...");
         }
 
         ReusableMethods.Click(driver, BookNowButton(driver, logger));

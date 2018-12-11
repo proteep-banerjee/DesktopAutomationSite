@@ -10,7 +10,7 @@ import Fab_Application.Controller.BookingFlow.HomePage.HomePage_Manager;
 import Fab_Application.Controller.BookingFlow.LoginPage.LoginPageManager;
 import Fab_Application.Controller.BookingFlow.SearchCityPage.SearchCityManager;
 import Fab_Application.Controller.BookingFlow.SearchResultPage.SRP_Manager;
-import Fab_Application.Controller.ReviewPageTestCase.PropertyDetailPage.PDP_Manager;
+import Fab_Application.Controller.ReviewPageTestCase.PropertyDetailPage.PDP_Manager_ReviewTestCase;
 import Fab_Application.Controller.ReviewPageTestCase.ReviewPage.PointsCredited.Review_Manager;
 import Fab_Application.Helper.Common.BaseTestClass;
 import Fab_Application.Helper.Common.DriverHelper;
@@ -27,7 +27,7 @@ public class PointsCreditedTest extends BaseTestClass {
 
     @Test(dataProvider = "ExcelDataProvider", dataProviderClass = TestDataHelper.class,
             enabled = true)
-    public void PreAppliedCouponsTest(String MobileNumber, String OTP,String cityName, String checkInDate,
+    public void PointsCreditedTest(String MobileNumber, String OTP,String cityName, String checkInDate,
             String guestsNumber, String PropertyName){
 
         try{
@@ -38,7 +38,7 @@ public class PointsCreditedTest extends BaseTestClass {
             new LoginPageManager().Validate_TC(driver, MobileNumber, OTP, logger);
             new SearchCityManager().Validate_TC(driver, cityName, checkInDate, guestsNumber, logger);
             new SRP_Manager().Validate_TC(driver, PropertyName, logger);
-            userType =  new PDP_Manager().Validate_TC(driver, logger);
+            userType =  new PDP_Manager_ReviewTestCase().Validate_TC(driver, logger);
             new Review_Manager().Validate_TC(driver,userType,logger);
 
             logger.log(LogStatus.PASS, "Booking flow has been tested successfully.");

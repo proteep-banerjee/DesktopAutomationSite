@@ -4,7 +4,7 @@ import Fab_Application.Controller.Payment.ReviewPage.Review_Manager;
 import Fab_Application.Controller.BookingFlow.SearchCityPage.SearchCityManager;
 import Fab_Application.Controller.BookingFlow.SearchResultPage.SRP_Manager;
 import Fab_Application.Controller.BookingFlow.HomePage.HomePage_Manager;
-import Fab_Application.Controller.Payment.PDPScreen.PDP_Manager;
+import Fab_Application.Controller.Payment.PropertyDetailPage.PDP_Manager_PaymentFlow;
 import Fab_Application.Controller.Payment.PaymentScreen.Payment_Manager;
 import Fab_Application.Helper.Common.BaseTestClass;
 import Fab_Application.Helper.Common.DriverHelper;
@@ -29,7 +29,7 @@ public class Payment extends BaseTestClass {
     LoginPageManager loginPageManager = new LoginPageManager();
     SearchCityManager searchCityManager = new SearchCityManager();
     SRP_Manager srp_manager = new SRP_Manager();
-    PDP_Manager pdp_manager = new PDP_Manager();
+    PDP_Manager_PaymentFlow pdp_manager = new PDP_Manager_PaymentFlow();
     Review_Manager review_manager = new Review_Manager();
     Payment_Manager payment_manager = new Payment_Manager();
 

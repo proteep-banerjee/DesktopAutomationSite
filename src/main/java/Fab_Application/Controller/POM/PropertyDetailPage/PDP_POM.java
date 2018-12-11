@@ -108,7 +108,7 @@ public class PDP_POM {
 
         try{
             element = ReusableMethods.FindElement(driver, PDP_InfobarPrice, logger);
-            logger.log(LogStatus.PASS, element.getText() + " : Book Now Button Found on PDPScreen Screen");
+            logger.log(LogStatus.PASS, element.getText() + " : Book Now Button Found on PropertyDetailPage Screen");
 
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
