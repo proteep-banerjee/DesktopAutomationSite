@@ -1,7 +1,7 @@
 package Fab_Application.SRPTests;
 
-import Fab_Application.Controller.SRPTestManagers.FilterTest.SRP_FilterTest_Manager;
-import Fab_Application.Controller.SRPTestManagers.HomeScreen.HomeScreenManager;
+import Fab_Application.Controller.HomePage.HomePage_Manager_withoutValidations;
+import Fab_Application.Controller.SearchResultPage.SRPTest_Managers_withValidatons.SRP_FilterTest_Manager;
 import Fab_Application.Helper.Common.BaseTestClass;
 import Fab_Application.Helper.Common.DriverHelper;
 import Fab_Application.Helper.Data.TestDataHelper;
@@ -13,6 +13,10 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 
+/**
+ * Created by Proteep Banerjee
+ */
+
 public class SRP_CoupleFriendlyFilterTest extends BaseTestClass {
 
     private static String firstServer = "fabhotels_uat";
@@ -22,12 +26,13 @@ public class SRP_CoupleFriendlyFilterTest extends BaseTestClass {
 
     @Test(dataProvider = "ExcelDataProvider", dataProviderClass = TestDataHelper.class,
             enabled = true)
-    public void CoupleFriendlyPolicyFilterTest(String cityName, String checkInMonth, String checkInDate) throws IOException {
+    public void CoupleFriendlyPolicyFilterTest(String cityName, String checkInMonth, String checkInDate,
+                                               String guestNum) throws IOException {
         try{
             logger = extent.startTest("Couple Friendly Policy Filter Test");
             driver = DriverHelper.initiateBrowserInstance(browserName, firstServer);
-            new HomeScreenManager().Validate_TC(driver, cityName, checkInMonth,
-                    checkInDate, logger);
+            new HomePage_Manager_withoutValidations().searchProperty(driver, cityName, checkInMonth,
+                    checkInDate, guestNum, logger);
             new SRP_FilterTest_Manager().ValidateCoupleFriendlyPolicyFilter(
                     driver, logger);
             logger.log(LogStatus.PASS, "The Couple Friendly tags have been verified " +

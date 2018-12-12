@@ -1,7 +1,11 @@
 package Fab_Application.SRPTests;
 
-import Fab_Application.Controller.SRPTestManagers.HomeScreen.HomeScreenManager;
-import Fab_Application.Controller.SRPTestManagers.ValidateBreakfastAmenity.SRP_ValidateFreeBreakfast_Manager;
+/**
+ * Created by Proteep Banerjee
+ */
+
+import Fab_Application.Controller.HomePage.HomePage_Manager_withoutValidations;
+import Fab_Application.Controller.SearchResultPage.SRPTest_Managers_withValidatons.SRP_ValidateFreeBreakfast_Manager;
 import Fab_Application.Helper.Common.BaseTestClass;
 import Fab_Application.Helper.Common.DriverHelper;
 import Fab_Application.Helper.Data.TestDataHelper;
@@ -22,12 +26,13 @@ public class SRP_FreeBreakfastAmenityTest extends BaseTestClass {
 
     @Test(dataProvider = "ExcelDataProvider", dataProviderClass = TestDataHelper.class,
             enabled = true)
-    public void FreeBreakfastTest(String cityName, String checkInMonth, String checkInDate) throws IOException {
+    public void FreeBreakfastTest(String cityName, String checkInMonth, String checkInDate,
+                                  String guestNum) throws IOException {
         try{
             logger = extent.startTest("Free Breakfast Amenity Test");
             driver = DriverHelper.initiateBrowserInstance(browserName, firstServer);
-            new HomeScreenManager().Validate_TC(driver, cityName, checkInMonth,
-                    checkInDate, logger);
+            new HomePage_Manager_withoutValidations().searchProperty(driver, cityName, checkInMonth,
+                    checkInDate, guestNum, logger);
             new SRP_ValidateFreeBreakfast_Manager().ValidateFreeBreakfastForProperties(driver, logger);
             logger.log(LogStatus.PASS, "Free breakfast in all properties have been verified " +
                     "successfully.");

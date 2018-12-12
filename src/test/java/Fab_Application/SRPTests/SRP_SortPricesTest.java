@@ -1,7 +1,11 @@
 package Fab_Application.SRPTests;
 
-import Fab_Application.Controller.SRPTestManagers.HomeScreen.HomeScreenManager;
-import Fab_Application.Controller.SRPTestManagers.ValidateSorting.SRP_ValidateSorting_Manager;
+/**
+ * Created by Proteep Banerjee
+ */
+
+import Fab_Application.Controller.HomePage.HomePage_Manager_withoutValidations;
+import Fab_Application.Controller.SearchResultPage.SRPTest_Managers_withValidatons.SRP_ValidateSorting_Manager;
 import Fab_Application.Helper.Common.BaseTestClass;
 import Fab_Application.Helper.Common.DriverHelper;
 import Fab_Application.Helper.Data.TestDataHelper;
@@ -22,11 +26,12 @@ public class SRP_SortPricesTest extends BaseTestClass {
 
     @Test(dataProvider = "ExcelDataProvider", dataProviderClass = TestDataHelper.class,
             enabled = true)
-    public void lowToHighSortTest(String cityName, String checkInMonth, String checkInDate){
+    public void lowToHighSortTest(String cityName, String checkInMonth, String checkInDate, String guestNum){
         try{
             logger = extent.startTest("High to low Sorting");
             driver = DriverHelper.initiateBrowserInstance(browserName, firstServer);
-            new HomeScreenManager().Validate_TC(driver, cityName, checkInMonth, checkInDate, logger);
+            new HomePage_Manager_withoutValidations().searchProperty(driver, cityName, checkInMonth,
+                    checkInDate, guestNum, logger);
             new SRP_ValidateSorting_Manager().verifyLowToHigh(driver,logger);
             logger.log(LogStatus.PASS, "The prices of all properties in the SRP screen" +
                     " have been verified to be sorted from high to low.");

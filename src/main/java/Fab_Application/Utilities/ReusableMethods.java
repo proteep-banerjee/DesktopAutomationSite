@@ -1,10 +1,15 @@
 package Fab_Application.Utilities;
 
+/**
+ * Created By Bhupesh Mehta
+ * Modified By Proteep Banerjee
+ * Modified By Sumeet Singh
+ * Modified By Kalpana
+ */
+
 import Fab_Application.Helper.Common.DriverHelper;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
-import io.appium.java_client.MobileElement;
-import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
@@ -13,15 +18,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.Reporter;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -515,7 +516,7 @@ public class ReusableMethods extends DriverHelper {
         }
     }
 
-    /*---------------------------------Proteep Banerjee----------------------------------------------------*/
+    /********************************************Proteep Banerjee**************************************************/
 
     // To select element from a dropdown using value attribute.
     public static void selectByValue(WebDriver driver, WebElement element, String value) throws IOException {
@@ -606,6 +607,7 @@ public class ReusableMethods extends DriverHelper {
         }
     }
 
+    // Method to get the page title
     public static void getPageTitle(WebDriver driver, String PageTitle) throws IOException {
 
         driver.manage().timeouts().implicitlyWait(2000, TimeUnit.MILLISECONDS);
@@ -622,6 +624,7 @@ public class ReusableMethods extends DriverHelper {
 
     }
 
+    // Method to verify text of a webelement to a matcher text.
     public static boolean verifyText(WebElement element, String text) {
 
         if (element.getText().toString().equalsIgnoreCase(text)) {
@@ -650,6 +653,7 @@ public class ReusableMethods extends DriverHelper {
 
     }
 
+    // Calendar date selection method for desktop.
     public static void calendar_CheckInDesktop(WebDriver driver, String Month, String Date) {
 
         String CheckIn = "//div[@class='datepicker-days']//th[contains(text(),'" + Month + "')]/ancestor::table//td[text()='" + Date + "']";
@@ -665,9 +669,12 @@ public class ReusableMethods extends DriverHelper {
         }
     }
 
-        /*-------------------------------------------------------------------------------------------*/
+    /**************************************************************************************************/
 
 
+
+
+    /******************************************Sumeet*************************************************/
     // Method to move to the element
     public static void MoveToElement(WebDriver driver, WebElement element) throws IOException {
         try {
@@ -741,5 +748,29 @@ public class ReusableMethods extends DriverHelper {
 
     }
 
+    // Sleep method
+    public static void wait(int sec) {
+        int millisec = sec * 1000;
+
+        try {
+            Thread.sleep(millisec);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /********************************************************************************************/
+
+
+
+    /***********************************Kalpana**************************************************/
+
+    // Method to get the text of a web element.
+    public static String getText(WebDriver driver, By by,ExtentTest logger) throws IOException{
+        String text = FindElement(driver,by,logger).getText();
+        return text;
+    }
+
+    /********************************************************************************************/
 
 }

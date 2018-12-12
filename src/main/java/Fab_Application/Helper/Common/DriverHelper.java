@@ -8,6 +8,7 @@ import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
 import org.testng.Reporter;
@@ -21,8 +22,6 @@ import java.net.URL;
 import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
-
-import static io.appium.java_client.remote.MobileCapabilityType.AUTOMATION_NAME;
 
 public class DriverHelper {
 
@@ -133,10 +132,12 @@ public class DriverHelper {
         try {
             if (browserName.equalsIgnoreCase("Chrome") && OS.contains("windows")) {
                 System.setProperty("webdriver.chrome.driver", DriverConfiguration.chromeDriverPath);
-                driver = new ChromeDriver();
+                ChromeOptions options = BrowserCapabilities.WebChromeCapabilitiesList();
+                driver = new ChromeDriver(options);
             } else if (browserName.equalsIgnoreCase("Chrome") && OS.contains("mac")) {
                 System.setProperty("webdriver.chrome.driver", DriverConfiguration.chromeDriverPath_mac);
-                driver = new ChromeDriver();
+                ChromeOptions options = BrowserCapabilities.WebChromeCapabilitiesList();
+                driver = new ChromeDriver(options);
             }
 
             driver.manage().deleteAllCookies();

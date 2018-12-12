@@ -1,7 +1,7 @@
 package Fab_Application.SRPTests;
 
-import Fab_Application.Controller.SRPTestManagers.FilterTest.SRP_FilterTest_Manager;
-import Fab_Application.Controller.SRPTestManagers.HomeScreen.HomeScreenManager;
+import Fab_Application.Controller.HomePage.HomePage_Manager_withoutValidations;
+import Fab_Application.Controller.SearchResultPage.SRPTest_Managers_withValidatons.SRP_FilterTest_Manager;
 import Fab_Application.Helper.Common.BaseTestClass;
 import Fab_Application.Helper.Common.DriverHelper;
 import Fab_Application.Helper.Data.TestDataHelper;
@@ -13,6 +13,10 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 
+/**
+ * Created by Proteep Banerjee
+ */
+
 public class SRP_AppliedFiltersCloseIconTest extends BaseTestClass {
 
     private static String firstServer = "fabhotels_uat";
@@ -23,13 +27,13 @@ public class SRP_AppliedFiltersCloseIconTest extends BaseTestClass {
     @Test(dataProvider = "ExcelDataProvider", dataProviderClass = TestDataHelper.class,
             enabled = true)
     public void AppliedFiltersCloseIconTest(String cityName,
-                                            String checkInMonth, String checkInDate) throws IOException {
+                                            String checkInMonth, String checkInDate, String guestNum) throws IOException {
 
         try{
             logger = extent.startTest("Applied Filters Close Icon Test");
             driver = DriverHelper.initiateBrowserInstance(browserName, firstServer);
-            new HomeScreenManager().Validate_TC(driver, cityName, checkInMonth,
-                    checkInDate, logger);
+            new HomePage_Manager_withoutValidations().searchProperty(driver, cityName, checkInMonth,
+                    checkInDate, guestNum, logger);
             new SRP_FilterTest_Manager().AppliedFiltersCloseIcon(driver, logger);
             logger.log(LogStatus.PASS, "Close Icon for filters on SRP have been verified " +
                     "successfully.");

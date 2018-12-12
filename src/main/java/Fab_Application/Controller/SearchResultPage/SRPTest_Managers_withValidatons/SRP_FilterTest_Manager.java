@@ -1,4 +1,8 @@
-package Fab_Application.Controller.SRPTestManagers.FilterTest;
+package Fab_Application.Controller.SearchResultPage.SRPTest_Managers_withValidatons;
+
+/**
+ * Created by Proteep Banerjee
+ */
 
 import Fab_Application.Utilities.ReusableMethods;
 import com.relevantcodes.extentreports.ExtentTest;
@@ -51,6 +55,8 @@ public class SRP_FilterTest_Manager {
             while(currentRightSliderPostion > Integer.parseInt(maximumDesiredPrice)){
                 builder.dragAndDropBy(FilterPriceSliderRight(driver, logger), -30, 0).
                         build().perform();
+
+                ReusableMethods.wait(2);
 
                 currentRightSliderPostion = Integer.parseInt(FilterRightPriceSliderTooltip(driver, logger).
                         getText().replaceAll("[^\\d.]", ""));

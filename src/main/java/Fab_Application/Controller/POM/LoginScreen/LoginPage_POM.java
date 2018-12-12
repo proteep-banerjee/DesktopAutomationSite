@@ -10,7 +10,6 @@ import org.testng.Assert;
 
 import java.io.IOException;
 
-@SuppressWarnings("ConstantConditions")
 public class LoginPage_POM {
 
     public static WebElement googleLogin(WebDriver driver, ExtentTest logger) throws IOException {
@@ -23,7 +22,7 @@ public class LoginPage_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.fail();
+            Assert.assertTrue(false);
         }
 
         return element;
@@ -39,7 +38,7 @@ public class LoginPage_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.fail();
+            Assert.assertTrue(false);
         }
 
         return element;
@@ -51,12 +50,13 @@ public class LoginPage_POM {
         try{
             element = ReusableMethods.FindElement(driver, UiAddresses.loginScreen_mobileNumberField,
                     logger);
+            element = ReusableMethods.FindElement(driver, UiAddresses.loginScreen_mobileNumberField,logger);
             logger.log(LogStatus.PASS, element.getText() + " : Found");
 
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.fail();
+            Assert.assertTrue(false);
         }
 
         return element;
@@ -72,7 +72,7 @@ public class LoginPage_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.fail();
+            Assert.assertTrue(false);
         }
 
         return element;
@@ -89,7 +89,7 @@ public class LoginPage_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.fail();
+            Assert.assertTrue(false);
         }
 
         return element;
@@ -105,7 +105,7 @@ public class LoginPage_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.fail();
+            Assert.assertTrue(false);
         }
 
         return element;
@@ -121,7 +121,7 @@ public class LoginPage_POM {
         } catch (Exception e) {
             logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
             System.out.println(e.getMessage());
-            Assert.fail();
+            Assert.assertTrue(false);
         }
 
         return element;
@@ -135,11 +135,42 @@ public class LoginPage_POM {
         }
         catch(Exception e){
             System.out.println(e.getMessage());
-            Assert.fail();
+            Assert.assertTrue(false);
         }
 
         return element;
     }
+
+
+//    public static WebElement homeButton(WebDriver driver, ExtentTest logger) throws IOException {
+//        WebElement element = null;
+//
+//        try{
+//            element = ReusableMethods.FindElement(driver, UiAddresses.loginScreen_homeButton, logger);
+//            logger.log(LogStatus.PASS, element.getText() + " : Found");
+//
+//        } catch (Exception e) {
+//            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
+//            System.out.println(e.getMessage());
+//            Assert.assertTrue(false);
+//        }
+//
+//        return element;
+//    }
+
+//    public static WebElement verifyLoginPage(WebDriver driver, ExtentTest logger) throws IOException {
+//        WebElement element = null;
+//
+//        try{
+//            element = ReusableMethods.FindElement(driver, UiAddresses.loginScreen_verifyLoginPage1, logger);
+//        }
+//        catch(Exception e){
+//            System.out.println(e.getMessage());
+//            Assert.assertTrue(false);
+//        }
+//
+//        return element;
+//    }
 
     public static WebElement verifyInvalidUserName(WebDriver driver, ExtentTest logger) throws IOException {
         WebElement element = null;
@@ -149,7 +180,7 @@ public class LoginPage_POM {
         }
         catch(Exception e){
             System.out.println(e.getMessage());
-            Assert.fail();
+            Assert.assertTrue(false);
         }
         return element;
     }
@@ -162,10 +193,11 @@ public class LoginPage_POM {
         }
         catch(Exception e){
             System.out.println(e.getMessage());
-            Assert.fail();
+            Assert.assertTrue(false);
         }
         return element;
     }
+
 
     public static WebElement clickingToggleButton(WebDriver driver, ExtentTest logger) throws IOException {
         WebElement element = null;
@@ -175,7 +207,7 @@ public class LoginPage_POM {
         }
         catch(Exception e){
             System.out.println(e.getMessage());
-            Assert.fail();
+            Assert.assertTrue(false);
         }
         return element;
     }
@@ -188,23 +220,81 @@ public class LoginPage_POM {
         }
         catch(Exception e){
             System.out.println(e.getMessage());
-            Assert.fail();
+            Assert.assertTrue(false);
             return null;
         }
     }
+
+    /*public static List<WebElement> verifyLogin(WebDriver driver,ExtentTest logger) throws IOException{
+
+        List<WebElement> elementList = new ArrayList<>();
+
+        try{
+            elementList = ReusableMethods.FindElements(driver, UiAddresses.splashScreen_PersonIcon, logger);
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+            Assert.assertTrue(false);
+        }
+        return elementList;
+
+    }
+
+    public static WebElement clickingToggleButton(WebDriver driver, ExtentTest logger) throws IOException {
+        WebElement element = null;
+
+        try{
+            element = ReusableMethods.FindElement(driver, UiAddresses.loginScreen_toggleButton, logger);
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+            Assert.assertTrue(false);
+        }
+        return element;
+    }
+
+    public static List<String> verifyUserOnWelcomeScreen(WebDriver driver, ExtentTest logger) throws IOException {
+        List<String> element = new ArrayList<String>();
+        try{
+            element.add(ReusableMethods.FindElement(driver, UiAddresses.loginScreen_verifyLoginPage1, logger).getText());
+            ReusableMethods.Click(driver,clickingToggleButton(driver,logger));
+            Thread.sleep(2000);
+            element.add(ReusableMethods.FindElement(driver, UiAddresses.loginScreen_verifyLoginPage2, logger).getText());
+            return element;
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+            Assert.assertTrue(false);
+            return null;
+        }
+    }*/
 
     public static WebElement logoutButton(WebDriver driver, ExtentTest logger) throws IOException {
         WebElement element = null;
 
         try{
             element = ReusableMethods.FindElement(driver, UiAddresses.loginScreen_logoutButton, logger);
+            element = ReusableMethods.FindElement(driver, UiAddresses.loginScreen_LogoutButton, logger);
         }
         catch(Exception e){
             System.out.println(e.getMessage());
-            Assert.fail();
+            Assert.assertTrue(false);
         }
         return element;
     }
+
+/*    public static List<WebElement> loginSideTabs(WebDriver driver, ExtentTest logger) throws IOException {
+        List<WebElement> elements = null;
+
+        try{
+            elements = ReusableMethods.FindElements(driver, UiAddresses.loginScreen_sideTabs, logger);
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+            Assert.assertTrue(false);
+        }
+        return elements;
+    }*/
 
 
     public static WebElement logoutPopup(WebDriver driver, ExtentTest logger) throws IOException {
@@ -215,7 +305,7 @@ public class LoginPage_POM {
         }
         catch(Exception e){
             System.out.println(e.getMessage());
-            Assert.fail();
+            Assert.assertTrue(false);
         }
         return element;
     }
@@ -228,7 +318,7 @@ public class LoginPage_POM {
         }
         catch(Exception e){
             System.out.println(e.getMessage());
-            Assert.fail();
+            Assert.assertTrue(false);
         }
         return element;
     }
@@ -241,10 +331,11 @@ public class LoginPage_POM {
         }
         catch(Exception e){
             System.out.println(e.getMessage());
-            Assert.fail();
+            Assert.assertTrue(false);
         }
         return element;
     }
+
 
     public static WebElement fabCreditsSideTab(WebDriver driver, ExtentTest logger) throws IOException {
         WebElement element = null;
@@ -254,7 +345,7 @@ public class LoginPage_POM {
         }
         catch(Exception e){
             System.out.println(e.getMessage());
-            Assert.fail();
+            Assert.assertTrue(false);
         }
         return element;
     }
@@ -267,10 +358,9 @@ public class LoginPage_POM {
         }
         catch(Exception e){
             System.out.println(e.getMessage());
-            Assert.fail();
+            Assert.assertTrue(false);
         }
         return element;
     }
-
 
 }
