@@ -25,7 +25,7 @@ public class UiAddresses {
     public static By loginScreen_continueButton = By.xpath("//div[contains(@class,'referral_section')]/preceding-sibling :: div[contains(@class,'login_otp')]/button");
     public static By loginScreen_otpField = By.xpath("//input[@id='facebook_app_id']/following-sibling :: div[contains(@class,'otp-section')]//input[@class='otp']");
     public static By loginScreen_getStartedButton = By.xpath("//div[@class='otp-section otp_form']//button[@class='login-control login_after_otp'][contains(text(),'GET STARTED')]");
-    public static By loginScreen_invalidUsername = By.xpath("//p[contains(@class,' login_error_msg ')]");
+    public static By loginScreen_invalidUsername = By.xpath("//p[@class='error-message login_error_msg']");
     public static By loginScreen_invalidOTP = By.xpath("//span[@class='error-message otp-error-msg otp_error_msg']");
     public static By loginScreen_LogoutButton = By.xpath("//span[contains(text(),'Log out')]");
     public static By loginScreen_logoutPopUp = By.xpath("//span[contains(@class,'logout_ok_close')]");
@@ -192,9 +192,9 @@ public class UiAddresses {
     public static By Review_removeCoupon = By.xpath("//span[contains(@class,'remove_coupon_code')]");
     public static By Review_applyCouponField = By.xpath("//input[@name='Payment[Coupon_Code]']");
     public static By Review_applyCouponButton = By.xpath("//div[contains(@class,'apply_coupon_code')]");
-  
+
     /* Admin Panel  */
-    
+
     public static By userName = By.id("LoginForm_username");
     public static By password = By.id("LoginForm_password");
     public static By login = By.xpath("//input[@value='Login']");
@@ -226,7 +226,7 @@ public class UiAddresses {
     public static By bookingConfirmationText = By.xpath("//div[@class='confirmed-status']/h3");
     public static By bookingId = By.xpath("//div[@class='booking-id']/p");
 
-    
+
     //Paytm
     public static By paytmRadiobutton = By.id("wallet_PAYTM");
     public static By loginLink = By.id("login-btn");

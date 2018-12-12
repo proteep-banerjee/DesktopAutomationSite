@@ -9,8 +9,6 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class LoginPage_POM {
 
@@ -330,7 +328,6 @@ public class LoginPage_POM {
 
         try{
             element = ReusableMethods.FindElement(driver, UiAddresses.loginScreen_profileSideTab, logger);
-            element = ReusableMethods.FindElement(driver, UiAddresses.loginScreen_logoutPopUp, logger);
         }
         catch(Exception e){
             System.out.println(e.getMessage());

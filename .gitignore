@@ -2,6 +2,3 @@
 /target/
 /Results/
 /Screenshots/
-.DS_Store
-/test-output/
-*.iml

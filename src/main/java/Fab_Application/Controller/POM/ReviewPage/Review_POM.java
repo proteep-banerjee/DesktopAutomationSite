@@ -9,7 +9,6 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Review_POM {

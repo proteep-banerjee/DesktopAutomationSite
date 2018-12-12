@@ -23,8 +23,6 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-import static io.appium.java_client.remote.MobileCapabilityType.AUTOMATION_NAME;
-
 public class DriverHelper {
 
     public static SoftAssert softAssert = new SoftAssert();

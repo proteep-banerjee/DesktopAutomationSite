@@ -1,7 +1,5 @@
 package Fab_Application.Constants;
 
-import Fab_Application.Config.DeviceConfiguration;
-
 import java.util.HashMap;
 import java.util.Map;
 
