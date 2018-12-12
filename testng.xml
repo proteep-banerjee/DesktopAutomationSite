@@ -12,6 +12,15 @@
 
     </test>
 
+    <!-- Test the booking flow end to end on Desktop -->
+    <test name="SRP Screen Test Desktop">
+
+        <packages>
+            <package name="Fab_Application.SRPTests"/>
+        </packages>
+
+    </test> <!-- Test -->
+
 
 
 </suite> <!-- Suite -->
