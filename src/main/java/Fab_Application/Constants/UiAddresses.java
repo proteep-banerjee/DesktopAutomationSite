@@ -168,6 +168,7 @@ public class UiAddresses {
     public static By PDP_RoomIncrementButton = By.xpath("//div[@class='room-description-card flex-cls room_type_section select-room show-add-room-area']//a[@class='add_new_room_row'][contains(text(),'+ Add Room')]");
     public static By PDP_ScreenPrice = By.className("price");
     public static By PDP_userType = By.className("user-type");
+    public static By PDP_GuestIncrementButton = By.xpath("//span[contains(@class,'bplus plus_guest_no')]");
 
 
     /*   Review screen  */
@@ -192,6 +193,7 @@ public class UiAddresses {
     public static By Review_removeCoupon = By.xpath("//span[contains(@class,'remove_coupon_code')]");
     public static By Review_applyCouponField = By.xpath("//input[@name='Payment[Coupon_Code]']");
     public static By Review_applyCouponButton = By.xpath("//div[contains(@class,'apply_coupon_code')]");
+
 
     /* Admin Panel  */
 

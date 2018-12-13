@@ -89,6 +89,22 @@ public class PDP_POM {
         return element;
     }
 
+    public static WebElement guestIncrementButton(WebDriver driver, ExtentTest logger) throws IOException{
+        WebElement element = null;
+
+        try{
+            element = ReusableMethods.FindElement(driver, PDP_GuestIncrementButton, logger);
+            logger.log(LogStatus.PASS, element.getText() + " : + Button Found");
+
+        } catch (Exception e) {
+            logger.log(LogStatus.FAIL, e.getMessage(), logger.addScreenCapture(ReusableMethods.captureScreenShot(driver)));
+            System.out.println(e.getMessage());
+            Assert.assertTrue(false);
+        }
+
+        return element;
+    }
+
 
     public static WebElement RoomPriceTotal(WebDriver driver, ExtentTest logger) throws IOException {
         WebElement element = null;

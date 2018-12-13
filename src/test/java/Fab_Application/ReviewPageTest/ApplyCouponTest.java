@@ -1,0 +1,58 @@
+package Fab_Application.ReviewPageTest;
+
+import Fab_Application.Controller.HomePage.HomePage_Manager_withoutValidations;
+import Fab_Application.Controller.LoginPage.LoginPage_Manager_withoutValidations;
+import Fab_Application.Controller.PropertyDetailPage.PDP_Manager_withoutValidations;
+import Fab_Application.Controller.ReviewPage.ReviewPage_Manager_withValidations.Review_ApplyCoupon_Manager;
+import Fab_Application.Controller.SearchResultPage.SRP_Manager_withoutValidations;
+import Fab_Application.Helper.Common.BaseTestClass;
+import Fab_Application.Helper.Common.DriverHelper;
+import Fab_Application.Helper.Data.TestDataHelper;
+import com.relevantcodes.extentreports.LogStatus;
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.Test;
+
+public class ApplyCouponTest extends BaseTestClass {
+
+    private static String firstServer = "fabhotels_uat";
+    private static String browserName = "browserName";
+    String userType ="";
+   
+
+    private static WebDriver driver = null;
+
+    @Test(dataProvider = "ExcelDataProvider", dataProviderClass = TestDataHelper.class,
+            enabled = true)
+    public void ApplyCouponsTest(String MobileNumber, String OTP,String cityName,String checkInMonth, String checkInDate,
+            String guestNumber, String PropertyName, String couponCode, String discountPercentage){
+
+        try{
+            logger = extent.startTest("Coupon Test");
+            driver = DriverHelper.initiateBrowserInstance(browserName, firstServer);
+
+            new HomePage_Manager_withoutValidations().clickLoginButton(driver,logger);
+            new LoginPage_Manager_withoutValidations().SimpleLogin(driver, MobileNumber, OTP, logger);
+            new HomePage_Manager_withoutValidations().searchProperty(driver,cityName,checkInMonth,checkInDate,guestNumber,logger);
+            new SRP_Manager_withoutValidations().SRP_Redirection(driver, PropertyName, logger);
+            userType =  new PDP_Manager_withoutValidations().PDP_RedirectionAndUserType(driver,logger);
+            new Review_ApplyCoupon_Manager().ApplyCoupon(driver,couponCode,Integer.parseInt(discountPercentage),logger);
+
+            logger.log(LogStatus.PASS, "Booking flow has been tested successfully.");
+        }
+        catch (Exception e){
+            logger.log(LogStatus.FAIL, "Booking flow test has failed due to the following exception : " +
+                    "<br>" + e.getMessage());
+        }
+    }
+
+    @AfterTest
+    public void teardown() throws InterruptedException{
+    	
+    	Thread.sleep(10000);
+    	System.out.println("Quitting the driver");
+    	
+        driver.quit();
+    }
+
+}
