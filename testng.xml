@@ -38,14 +38,14 @@
     </test> <!-- Test -->
 
 
-    <!--&lt;!&ndash; Verify the points credited  on desktop &ndash;&gt;-->
-    <!--<test name="Points Credited Test">-->
+    <!-- Verify the points credited  on desktop -->
+    <test name="Points Credited Test">
 
-        <!--<classes>-->
-            <!--<class name="Fab_Application.ReviewPageTest.PointsCreditedTest"/>-->
-        <!--</classes>-->
+        <classes>
+            <class name="Fab_Application.ReviewPageTest.PointsCreditedTest"/>
+        </classes>
 
-    <!--</test>-->
+    </test>
 
 
 </suite>
