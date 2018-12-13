@@ -6,20 +6,20 @@
     <test name="Home Screen Test">
 
         <packages>
-            <package name="Fab_Application.HomeScreenTest"/>
-            <package name="Fab_Application.LoginTest"/>
+            <package name="Fab_Application.HomePageTests"/>
+            <package name="Fab_Application.LoginPageTests"/>
         </packages>
 
     </test>
 
-    <!-- Test the booking flow end to end on Desktop -->
+   <!--  Test the booking flow end to end on Desktop -->
     <test name="SRP Screen Test Desktop">
 
         <packages>
             <package name="Fab_Application.SRPTests"/>
         </packages>
 
-    </test> <!-- Test -->
+    </test>  <!-- Test -->
 
 
 
