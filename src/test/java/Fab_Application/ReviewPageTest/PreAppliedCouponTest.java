@@ -1,44 +1,47 @@
 package Fab_Application.ReviewPageTest;
 
+
+/**
+ * Created By - Kalpana
+ */
+
+import Fab_Application.Controller.HomePage.HomePage_Manager_withoutValidations;
+import Fab_Application.Controller.LoginPage.LoginPage_Manager_withoutValidations;
+import Fab_Application.Controller.PropertyDetailPage.PDP_Manager_withoutValidations;
+import Fab_Application.Controller.ReviewPage.ReviewPage_Manager_withValidations.Review_PreAppliedCoupon_Manager;
+import Fab_Application.Controller.SearchResultPage.SRP_Manager_withoutValidations;
+import Fab_Application.Helper.Common.BaseTestClass;
+import Fab_Application.Helper.Common.DriverHelper;
+import Fab_Application.Helper.Data.TestDataHelper;
+import com.relevantcodes.extentreports.LogStatus;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 
-import com.relevantcodes.extentreports.LogStatus;
-
-import Fab_Application.Controller.BookingFlow.HomePage.HomePage_Manager;
-import Fab_Application.Controller.BookingFlow.LoginPage.LoginPageManager;
-import Fab_Application.Controller.ReviewPageTestCase.PropertyDetailPage.PDP_Manager_ReviewTestCase;
-import Fab_Application.Controller.ReviewPageTestCase.ReviewPage.PreAppliedCoupon.Review_Manager;
-import Fab_Application.Controller.BookingFlow.SearchCityPage.SearchCityManager;
-import Fab_Application.Controller.BookingFlow.SearchResultPage.SRP_Manager;
-import Fab_Application.Helper.Common.BaseTestClass;
-import Fab_Application.Helper.Common.DriverHelper;
-import Fab_Application.Helper.Data.TestDataHelper;
-
 public class PreAppliedCouponTest extends BaseTestClass {
 
-    private static String firstServer = "fabhotels_prod";
-    private static String browserName = "Chrome";
+    private static String firstServer = "fabhotels_uat";
+    private static String browserName = "browserName";
+    String userType = "";
    
 
     private static WebDriver driver = null;
 
     @Test(dataProvider = "ExcelDataProvider", dataProviderClass = TestDataHelper.class,
             enabled = true)
-    public void PreAppliedCouponsTest(String MobileNumber, String OTP,String cityName, String checkInDate,
-            String guestsNumber, String PropertyName){
+    public void PreAppliedCouponsTest(String MobileNumber,String OTP,String cityName,String checkInMonth,String checkInDate,
+            String guestNumber, String PropertyName){
 
         try{
             logger = extent.startTest("Coupon Test");
-            driver = DriverHelper.initiateWebBrowserInstance(browserName, firstServer);
+            driver = DriverHelper.initiateBrowserInstance(browserName, firstServer);
 
-            new HomePage_Manager().Validate_TC(driver, logger);
-            new LoginPageManager().Validate_TC(driver, MobileNumber, OTP, logger);
-            new SearchCityManager().Validate_TC(driver, cityName, checkInDate, guestsNumber, logger);
-            new SRP_Manager().Validate_TC(driver, PropertyName, logger);
-            new PDP_Manager_ReviewTestCase().Validate_TC(driver, logger);
-            new Review_Manager().Validate_TC(driver,"",logger);
+            new HomePage_Manager_withoutValidations().clickLoginButton(driver,logger);
+            new LoginPage_Manager_withoutValidations().SimpleLogin(driver, MobileNumber, OTP, logger);
+            new HomePage_Manager_withoutValidations().searchProperty(driver,cityName,checkInMonth,checkInDate,guestNumber,logger);
+            new SRP_Manager_withoutValidations().SRP_Redirection(driver, PropertyName, logger);
+            userType =  new PDP_Manager_withoutValidations().PDP_RedirectionAndUserType(driver,logger);
+            new Review_PreAppliedCoupon_Manager().PreAppliedCouponVerification(driver,userType,logger);
 
             logger.log(LogStatus.PASS, "Booking flow has been tested successfully.");
         }

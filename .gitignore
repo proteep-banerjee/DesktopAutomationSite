@@ -1,2 +1,6 @@
+/.idea
 /target/
-/bin/
+/Results/
+/Screenshots/
+*.iml
+.DS_Store

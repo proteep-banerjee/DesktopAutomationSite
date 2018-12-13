@@ -2,23 +2,23 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Sanity Suite" configfailurepolicy="continue">
 
-    <!-- Test the booking flow end to end on desktop -->
-    <test name="Booking Flow Test">
+    <!--&lt;!&ndash; Test the booking flow end to end on desktop &ndash;&gt;-->
+    <!--<test name="Booking Flow Test">-->
 
-        <packages>
-            <package name="Fab_Application.BookingTest"/>
-        </packages>
+        <!--<packages>-->
+            <!--<package name="Fab_Application.BookingTest"/>-->
+        <!--</packages>-->
 
-    </test>
+    <!--</test>-->
 
-    <!-- Test the payment flow end to end on desktop -->
-    <test name="Payment Flow Test">
+    <!--&lt;!&ndash; Test the payment flow end to end on desktop &ndash;&gt;-->
+    <!--<test name="Payment Flow Test">-->
 
-        <packages>
-            <package name="Fab_Application.Payment_Flow"/>
-        </packages>
+        <!--<packages>-->
+            <!--<package name="Fab_Application.Payment_Flow"/>-->
+        <!--</packages>-->
 
-    </test>
+    <!--</test>-->
 
     <!-- Verify the points credited  on desktop -->
     <test name="Points Credited Test">
