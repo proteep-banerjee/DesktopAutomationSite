@@ -12,4 +12,7 @@ public interface DriverConfiguration {
     String chromeDriverPath_mac = System.getProperty("user.dir")+"/Drivers/chromedriver";
     String geckoDriverPath_mac = System.getProperty("user.dir")+"/Drivers/geckodriver";
     String operaDriverPath_mac = System.getProperty("user.dir")+"/Drivers/operadriver";
+
+    //Driver path for linux
+    String getChromeDriverPath_linux = System.getProperty("user.dir")+"/Drivers/Linux/chromedriver";
 }

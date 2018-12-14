@@ -139,6 +139,11 @@ public class DriverHelper {
                 ChromeOptions options = BrowserCapabilities.WebChromeCapabilitiesList();
                 driver = new ChromeDriver(options);
             }
+            else if(browserName.equalsIgnoreCase("Chrome") && OS.contains("linux")){
+                System.setProperty("webdriver.chrome.driver", DriverConfiguration.getChromeDriverPath_linux);
+                ChromeOptions options = BrowserCapabilities.WebChromeCapabilitiesList();
+                driver = new ChromeDriver(options);
+            }
 
             driver.manage().deleteAllCookies();
             driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
