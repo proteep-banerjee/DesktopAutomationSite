@@ -134,7 +134,8 @@ public class DriverHelper {
                 System.setProperty("webdriver.chrome.driver", DriverConfiguration.chromeDriverPath);
                 ChromeOptions options = BrowserCapabilities.WebChromeCapabilitiesList();
                 driver = new ChromeDriver(options);
-            } else if (browserName.equalsIgnoreCase("Chrome") && OS.contains("mac")) {
+            }
+            else if (browserName.equalsIgnoreCase("Chrome") && OS.contains("mac")) {
                 System.setProperty("webdriver.chrome.driver", DriverConfiguration.chromeDriverPath_mac);
                 ChromeOptions options = BrowserCapabilities.WebChromeCapabilitiesList();
                 driver = new ChromeDriver(options);
